@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import imgLogin from "../../assets/react.svg";
-import Global from "../../Global/Global";
+import Global from "../../global/Global";
 import "./login.css";
 
 const spoty_url = `https://accounts.spotify.com/authorize?client_id=${Global.client_id}&response_type=code&redirect_uri=${Global.redirect_uri}&scope=${Global.scopes}`;
