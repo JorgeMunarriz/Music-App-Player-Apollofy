@@ -10,10 +10,9 @@ export const Router: React.FC = ()=> {
     return (
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<LoginPage />} />
-            
+            <Route path='/' element={<LoginPage />} />      
 
-            <Route path='/*' element={<LoginPage />} />
+           
         </Routes>
       </BrowserRouter>
     )
