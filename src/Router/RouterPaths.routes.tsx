@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {LoginPage} from '../Pages/index'
+import React from 'react'
 
 
 
-
-
-export const Router= ()=> {
+export const Router: React.FC = ()=> {
 
   
     return (
