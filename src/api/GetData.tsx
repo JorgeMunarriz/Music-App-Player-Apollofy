@@ -1,7 +1,7 @@
 
 
 export const GetData = async () => {
-  const url = 'https://theaudiodb.p.rapidapi.com/searchalbum.php?s=daft_punk';
+  const url = 'http://localhost:3000/user';
 const options = {
 	method: 'GET',
 	headers: {
