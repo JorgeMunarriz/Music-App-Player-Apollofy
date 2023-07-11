@@ -1,5 +1,5 @@
 import React from 'react'
-import {LogIn} from '../Components/index'
+import {LogIn} from '../component/index'
 
 export function LoginPage() {
   return (

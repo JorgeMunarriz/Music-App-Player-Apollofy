@@ -1,6 +1,6 @@
 
 import './App.css'
-import { Router } from './Router/RouterPaths.routes'
+import { Router } from './router/RouterPaths.routes'
 
 
 
