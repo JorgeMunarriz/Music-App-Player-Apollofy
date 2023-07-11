@@ -1,8 +1,5 @@
 
 
-
-
-
 export const GetData = async () => {
   const url = 'https://theaudiodb.p.rapidapi.com/searchalbum.php?s=daft_punk';
 const options = {
