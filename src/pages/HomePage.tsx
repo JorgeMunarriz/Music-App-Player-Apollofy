@@ -1,8 +1,8 @@
-import {data} from "../api/Data"
+import {GetData} from "../api/GetData"
+
 
 export const HomePage = () => {
-    data
-    console.log(data)
+    GetData()
   return (
     
     <div>HomePage</div>

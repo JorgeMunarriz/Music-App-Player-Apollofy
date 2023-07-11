@@ -1,3 +1,3 @@
-import { GetData } from "./GetData";
+import  {GetData}  from "./GetData";
 
 export const data = await GetData();

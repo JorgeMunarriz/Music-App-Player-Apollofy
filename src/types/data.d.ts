@@ -1,7 +1,3 @@
-export interface PlaylistType {
-    data : Playlist[]
-
-}
 
 export interface Root {
     playlists: Playlist[]
