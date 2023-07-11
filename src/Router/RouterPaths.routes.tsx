@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 663cd8a9a1eec3fe67ce8d4aa0b1bff6334e7bcf
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import {LoginPage} from '../Pages/index'
+import {LoginPage} from '../pages/index'
 import React from 'react'
 
 
