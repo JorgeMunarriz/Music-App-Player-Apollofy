@@ -1,4 +1,4 @@
-import {data} from "../api/GetData.tsx"
+import {data} from "../api/Data"
 
 export const HomePage = () => {
     data
