@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "json-server": "json-server --w src/assets/db/data.db.json"
+    "json-server": "json-server --w src/assets/db/data.db.json",
+    "json-user": "json-server --w src/assets/db/users.db.json set --port=3004"
 
   },
   "dependencies": {
