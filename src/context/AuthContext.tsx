@@ -5,7 +5,7 @@ import { authReducer, REDUCER_ACTION_TYPE } from "./authReducer";
 export const AuthContext = createContext<UserProps>({} as UserProps); 
 
 const init = () => {
-    const user = JSON.parse(localStorage.getItem('user') as string);
+    const user = JSON.parse(localStorage.getItem('ser') as string);
     return {
         user
     }
