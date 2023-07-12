@@ -3,6 +3,7 @@ import {HomePage, LandingPage, LoginPage, ProfilePage, RegisterPage, ReproPage, 
 
 export const Router = () => {
 	return (
+		
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
