@@ -1,7 +1,16 @@
+import { Logo, Title } from "../components"
+import { LandingPageStyles } from "../styles/LandingPage.styles"
 
 
 export const LandingPage = () => {
-  return (
-    <div>LandingPage</div>
-  )
+
+    return (
+
+        <LandingPageStyles>
+
+            <Logo />
+            <Title />
+
+        </LandingPageStyles>
+    )
 }
