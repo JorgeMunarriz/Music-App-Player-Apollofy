@@ -3,10 +3,8 @@ import {HomePage, LandingPage, LoginPage, ProfilePage, RegisterPage, ReproPage, 
 import React from 'react'
 
 
+export const Router = () => {
 
-export const Router: React.FC = ()=> {
-
-  
     return (
       <BrowserRouter>
         <Routes>
@@ -24,5 +22,4 @@ export const Router: React.FC = ()=> {
         </Routes>
       </BrowserRouter>
     )
-  
 }
