@@ -1,4 +1,4 @@
-import {GetData} from "../api/GetData"
+import {GetData} from "../../api/GetData"
 
 
 export const HomePage = () => {

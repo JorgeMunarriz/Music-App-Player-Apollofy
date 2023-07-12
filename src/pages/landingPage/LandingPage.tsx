@@ -1,5 +1,5 @@
-import { Logo, Title } from "../components"
-import { LandingPageStyles } from "../styles/LandingPage.styles"
+import { Logo, Title } from "../../components"
+import { LandingPageStyles } from "./landingPage.styles"
 
 
 export const LandingPage = () => {

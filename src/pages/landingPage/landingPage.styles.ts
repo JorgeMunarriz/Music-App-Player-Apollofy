@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backGroundImage from "../assets/img/Crowd.webp";
+import backGroundImage from "../../assets/img/Crowd.webp";
 
 export const LandingPageStyles  = styled.div`
 display: flex;
