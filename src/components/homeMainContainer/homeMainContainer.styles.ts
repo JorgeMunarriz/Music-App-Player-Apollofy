@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContainerMainStyles = styled.main`
+export const HomeMainContainerStyles = styled.main`
 
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
