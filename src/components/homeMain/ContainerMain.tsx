@@ -1,5 +1,6 @@
 import { Navbar } from '..'
-import { ContainerMainStyles } from './containerMain.styles'
+import { ContainerMainStyles } from '../homeMainContainer/containerMain.styles'
+
 
 export const ContainerMain = () => {
   return (

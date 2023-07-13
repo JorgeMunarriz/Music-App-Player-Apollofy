@@ -1,5 +1,5 @@
 import {GetData} from "../../api/GetData"
-import { ContainerMain, Footer, GridContainer, SideBar } from "../../components"
+import { Footer, HomeMainContainerStyles, SideBar } from "../../components"
 import { HomePageStyles } from "./homePage.style"
 
 
@@ -9,7 +9,7 @@ export const HomePage = () => {
     <HomePageStyles>
         <SideBar/>
         <Footer/>
-        <ContainerMain/>
+        <HomeMainContainerStyles/>
     </HomePageStyles>
   )
 }
