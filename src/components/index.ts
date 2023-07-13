@@ -15,6 +15,7 @@ export * from './log/Login';
 export * from './log/login.styles';
 export * from './logo/Logo';
 export * from './logo/Styles';
+export * from './navbar/Navbar';
 export * from './player/Player';
 export * from './player/player.styles';
 export * from './searchBar/SearchBar';
