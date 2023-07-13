@@ -1,3 +1,4 @@
+export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/Styles';
 export * from './containerMain/ContainerMain';
