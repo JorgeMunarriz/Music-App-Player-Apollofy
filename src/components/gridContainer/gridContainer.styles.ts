@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GridContainerStyles = styled.div`
-
+background-color: rgba(0, 0, 0, 0.8);
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   display: grid;
@@ -21,7 +21,7 @@ export const GridContainerStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.8);
   height: 100vh;
 }
 
@@ -29,7 +29,7 @@ export const GridContainerStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.8);
   height: 100vh;
 }
 `;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {Link} from 'react-router-dom'
 
 
- 
 export const LinkButtonStyles = styled(Link)`
   display: flex;
   width: 100%;
