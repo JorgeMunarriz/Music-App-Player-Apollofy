@@ -9,9 +9,10 @@ export const ButtonLogin = styled.button`
   height: 78px;
   cursor: pointer;
   opacity: 0.5;
+  transition: all 0.3s;
   &:hover{
     background-color: #E84050;
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: 0.7;
   }
 
