@@ -1,14 +1,15 @@
-import { GetData } from "../../api/GetData";
-import { Footer, GridContainer, HomeMainContainerStyles, SideBar } from "../../components";
-import { HomePageStyles } from "./homePage.style";
+import {GetData} from "../../api/GetData"
+import { Footer, HomeMainContainer, SideBar } from "../../components"
+import { HomePageStyles } from "./homePage.style"
+
 
 export const HomePage = () => {
   GetData();
   return (
-    <HomeMainContainerStyles>
-      <SideBar />
-      <Footer />
-      {/* <HomeMainContainerStyles /> */}
-    </HomeMainContainerStyles>
-  );
-};
+    <HomePageStyles>
+        <SideBar/>
+        <Footer/>
+        <HomeMainContainer/>
+    </HomePageStyles>
+  )
+}

@@ -2,7 +2,9 @@ import { createContext, FC, useContext, useReducer } from "react";
 import { UserProps } from "../types/authContext";
 import { authReducer, REDUCER_ACTION_TYPE } from "./authReducer";
 
+
 export const AuthContext = createContext<UserProps>({} as UserProps);
+
 
 const init = () => {
     const user = JSON.parse(localStorage.getItem('user') as string) || "";
