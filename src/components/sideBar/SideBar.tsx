@@ -1,16 +1,22 @@
-import React from 'react'
 import { SidebarStyles } from './sidebar.styles'
-import { ContainerButtonsSidebar } from './ContainerButtonsSidebar'
+import { HomeSectionContainer } from './homeSection/HomeSectionContainer'
 import logo from '../../assets/img/logo-homepage.png'
+import { PlaylistSectionContainer } from './playlistSection/PlaylistSectionContainer'
+import { FavoritesSectionContainer } from './favoritesSection/FavoritesSectionContainer'
+
 
 export const SideBar = () => {
+
+
+  
   return (
     <SidebarStyles>
-    <img src={logo}/>
-    <ContainerButtonsSidebar />
-    
-
-
+      <img src={logo}/>
+      <div className='sidebar-sections'>
+        <HomeSectionContainer/>
+        <PlaylistSectionContainer/>
+        <FavoritesSectionContainer/>
+      </div>
     </SidebarStyles>
   )
 }
