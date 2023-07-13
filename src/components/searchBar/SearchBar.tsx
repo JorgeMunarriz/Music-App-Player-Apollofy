@@ -1,4 +1,4 @@
-import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.Styles"
+import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.styles"
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
 
