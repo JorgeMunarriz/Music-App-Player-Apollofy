@@ -7,12 +7,13 @@ export const ContainerMainStyles = styled.main`
   background-color: rgba(0, 0, 0,0.8);
   grid-row: 1 / 2;
   grid-column: 1 / 6;
-  /* width: 100%;
-  height: 100%; */
     
 }
 
 @media (min-device-width: 481px) and (max-device-width: 767px) {
+  background-color: rgba(0, 0, 0,0.8);
+  grid-row: 1 / 2;
+  grid-column: 1 / 6;
   
 }
 

@@ -1,12 +1,11 @@
 
+import { FC, ReactNode } from 'react'
 import { SideBar,  GridContainerStyles, ContainerMain, Footer } from '..'
 
-export const GridContainer = () => {
+export const GridContainer = ({children}: {children: ReactNode}) => {
   return (
     <GridContainerStyles>
-        <SideBar/>
-        <ContainerMain/>
-        <Footer/>
+        {children}
     </GridContainerStyles>
   )
 }

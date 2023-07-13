@@ -11,7 +11,10 @@ export const GridContainerStyles = styled.div`
 }
 
 @media (min-device-width: 481px) and (max-device-width: 767px) {
-  
+  display: grid;
+  grid-template-rows: 1fr 3fr 3fr 3fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  height: 100vh;
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
