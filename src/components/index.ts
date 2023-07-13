@@ -14,7 +14,7 @@ export * from './log/Login';
 export * from './log/login.styles';
 export * from './logo/Logo';
 export * from './logo/Styles';
-export * from './navbar/Navbar';
+export * from './searchBar/SearchBar';
 export * from './sideBar/homeSection/HomeSectionContainer';
 export * from './sideBar/SideBar';
 export * from './sideBar/sidebar.styles';
