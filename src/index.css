@@ -49,4 +49,6 @@ h6 {
 #root,
 #__next {
     isolation: isolate;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
 }

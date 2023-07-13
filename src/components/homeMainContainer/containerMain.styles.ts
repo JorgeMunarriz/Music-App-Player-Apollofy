@@ -5,15 +5,13 @@ export const ContainerMainStyles = styled.main`
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   background-color: rgba(0, 0, 0,0.8);
-  grid-row: 1 / 2;
-  grid-column: 1 / 6;
+  grid-area: 1 / 1 / 5 / 7;
     
 }
 
 @media (min-device-width: 481px) and (max-device-width: 767px) {
   background-color: rgba(0, 0, 0,0.8);
-  grid-row: 1 / 2;
-  grid-column: 1 / 6;
+  grid-area: 1 / 1 / 5 / 7;
   
 }
 
