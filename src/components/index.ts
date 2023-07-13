@@ -8,7 +8,7 @@ export * from './footer/footer.styles';
 export * from './gridContainer/GridContainer';
 export * from './gridContainer/gridContainer.styles';
 export * from './homeMainContainer/HomeMainContainer';
-export * from './homeMainContainer/homeMainContainer.styles';
+export * from './homeMainContainer/homeMainContainer.Styles';
 export * from './inputsform/InputForm';
 export * from './inputsform/inputForm.styles';
 export * from './linkButton/LinkButton';
