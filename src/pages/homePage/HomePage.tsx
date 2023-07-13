@@ -4,7 +4,7 @@ import { HomePageStyles } from "./homePage.style"
 
 
 export const HomePage = () => {
-    GetData()
+  GetData();
   return (
     <HomePageStyles>
         <SideBar/>
