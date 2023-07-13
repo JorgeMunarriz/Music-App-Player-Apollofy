@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom"
 // import { CarForPlaylistStyles } from "./carForPlaylist.Styles"
 
-// export const CarForPlaylist = ({key, autor, title, img}) => {
+// export const CardForPlaylist = ({key, autor, title, img}) => {
 //     return (
 //         <CarForPlaylistStyles>
 //             <Link to='' className="card-container">
