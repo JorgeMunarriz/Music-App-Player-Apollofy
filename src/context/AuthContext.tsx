@@ -16,10 +16,7 @@ export const AuthProvider: FC<UserProps> = ({children}) => {
     const [authState, dispatch] = useReducer(authReducer, [] , init);
 
     const login = (name = '') => {
-        const user = {
-            id:1,
-            name
-        }
+        const user = { id: 1, name }
         localStorage.setItem('user', JSON.stringify(user));
         dispatch({
             type: REDUCER_ACTION_TYPE.LOGIN, 
@@ -27,7 +24,7 @@ export const AuthProvider: FC<UserProps> = ({children}) => {
         })
     }
 
-    const logout = ()=>{
+    const logout = () =>{
         localStorage.removeItem('user')
         dispatch({type:REDUCER_ACTION_TYPE.LOGOUT})
     }
