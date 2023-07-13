@@ -1,3 +1,4 @@
+export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/Styles';
 export * from './homeMainContainer/HomeMainContainer';
@@ -15,7 +16,11 @@ export * from './log/login.styles';
 export * from './logo/Logo';
 export * from './logo/Styles';
 export * from './navbar/Navbar';
-export * from './sideBar/homeSection/HomeSectionContainer';
+export * from './player/Player';
+export * from './player/player.styles';
+export * from './searchBar/SearchBar';
+export * from './searchBar/searchBar.styles';
+export * from './sideBar/ContainerButtonsSidebar';
 export * from './sideBar/SideBar';
 export * from './sideBar/sidebar.styles';
 export * from './title/Styles';
