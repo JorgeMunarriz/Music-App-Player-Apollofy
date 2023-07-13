@@ -1,0 +1,3 @@
+Estudiar mejoras de renderización durante la navegación.
+Al hacer cambios de página vuelve a renderizar todos los componentes:
+    Por ejemplo en el paso de Home a Player (vuelve a renderizar sidebar y footer).
