@@ -1,8 +1,10 @@
-import { HomeMainContainerStyles } from './homeMainContainer.styles'
+// import { Navbar } from '..'
+// import { HomeMainStyles } from './homeMainContainer.Styles'
 
-
-export const HomeMainContainer = () => {
-  return (
-    <HomeMainContainerStyles>ContainerMain</HomeMainContainerStyles>
-  )
-}
+// export const HomeMain = () => {
+//   return (
+//     <HomeMainStyles>
+//       <Navbar/>
+//     </HomeMainStyles>
+//   )
+// }
