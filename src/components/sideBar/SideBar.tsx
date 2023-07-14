@@ -9,8 +9,6 @@ export const SideBar = () => {
     <img src={logo}/>
     <ContainerButtonsSidebar />
     
-
-
     </SidebarStyles>
   )
 }

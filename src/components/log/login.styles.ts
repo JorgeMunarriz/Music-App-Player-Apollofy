@@ -30,5 +30,4 @@ background-repeat: no-repeat;
     font-size: 2rem;
   }
 
-  
 `;
