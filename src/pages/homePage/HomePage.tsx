@@ -1,15 +1,15 @@
 import {GetData} from "../../api/GetData"
-import { ContainerMain, Footer, GridContainer, SideBar } from "../../components"
+import { Footer, HomeMainContainer, SideBar } from "../../components"
+import { HomePageStyles } from "./homePage.style"
 
 
 export const HomePage = () => {
-    GetData()
+  GetData();
   return (
-    
-    <GridContainer>
-      <SideBar/>
-      <Footer/>
-      <ContainerMain/>
-    </GridContainer>
+    <HomePageStyles>
+        <SideBar/>
+        <Footer/>
+        <HomeMainContainer/>
+    </HomePageStyles>
   )
 }

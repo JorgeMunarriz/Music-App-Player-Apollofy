@@ -1,11 +1,10 @@
-import React from 'react'
+import { Player } from '..'
 import { FooterStyles } from './footer.styles'
 
 export const Footer = () => {
   return (
     <FooterStyles>
-Footer
-
+      <Player/>
     </FooterStyles>
   )
 }

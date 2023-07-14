@@ -1,7 +1,13 @@
 import React from 'react'
+import { Footer, SideBar } from '../../components'
+import { ReproPageStyles } from './reproPage.styles'
 
 export const ReproPage = () => {
   return (
-    <div>ReproPage</div>
+    <ReproPageStyles>
+      <SideBar/>
+      <Footer/>
+      
+    </ReproPageStyles>
   )
 }

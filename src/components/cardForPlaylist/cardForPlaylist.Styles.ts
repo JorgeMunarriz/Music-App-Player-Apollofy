@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CarForPlaylistStyles = styled.div`
+export const CardForPlaylistStyles = styled.div`
  .card-container {
 display: flex;
 flex-direction: row;
