@@ -1,4 +1,4 @@
-import { ContainerLogo } from "./Styles"
+import { ContainerLogo } from "./logo.styles"
 
 export const Logo = () => {
 
