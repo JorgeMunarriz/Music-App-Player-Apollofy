@@ -89,7 +89,7 @@ export const PlayerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-	  width: 50%;
+      width: 50%;
       .playerstyles__img {
         width: 50px;
       }
@@ -107,12 +107,10 @@ export const PlayerStyles = styled.div`
     .playerstyles__div-container {
       width: 50%;
       display: flex;
-	  .playerstyles__div-container-audio{
-		width: 100%;
-		border: 0 transparent;
-	  }
-
-      
+      .playerstyles__div-container-audio {
+        width: 100%;
+        border: 0 transparent;
+      }
     }
   }
 `;
