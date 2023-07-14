@@ -1,13 +1,8 @@
 export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/Styles';
-<<<<<<< HEAD
 // export * from './cardForPlaylist/CardForPlaylist';
-export * from './cardForPlaylist/cardForPlaylist.styles';
-=======
-export * from './cardForPlaylist/CardForPlaylist';
-export * from './cardForPlaylist/cardForPlaylist.Styles';
->>>>>>> 67c96709ce1ce94dd1f44fe0c6951d19f50ae630
+// export * from './cardForPlaylist/cardForPlaylist.Styles';
 export * from './footer/Footer';
 export * from './footer/footer.styles';
 export * from './gridContainer/GridContainer';
@@ -24,13 +19,8 @@ export * from './logo/Logo';
 export * from './logo/Styles';
 export * from './player/Player';
 export * from './player/player.styles';
-<<<<<<< HEAD
-export * from './playlistContainer/PlaylistContainer.styles';
+// export * from './playlistContainer/PlaylistContainer.Styles';
 // export * from './playlistContainer/PlaylistContainer';
-=======
-export * from './playlistContainer/PlaylistContainer.Styles';
-export * from './playlistContainer/PlaylistContainer';
->>>>>>> 67c96709ce1ce94dd1f44fe0c6951d19f50ae630
 export * from './profileMainContainer/ProfileMainContainer';
 export * from './profileMainContainer/profileMainContainer.styles';
 export * from './searchBar/SearchBar';
