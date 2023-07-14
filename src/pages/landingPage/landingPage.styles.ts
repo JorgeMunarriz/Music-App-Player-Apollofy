@@ -7,7 +7,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-image: url(${backGroundImage});
-background-color: red;
+background-color: rgba(0, 0, 0, 0.8);
 width: 100vw;
 height: 100vh;
 background-size: cover;

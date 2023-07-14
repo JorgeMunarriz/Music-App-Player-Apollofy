@@ -1,13 +1,14 @@
-import React from 'react'
-import { HomePageStyles } from '../homePage/homePage.style'
 import { Footer, SideBar } from '../../components'
+import { ProfileMainContainer } from '../../components/profileMainContainer/ProfileMainContainer'
+import { ReproPageStyles } from '../reproPage/reproPage.styles'
+
 
 export const ProfilePage = () => {
   return (
-    <HomePageStyles>
+    <ReproPageStyles>
       <SideBar/>
       <Footer/>
-      {/* <ContainerMain/> ------- TOFIX: Falta añadir el ProfileMainContainer */}
-    </HomePageStyles>
+      <ProfileMainContainer/>
+    </ReproPageStyles>
   )
 }

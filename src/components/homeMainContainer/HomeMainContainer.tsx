@@ -1,10 +1,11 @@
-// import { Navbar } from '..'
-// import { HomeMainStyles } from './homeMainContainer.Styles'
+import { HomeMainContainerStyles, SearchBar } from '..'
 
-// export const HomeMain = () => {
-//   return (
-//     <HomeMainStyles>
-//       <Navbar/>
-//     </HomeMainStyles>
-//   )
-// }
+
+export const HomeMainContainer = () => {
+  return (
+    <HomeMainContainerStyles>
+      <SearchBar/>
+    </HomeMainContainerStyles>
+
+  )
+}
