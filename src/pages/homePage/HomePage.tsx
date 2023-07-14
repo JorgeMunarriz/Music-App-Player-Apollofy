@@ -8,8 +8,8 @@ export const HomePage = () => {
   return (
     <HomePageStyles>
         <SideBar/>
-        <Footer/>
         <HomeMainContainer/>
+        <Footer/>
     </HomePageStyles>
   )
 }

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const FooterStyles = styled.footer`
 
 
-	@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+	@media only screen and (min-width: 320px) and (max-width: 480px) {
 		background-color: rgba(0, 0, 0, 0.8);
-		grid-area: 5 / 1 / 6 / 6;
+		grid-area: 5 / 1 / 6 / 7;
 		width: 100%;
   		height: 100%;
 		border: 1px solid rgba(66, 66, 66, 0.4);
@@ -14,15 +14,15 @@ export const FooterStyles = styled.footer`
 		align-items: center;
 	}
 
-	@media (min-device-width: 481px) and (max-device-width: 767px) {
+	@media (min-width: 481px) and (max-width: 767px) {
 		background-color: rgba(0, 0, 0, 0.8);
-		grid-area: 5 / 1 / 6 / 6;
+		grid-area: 5 / 1 / 6 / 7;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
-	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+	@media only screen and (min-width: 768px) and (max-width: 1024px) {
 		display: flex;
 		justify-content: center;
 		align-items: center;
