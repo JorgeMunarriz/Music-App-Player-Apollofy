@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 
 export const HomePageStyles = styled.div`
-  display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr) 100px;
   gap: 0.25rem;
   padding: 0.25rem;
   background-color: black;
@@ -12,15 +9,15 @@ export const HomePageStyles = styled.div`
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   display: grid;
-  grid-template-rows:  repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 2fr 2fr 2fr 2fr 1fr 2fr;
+  grid-template-columns: repeat (6, 1fr);
   height: 100vh;
 }
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
   display: grid;
-  grid-template-rows:  repeat(5, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 2fr 2fr 2fr 2fr 1fr 2fr;
+  grid-template-columns: repeat (6, 1fr);
   height: 100vh;
 }
 
