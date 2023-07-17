@@ -8,11 +8,8 @@ export const PlaylistSectionContainer = () => {
   const  data  = useContext(DataMusicContext);
   const playlists  = data?.playlists;
   const albums = data?.albums;
-  console.log(playlists)
-  console.log(albums)
   return (
-    <PlaylistSectionContainerStyles>
-        <Link to="" ><i className="bi bi-house-door-fill"></i>Prueba play 1 {}</Link>
+    <PlaylistSectionContainerStyles className="desktop-class">
         <h2>Playlists:</h2>
       {/* {playlists?.map((playlist) => (
         <div key={playlist.id}>

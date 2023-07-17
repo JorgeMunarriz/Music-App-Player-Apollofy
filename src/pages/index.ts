@@ -1,5 +1,5 @@
 export * from './homePage/HomePage';
-export * from './homePage/homePage.style';
+export * from './homePage/homePage.styles';
 export * from './landingPage/LandingPage';
 export * from './landingPage/landingPage.styles';
 export * from './loginPage/LoginPage';

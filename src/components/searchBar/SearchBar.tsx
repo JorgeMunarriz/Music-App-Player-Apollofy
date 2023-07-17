@@ -3,8 +3,12 @@ import { redirect, useNavigate, useParams, useSearchParams } from "react-router-
 import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.styles"
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
+<<<<<<< HEAD
 import { UserFormState } from "..";
 import { useDataUser } from "../../context";
+=======
+import './searchBar.styles'
+>>>>>>> 864eb50b3ac6677deb205ae5c1e9d97ebf486d7b
 
 
 export const SearchBar = () => {

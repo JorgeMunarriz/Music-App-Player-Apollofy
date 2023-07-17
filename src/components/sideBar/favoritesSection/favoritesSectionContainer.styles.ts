@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const FavoritesSectionContainerStyles = styled.div`
   display: flex;
   flex-direction: column;
+  .desktop-class{
+    display: none;
+
+  }
 
   & a {
     width: 100%;

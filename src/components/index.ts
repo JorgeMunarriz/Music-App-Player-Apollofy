@@ -16,7 +16,7 @@ export * from './linkButton/linkButton.styles';
 export * from './linkPlaylist/LinkPlaylist';
 export * from './linkPlaylist/linkPlaylist.styles';
 export * from './log/Login';
-export * from './log/login.styles';
+export * from './log/loginContainer.styles';
 export * from './logo/Logo';
 export * from './logo/logo.styles';
 export * from './player/Player';
