@@ -33,7 +33,6 @@ export const AuthProvider: FC = ({ children }) => {
 
     const logout = () => {
         localStorage.removeItem('user');
-        dispatch({ type: REDUCER_ACTION_TYPE.LOGOUT });
     };
 
     return (

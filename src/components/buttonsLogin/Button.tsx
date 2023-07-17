@@ -1,14 +1,21 @@
 import { ButtonLogin } from "./button.styles"
+import {MouseEventHandler} from 'react';
 
-export const Button = ({text}: any) => {
+
+
+type ButtonProps = {
+  children:React.ReactNode
+  handleClick: MouseEventHandler<HTMLButtonElement>
+}
+export const Button = ({children, handleClick}: ButtonProps)=> {
 
 
 
   return (
     
-    <ButtonLogin >
+    <ButtonLogin onClick={handleClick} >
        
-       { text }
+       { children }
 
     </ButtonLogin>
 

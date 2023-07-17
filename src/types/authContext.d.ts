@@ -8,3 +8,13 @@ export type UserProps = {
 };
 
 
+export type UserFormState = {
+	id:number
+	name:string,
+	password:string,
+	isLogged:boolean
+  }
+  
+  export type UserFormProps = {
+	handleSubmit:(user:UserFormState) => void
+  }
