@@ -17,8 +17,8 @@ export const InputStyles = styled.input`
   text-align: center;
   &:focus {
         
-        border: 2px solid black;
-        box-shadow: 0px 0px 2px black;
+        border: 3px solid black;
+        /* box-shadow: 0px 0px 2px black; */
  }
  
  
