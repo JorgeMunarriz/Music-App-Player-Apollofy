@@ -1,8 +1,9 @@
-import { Logo, Title } from "../../components";
+import { Logo } from "../../components";
 import { LandingPageStyles } from "./landingPage.styles";
 import { useState, useEffect } from "react";
 import { LoaderAudio } from "../../components/loader/Loader";
 import {  useNavigate } from "react-router-dom";
+import { Title } from "../../global/title/Title";
 
 export const LandingPage = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export const LandingPage = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate("/login")
+      navigate("/starting")
     }, 3000);
 
   }, []);

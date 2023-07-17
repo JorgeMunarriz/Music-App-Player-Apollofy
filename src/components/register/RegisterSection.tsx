@@ -1,11 +1,9 @@
+
 import { useRef, useEffect } from 'react';
 import { useNavigate } from "react-router";
-import { Button } from "../buttonsLogin/Button";
 import { InputForm } from '../inputsform/InputForm';
-import { LoginContainer } from "./loginContainer.styles";
 import  { useState, ChangeEventHandler, MouseEventHandler } from "react";
 import { UserFormState } from "../../types/authContext";
-
 type User = UserFormState & { id:number }
 
 const InitialValue:UserFormState = {
@@ -14,7 +12,9 @@ const InitialValue:UserFormState = {
   password: '',
   isLogged: true
 }
-export const Login = () => {
+export const RegisterSection = () => {
+
+
 
   const [form, setForm] = useState(InitialValue);
   const inputRef = useRef<HTMLInputElement>(null)
@@ -46,28 +46,22 @@ export const Login = () => {
     setForm(InitialValue)
     navigate('/home')
   };
- 
-  return (
-    <>
-      <LoginContainer>
-        <h2 className="logincontainer__h2">Log In </h2>
 
-        <div className="logincontainer__div">
-          <label htmlFor="userName">User name</label>
-          <InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name='name' handleChange={handleChange} value={form.name} />
-        </div>
-        <div className="logincontainer__div">
-          <label htmlFor="userName">User name</label>
-          <InputForm inputRef={inputRef} placeholder="Insert user email" type="email" name='name' handleChange={handleChange} value={form.email} />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <InputForm  placeholder="Insert user password" type="password" name='password' handleChange={handleChange} value={form.password} />
-        </div>
-        <Button handleClick={handleClick}>
-          Log In
-        </Button>
-      </LoginContainer>
-    </>
-  );
-};
+  return(
+  <RegisterContainerStyles>
+  <h2 className="logincontainer__h2">Log In </h2>
+
+  <div className="logincontainer__div">
+    <label htmlFor="userName">User name</label>
+    <InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name='name' handleChange={handleChange} value={form.name} />
+  </div>
+  <div>
+    <label htmlFor="password">Password</label>
+    <InputForm  placeholder="Insert user password" type="password" name='password' handleChange={handleChange} value={form.password} />
+  </div>
+  <Button handleClick={handleClick}>
+    Log In
+  </Button>
+</RegisterContainerStyles>
+  )
+}
