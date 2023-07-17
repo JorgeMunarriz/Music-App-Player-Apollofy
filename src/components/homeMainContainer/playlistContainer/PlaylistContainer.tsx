@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { DataMusicContext } from "../../context";
-import { CardForPlaylist, PlaylistContainerStyles } from "..";
+import { DataMusicContext } from "../../../context";
+import { CardForPlaylist, PlaylistContainerStyles } from "../..";
 
 export const PlaylistContainer = () => {
   const data = useContext(DataMusicContext);
