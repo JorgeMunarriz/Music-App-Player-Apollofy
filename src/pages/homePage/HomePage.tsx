@@ -1,6 +1,6 @@
 import {GetData} from "../../api/GetData"
 import { Footer, HomeMainContainer, SideBar } from "../../components"
-import { HomePageStyles } from "./homePage.style"
+import { HomePageStyles } from "./homePage.styles"
 
 
 export const HomePage = () => {
