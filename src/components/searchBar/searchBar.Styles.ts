@@ -24,6 +24,7 @@ export const SearchBarLeft = styled.div`
     border-radius: 1.5rem;
 
 }
+
 & svg {
     color: rgb(135,146,148);
     cursor:pointer;
