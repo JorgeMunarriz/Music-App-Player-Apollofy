@@ -21,6 +21,7 @@ export const CardForPlaylistStyles = styled.div`
     display: flex;
     flex-direction: row;
     width: 300px;
+    gap: 1rem;
   }
   & .card-body {
     display: flex;
@@ -30,5 +31,7 @@ export const CardForPlaylistStyles = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
+    gap: 1rem;
+    
   }
 `;
