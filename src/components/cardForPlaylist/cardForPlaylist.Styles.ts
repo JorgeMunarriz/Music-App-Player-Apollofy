@@ -8,6 +8,7 @@ export const CardForPlaylistStyles = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  transition: all 0.3s;
   &:hover{
     background-color: rgba( 0, 0, 0, 0.2);
   }
