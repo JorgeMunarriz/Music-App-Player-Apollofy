@@ -1,62 +1,57 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "../buttonsLogin/Button";
-import { InputForm } from '../inputsform/InputForm';
+import { InputForm } from "../inputsform/InputForm";
 import { LoginContainer } from "./loginContainer.styles";
-import  { useState, ChangeEventHandler, MouseEventHandler } from "react";
+import { useState, ChangeEventHandler, MouseEventHandler } from "react";
 import { UserFormState } from "../../types/authContext";
 
+type User = UserFormState & { id: number };
 
-type User = UserFormState & { id:number }
-
-const InitialValue:UserFormState = {
-  id:Date.now(),
-  name: '',
-  password: '',
-  isLogged: true
-}
+const InitialValue: UserFormState = {
+  id: Date.now(),
+  name: "",
+  password: "",
+  isLogged: true,
+};
 export const Login = () => {
-
   const [form, setForm] = useState(InitialValue);
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
   // const [users ,setUsers] = useState<User[]>([])
 
   const notify = () => {
-    toast.error("Are Field Are required")
-  }
-  
+    toast.error("Are Field Are required");
+  };
 
   useEffect(() => {
-    if(inputRef.current){
-      inputRef.current.focus()
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
-  }, [])
-  const navigate = useNavigate()
+  }, []);
+  const navigate = useNavigate();
 
-  const handleSubmit = (user:UserFormState) => {
-    setForm({...form, id:Date.now()})
+  const handleSubmit = (user: UserFormState) => {
+    setForm({ ...form, id: Date.now() });
     // setUsers([...users, {...user, id:Date.now()}])
-    localStorage.setItem('form',JSON.stringify(form))
-    
-  }
+    localStorage.setItem("form", JSON.stringify(form));
+  };
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = ({target}) => {
-      const name = target.name as keyof UserFormState
-      setForm({...form, [name]: target.value})
-     
-  }
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
+    const name = target.name as keyof UserFormState;
+    setForm({ ...form, [name]: target.value });
+  };
 
-  const handleClick:MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    if(form.name.trim() !== "" || form.password.trim() !== ""){
-      handleSubmit(form)
-      setForm(InitialValue)
-      navigate('/home')
+    if (form.name.trim() !== "" || form.password.trim() !== "") {
+      handleSubmit(form);
+      setForm(InitialValue);
+      navigate("/home");
     } else {
-      return
+      return;
     }
   };
- 
+
   return (
     <>
       <LoginContainer>
@@ -64,27 +59,24 @@ export const Login = () => {
 
         <div className="logincontainer__div">
           <label htmlFor="userName">User name</label>
-          
-          <InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name='name' handleChange={handleChange} value={form.name} />
+
+          <InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name="name" handleChange={handleChange} value={form.name} />
         </div>
-        <div className="logincontainer__div">
-          <label htmlFor="userName">User name</label>
-          <InputForm inputRef={inputRef} placeholder="Insert user email" type="email" name='name' handleChange={handleChange} value={form.email} />
-        </div>
+
         <div>
           <label htmlFor="password">Password</label>
-          <InputForm  placeholder="Insert user password" type="password" name='password' handleChange={handleChange} value={form.password} />
+          <InputForm placeholder="Insert user password" type="password" name="password" handleChange={handleChange} value={form.password} />
         </div>
 
-         {
-          form.name === '' || form.password === '' ?   <Button isDisabled={true} handleClick={handleClick}>
-                                                          Log In
-                                                        </Button> :
-                                                        <Button isDisabled={false} handleClick={handleClick}>
-                                                          Log In
-                                                        </Button>
-         }
-
+        {form.name === "" || form.password === "" ? (
+          <Button isDisabled={true} handleClick={handleClick}>
+            Log In
+          </Button>
+        ) : (
+          <Button isDisabled={false} handleClick={handleClick}>
+            Log In
+          </Button>
+        )}
       </LoginContainer>
     </>
   );
