@@ -20,7 +20,8 @@ const AnimatedRoutes = () => {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/starting" element={<StartingPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/repro" element={<ReproPage />} />
+          <Route path="/player" element={<ReproPage />} />
+          <Route path="/player/:id" element={<ReproPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </CSSTransition>

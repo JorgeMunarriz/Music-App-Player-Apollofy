@@ -9,8 +9,8 @@ export const HomeSectionContainer = () => {
   return (
     <HomeSectionContainerStyles>
         <Link to="/home" ><AiOutlineHome/>Home</Link>
-        <Link to="/repro" ><BiSearchAlt2/>Player</Link>
-        <Link to="/" > <VscLibrary/>Your Library</Link>
+        <Link to="/player" ><BiSearchAlt2/>Player</Link>
+        <Link to="/profile" > <VscLibrary/>Your Library</Link>
     </HomeSectionContainerStyles>
   );
 };

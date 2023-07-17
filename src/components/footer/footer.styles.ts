@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterStyles = styled.footer`
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: rgba(50, 50, 50, 0.2);
   border: 1px solid rgba(66, 66, 66, 0.4);
   border-radius: 0.25rem;
 
@@ -42,5 +42,5 @@ export const FooterStyles = styled.footer`
     height: 100%;
     border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 0.25rem;
-    }`
-;
+  }
+`;

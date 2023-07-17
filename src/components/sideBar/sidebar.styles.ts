@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SidebarStyles = styled.div`
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: rgba(50, 50, 50, 0.2);
   border: 1px solid rgba(66, 66, 66, 0.4);
   border-radius: 0.25rem;
 
@@ -65,7 +65,6 @@ export const SidebarStyles = styled.div`
     padding: 1rem;
     width: 100%;
     height: 100%;
-    background-color: rgba(50, 50, 50, 1);
     border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 0.25rem;
     font-size: 2.5rem;
