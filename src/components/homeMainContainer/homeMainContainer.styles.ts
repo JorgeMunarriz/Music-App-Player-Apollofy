@@ -35,17 +35,8 @@ background-color: green;
   grid-area: 1 / 2 / 5 / 7;
   width: 100%;
   height: 100%;
+}`
 
-
-}
-
-`;
-
-
-
-
-
-
-
+;
 
 

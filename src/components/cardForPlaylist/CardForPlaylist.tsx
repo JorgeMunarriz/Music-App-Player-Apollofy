@@ -10,7 +10,7 @@ export const CardForPlaylist = ({ id, thumbnail, name }: Playlist) => {
       <Link to="" className="card-container">
         <img src={thumbnail} />
         <div className="card-body">
-          <h3>{name}</h3>
+          <h3 className="title-h3">{name}</h3>
         </div>
       </Link>
     </CardForPlaylistStyles>
