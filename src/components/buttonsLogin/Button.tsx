@@ -1,4 +1,4 @@
-import { ButtonLogin } from "./Styles"
+import { ButtonLogin } from "./button.styles"
 
 export const Button = ({text}: any) => {
 

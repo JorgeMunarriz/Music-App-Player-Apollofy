@@ -1,4 +1,4 @@
-import { ContainerTitle } from "./Styles"
+import { ContainerTitle } from "./title.styles"
 
 export const Title = () => {
 

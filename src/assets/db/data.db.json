@@ -4,7 +4,7 @@
         "id": 1,
         "name": "Road trip! All the masters I need!",
         "isFollowed": true,
-        "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625060/tracks-thumbnails-dev/car_yx6ld1.jpg",
+        "thumbnail": "src/assets/img/logo-homepage.png",
         "description": "Get your mic on with this beats. You are going to sing all the way down",
         "publicAccessible": true,
         "primaryColor": "#fbdc00"
