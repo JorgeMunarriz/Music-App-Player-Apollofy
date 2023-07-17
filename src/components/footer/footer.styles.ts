@@ -42,5 +42,5 @@ export const FooterStyles = styled.footer`
     height: 100%;
     border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 0.25rem;
-  }
-`;
+    }`
+;

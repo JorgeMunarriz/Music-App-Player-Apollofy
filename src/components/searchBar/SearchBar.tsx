@@ -1,14 +1,10 @@
-import { redirect, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {  useNavigate,  useSearchParams } from "react-router-dom";
 
 import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.styles"
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
-<<<<<<< HEAD
-import { UserFormState } from "..";
-import { useDataUser } from "../../context";
-=======
-import './searchBar.styles'
->>>>>>> 864eb50b3ac6677deb205ae5c1e9d97ebf486d7b
+import { UserFormState} from "../../types/authContext";
+
 
 
 export const SearchBar = () => {
@@ -17,7 +13,7 @@ export const SearchBar = () => {
   const {name, isLogged} = data
 
 
-  const {logout} = useDataUser()
+
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
 

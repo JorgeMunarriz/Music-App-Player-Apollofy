@@ -32,15 +32,8 @@ background-color: rgba(50, 50, 50, 0.6);
   grid-area: 1 / 2 / 5 / 7;
   width: 100%;
   height: 100%;
-}
+}`
 
-`;
-
-
-
-
-
-
-
+;
 
 
