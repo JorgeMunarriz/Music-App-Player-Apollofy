@@ -12,9 +12,6 @@ export const urlGenres = `${url}/genres`;
 export const GetData = () => {
   
 
-  
-
-
 
   return (
         <>

@@ -21,7 +21,7 @@ background-repeat: no-repeat;
     
 }
 
-@media (min-device-width: 481px) and (max-device-width: 767px) {
+@media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
   
 }
 
