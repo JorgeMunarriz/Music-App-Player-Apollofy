@@ -1,7 +1,7 @@
 import { Logo, Title } from "../../components";
 import { LandingPageStyles } from "./landingPage.styles";
 import { useState, useEffect } from "react";
-import { Loader } from "../../components/loader/Loader";
+import { LoaderAudio } from "../../components/loader/Loader";
 import {  useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
@@ -24,7 +24,7 @@ export const LandingPage = () => {
       {loading ? (
         <LandingPageStyles>
         <Logo />
-        <Loader />
+        <LoaderAudio />
         <Title />
       </LandingPageStyles>
         
