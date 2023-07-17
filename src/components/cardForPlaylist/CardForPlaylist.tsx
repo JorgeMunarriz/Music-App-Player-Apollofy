@@ -10,9 +10,8 @@ export const CardForPlaylist = ({id, thumbnail, name, description}: Playlist) =>
     
     return(
         <CardForPlaylistStyles key={id}  >
-          
-                <img src={thumbnail} />
             <Link to='' className="card-container">
+                <img src={thumbnail} />
                 <div className="card-body">
                     <h3>{name}</h3>
                 </div>
