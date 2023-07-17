@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.styles"
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
+import './searchBar.styles'
 
 
 export const SearchBar = () => {
