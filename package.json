@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  
   "scripts": {
     "dev": "vite ",
     "build": "tsc && vite build",
@@ -11,7 +10,8 @@
     "preview": "vite preview",
     "json-server": "json-server --w src/assets/db/data.db.json set --port 4000",
     "json-user": "json-server --w src/assets/db/users.db.json set --port=3004",
-    "proxy":"http://localhost:3000"
+    "proxy": "http://localhost:3000",
+    "commit": "git add .; git commit"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-h5-audio-player": "^3.8.6",
     "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.14.1",
     "styled-components": "^6.0.3"
   },

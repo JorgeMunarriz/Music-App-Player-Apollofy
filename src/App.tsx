@@ -1,26 +1,25 @@
-
-import './App.css'
-import { AuthProvider } from './context/AuthContext'
-import { DataMusicProvider } from './context/DataMusicContext'
+import './App.css';
+import {AuthProvider} from './context/AuthContext';
+import {DataMusicProvider} from './context/DataMusicContext';
 //import { MusicProvider, useDataTracks } from './context/MusicContext'
-import { Router } from './router/RouterPaths.routes'
-import './styles/Grid.css'
-import './styles/Reset.css'
-
+import {Router} from './router/RouterPaths.routes';
+// import './styles/grid.css';
+import './styles/reset.css';
+import './styles/font.css'
 
 function App() {
-//   const {tracks} = useDataTracks()
-// console.log(tracks)
+	//   const {tracks} = useDataTracks()
+	// console.log(tracks)
 
-  return (
-    <>
-    <DataMusicProvider>    
-    <AuthProvider name={''} id={0}>
-      <Router/>
-      </AuthProvider>      
-      </DataMusicProvider>
-    </>
-  )
+	return (
+		<>
+			<DataMusicProvider>
+				<AuthProvider name={''} id={0}>
+					<Router />
+				</AuthProvider>
+			</DataMusicProvider>
+		</>
+	);
 }
 
-export default App
+export default App;
