@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "json-server": "json-server --w src/assets/db/data.db.json set --port 4000",
     "json-user": "json-server --w src/assets/db/users.db.json set --port=3004",
-    "proxy": "http://localhost:3000"
+    "proxy": "http://localhost:3000",
+    "commit": "git add .; git commit"
   },
   "dependencies": {
     "buffer": "^6.0.3",
