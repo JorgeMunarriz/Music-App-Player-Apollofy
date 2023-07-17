@@ -20,9 +20,7 @@ export const CardForPlaylistStyles = styled.div`
   & .card-container {
     display: flex;
     flex-direction: row;
-    max-width: 40%;
     width: 300px;
-    height: 50px;
   }
   & .card-body {
     display: flex;

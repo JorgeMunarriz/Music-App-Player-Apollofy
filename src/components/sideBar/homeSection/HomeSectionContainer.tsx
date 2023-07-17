@@ -6,7 +6,6 @@ import { VscLibrary } from "react-icons/vsc";
 
 
 export const HomeSectionContainer = () => {
-  console.log ("carga el aside");
   return (
     <HomeSectionContainerStyles>
         <Link to="/home" ><AiOutlineHome/>Home</Link>
