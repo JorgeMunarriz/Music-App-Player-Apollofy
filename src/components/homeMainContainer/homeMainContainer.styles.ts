@@ -7,6 +7,10 @@ border: 1px solid rgba(66, 66, 66, 0.4);
 border-radius: 0.25rem;
 overflow-y: auto;
 
+background-color: rgba(50, 50, 50, 0.6);
+
+
+
 @media only screen and (min-width : 320px) and (max-width : 480px) {
   
   grid-area: 1 / 1 / 5 / 7;

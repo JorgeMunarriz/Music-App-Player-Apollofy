@@ -4,6 +4,7 @@ import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
 import { UserFormState} from "../../types/authContext";
+import { Button } from "..";
 
 
 
@@ -49,18 +50,18 @@ export const SearchBar = () => {
       {
         isLogged ?
         <>
-           (<button onClick={handleLogout}>Logout</button>
+           <Button handleClick={handleLogout}>Logout</Button>
         
-          <h4>{name}</h4>)
+          <h4>{name}</h4>
           
         </>
         :
-        (
+        
           <>
-          (<button onClick={goToLogin}>Login</button>
+          <button onClick={goToLogin}>Login</button>
     
           </>
-        )
+        
 
     }
     </SearchBarRight>
