@@ -8,6 +8,7 @@ export const CardForPlaylistStyles = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  transition: all 0.3s;
   &:hover{
     background-color: rgba( 0, 0, 0, 0.2);
   }
@@ -20,9 +21,8 @@ export const CardForPlaylistStyles = styled.div`
   & .card-container {
     display: flex;
     flex-direction: row;
-    max-width: 40%;
     width: 300px;
-    height: 50px;
+    gap: 1rem;
   }
   & .card-body {
     display: flex;
@@ -32,5 +32,7 @@ export const CardForPlaylistStyles = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-  }
-`;
+    gap: 1rem;
+    
+  }`
+;

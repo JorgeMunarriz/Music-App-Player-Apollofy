@@ -1,57 +1,65 @@
-import { useDataUser } from "../../context/AuthContext";
+
+import { useNavigate } from "react-router";
 import { Button } from "../buttonsLogin/Button";
-import { InputForm } from "../inputsform/InputForm";
-import { LoginContainer } from "./login.styles";
-import { User } from "../../types/data";
-import { InputStyles } from "..";
-import React, { useState } from "react";
+import { InputForm } from '../inputsform/InputForm';
+import { LoginContainer } from "./loginContainer.styles";
+import  { useState, ChangeEventHandler, MouseEventHandler } from "react";
+import { UserFormState } from "../../types/authContext";
 
+
+
+
+type User = UserFormState & { id:number }
+
+const InitialValue:UserFormState = {
+  id:Date.now(),
+  name: '',
+  password: '',
+  isLogged: true
+}
 export const Login = () => {
-  const [currentUser, setCurrentUser] = useState("");
-  const [password, setPassword] = useState("");
 
-  const { login, logout, user } = useDataUser();
-  const handleChangeCurrentUser = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [form, setForm] = useState(InitialValue);
+  // const [users ,setUsers] = useState<User[]>([])
 
-    setCurrentUser(event.target.value)
+  const navigate = useNavigate()
+
+  const handleSubmit = (user:UserFormState) => {
+    setForm({...form, id:Date.now()})
+    // setUsers([...users, {...user, id:Date.now()}])
+    localStorage.setItem('form',JSON.stringify(form))
     
   }
-  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-    setPassword(event.target.value)
-    
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({target}) => {
+      const name = target.name as keyof UserFormState
+      setForm({...form, [name]: target.value})
+     
   }
-  
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (currentUser.trim() === "" || password.trim() === "") {
-      console.log("Please, input fields are required")
-      return ;
-    }
-    // const foundUser = Users.find((obj))
-    // login(currentUser)
-    console.log(event.target)
-    
 
-
+  const handleClick:MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    handleSubmit(form)
+    setForm(InitialValue)
+    navigate('/home')
   };
-  // login("jorge")
+ 
   return (
     <>
-      <LoginContainer action="" onSubmit={handleSubmit}>
+      <LoginContainer>
         <h2 className="logincontainer__h2">Log In </h2>
 
         <div className="logincontainer__div">
           <label htmlFor="userName">User name</label>
-          <InputStyles placeholder="Insert user name" type="text" onChange={handleChangeCurrentUser} />
+          <InputForm placeholder="Insert user name" type="text" name='name' handleChange={handleChange} value={form.name} />
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <InputStyles placeholder="Insert user password" type="password" onChange={handleChangePassword} />
+          <InputForm placeholder="Insert user password" type="password" name='password' handleChange={handleChange} value={form.password} />
         </div>
-        <button type="submit" >
+        <Button handleClick={handleClick}>
           Log In
-        </button>
+        </Button>
       </LoginContainer>
     </>
   );

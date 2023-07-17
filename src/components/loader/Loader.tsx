@@ -1,18 +1,33 @@
-import {ProgressBar} from 'react-loader-spinner'
+import {ProgressBar, Audio} from 'react-loader-spinner'
 
 /**
  * Loader component represents the Loader type rotating lines.
  */
-export const Loader = () => {
+export const LoaderProggresBar = () => {
     return <ProgressBar
     height="80"
     width="80"
     ariaLabel="progress-bar-loading"
     wrapperStyle={{}}
     wrapperClass="progress-bar-wrapper"
-    borderColor = '#F4442E'
-    barColor = '#ff5d51'
+    borderColor = '#E85973'
+    barColor = '#E85973'
   />
 
   
 }
+export const LoaderAudio = () => {
+  return <Audio
+  height="100"
+  width="100"
+  color="#E85973"
+  ariaLabel="audio-loading"
+  wrapperStyle={{}}
+  wrapperClass="wrapper-class"
+  visible={true}
+/>
+
+
+}
+
+

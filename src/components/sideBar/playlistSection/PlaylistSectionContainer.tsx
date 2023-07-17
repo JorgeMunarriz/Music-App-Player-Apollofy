@@ -8,8 +8,6 @@ export const PlaylistSectionContainer = () => {
   const  data  = useContext(DataMusicContext);
   const playlists  = data?.playlists;
   const albums = data?.albums;
-  console.log(playlists)
-  console.log(albums)
   return (
     <PlaylistSectionContainerStyles className="desktop-class">
         <h2>Playlists:</h2>

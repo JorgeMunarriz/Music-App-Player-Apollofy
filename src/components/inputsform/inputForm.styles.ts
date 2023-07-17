@@ -9,9 +9,11 @@ export const InputStyles = styled.input`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   flex-shrink: 0;
   border-radius: 15px;
   width: 215px;
   height: 40px;
+  text-align: center;
 
 `;

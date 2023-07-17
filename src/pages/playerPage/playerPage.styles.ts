@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const ReproPageStyles = styled.div`
+export const PlayerPageStyles = styled.div`
   display: grid;
   grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 2fr) 1fr;
