@@ -1,22 +1,24 @@
 
 import './App.css'
 import { AuthProvider } from './context/AuthContext'
-import { MusicProvider, useDataTracks } from './context/MusicContext'
+import { DataMusicProvider } from './context/DataMusicContext'
+//import { MusicProvider, useDataTracks } from './context/MusicContext'
 import { Router } from './router/RouterPaths.routes'
 import './styles/Grid.css'
 import './styles/Reset.css'
 
 
 function App() {
-  const {tracks} = useDataTracks()
-console.log(tracks)
+//   const {tracks} = useDataTracks()
+// console.log(tracks)
+
   return (
     <>
-    <MusicProvider>
+    <DataMusicProvider>    
     <AuthProvider name={''} id={0}>
       <Router/>
-      </AuthProvider>
-      </MusicProvider>
+      </AuthProvider>      
+      </DataMusicProvider>
     </>
   )
 }
