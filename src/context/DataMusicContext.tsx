@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, ReactNode } from 'react';
 import { Root, Playlist, Album, Genre, Track, Artist } from '../types/data';
 import { useFetcher } from 'react-router-dom';
 
-export const url = "http://localhost:3000";
+export const url = "http://localhost:4000";
 export const urlPlaylist = `${url}/playlists`;
 export const urlTracks = `${url}/tracks`;
 export const urlUser = `${url}/user`;

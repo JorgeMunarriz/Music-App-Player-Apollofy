@@ -1,21 +1,44 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 
 import { DataMusicContext } from '../../context';
-import { CardForPlaylistStyles, PlaylistContainerStyles } from '..';
+import { CardForPlaylist, PlaylistContainerStyles } from '..';
+import { GetPlaylist } from '../../api/GetPlaylist';
 
 export const PlaylistContainer = () => {
-    const  {playlists}  = useContext(DataMusicContext);
+    // const  {playlists}  = useContext(DataMusicContext);
+    const [data, setData] = useState([])
+
     
-    console.log(playlists)
+
+    useEffect(() => {
+      const GetPlaylistData =async () => {
+        const data = await GetPlaylist()
+        console.log(data)
+        setData(data) 
+
+      }
+      GetPlaylistData()
+      
+    }, [])
+    
+   console.log(data)
+  
 
   return (
     <PlaylistContainerStyles>
 
-        aquuoi
-        {playlists && playlists?.map(({id, description, name, thumbnail}) => (
-            <CardForPlaylistStyles key= {id} description= {description} thumbnail= {thumbnail} name= {name}/>)
-        )}
+       
+        {
+    
+
+          data && data.map(({id, thumbnail, name, description }) => (
+            
+            <CardForPlaylist thumbnail={thumbnail} name={name} key={id} description={description}  id={id} isFollowed={false} publicAccessible={true} primaryColor={''}/>)
+            
+          )
+        }
+      
     </PlaylistContainerStyles>
   )
 }

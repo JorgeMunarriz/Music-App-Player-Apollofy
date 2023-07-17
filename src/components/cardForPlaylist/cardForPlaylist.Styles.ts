@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const CardForPlaylistStyles = styled.div`
+img {
+  width: 100px;
+  height: 100px;
+}
  & .card-container {
     display: flex;
     flex-direction: row;
