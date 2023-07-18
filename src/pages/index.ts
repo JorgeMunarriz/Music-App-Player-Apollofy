@@ -2,6 +2,8 @@ export * from './homePage/HomePage';
 export * from './homePage/homePage.styles';
 export * from './landingPage/LandingPage';
 export * from './landingPage/landingPage.styles';
+export * from './libraryPage/LibraryPage';
+export * from './libraryPage/libraryPageStyles';
 export * from './loginPage/LoginPage';
 export * from './loginPage/loginPage.styles';
 export * from './playerPage/PlayerPage';
