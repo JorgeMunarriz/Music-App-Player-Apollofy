@@ -6,7 +6,7 @@ export const ProfileMainContainerStyles = styled.main`
   align-items: center;
   padding: 1rem;
   width: 100%;
-
+  background: linear-gradient(#340034, #000);
 & img {
 object-fit: contain;
 border-radius: 50%;
