@@ -1,6 +1,6 @@
 import {  useNavigate,  useSearchParams } from "react-router-dom";
 
-import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from "./searchBar.styles"
+import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from ".."
 import {BsSearch} from 'react-icons/bs'
 import {RxAvatar} from 'react-icons/rx'
 import { UserFormState} from "../../types/authContext";

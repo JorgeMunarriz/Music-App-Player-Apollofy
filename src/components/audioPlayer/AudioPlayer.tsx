@@ -5,17 +5,16 @@ import { useContext } from "react";
 import { DataMusicContext } from "../../context/DataMusicContext";
 
 export const AudioPlayerComponent = () => {
+  
   const  data  = useContext(DataMusicContext);
-  const playlists  = data?.playlists;
-  const albums = data?.albums;
+  const track  = data?.currentTrack;
   
   
   return (
   <AudioPlayer 
     autoPlay
     className="rhap_container"
-    src="https://res.cloudinary.com/dmkdsujzh/video/upload/v1644583928/tracks-dev/Mahidevran_Rock_Band_-_Mahidevran_-_Maze_of_sorrow_ips3zs.mp3"
+    src= {track?.url}
     onPlay={(e) => console.log("onPlay")}
-    // other props here
   />
 )};

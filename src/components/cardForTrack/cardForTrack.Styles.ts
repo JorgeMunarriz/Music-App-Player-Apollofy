@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardForPlaylistStyles = styled.div`
+export const CardForTrackStyles = styled.div`
   display: flex;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba( 50, 50, 50, 0.4);
@@ -9,6 +9,7 @@ export const CardForPlaylistStyles = styled.div`
   justify-content: flex-start;
   gap: 1rem;
   transition: all 0.3s;
+  height: 100px;
   &:hover{
     background-color: rgba( 0, 0, 0, 0.2);
   }

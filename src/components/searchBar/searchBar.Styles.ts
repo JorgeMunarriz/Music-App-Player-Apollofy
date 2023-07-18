@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
+    grid-row: 1 / 2;
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -24,6 +25,7 @@ export const SearchBarLeft = styled.div`
     border-radius: 1.5rem;
 
 }
+
 & svg {
     color: rgb(135,146,148);
     cursor:pointer;

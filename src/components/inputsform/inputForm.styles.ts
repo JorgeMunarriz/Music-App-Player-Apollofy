@@ -15,5 +15,12 @@ export const InputStyles = styled.input`
   width: 215px;
   height: 40px;
   text-align: center;
+  &:focus {
+        
+        border: 3px solid black;
+        
+ }
+ 
+ 
 
 `;

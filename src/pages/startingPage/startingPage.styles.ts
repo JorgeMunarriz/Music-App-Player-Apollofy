@@ -1,14 +1,21 @@
 import styled from 'styled-components';
+import backGroundImage from "../../assets/img/Crowd.webp";
 
-
-export const ReproPageStyles = styled.div`
-  display: grid;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(4, 2fr) 1fr;
-  gap: 0.25rem;
-  padding: 0.25rem;
-  background-color: black;
-  height: 100vh;
+export const StartingPageStyles = styled.div`
+  
+  display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-image: url(${backGroundImage});
+background-color: red;
+width: 100vw;
+height: 100vh;
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+gap: 2.5rem;
+  
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   
