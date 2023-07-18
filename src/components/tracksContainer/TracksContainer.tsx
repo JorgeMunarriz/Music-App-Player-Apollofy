@@ -1,11 +1,11 @@
 import SwiperCore from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Importa los estilos de Swiper
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// Instala los módulos necesarios de Swiper
+
 SwiperCore.use([Navigation, Pagination]);
 
 import { useContext } from "react";
@@ -16,7 +16,7 @@ import { CardForTrack } from "..";
 
 export const TracksContainer = () => {
   const data = useContext(DataMusicContext);
-  const tracks = data?.data?.tracks.sort((elemA,elemB) => elemB.visualizations - elemA.visualizations)
+  const tracks = data?.data?.tracks?.sort((elemA,elemB) => elemB.visualizations - elemA.visualizations)
 
 
   return (
@@ -27,7 +27,6 @@ export const TracksContainer = () => {
           pagination
           slidesPerView={3}
           spaceBetween={10}
-          // Agrega cualquier otra opción de configuración de Swiper que desees
         >
           {tracks.map(({ id, thumbnail, name, genre, artist, url, liked, visualizations }) => (
             <SwiperSlide key={id}>
