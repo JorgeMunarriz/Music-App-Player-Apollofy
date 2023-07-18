@@ -35,7 +35,6 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
 
   const handleCurrentTrack = (incomingCurrentTrack: Track) => {
     setCurrentTrack (incomingCurrentTrack);
-    console.log(incomingCurrentTrack)
   }
 
   useEffect(() => {
