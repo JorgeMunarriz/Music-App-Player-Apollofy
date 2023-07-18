@@ -47,7 +47,7 @@ export const RegisterSection = () => {
 
   return (
     <RegisterContainerStyles>
-      <h2 className="logincontainer__h2">Log In </h2>
+      <h2 className="logincontainer__h2">Sign In </h2>
 
       <div className="logincontainer__div">
         <label htmlFor="userName">User name</label>
@@ -61,7 +61,7 @@ export const RegisterSection = () => {
         <label htmlFor="password">Password</label>
         <InputForm placeholder="Insert user password" type="password" name="password" handleChange={handleChange} value={form.password} />
       </div>
-      <Button handleClick={handleClick}>Log In</Button>
+      <Button handleClick={handleClick}>Sign In</Button>
     </RegisterContainerStyles>
   );
 };

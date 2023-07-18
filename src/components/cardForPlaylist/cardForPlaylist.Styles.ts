@@ -9,6 +9,7 @@ export const CardForPlaylistStyles = styled.div`
   justify-content: flex-start;
   gap: 1rem;
   transition: all 0.3s;
+  height: 100px;
   &:hover{
     background-color: rgba( 0, 0, 0, 0.2);
   }

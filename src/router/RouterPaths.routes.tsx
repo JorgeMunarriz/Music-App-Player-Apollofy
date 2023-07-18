@@ -11,9 +11,9 @@ const AnimatedRoutes = () => {
       <CSSTransition key={location.key} timeout={500} classNames="page">
         <Routes location={location}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/starting" element={<StartingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/starting" element={<StartingPage />} />
           </Routes>
       </CSSTransition>
     </TransitionGroup>
@@ -29,6 +29,7 @@ export const Router = () => {
           <Route path="/home" element={<HomePage />} />
           <Route path="/player" element={<PlayerPage />} />
           <Route path="/player/:id" element={<PlayerPage />} />
+          <Route path="/yourlibrary/:id" element={<LibraryPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
     </BrowserRouter>
