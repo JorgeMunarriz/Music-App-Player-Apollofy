@@ -6,9 +6,9 @@ export const CardForPlaylistPlayerStyles = styled.div`
   
 @media only screen and (min-width : 320px) and (max-width : 480px) {
   display: grid;
-grid-template-columns: 0.5fr 1.5fr 0.3fr;
-grid-template-rows: 1fr;
-grid-column-gap: 30px;
+  grid-template-columns: 0.5fr 1.5fr 0.3fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
   box-shadow: 15px 7px 19px -3px rgba(0,0,0,0.75);
   background-color: rgb(10,10,10);
   border-radius: 2rem;

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, ReactNode } from 'react';
-import { Root, Playlist, Album, Genre, Track, Artist } from '../types/data';
-import { useFetcher } from 'react-router-dom';
+import { Playlist, Album, Genre, Track, Artist } from '../types/data';
+
 
 export const url = "http://localhost:4000";
 export const urlPlaylist = `${url}/playlists`;
