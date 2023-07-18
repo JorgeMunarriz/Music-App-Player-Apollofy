@@ -1,12 +1,12 @@
 import { HomeMainContainerStyles, SearchBar, TracksMainContainer } from "../.."
 
 
-export const PlayerMainContainer = () => {
+export const PlaylistMainContainer = () => {
 
   return (
     <HomeMainContainerStyles>
       <SearchBar/>
-     
+      <TracksMainContainer/>
     </HomeMainContainerStyles>
 
   )

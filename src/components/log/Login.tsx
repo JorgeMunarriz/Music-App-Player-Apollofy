@@ -17,11 +17,9 @@ const InitialValue: UserFormState = {
 export const Login = () => {
   const [form, setForm] = useState(InitialValue);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const [users ,setUsers] = useState<User[]>([])
+ 
 
-  const notify = () => {
-    toast.error("Are Field Are required");
-  };
+
 
   useEffect(() => {
     if (inputRef.current) {
@@ -32,7 +30,6 @@ export const Login = () => {
 
   const handleSubmit = (user: UserFormState) => {
     setForm({ ...form, id: Date.now() });
-    // setUsers([...users, {...user, id:Date.now()}])
     localStorage.setItem("form", JSON.stringify(form));
   };
 
@@ -58,13 +55,13 @@ export const Login = () => {
         <h2 className="logincontainer__h2">Log In </h2>
 
         <div className="logincontainer__div">
-          <label htmlFor="userName">User name</label>
+        
 
           <InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name="name" handleChange={handleChange} value={form.name} />
         </div>
 
         <div>
-          <label htmlFor="password">Password</label>
+          
           <InputForm placeholder="Insert user password" type="password" name="password" handleChange={handleChange} value={form.password} />
         </div>
 

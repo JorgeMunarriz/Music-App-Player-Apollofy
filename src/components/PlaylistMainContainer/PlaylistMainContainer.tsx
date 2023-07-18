@@ -1,16 +1,17 @@
 
 import { useContext } from 'react';
-import { DataMusicContext } from '../../../context';
-import { PlaylistContainerStyles } from '../..';
-import { CardForPlaylistPlayer } from '../../cardForPlaylistPlayer/CardForPlaylistPlayer';
+import { DataMusicContext } from '../../context';
+
+import { CardForPlaylistPlayer } from '../cardForPlaylistPlayer/CardForPlaylistPlayer';
+import { CardForPlaylistPlayerStyles } from '../cardForPlaylistPlayer/cardForPlaylistPlayer.styles';
 
 
-export const TracksMainContainer = () => {
+export const PlayListMainContainer = () => {
  const data = useContext(DataMusicContext);
  const playlist = data?.playlists;
   
   return (
-    <PlaylistContainerStyles  >
+    <CardForPlaylistPlayerStyles  >
 
       {
         playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => (
@@ -19,6 +20,6 @@ export const TracksMainContainer = () => {
       }
 
     
-    </PlaylistContainerStyles>
+    </CardForPlaylistPlayerStyles>
   )
 }
