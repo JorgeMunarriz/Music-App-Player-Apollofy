@@ -1,14 +1,14 @@
 
 import { useContext } from 'react';
 import { DataMusicContext } from '../../context';
+import { CardForPlaylistPlayer, CardForPlaylistPlayerStyles } from '..';
 
-import { CardForPlaylistPlayer } from '../cardForPlaylistPlayer/CardForPlaylistPlayer';
-import { CardForPlaylistPlayerStyles } from '../cardForPlaylistPlayer/cardForPlaylistPlayer.styles';
+
 
 
 export const PlayListMainContainer = () => {
  const data = useContext(DataMusicContext);
- const playlist = data?.playlists;
+ const playlist = data?.data?.playlists;
   
   return (
     <CardForPlaylistPlayerStyles  >

@@ -11,12 +11,12 @@ export interface Root {
 export interface Playlist {
   id: number
   name: string
-  isFollowed: boolean
+  isFollowed?: boolean
   thumbnail: string
-  description: string
-  publicAccessible: boolean
-  primaryColor: string
-  tracksList: number[]
+  description?: string
+  publicAccessible?: boolean
+  primaryColor?: string
+  tracksList?: number[]
 }
 
 export interface Track {

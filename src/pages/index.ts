@@ -8,6 +8,8 @@ export * from './loginPage/LoginPage';
 export * from './loginPage/loginPage.styles';
 export * from './playerPage/PlayerPage';
 export * from './playerPage/playerPage.styles';
+export * from './playlistPage/PlaylistPage';
+export * from './playlistPage/playerPage.styles';
 export * from './profilePage/ProfilePage';
 export * from './profilePage/profilePage.styles';
 export * from './registerPage/RegisterPage';

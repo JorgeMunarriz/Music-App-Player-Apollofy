@@ -7,18 +7,15 @@ import { CardForPlaylistPlayer } from '../../cardForPlaylistPlayer/CardForPlayli
 
 export const TracksMainContainer = () => {
  const data = useContext(DataMusicContext);
- const playlist = data?.playlists;
+ const playlist = data?.data?.playlists;
   
   return (
     <PlaylistContainerStyles  >
-
       {
         playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => (
           <CardForPlaylistPlayer id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} />
         ))
       }
-
-    
     </PlaylistContainerStyles>
   )
 }

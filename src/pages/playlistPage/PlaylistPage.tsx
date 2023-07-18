@@ -8,9 +8,8 @@ export const PlaylistPage = () => {
   return (
     <PlayerPageStyles>
       <SideBar/>
-     <PlaylistMainContainer/>
+        <PlaylistMainContainer/>
       <Footer/>
-      
     </PlayerPageStyles>
   )
 }
