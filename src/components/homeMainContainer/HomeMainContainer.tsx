@@ -1,11 +1,12 @@
-import { HomeMainContainerStyles, PlaylistContainer, SearchBar, TracksContainer } from '..'
+import { HomeMainContainerStyles, PlaylistContainerHome, SearchBar, TracksContainer } from '..'
+
 
 
 export const HomeMainContainer = () => {
   return (
     <HomeMainContainerStyles>
       <SearchBar/>
-      <PlaylistContainer/>
+      <PlaylistContainerHome/>
       <TracksContainer/>
     </HomeMainContainerStyles>
 
