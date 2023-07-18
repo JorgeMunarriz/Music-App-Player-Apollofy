@@ -14,7 +14,11 @@ import { DataMusicContext } from "../../context";
 import { TracksContainerStyles } from "./tracksContainer.Styles";
 import { CardForTrack } from "..";
 
-export const TracksContainer = ({query}) => {
+
+type ProprQuery = {
+  query:string
+}
+export const TracksContainer = ({query}:ProprQuery) => {
   const data = useContext(DataMusicContext);
   const tracks = data?.data?.tracks?.sort((elemA,elemB) => elemB.visualizations - elemA.visualizations)
   
