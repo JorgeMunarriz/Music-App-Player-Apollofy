@@ -13,7 +13,7 @@ export const CardForPlaylistPlayer = ({ id, thumbnail, name, isFollowed, descrip
   }
 
   return (
-    <CardForPlaylistPlayerStyles key={id}>
+    <CardForPlaylistPlayerStyles >
      
         <img src={thumbnail} />  
         <h3>{name}</h3>
