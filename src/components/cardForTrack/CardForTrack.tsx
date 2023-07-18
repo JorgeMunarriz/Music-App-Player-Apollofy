@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Track } from "../../types/data";
 import { CardForTrackStyles } from "..";
-import { addReproductions } from "../../api/addReproductions";
+// import { addReproductions } from "../../api/addReproductions";
 
 
-export const CardForTrack = ({ id, thumbnail, name, artist, genre, liked, url, reproductions }: Track) => {
+export const CardForTrack = ({ id, thumbnail, name, artist, reproductions }: Track) => {
  
   return (
     <CardForTrackStyles key={id}>
@@ -16,7 +16,7 @@ export const CardForTrack = ({ id, thumbnail, name, artist, genre, liked, url, r
         <div className="cardForTrack__body">
           <h3 className="cardForTrack__body_title-h3">{name}</h3>
           <h4 className="cardForTrack__body_title-h4">{artist}</h4>
-          <h5 className="cardForTrack__body_title-h5">Reproductions: {visualizations}</h5>
+          <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
         </div>
       </Link>
     </CardForTrackStyles>

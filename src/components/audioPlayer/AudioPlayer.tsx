@@ -15,6 +15,6 @@ export const AudioPlayerComponent = () => {
     autoPlay
     className="rhap_container"
     src= {track?.url}
-    onPlay={(e) => console.log("onPlay")}
+    onPlay={() => console.log("onPlay")}
   />
 )};
