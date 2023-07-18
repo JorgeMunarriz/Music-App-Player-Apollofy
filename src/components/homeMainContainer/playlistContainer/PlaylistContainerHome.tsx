@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { DataMusicContext } from "../../../context";
 import { PlaylistContainerStyles } from "../..";
 
-export const PlaylistContainer = () => {
+export const PlaylistContainerHome = () => {
   const data = useContext(DataMusicContext);
   const playlists = data?.data?.playlists;
 
