@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Track } from "../../types/data";
 import { CardForTrackStyles } from "..";
+import { addReproductions } from "../../api/addReproductions";
 
 
-export const CardForTrack = ({ id, thumbnail, name, artist, visualizations }: Track) => {
+export const CardForTrack = ({ id, thumbnail, name, artist, genre, liked, url, reproductions }: Track) => {
  
   return (
     <CardForTrackStyles key={id}>

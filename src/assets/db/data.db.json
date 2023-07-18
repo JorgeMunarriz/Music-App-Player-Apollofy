@@ -8,7 +8,12 @@
       "description": "Get your mic on with this beats. You are going to sing all the way down",
       "publicAccessible": true,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -19,7 +24,11 @@
       "description": "Take it easy on the wheels with this hits",
       "publicAccessible": true,
       "primaryColor": "#fbdc00",
-      "tracksList": [2, 8, 4],
+      "tracksList": [
+        2,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -30,7 +39,11 @@
       "description": "Stressed? Don´t worry the final project will soon be over. Relax in the meantime with this hits.",
       "publicAccessible": true,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 4, 7 ],
+      "tracksList": [
+        3,
+        4,
+        7
+      ],
       "liked": false
     },
     {
@@ -41,7 +54,12 @@
       "description": "Take the dance floor and try to get your groove on with this beats",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [ 13, 15, 18, 14],
+      "tracksList": [
+        13,
+        15,
+        18,
+        14
+      ],
       "liked": false
     },
     {
@@ -52,7 +70,12 @@
       "description": "For those times when you are feeling down.",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [ 3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -63,7 +86,12 @@
       "description": "Feeling homey. Let´s keep it warm.",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -74,7 +102,12 @@
       "description": "Have no money for a space trip but you can have a space hit!",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -85,7 +118,12 @@
       "description": "Have no plans but will be happy to hear you are happy.",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": true
     },
     {
@@ -96,7 +134,12 @@
       "description": "Have you finished your master project? Let´s party!",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": false
     },
     {
@@ -107,7 +150,12 @@
       "description": "Let´s get glittering.",
       "publicAccessible": false,
       "primaryColor": "#fbdc00",
-      "tracksList": [3, 5, 8, 4],
+      "tracksList": [
+        3,
+        5,
+        8,
+        4
+      ],
       "liked": false
     }
   ],
@@ -120,7 +168,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583757/tracks-thumbnails-dev/better_off_alone_gfmcby.jpg",
       "genre": "piano",
       "liked": false,
-      "visualizations": 38
+      "reproductions": 72
     },
     {
       "id": 2,
@@ -130,7 +178,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583757/tracks-thumbnails-dev/alone_rfib7a.jpg",
       "genre": "poprock",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 74
     },
     {
       "id": 3,
@@ -140,7 +188,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583757/tracks-thumbnails-dev/Maze_of_sorrow_r1crlr.jpg",
       "genre": "chillout",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 4,
@@ -150,7 +198,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583757/tracks-thumbnails-dev/aurora_omys8y.jpg",
       "genre": "indie",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 5,
@@ -160,7 +208,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583756/tracks-thumbnails-dev/Sensitive_unevif.jpg",
       "genre": "pop",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 6,
@@ -170,7 +218,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644583757/tracks-thumbnails-dev/Tantalizing_Youth_bfshzo.jpg",
       "genre": "rock",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 7,
@@ -180,7 +228,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644584802/tracks-thumbnails-dev/Igor_Pumphonia_-_Point_Of_Light_urg7nn.jpg",
       "genre": "electronic",
       "liked": false,
-      "visualizations": 55
+      "reproductions": 55
     },
     {
       "id": 8,
@@ -190,7 +238,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644585151/tracks-thumbnails-dev/Lurence_Danova_oeew0j.jpg",
       "genre": "indie",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 9,
@@ -200,7 +248,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644585210/tracks-thumbnails-dev/TAB_fxakq3.jpg",
       "genre": "electronic",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 10,
@@ -210,7 +258,7 @@
       "url": "https://res.cloudinary.com/dmkdsujzh/video/upload/v1644523019/tracks/track-1644523017728_qb6wq4.mp3",
       "genre": "soul",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 11,
@@ -220,7 +268,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644585551/tracks-thumbnails-dev/Head_Over_Heels_Friend_Group_Remix_c9uatt.jpg",
       "genre": "poprock",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 12,
@@ -230,7 +278,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644586423/tracks-thumbnails-dev/Under_Water_yoirsy.jpg",
       "genre": "electronic",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 13,
@@ -240,7 +288,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644586622/tracks-thumbnails-dev/A8_vxgyaf.jpg",
       "genre": "pop",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 14,
@@ -250,7 +298,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644586719/tracks-thumbnails-dev/My_love_wqjuiz.jpg",
       "genre": "pop",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 15,
@@ -260,7 +308,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644586816/tracks-thumbnails-dev/bebe_go_zdfn6e.jpg",
       "genre": "reggaeton",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 16,
@@ -270,7 +318,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644587058/tracks-thumbnails-dev/Reflections_qvdzan.jpg",
       "genre": "alternative",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 17,
@@ -280,7 +328,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644587222/tracks-thumbnails-dev/Un_ratito_m2aeq0.jpg",
       "genre": "reggaeton",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     },
     {
       "id": 18,
@@ -290,7 +338,7 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644587960/tracks-thumbnails-dev/Sax_kgjfn8.jpg",
       "genre": "funk",
       "liked": false,
-      "visualizations": 60
+      "reproductions": 33
     },
     {
       "id": 19,
@@ -300,7 +348,8 @@
       "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644653692/tracks-thumbnails-dev/Chill_Lofi_Hip_Hop_Type_Beat_ltpm24.jpg",
       "genre": "groovy",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31,
+      "": null
     },
     {
       "id": 20,
@@ -310,7 +359,7 @@
       "url": "https://res.cloudinary.com/dmkdsujzh/video/upload/v1644602494/tracks-dev/D_JAY_KOI_-_We_got_the_vibes___Feat_Fil_Straughan__uz9qw7.mp3",
       "genre": "folk",
       "liked": false,
-      "visualizations": 31
+      "reproductions": 31
     }
   ],
   "albums": [

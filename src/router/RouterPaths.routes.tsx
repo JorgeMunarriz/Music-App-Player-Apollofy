@@ -4,6 +4,7 @@ import { HomePage, LandingPage, LoginPage, ProfilePage, RegisterPage, PlayerPage
 import "../App.css"; // Asegúrate de tener tus estilos CSS adecuados
 import { PlaylistPage } from "../pages/playlistPage/PlaylistPage";
 
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -38,6 +39,7 @@ export const Router = () => {
           <Route path="/playlists" element={<PlaylistPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
+
     </BrowserRouter>
   );
 };
