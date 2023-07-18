@@ -11,6 +11,7 @@ export const FooterStyles = styled.footer`
     height: 100%;
     border: 1px solid rgba(66, 66, 66, 0.4);
     display: flex;
+    flex-shrink: 1;
     justify-content: center;
     align-items: center;
   }
@@ -35,6 +36,7 @@ export const FooterStyles = styled.footer`
 
   @media only screen and (min-width: 1025px) {
     display: flex;
+    flex-shrink: 1;
     justify-content: center;
     align-items: center;
     grid-area: 5 / 1 / 6 / 6;

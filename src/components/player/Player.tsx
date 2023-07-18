@@ -1,9 +1,7 @@
 import { PlayerStyles } from "./player.styles";
-import logo from "../../assets/img/logo-homepage.png";
-import { AudioPlayerComponent } from "..";
-import { Playlist } from "../../types/data";
 import { DataMusicContext } from "../../context";
 import { useContext } from "react";
+import { AudioPlayerComponent } from "..";
 
 export const Player = () => {
 
@@ -13,7 +11,7 @@ export const Player = () => {
   return (
     <PlayerStyles>
       <div className="playerstyles__div-whole">
-        <img className="playerstyles__img" src={track?.thumbnail} />
+        <img className="playerstyles__img" src={track?.thumbnail} alt={track?.name} />
         <div className="playerstyles__info">
           <h4>{track?.name}</h4>
           <p>{track?.artist}</p>

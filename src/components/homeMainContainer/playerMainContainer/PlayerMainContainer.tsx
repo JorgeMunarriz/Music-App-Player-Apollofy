@@ -1,4 +1,4 @@
-import { HomeMainContainerStyles, SearchBar, TracksMainContainer } from "../.."
+import { HomeMainContainerStyles, SearchBar} from "../.."
 
 
 export const PlayerMainContainer = () => {
@@ -6,7 +6,6 @@ export const PlayerMainContainer = () => {
   return (
     <HomeMainContainerStyles>
       <SearchBar/>
-     
     </HomeMainContainerStyles>
 
   )

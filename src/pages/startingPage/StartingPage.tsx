@@ -9,7 +9,7 @@ export const StartingPage = () => {
       <Logo />
       <ButtonRedMediun ><Link to="/register">Register</Link></ButtonRedMediun>
       <ButtonRedMediun ><Link to="/login">Log in</Link></ButtonRedMediun>
-      <Title />     
+      <Title />
     </StartingPageStyles>
   )
 }

@@ -7,8 +7,8 @@ export const ProfilePage = () => {
   return (
     <ProfilePageStyles>
       <SideBar/>
-      <Footer/>
       <ProfileMainContainer/>
+      <Footer/>
     </ProfilePageStyles>
   )
 }

@@ -36,7 +36,7 @@ export * from './profileMainContainer/profileMainContainer.styles';
 export * from './register/RegisterSection';
 export * from './register/registerSectionStyles';
 export * from './searchBar/SearchBar';
-export * from './searchBar/searchBar.styles';
+export * from './searchBar/searchBar.Styles';
 export * from './sideBar/SideBar';
 export * from './sideBar/favoritesSection/FavoritesSectionContainer';
 export * from './sideBar/favoritesSection/favoritesSectionContainer.styles';

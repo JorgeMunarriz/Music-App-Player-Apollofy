@@ -8,7 +8,7 @@ import { CardForPlaylistPlayer } from '../../cardForPlaylistPlayer/CardForPlayli
 export const TracksMainContainer = () => {
  const data = useContext(DataMusicContext);
  const playlist = data?.data?.playlists;
-  
+
   return (
     <PlaylistContainerStyles  >
       {

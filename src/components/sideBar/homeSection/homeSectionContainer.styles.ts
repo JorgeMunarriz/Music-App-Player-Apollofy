@@ -6,7 +6,7 @@ export const HomeSectionContainerStyles = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  
+
 & a {
     display: flex;
     align-items: center;
@@ -16,13 +16,17 @@ export const HomeSectionContainerStyles = styled.div`
     padding: 10px;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: clamp(1rem, 1.8rem, 2rem);
 }
 & a:hover {
     border-radius: 6px;
     background: #282828;
     padding: 10px;
     color: rgba(255, 255, 255, 1);
+}
+
+& svg{
+  font-size: clamp(1rem, 1.8rem, 2rem);
 }
 @media only screen and (min-width : 320px) and (max-width : 480px) {
   
@@ -37,7 +41,6 @@ export const HomeSectionContainerStyles = styled.div`
     padding: 10px;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
-    font-size: 1rem;
 }
   
 }
@@ -61,6 +64,7 @@ export const HomeSectionContainerStyles = styled.div`
 
 @media only screen and (min-width : 1025px) {
   //To determinate the Position in the parent grid
+  
  
 }
 

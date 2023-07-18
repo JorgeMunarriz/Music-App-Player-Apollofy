@@ -1,6 +1,6 @@
 // Importación de módulos y tipos necesarios
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Props, Track, User } from '../types/data';
+import { Props, Root, Track } from '../types/data';
 
 // Creación del contexto para las pistas de música
 const MusicContext = createContext<Track[]>({} as Track[]);
@@ -14,7 +14,7 @@ export const MusicProvider = ({ children }: Props) => {
 
   // Función para realizar la solicitud a la API y obtener los datos de las pistas
   const fetchApi = async () => {
-    const response = await fetch("http://localhost:3000/");
+    const response = await fetch("http://localhost:4000/");
     
     try {
       // Parsear la respuesta como JSON y almacenar los datos en la variable 'data'
