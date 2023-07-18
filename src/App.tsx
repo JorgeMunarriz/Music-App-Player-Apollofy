@@ -8,9 +8,7 @@ import './styles/reset.css';
 import './styles/font.css'
 
 function App() {
-	//   const {tracks} = useDataTracks()
-	// console.log(tracks)
-
+	
 	return (
 		<>
 			<DataMusicProvider>
