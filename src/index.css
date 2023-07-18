@@ -52,3 +52,16 @@ h6 {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+::-webkit-scrollbar{
+    width: 6px;
+    background-color: rgba(0,0,0,1);
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.9);
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(232, 89, 115, 0.9); 
+    background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent)
+}
