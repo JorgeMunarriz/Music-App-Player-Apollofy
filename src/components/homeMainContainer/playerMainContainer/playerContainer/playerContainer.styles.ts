@@ -1,25 +1,24 @@
 import styled from 'styled-components';
 
 export const PlayerContainerStyles = styled.div`
+.playerContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  height: 100%;
   gap: 2rem;
-  .playerContainer__img-big{
+  &__img-big{
     width: 40vh;
     height: auto;
-    margin-top:4rem;
   }
-  .playerContainer__h3{
+  &__h3{
     color: #fff;
     font-size: 2rem;
   }
-  .playerContainer__span{
+  &__span{
     color: rgba(255, 255, 255, 0.7);
   }
-
+}
 `;
 

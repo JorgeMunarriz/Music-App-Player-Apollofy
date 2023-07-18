@@ -7,12 +7,15 @@ export const CardForTrack = ({ id, thumbnail, name, artist, visualizations }: Tr
  
   return (
     <CardForTrackStyles key={id}>
-      <Link to={`/player/${id}`} className="card-container">
-        <img src={thumbnail} />
-        <div className="card-body">
-          <h3 className="title-h3">{name}</h3>
-          <h4>{artist}</h4>
-          <h5>Reproductions: {visualizations}</h5>
+      <Link to={`/player/${id}`} className="cardForTrack">
+        <div className="cardForTrack__header">
+        <img className="cardForTrack__header_img" src={thumbnail} />
+
+        </div>
+        <div className="cardForTrack__body">
+          <h3 className="cardForTrack__body_title-h3">{name}</h3>
+          <h4 className="cardForTrack__body_title-h4">{artist}</h4>
+          <h5 className="cardForTrack__body_title-h5">Reproductions: {visualizations}</h5>
         </div>
       </Link>
     </CardForTrackStyles>

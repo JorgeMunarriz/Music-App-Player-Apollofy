@@ -117,7 +117,7 @@ export const PlayerStyles = styled.div`
     .playerstyles__div-whole {
       display: flex;
       .playerstyles__img {
-        width: 25px;
+        width: 100px;
       }
     }
 

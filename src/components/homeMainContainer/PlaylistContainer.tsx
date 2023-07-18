@@ -5,7 +5,7 @@ import { PlaylistContainerStylesNew } from './playlistContainer.styles'
 export const PlaylistContainer = () => {
   return (
     <PlaylistContainerStylesNew>
-      <SearchBar/>
+      <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined}/>
       <TracksMainContainer/>
     </PlaylistContainerStylesNew>
 

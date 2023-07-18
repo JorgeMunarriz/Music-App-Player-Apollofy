@@ -1,18 +1,34 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const TracksContainerStyles = styled.div`
- display: flex;
- flex-wrap: wrap;
- overflow-y: auto;
- justify-content: space-around;
- height: 100%;
- width: 100%;
- gap: 1.5rem;
- padding: 1.5rem 0;
- border: 1px solid rgba(66, 66, 66, 0.4);
- border-radius: 0.25rem;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  gap: 1.5rem;
+  /* border: 1px solid rgba(66, 66, 66, 0.4); */
+  border-radius: 0.25rem;
+  .mySwiper {
+    height: 185px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+    .swiper-pagination-bullet-active {
+      background: #f8f7f9;
+      width: 30px;
+      height: 10px;
+      border-radius: 0.5rem;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #000;
+    }
+  }
 `;
-
-

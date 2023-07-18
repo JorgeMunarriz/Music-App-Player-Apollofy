@@ -1,14 +1,8 @@
 import { createContext, useEffect, useState, ReactNode } from 'react';
-import { Root, Playlist, Album, Genre, Track, Artist } from '../types/data';
-import { useFetcher } from 'react-router-dom';
+import {  Playlist, Album, Genre, Track, Artist } from '../types/data';
+import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
+// import { useFetcher } from 'react-router-dom';
 
-export const url = "http://localhost:4000";
-export const urlPlaylist = `${url}/playlists`;
-export const urlTracks = `${url}/tracks`;
-export const urlUser = `${url}/user`;
-export const urlAlbums = `${url}/albums`;
-export const urlArtist = `${url}/artists`;
-export const urlGenres = `${url}/genres`;
 
 export interface MusicContextProps {
   playlists: Playlist[] | null;
@@ -16,9 +10,15 @@ export interface MusicContextProps {
   genres: Genre[] | null;
   tracks: Track[] | null;
   artists: Artist[] | null;
+  currentTrack: Track | null;
+  handleCurrentTrack: (incomingCurrentTrack: Track) => void;
 }
 
-export const DataMusicContext = createContext<{data: MusicContextProps | null, currentTrack: Track | null, handleCurrentTrack: (incomingCurrentTrack: Track) => void}>({data: null, currentTrack: null, handleCurrentTrack: () => {}});
+export const DataMusicContext = createContext<{
+  data: MusicContextProps | null;
+  currentTrack: Track | null;
+  handleCurrentTrack: (incomingCurrentTrack: Track) => void;
+}>({ data: null, currentTrack: null, handleCurrentTrack: () => {} });
 
 export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [data, setData] = useState<MusicContextProps | null>({
@@ -26,7 +26,8 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
     albums: null,
     genres: null,
     tracks: null,
-    artists: null
+    artists: null,
+    currentTrack: null,
   });
   const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
   const [params, setParams] = useState<string>('');
@@ -61,7 +62,8 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           albums,
           genres,
           tracks,
-          artists
+          artists,
+          currentTrack: null,
         });
       } catch (error) {
         console.log(error);

@@ -12,8 +12,11 @@ export const SideBar = () => {
   
   return (
     <SidebarStyles>
-      <img src={logo} className="desktop-class"/>
-      <div className='sidebar-sections'>
+      <div className='sidebar__div'>
+      <img src={logo} className="sidebar__div-img desktop-class"/>
+      </div>
+      
+      <div className='sidebar__sections sidebar-sections'>
         <HomeSectionContainer/>
         <PlaylistSectionContainer/>
         <FavoritesSectionContainer/>

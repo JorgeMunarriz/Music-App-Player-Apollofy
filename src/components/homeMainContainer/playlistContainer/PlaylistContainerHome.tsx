@@ -26,18 +26,19 @@ export const PlaylistContainerHome = () => {
           pagination
           slidesPerView={2}
           grid={{
-            rows: 2,
+            rows: 1,
           }}
           spaceBetween={5}
           modules={[Grid, Pagination]}
           className="mySwiper"
         >
-          {playlists.map(({ id, thumbnail, name }) => (
+          {playlists.map(({ id, thumbnail, name, description }) => (
             <SwiperSlide key={id}>
               <CardForPlaylistPlayer
                 thumbnail={thumbnail}
                 name={name}
                 id={id}
+                description={description}
               />
             </SwiperSlide>
           ))}
