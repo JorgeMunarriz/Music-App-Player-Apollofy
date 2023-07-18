@@ -12,7 +12,7 @@ export const CardForTrack = ({ id, thumbnail, name, artist, visualizations }: Tr
         <div className="card-body">
           <h3 className="title-h3">{name}</h3>
           <h4>{artist}</h4>
-          <h5>Views: {visualizations}</h5>
+          <h5>Reproductions: {visualizations}</h5>
         </div>
       </Link>
     </CardForTrackStyles>
