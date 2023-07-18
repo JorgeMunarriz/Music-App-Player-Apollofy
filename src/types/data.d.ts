@@ -28,7 +28,7 @@ export interface Track {
   thumbnail: string
   genre: string
   liked: boolean
-  visualizations: number
+  reproductions: number
 }
 
 // export type CardTypes = Track | Playlist

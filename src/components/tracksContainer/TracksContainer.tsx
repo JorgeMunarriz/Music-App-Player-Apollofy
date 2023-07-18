@@ -16,20 +16,20 @@ import { CardForTrack } from "..";
 
 export const TracksContainer = () => {
   const data = useContext(DataMusicContext);
-  const tracks = data?.data?.tracks.sort((elemA,elemB) => elemB.visualizations - elemA.visualizations)
-
-
-  return (
-    <TracksContainerStyles>
+  if (data.data?.tracks !== null) {
+    const tracks = data?.data?.tracks.sort((elemA,elemB) => elemB.reproductions - elemA.reproductions)
+    
+    return (
+      <TracksContainerStyles>
       {tracks && (
         <Swiper
-          navigation
-          pagination
-          slidesPerView={3}
-          spaceBetween={10}
-          // Agrega cualquier otra opción de configuración de Swiper que desees
+        navigation
+        pagination
+        slidesPerView={3}
+        spaceBetween={10}
+        // Agrega cualquier otra opción de configuración de Swiper que desees
         >
-          {tracks.map(({ id, thumbnail, name, genre, artist, url, liked, visualizations }) => (
+          {tracks.map(({ id, thumbnail, name, genre, artist, url, liked, reproductions }) => (
             <SwiperSlide key={id}>
               <CardForTrack
                 thumbnail={thumbnail}
@@ -39,12 +39,13 @@ export const TracksContainer = () => {
                 artist={artist}
                 url={url}
                 liked={liked}
-                visualizations={visualizations}
-              />
+                reproductions={reproductions}
+                />
             </SwiperSlide>
           ))}
         </Swiper>
       )}
     </TracksContainerStyles>
   );
+  }
 };
