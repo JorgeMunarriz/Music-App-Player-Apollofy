@@ -16,6 +16,7 @@ export interface Playlist {
   description: string
   publicAccessible: boolean
   primaryColor: string
+  tracksList: number[]
 }
 
 export interface Track {
@@ -27,6 +28,8 @@ export interface Track {
   genre: string
   liked: boolean
 }
+
+// export type CardTypes = Track | Playlist
 
 export interface User {
   id: number

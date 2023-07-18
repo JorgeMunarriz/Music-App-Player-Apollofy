@@ -7,7 +7,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625060/tracks-thumbnails-dev/car_yx6ld1.jpg",
         "description": "Get your mic on with this beats. You are going to sing all the way down",
         "publicAccessible": true,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 2,
@@ -16,7 +17,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625058/tracks-thumbnails-dev/driving_g56eyw.jpg",
         "description": "Take it easy on the wheels with this hits",
         "publicAccessible": true,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [2, 8, 4]
       },
       {
         "id": 3,
@@ -25,7 +27,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625056/tracks-thumbnails-dev/relax_coqdlx.jpg",
         "description": "Stressed? Don´t worry the final project will soon be over. Relax in the meantime with this hits.",
         "publicAccessible": true,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 4, 7]
       },
       {
         "id": 4,
@@ -34,7 +37,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625049/tracks-thumbnails-dev/boogie_rcl1zd.jpg",
         "description": "Take the dance floor and try to get your groove on with this beats",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [13, 15, 18, 14]
       },
       {
         "id": 5,
@@ -43,7 +47,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644624690/tracks-thumbnails-dev/smile_kpfzj8.jpg",
         "description": "For those times when you are feeling down.",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 6,
@@ -52,7 +57,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644626587/tracks-thumbnails-dev/brennan-ehrhardt-HALe2SmkWAI-unsplash_c1yhnz.jpg",
         "description": "Feeling homey. Let´s keep it warm.",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 7,
@@ -61,7 +67,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644626067/tracks-thumbnails-dev/fly_hx4xyp.jpg",
         "description": "Have no money for a space trip but you can have a space hit!",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 8,
@@ -70,7 +77,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644626096/tracks-thumbnails-dev/hits_nuk3qf.webp",
         "description": "Have no plans but will be happy to hear you are happy.",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 9,
@@ -79,7 +87,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644626587/tracks-thumbnails-dev/amy-shamblen-lJt-3NUFng4-unsplash_z4icus.jpg",
         "description": "Have you finished your master project? Let´s party!",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       },
       {
         "id": 10,
@@ -88,7 +97,8 @@
         "thumbnail": "https://res.cloudinary.com/dmkdsujzh/image/upload/v1644627361/tracks-thumbnails-dev/glitter_ru5qsp.jpg",
         "description": "Let´s get glittering.",
         "publicAccessible": false,
-        "primaryColor": "#fbdc00"
+        "primaryColor": "#fbdc00",
+        "tracksList": [3, 5, 8, 4]
       }
     ],
     "tracks": [
