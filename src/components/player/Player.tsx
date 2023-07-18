@@ -1,7 +1,5 @@
 import { PlayerStyles } from "./player.styles";
-import logo from "../../assets/img/logo-homepage.png";
 import { AudioPlayerComponent } from "..";
-import { Playlist } from "../../types/data";
 import { DataMusicContext } from "../../context";
 import { useContext } from "react";
 

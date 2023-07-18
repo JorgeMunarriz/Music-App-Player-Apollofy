@@ -10,7 +10,7 @@ export const urlAlbums = `${url}/albums`;
 export const urlArtist = `${url}/artists`;
 export const urlGenres = `${url}/genres`;
 
-interface MusicContextProps {
+export interface MusicContextProps {
   playlists: Playlist[] | null;
   albums: Album[] | null;
   genres: Genre[] | null;

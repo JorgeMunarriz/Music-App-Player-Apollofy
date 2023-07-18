@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { PlayerContainerStyles } from "./playerContainer.styles";
-import { DataMusicContext } from "../../../../context";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Track } from "../../../../types/data";
+import { DataMusicContext } from '../../../../context/DataMusicContext';
 
-export const PlayerContainer = ({ id, thumbnail, name, artist }: Track) => {
+export const PlayerContainer = ({ id }: Track) => {
   const data = useContext(DataMusicContext);
   const tracks = data?.currentTrack;
 
