@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
+    grid-row: 1 / 2;
     display: flex;
     justify-content: space-between;
     padding: 1rem;

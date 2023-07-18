@@ -5,18 +5,18 @@ import { Playlist } from "../../types/data";
 import { DataMusicContext } from "../../context";
 import { useContext } from "react";
 
-export const Player = ({id, name, thumbnail}: Playlist) => {
-  const  data  = useContext(DataMusicContext);
-  const playlists  = data?.playlists;
+export const Player = () => {
 
-    playlists
+  const  data  = useContext(DataMusicContext);
+  const track  = data?.currentTrack;
+
   return (
     <PlayerStyles>
       <div className="playerstyles__div-whole">
-        <img className="playerstyles__img" src={logo} />
+        <img className="playerstyles__img" src={track?.thumbnail} />
         <div className="playerstyles__info">
-          <h4>{name}</h4>
-          <p>Artist name</p>
+          <h4>{track?.name}</h4>
+          <p>{track?.artist}</p>
         </div>
       </div>
       <div className="playerstyles__div-container">

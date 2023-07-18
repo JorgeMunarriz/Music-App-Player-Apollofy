@@ -18,7 +18,7 @@ interface MusicContextProps {
   artists: Artist[] | null;
 }
 
-export const DataMusicContext = createContext<MusicContextProps | null>(null);
+export const DataMusicContext = createContext<{data: MusicContextProps | null, currentTrack: Track | null, handleCurrentTrack: (incomingCurrentTrack: Track) => void}>({data: null, currentTrack: null, handleCurrentTrack: () => {}});
 
 export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [data, setData] = useState<MusicContextProps | null>({
@@ -28,6 +28,12 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
     tracks: null,
     artists: null
   });
+  const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
+
+  const handleCurrentTrack = (incomingCurrentTrack: Track) => {
+    setCurrentTrack (incomingCurrentTrack);
+    console.log(incomingCurrentTrack)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,8 +73,8 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
 //   }
 
   return (
-    <DataMusicContext.Provider value={data}>
-      {data && children}
+    <DataMusicContext.Provider value={{data, currentTrack, handleCurrentTrack }}>
+      {children}
     </DataMusicContext.Provider>
   );
 };
