@@ -43,11 +43,11 @@ export const CardForTrackStyles = styled.div`
         color: #fff;
         &-h3 {
           font-size: 1.5vw;
-          color: rgba(255, 255, 255, 0.9);
+          color: var(--color-text-pink);
         }
         &-h4 {
           font-size: 1vw;
-          color: rgba(255, 255, 255, 0.6)
+          color: var(--color-text-gray);
         }
         &-h5 {
           font-size: 0.75vw;

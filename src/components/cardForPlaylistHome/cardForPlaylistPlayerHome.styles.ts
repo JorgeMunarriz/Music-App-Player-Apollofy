@@ -62,13 +62,19 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
     }
 
     &__follow-btn {
-      width: 20px;
+      border: 1px solid transparent;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 23px;
-      height: 23px;
+      width: 30px;
+      height: 30px;
+      cursor:pointer;
+
+      & svg {
+        width:70%;
+        height:70%;
+      }
     }
 
     & .full-heart {

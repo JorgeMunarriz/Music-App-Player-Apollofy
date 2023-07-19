@@ -1,12 +1,15 @@
 import {ProfileIconsContainer, ProfileMainContainerStyles} from './profileMainContainer.styles';
 import {IoChevronBackOutline, IoEllipsisVerticalSharp} from 'react-icons/io5';
 import profileImg from '../../assets/img/perfil de prueba.jpg';
+import { Boop } from '../../animations/boopAnimation';
+
+
 
 export const ProfileMainContainer = () => {
 	return (
 		<ProfileMainContainerStyles>
 			<ProfileIconsContainer>
-				<IoChevronBackOutline /> <IoEllipsisVerticalSharp />
+			<Boop rotation={20} timing={200}><IoChevronBackOutline /></Boop><Boop rotation={20} timing={200}> <IoEllipsisVerticalSharp /></Boop> 
 			</ProfileIconsContainer>
 			<h2 className="profile__h2">Profile</h2>
 			<div className="profile__img-container">
@@ -25,3 +28,5 @@ export const ProfileMainContainer = () => {
 		</ProfileMainContainerStyles>
 	);
 };
+
+
