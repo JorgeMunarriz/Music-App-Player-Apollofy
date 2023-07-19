@@ -17,7 +17,7 @@ export const CardForPlaylistPlayerHome = ({ thumbnail, name, isFollowed, descrip
         <img className="cardForPlaylistPlayer__img-img" src={thumbnail} />
         </div>
         <h3 className="cardForPlaylistPlayer__name">{name}</h3>
-        <span className="cardForPlaylistPlayer__description playlist-description">{description}</span>
+        {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
         <button onClick={toggleFollow} className="cardForPlaylistPlayer__follow-btn follow_btn">
           {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={15} />}
         </button>

@@ -7,7 +7,7 @@ border: 1px solid rgba(66, 66, 66, 0.4);
 border-radius: 0.25rem;
 overflow-y: auto;
 
-background-color: rgba(50, 50, 50, 0.6);
+background: linear-gradient(#340034, #000);
 
 
 

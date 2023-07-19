@@ -3,7 +3,6 @@ import { Playlist, Album, Genre, Track, Artist } from '../types/data';
 import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
 
 
-
 export interface MusicContextProps {
   playlists: Playlist[] | null;
   albums: Album[] | null;
@@ -28,6 +27,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
     tracks: null,
     artists: null,
     currentTrack: null,
+    handleCurrentTrack: null
   });
   const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
   const [params, setParams] = useState<string>('');
@@ -63,6 +63,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           tracks,
           artists,
           currentTrack: null,
+          handleCurrentTrack: null
         });
       } catch (error) {
         console.log(error);
