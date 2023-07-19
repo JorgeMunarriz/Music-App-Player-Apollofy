@@ -6,15 +6,13 @@ background-color: rgba(50, 50, 50, 0.6);
 border: 1px solid rgba(66, 66, 66, 0.4);
 border-radius: 0.25rem;
 overflow-y: auto;
-
 background-color: rgba(50, 50, 50, 0.6);
 
 
 
 @media only screen and (min-width : 320px) and (max-width : 480px) {
   grid-area: 1 / 1 / 5 / 7;
-  
-  
+
 }
 
 @media only screen and (min-width: 481px) and (max-width: 767px) {
@@ -32,10 +30,7 @@ background-color: rgba(50, 50, 50, 0.6);
 
 @media only screen and (min-width : 1025px) {
   grid-area: 1 / 2 / 5 / 7;
-  display: grid;
   grid-template-rows: 1fr 4fr 4fr;
-
-  
   width: 100%;
   height: 100%;
 }`

@@ -106,7 +106,7 @@ export const ProfileIconsContainer = styled.div`
     justify-content: space-between;
     width: 100%;
 & svg {
-    font-size: 1.5rem;
+    font-size: clamp(.8rem, 2.3rem, 3rem);
     color:  rgba(255, 255, 255, 1);
     cursor: pointer;
 }

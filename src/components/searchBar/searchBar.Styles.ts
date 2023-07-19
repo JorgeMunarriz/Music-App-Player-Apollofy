@@ -5,6 +5,12 @@ export const SearchBarContainer = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+
+    & svg{
+        font-size: 1.5rem;
+    color:  rgba(255, 255, 255, 1);
+    cursor: pointer;
+    }
 `;
 
 
@@ -26,8 +32,8 @@ export const SearchBarLeft = styled.div`
 
 }
 
-& svg {
-    color: rgb(135,146,148);
+& svg{
+color: rgb(135,146,148);
     cursor:pointer;
 }
 `;
@@ -47,11 +53,22 @@ export const SearchBarRight = styled.div`
     border-radius: 1rem;
     padding: 10px;
  h4 {
+    font-size: clamp(.8rem, 2.1rem, 2.5rem);
     color: rgb(135,146,148);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+ }
+ h4:hover{
+    color: #c9356c;
  }
  & svg {
-    color: rgb(135,146,148);
-    cursor:pointer;
+    font-size: clamp(.8rem, 2.3rem, 3rem);
+    color:  rgba(255, 255, 255, 1);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+svg:hover{
+    color: #c9356c;
 }
 `;
 
