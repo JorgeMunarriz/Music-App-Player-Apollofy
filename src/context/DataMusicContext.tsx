@@ -69,9 +69,5 @@ export const DataMusicProvider: React.FC<{children: ReactNode}> = ({children}) =
 		void fetchData();
 	}, []);
 
-	//   const contextDataValue: MusicContextProps = {
-	//     playlists
-	//   }
-
 	return <DataMusicContext.Provider value={{data, currentTrack, handleCurrentTrack}}>{children}</DataMusicContext.Provider>;
 };

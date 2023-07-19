@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react";
 import { PlayerMainContainer, SideBar } from "../../components";
-import { PlayerPageStyles } from "./playerPage.styles";
 import { DataMusicContext } from "../../context";
 import { useParams } from "react-router-dom";
+import { GlobalPrivatePageStyles } from "../../global";
+
 
 export const PlayerPage = () => {
   const data = useContext(DataMusicContext);
@@ -19,9 +20,9 @@ export const PlayerPage = () => {
   }, [currentId, data, tracks]);
 
   return (
-    <PlayerPageStyles>
+    <GlobalPrivatePageStyles>
       <SideBar />
       <PlayerMainContainer />
-    </PlayerPageStyles>
+    </GlobalPrivatePageStyles>
   );
 };

@@ -10,7 +10,7 @@ SwiperCore.use([Navigation, Pagination]);
 
 import {useContext} from 'react';
 import {DataMusicContext} from '../../context';
-import {TracksContainerStyles} from './tracksContainer.Styles';
+import {TracksContainerStyles} from './tracksContainer.styles';
 import {CardForTrack} from '..';
 
 type ProprQuery = {

@@ -1,5 +1,6 @@
+import { urlUser } from "../global/urls/UrlApi";
 import { User } from "../types/data";
-import { urlUser} from "../context";
+urlUser
 
 
 //id -> User Id recived from app by clicking the logged user in the selection button.
@@ -7,6 +8,10 @@ import { urlUser} from "../context";
 //type -> TRUE to add to list, FALSE to delete from list.
 export const toggleLiked = async (Id: number, selection: string, selectionId: any, type: string ) => {
 
+    console.log (Id)
+    console.log (selection)
+    console.log (selectionId)
+    console.log (type)
     try {
         const response = await fetch(`${urlUser}/${Id}`);
         const user: User = await response.json();
