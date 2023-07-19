@@ -1,15 +1,16 @@
 :root {
-  /* Colores de texto */
-  --color-texto-rosa: #FF0000;
+  /* Text colors */
+  --color-text-pink:  #e85973;
+  --color-text-gray:  rgb(134, 129, 134);
 
-  /* Colores de fondo */
-  --color-fondo-principal:  linear-gradient(#340034, #000);
+  /* Background colors */
+  --color-background-main: linear-gradient(#340034, #000);
 
-  /* Colores para elementos específicos */
-  --color-texto-gris: #333333;
-  --color-fondo-footer: var(--color-fondo-principal);
-  --color-fondo-sidebar: var(--color-fondo-principal);
+  /* Colors for specific elements */
+  --color-background-footer:  rgba(50, 50, 50, 0.2) ;
+  --color-background-sidebar: rgb(0, 0, 0);
 }
+
 
 
 *, *::before, *::after {
