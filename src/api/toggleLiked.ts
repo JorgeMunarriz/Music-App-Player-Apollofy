@@ -1,36 +1,58 @@
-import { Track } from "../types/data";
+import { User } from "../types/data";
+import { urlUser} from "../context";
 
 
-export const url = "http://localhost:4000";
-export const urlPlaylist = `${url}/playlists`;
-export const urlTracks = `${url}/tracks`;
-export const urlUser = `${url}/user`;
-export const urlAlbums = `${url}/albums`;
-export const urlArtist = `${url}/artists`;
-export const urlGenres = `${url}/genres`;
+//id -> User Id recived from app by clicking the logged user in the selection button.
+//selection -> Where the user are clicking in the app (playlist or track) --- Crear un ENUM?¿?
+//type -> TRUE to add to list, FALSE to delete from list.
+export const toggleLiked = async (Id: number, selection: string, selectionId: any, type: string ) => {
 
+    try {
+        const response = await fetch(`${urlUser}/${Id}`);
+        const user: User = await response.json();
 
-// Pendiente de pasar a liked 
-export const toggleLiked = async (Id: number, type: string) => {
+        let modifiedPlaylist=[];
+        let modifiedTrack=[];
+        let modifiedUser: User = user;
+        
+        if(type === 'TRUE') {
+            switch (selection) {
+                case 'playlist':
+                    modifiedPlaylist = [...user.favPlaylists, selectionId]
+                    modifiedUser = {...user, favPlaylists: modifiedPlaylist}
+                    break;
+                case 'track':
+                    modifiedTrack = [...user.favTracks, selectionId]
+                    modifiedUser = {...user, favTracks: modifiedTrack}
+                    break;
+                default: throw new Error ('Selection invalid')
+            }
 
-    // try {
-    //     const response = await fetch(`${urlTracks}/${trackId}`);
-    //     const track = await response.json();
-    //     const modifiedTrack = {
-    //         ...track,
-    //         reproductions: track.reproductions + 1
-    //     };
-    //     console.log(modifiedTrack)
-    //     await fetch(`${urlTracks}/${trackId}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(modifiedTrack)
-    //     });
-    //     console.log('Si envía');
-    // } 
-    // catch (error) {
-    //     throw new Error ('Error trying to connect to server');
-    // }
+        } else if (type === 'FALSE') {
+            switch (selection) {
+                case 'playlist':
+                    modifiedPlaylist = user.favPlaylists.filter((playlistId) => playlistId !== selectionId)
+                    modifiedUser = {...user, favPlaylists: modifiedPlaylist}
+                    break;
+                case 'track':
+                    modifiedTrack = user.favTracks.filter((trackId) => trackId !== selectionId)
+                    modifiedUser = {...user, favTracks: modifiedTrack}
+                    break;
+            }
+        } else {
+            throw new Error ('Selection invalid')
+        }
+
+        await fetch(`${urlUser}/${Id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(modifiedUser)
+        });
+
+    } 
+    catch (error) {
+        throw new Error ('Error trying to connect to server');
+    }
 }

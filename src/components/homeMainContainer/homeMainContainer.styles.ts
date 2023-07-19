@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const HomeMainContainerStyles = styled.main`
 
-background-color: rgba(50, 50, 50, 0.6);
-border: 1px solid rgba(66, 66, 66, 0.4);
+
+
 border-radius: 0.25rem;
 grid-area: 1 / 1 / 5 / 7;
-background-color: rgba(50, 50, 50, 0.6);
+background: linear-gradient(#340034, #000);
 
 
 @media only screen and (min-width: 480px) and (max-width: 768px) {

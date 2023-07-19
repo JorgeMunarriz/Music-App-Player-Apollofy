@@ -1,22 +1,19 @@
 import styled from "styled-components";
 
 export const FooterStyles = styled.footer`
-  background-color: rgba(50, 50, 50, 0.2);
-  border: 1px solid rgba(66, 66, 66, 0.4);
-  border-radius: 0.25rem;
-  grid-area: 5 / 1 / 6 / 7;
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(66, 66, 66, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(50, 50, 50, 0.2); 
+  border-radius: 0.25rem;
+  grid-area: 5 / 1 / 6 / 7;
+  width: 100%;
+  height: 100%; 
 
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     grid-area: 5 / 1 / 6 / 7;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(66, 66, 66, 0.4);
     display: flex;
     flex-shrink: 1;
     justify-content: center;
@@ -37,7 +34,6 @@ export const FooterStyles = styled.footer`
     grid-area: 5 / 1 / 6 / 7;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 0.25rem;
   }
 
@@ -49,7 +45,6 @@ export const FooterStyles = styled.footer`
     grid-area: 5 / 1 / 6 / 6;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 0.25rem;
   }
 `;
