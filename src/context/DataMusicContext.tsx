@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useEffect, useState, ReactNode, useMemo, useCallback } from 'react';
 import { Playlist, Album, Genre, Track, Artist } from '../types/data';
 import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
 
@@ -13,30 +13,23 @@ export interface MusicContextProps {
   handleCurrentTrack: (incomingCurrentTrack: Track) => void;
 }
 
-export const DataMusicContext = createContext<{
-  data: MusicContextProps | null;
-  currentTrack: Track | null;
-  handleCurrentTrack: (incomingCurrentTrack: Track) => void;
-}>({ data: null, currentTrack: null, handleCurrentTrack: () => {} });
+export const DataMusicContext = createContext<MusicContextProps>({} as MusicContextProps);
 
 export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [data, setData] = useState<MusicContextProps | null>({
+  const [data, setData] = useState<MusicContextProps | undefined>({
     playlists: null,
     albums: null,
     genres: null,
     tracks: null,
     artists: null,
     currentTrack: null,
-    handleCurrentTrack: null
+    handleCurrentTrack: () => null
   });
-  const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
- 
+  const [currentTrack, setCurrentTrack] = useState<Track>();
 
-  
-
-  const handleCurrentTrack = (incomingCurrentTrack: Track) => {
+  const handleCurrentTrack = useCallback((incomingCurrentTrack: Track):void => {
     setCurrentTrack (incomingCurrentTrack);
-  }
+  },[])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,22 +56,30 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           tracks,
           artists,
           currentTrack: null,
-          handleCurrentTrack: null
+          handleCurrentTrack: ():undefined => undefined
         });
       } catch (error) {
         console.log(error);
       }
     };
-
     void fetchData();
+
   }, []);
 
-//   const contextDataValue: MusicContextProps = {
-//     playlists
-//   }
+  const updateData = useCallback(function(data:MusicContextProps):void{
+    setData(data)
+  }, [])
+  
+  const value:MusicContextProps = useMemo(() => ({
+    data,
+    updateData,
+    handleCurrentTrack,
+    currentTrack
+  }), [data,updateData,handleCurrentTrack, currentTrack])
+
 
   return (
-    <DataMusicContext.Provider value={{data, currentTrack, handleCurrentTrack }}>
+    <DataMusicContext.Provider value={value}>
       {children}
     </DataMusicContext.Provider>
   );

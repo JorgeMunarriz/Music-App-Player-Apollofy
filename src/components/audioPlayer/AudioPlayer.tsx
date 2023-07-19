@@ -1,20 +1,19 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./AudioPlayer.css";
-import { useContext } from "react";
+import { useContext, memo } from 'react';
 import { DataMusicContext } from "../../context/DataMusicContext";
 
-export const AudioPlayerComponent = () => {
+export const AudioPlayerComponent = memo(() => {
   
-  const  data  = useContext(DataMusicContext);
-  const track  = data?.currentTrack;
-  
-  
+  const  value  = useContext(DataMusicContext);
+  const track  = value?.currentTrack;
   return (
   <AudioPlayer 
     
     className="rhap_container"
     src= {track?.url}
     onPlay={() => console.log("onPlay")}
+    
   />
-)};
+)});

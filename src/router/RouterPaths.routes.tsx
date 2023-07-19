@@ -5,6 +5,7 @@ import "../App.css"; // Asegúrate de tener tus estilos CSS adecuados
 import { PlaylistPage } from "../pages/playlistPage/PlaylistPage";
 
 
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -26,7 +27,7 @@ const AnimatedRoutes = () => {
 export const Router = () => {
   return (
     <BrowserRouter>
-      <AnimatedRoutes />
+      {/* <AnimatedRoutes /> */}
       <Routes>
         {/* <Route path="/" element={<LandingPage />} />
         <Route path="/starting" element={<StartingPage />} />
