@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DataMusicContext } from "../../../context";
-import { CardForPlaylistPlayer, PlaylistContainerStyles } from "../..";
+import {  PlaylistContainerStyles } from "../..";
 import SwiperCore from 'swiper';
 import { Grid, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { CardForPlaylistPlayerHome } from "../../cardForPlaylistHome/CardForPlaylistPlayerHome";
 
 
 SwiperCore.use([Navigation, Pagination, Grid]);
@@ -34,7 +35,7 @@ export const PlaylistContainerHome = () => {
         >
           {playlists.map(({ id, thumbnail, name, description }) => (
             <SwiperSlide key={id}>
-              <CardForPlaylistPlayer
+              <CardForPlaylistPlayerHome
                 thumbnail={thumbnail}
                 name={name}
                 id={id}
