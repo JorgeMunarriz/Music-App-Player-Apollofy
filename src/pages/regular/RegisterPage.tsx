@@ -1,5 +1,5 @@
 import { RegisterSection } from "../../components";
-import { GlobalRegularPageStyles } from '../../global/globalRegularPagesStyles/globalRegularPageStyles';
+import { GlobalRegularPageStyles } from '../../global/globalRegularPageStyles/globalRegularPageStyles';
 
 
 export const RegisterPage = () => {
