@@ -1,17 +1,12 @@
-import { Login } from "../../components"
-import { LoadingPage } from './loginPage.styles';
-
-
+import {Login} from '../../components';
+import {LoadingPage} from './loginPage.styles';
 
 export const LoginPage = () => {
-
-  
-  return (
-    <>
-    <LoadingPage>
-    <Login/>
-    </LoadingPage>
-    </>
-    
-  )
-}
+	return (
+		<>
+			<LoadingPage>
+				<Login />
+			</LoadingPage>
+		</>
+	);
+};
