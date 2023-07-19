@@ -40,6 +40,8 @@ export interface User {
   email: string
   profilePicture: string
   isLoggedin: boolean
+  favTracks: number[]
+  favPlaylists: number[]
 }
 
 export interface Album {
