@@ -1,3 +1,3 @@
-export * from './AuthContext';
 export * from './DataMusicContext';
-export * from './authReducer';
+export * from './MusicContext';
+export * from './UserContext';

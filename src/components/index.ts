@@ -25,6 +25,7 @@ export * from './homeMainContainer/playlistContainer/PlaylistContainer.Styles';
 export * from './homeMainContainer/playlistContainer/PlaylistContainerHome';
 export * from './inputsform/InputForm';
 export * from './inputsform/inputForm.styles';
+export * from './linkPlaylist/LinkPlaylist';
 export * from './loader/Loader';
 export * from './log/Login';
 export * from './log/loginContainer.styles';

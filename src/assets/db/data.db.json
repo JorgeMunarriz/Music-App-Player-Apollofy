@@ -362,6 +362,32 @@
       "reproductions": 31
     }
   ],
+  "user": [
+    {
+      "id": 1,
+      "first_name": "Assembler",
+      "last_name": "Institute",
+      "email": "music@assemblerschool.com",
+      "username": "Assembler",
+      "password": "mar23",
+      "profilePicture": "https://robohash.org/suntvoluptasnisi.png?size=50x50&set=set1",
+      "isLoggedin": false,
+      "favTracks": [3, 5, 7],
+      "favPlaylists": [2, 3, 4]
+    },
+    {
+        "id": 2,
+        "first_name": "Nicasio",
+        "last_name": "Losnenos",
+        "email": "music@assemblerschool.com",
+        "username": "Assembler",
+        "password": "mar23",
+        "profilePicture": "https://robohash.org/suntvoluptasnisi.png?size=50x50&set=set1",
+        "isLoggedin": true,
+        "favTracks": [3, 5, 7],
+        "favPlaylists": [2, 3, 4]
+      }
+  ],
   "albums": [
     {
       "id": 1,
