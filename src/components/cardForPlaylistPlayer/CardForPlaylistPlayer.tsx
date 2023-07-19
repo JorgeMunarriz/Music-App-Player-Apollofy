@@ -12,7 +12,7 @@ export const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, descript
 
 	return (
 		<CardForPlaylistPlayerStyles>
-			<img src={thumbnail} />
+			<img alt={name} src={thumbnail} />
 			<h3>{name}</h3>
 			<span className="playlist-description">{description}</span>
 			<button onClick={toggleFollow} className="follow_btn">

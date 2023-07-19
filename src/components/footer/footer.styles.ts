@@ -4,7 +4,7 @@ export const FooterStyles = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(50, 50, 50, 0.2); 
+  background-color: var(--color-background-footer); 
   border-radius: 0.25rem;
   grid-area: 5 / 1 / 6 / 7;
   width: 100%;

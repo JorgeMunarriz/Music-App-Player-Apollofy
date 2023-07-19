@@ -39,7 +39,7 @@ export const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: P
     <CardForPlaylistPlayerHomeStyles>
       <div className="cardForPlaylistPlayer">
         <div className="cardForPlaylistPlayer__img">
-        <img className="cardForPlaylistPlayer__img-img" src={thumbnail} />
+        <img className="cardForPlaylistPlayer__img-img" src={thumbnail} alt={name}/>
         </div>
         <h3 className="cardForPlaylistPlayer__name">{name}</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
