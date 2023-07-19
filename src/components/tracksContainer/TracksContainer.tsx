@@ -30,9 +30,7 @@ export const TracksContainer = ({query}:ProprQuery) => {
           navigation
           pagination
           slidesPerView={3}
-          grid={{
-            rows: 1,
-          }}
+          
           spaceBetween={10}
           className='mySwiper'
         >

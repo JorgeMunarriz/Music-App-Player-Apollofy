@@ -7,7 +7,6 @@ export const SidebarStyles = styled.div`
   grid-area: 6 / 1 / 7 / 7;
   display: flex;
   flex-direction: row;
-
   border: 1px solid rgba(66, 66, 66, 0.4);
   
   .sidebar__div {
