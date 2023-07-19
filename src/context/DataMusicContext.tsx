@@ -16,7 +16,7 @@ export interface MusicContextProps {
 export const DataMusicContext = createContext<MusicContextProps>({} as MusicContextProps);
 
 export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [data, setData] = useState<MusicContextProps | undefined>({
+  const [data, setData] = useState<MusicContextProps | null>({
     playlists: null,
     albums: null,
     genres: null,
