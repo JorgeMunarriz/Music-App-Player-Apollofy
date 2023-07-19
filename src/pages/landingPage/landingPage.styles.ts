@@ -15,25 +15,5 @@ background-position: center center;
 background-repeat: no-repeat;
 
 
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-    
-}
-
-@media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
-  
-}
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-  
-}
-
-@media only screen and (min-width : 1025px) {
- 
-}
-
 `;
 
-export const LandingImage = styled.img`
-`

@@ -10,7 +10,7 @@ export const PlaylistSectionContainer = () => {
   const albums = data?.albums;
   return (
     <PlaylistSectionContainerStyles className="desktop-class">
-        <h2>Playlists:</h2>
+        {/* <h2>Playlists:</h2> */}
       {/* {playlists?.map((playlist) => (
         <div key={playlist.id}>
           <h3>{playlist.name}</h3>

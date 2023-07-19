@@ -1,6 +1,6 @@
 
-import { Footer,  SideBar } from '../../components'
-import { PlaylistMainContainer } from '../../components/homeMainContainer/playerMainContainer/PlaylistMainContainer'
+import { Footer,   SideBar } from '../../components'
+import {PlaylistContainer} from '../../components/homeMainContainer/PlaylistContainer'
 import { PlayerPageStyles } from './playerPage.styles'
 
 
@@ -8,7 +8,7 @@ export const PlaylistPage = () => {
   return (
     <PlayerPageStyles>
       <SideBar/>
-        <PlaylistMainContainer/>
+        <PlaylistContainer/>
       <Footer/>
     </PlayerPageStyles>
   )

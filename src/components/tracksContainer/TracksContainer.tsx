@@ -1,18 +1,57 @@
+import SwiperCore from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+SwiperCore.use([Navigation, Pagination]);
+
 import { useContext } from "react";
 import { DataMusicContext } from "../../context";
 import { TracksContainerStyles } from "./tracksContainer.Styles";
 import { CardForTrack } from "..";
 
-export const TracksContainer = () => {
-  const data = useContext(DataMusicContext);
-  const tracks = data?.data?.tracks
 
-  return (
-    <TracksContainerStyles>
-      {tracks &&
-        tracks.map(({ id, thumbnail, name, genre, artist, url, liked }) => (
-          <CardForTrack thumbnail={thumbnail} name={name} key={id} genre={genre} id={id} artist={artist} url={url} liked={liked} />
-        ))}
+type ProprQuery = {
+  query:string
+}
+export const TracksContainer = ({query}:ProprQuery) => {
+  const data = useContext(DataMusicContext);
+  if (data.data?.tracks !== null) {
+    const tracks = data?.data?.tracks.sort((elemA,elemB) => elemB.reproductions - elemA.reproductions)
+    
+    return (
+      <TracksContainerStyles>
+      {tracks && (
+        <Swiper
+          navigation
+          pagination
+          slidesPerView={3}
+          grid={{
+            rows: 1,
+          }}
+          spaceBetween={10}
+          className='mySwiper'
+        >
+          {tracks.map(({ id, thumbnail, name, genre, artist, url, liked, reproductions }) => (
+            <SwiperSlide key={id}>
+              <CardForTrack
+                thumbnail={thumbnail}
+                name={name}
+                genre={genre}
+                id={id}
+                artist={artist}
+                url={url}
+                liked={liked}
+                reproductions={reproductions}
+                />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </TracksContainerStyles>
   );
+  }
 };

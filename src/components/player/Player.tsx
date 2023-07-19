@@ -13,8 +13,8 @@ export const Player = () => {
       <div className="playerstyles__div-whole">
         <img className="playerstyles__img" src={track?.thumbnail} alt={track?.name} />
         <div className="playerstyles__info">
-          <h4>{track?.name}</h4>
-          <p>{track?.artist}</p>
+          <h4 className="playerstyles__info-h4">{track?.name}</h4>
+          <p className="playerstyles__info-paragraph">{track?.artist}</p>
         </div>
       </div>
       <div className="playerstyles__div-container">
