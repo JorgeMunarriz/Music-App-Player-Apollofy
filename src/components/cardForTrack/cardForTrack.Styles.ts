@@ -26,7 +26,7 @@ export const CardForTrackStyles = styled.div`
       border-radius: 3rem 3rem;
       overflow: hidden;
       &_img {
-        position: absolute;
+      position: absolute;
       width: 120px;
       height: 120px;
       object-fit: cover;

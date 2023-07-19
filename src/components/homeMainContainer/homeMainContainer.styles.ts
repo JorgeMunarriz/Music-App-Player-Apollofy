@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HomeMainContainerStyles = styled.main`
 
 
-border: 1px solid rgba(66, 66, 66, 0.4);
+
 border-radius: 0.25rem;
 grid-area: 1 / 1 / 5 / 7;
 background: linear-gradient(#340034, #000);
