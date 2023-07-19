@@ -28,6 +28,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
     tracks: null,
     artists: null,
     currentTrack: null,
+    handleCurrentTrack: null
   });
   const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
   const [params, setParams] = useState<string>('');
@@ -63,6 +64,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           tracks,
           artists,
           currentTrack: null,
+          handleCurrentTrack: null
         });
       } catch (error) {
         console.log(error);
