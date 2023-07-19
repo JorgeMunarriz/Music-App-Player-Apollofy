@@ -1,10 +1,11 @@
 import { RegisterSection } from "../../components";
-import { RegisterPagestyle } from "./registerPage.styles";
+import { GlobalRegularPageStyles } from '../../global/globalRegularPagesStyles/globalRegularPageStyles';
+
 
 export const RegisterPage = () => {
   return (
-    <RegisterPagestyle>
+    <GlobalRegularPageStyles>
       <RegisterSection />
-    </RegisterPagestyle>
+    </GlobalRegularPageStyles>
   );
 };

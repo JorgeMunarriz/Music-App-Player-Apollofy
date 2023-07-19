@@ -1,8 +1,8 @@
 import { Logo, LoaderAudio } from "../../components";
-import { LandingPageStyles } from "./landingPage.styles";
 import { useState, useEffect } from "react";
 import {  useNavigate } from "react-router-dom";
-import { Title } from "../../global";
+import { GlobalRegularPageStyles, Title } from "../../global";
+
 
 export const LandingPage = () => {
   const [loading, setLoading] = useState(false);
@@ -22,17 +22,17 @@ export const LandingPage = () => {
   return (
     <>
       {loading ? (
-        <LandingPageStyles>
+        <GlobalRegularPageStyles>
         <Logo />
         <LoaderAudio />
         <Title />
-      </LandingPageStyles>
+      </GlobalRegularPageStyles>
         
       ) : (
-        <LandingPageStyles>
+        <GlobalRegularPageStyles>
           <Logo />
           <Title />
-        </LandingPageStyles>
+        </GlobalRegularPageStyles>
       )}
     </>
   );

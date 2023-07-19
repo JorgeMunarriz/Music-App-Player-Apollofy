@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const GlobalPageStyles = styled.div`
+export const GlobalPrivatePageStyles = styled.div`
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);

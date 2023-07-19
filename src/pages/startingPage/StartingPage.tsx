@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ButtonRedMediun, Logo } from '../../components'
-import { Title } from '../../global/title/Title'
-import { StartingPageStyles } from '..'
+import { GlobalRegularPageStyles, Title } from '../../global';
 
 export const StartingPage = () => {
   return (
-    <StartingPageStyles>
+    <GlobalRegularPageStyles>
       <Logo />
       <ButtonRedMediun ><Link to="/register">Register</Link></ButtonRedMediun>
       <ButtonRedMediun ><Link to="/login">Log in</Link></ButtonRedMediun>
       <Title />
-    </StartingPageStyles>
+    </GlobalRegularPageStyles>
   )
 }
