@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const SidebarStyles = styled.div`
   background-color: rgb(0,0,0);
-  border: 1px solid rgba(66, 66, 66, 0.4);
   border-radius: 0.25rem;
   grid-area: 6 / 1 / 7 / 7;
   display: flex;
   flex-direction: row;
-  border: 1px solid rgba(66, 66, 66, 0.4);
   
   .sidebar__div {
     display: none;
@@ -34,7 +32,7 @@ export const SidebarStyles = styled.div`
     display: grid;
 
     grid-area: 6 / 1 / 7 / 7;
-    border: 1px solid rgba(66, 66, 66, 0.4);
+
     .sidebar__div {
       display: none;
       z-index: -1;
@@ -54,7 +52,7 @@ export const SidebarStyles = styled.div`
     padding: 1rem;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(66, 66, 66, 0.4);
+
     border-radius: 0.25rem;
     font-size: 2.5rem;
     .sidebar__div {
@@ -81,7 +79,7 @@ export const SidebarStyles = styled.div`
     padding: 1rem;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(66, 66, 66, 0.4);
+
     border-radius: 0.25rem;
     font-size: 2.5rem;
     .sidebar__div {
