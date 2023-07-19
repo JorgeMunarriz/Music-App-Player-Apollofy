@@ -1,14 +1,13 @@
-import { ProfilePageStyles } from '..'
-import { Footer, SideBar } from '../../components'
-import { ProfileMainContainer } from '../../components/profileMainContainer/ProfileMainContainer'
+import { GlobalPageStyles } from '../../global'
+import { Footer, SideBar, ProfileMainContainer } from '../../components'
 
 
 export const ProfilePage = () => {
   return (
-    <ProfilePageStyles>
+    <GlobalPageStyles>
       <SideBar/>
       <ProfileMainContainer/>
       <Footer/>
-    </ProfilePageStyles>
+    </GlobalPageStyles>
   )
 }

@@ -13,7 +13,7 @@ export const PlayerPageStyles = styled.div`
   
 }
 
-@media (min-device-width: 480px) and (max-device-width: 768px) {
+@media  only screen and  (min-device-width: 480px) and (max-device-width: 768px) {
   
 }
 

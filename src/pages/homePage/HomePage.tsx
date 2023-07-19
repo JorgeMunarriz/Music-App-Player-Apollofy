@@ -1,14 +1,14 @@
 import { Footer, HomeMainContainer, SideBar } from "../../components"
-import { HomePageStyles } from "./homePage.styles"
+import { GlobalPageStyles } from "../../global"
 
 
 export const HomePage = () => {
   
   return (
-    <HomePageStyles>
+    <GlobalPageStyles>
         <SideBar/>
         <HomeMainContainer/>
         <Footer/>
-    </HomePageStyles>
+    </GlobalPageStyles>
   )
 }

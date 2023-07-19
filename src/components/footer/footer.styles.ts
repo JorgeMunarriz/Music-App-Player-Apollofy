@@ -31,7 +31,7 @@ export const FooterStyles = styled.footer`
     display: flex;
     justify-content: center;
     align-items: center;
-    grid-area: 5 / 1 / 6 / 7;
+    grid-area: 5 / 2 / 6 / 7;
     width: 100%;
     height: 100%;
     border-radius: 0.25rem;
@@ -42,7 +42,7 @@ export const FooterStyles = styled.footer`
     flex-shrink: 1;
     justify-content: center;
     align-items: center;
-    grid-area: 5 / 1 / 6 / 6;
+    grid-area: 5 / 2 / 6 / 6;
     width: 100%;
     height: 100%;
     border-radius: 0.25rem;
