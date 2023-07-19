@@ -11,6 +11,14 @@ export const SearchBarContainer = styled.div`
     color:  rgba(255, 255, 255, 1);
     cursor: pointer;
     }
+    
+    @media (height < 500px) {
+        grid-column: 1 / -1;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+    }
 `;
 
 
@@ -36,6 +44,14 @@ export const SearchBarLeft = styled.div`
 color: rgb(135,146,148);
     cursor:pointer;
 }
+
+@media (height < 500px) {
+    position: relative;
+    display: flex;
+    align-items: start;
+    width: 100%;
+}
+
 `;
 
 export const SearchBarIcon = styled.div`
@@ -43,6 +59,7 @@ export const SearchBarIcon = styled.div`
   left: 10px; /* Posición del icono dentro del input */
   top: 50%;
   transform: translateY(-50%);
+
 `;
 
 export const SearchBarRight = styled.div`
@@ -69,6 +86,10 @@ export const SearchBarRight = styled.div`
 }
 svg:hover{
     color: #c9356c;
+}
+
+@media (height < 500px) {
+    display:none;
 }
 `;
 
