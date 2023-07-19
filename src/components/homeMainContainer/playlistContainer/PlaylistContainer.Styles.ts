@@ -9,6 +9,7 @@ export const PlaylistContainerStyles = styled.div`
  /* height: 100%; */
  width: 100%;
  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+ gap: 1.5rem;
  .mySwiper{
     height: 120px;
     .swiper-wrapper{
