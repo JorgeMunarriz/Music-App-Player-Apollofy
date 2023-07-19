@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useState} from "react";
+import { createContext, FC, useState} from "react";
 import { UserProps } from "../types/authContext";
 
 

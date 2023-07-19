@@ -3,7 +3,6 @@ import { Playlist, Album, Genre, Track, Artist } from '../types/data';
 import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
 
 
-
 export interface MusicContextProps {
   playlists: Playlist[] | null;
   albums: Album[] | null;

@@ -1,5 +1,4 @@
 import './App.css';
-import {AuthProvider} from './context/UserContext';
 import {DataMusicProvider} from './context/DataMusicContext';
 //import { MusicProvider, useDataTracks } from './context/MusicContext'
 import {Router} from './router/RouterPaths.routes';
@@ -12,9 +11,9 @@ function App() {
 	return (
 		<>
 			<DataMusicProvider>
-				<AuthProvider name={''} id={0}>
+
 					<Router />
-				</AuthProvider>
+
 			</DataMusicProvider>
 		</>
 	);
