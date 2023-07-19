@@ -41,9 +41,6 @@ export const PlaylistContainerStyles = styled.div`
     }
  }
 
- @media (height < 500px) {
-  display:none;
- }
 `;
 
 
