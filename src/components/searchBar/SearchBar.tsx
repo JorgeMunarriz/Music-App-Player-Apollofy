@@ -27,7 +27,7 @@ export const SearchBar = ({setSearchParams, searchParams, handleChangeParams, qu
 				<SearchBarIcon>
 					<BsSearch />
 				</SearchBarIcon>
-				<input type="search" name="search" placeholder="Search for Artists" value={query} onChange={handleChangeParams} />
+				<input type="search" name="search" placeholder="Search for Genre" value={query} onChange={handleChangeParams} />
 			</SearchBarLeft>
 			<SearchBarRight>
 				{isLogged ? (
