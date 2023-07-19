@@ -62,7 +62,7 @@ export const SidebarStyles = styled.div`
       z-index: 0;
     }
 
-    & .sidebar__sections {
+     .sidebar__sections {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
