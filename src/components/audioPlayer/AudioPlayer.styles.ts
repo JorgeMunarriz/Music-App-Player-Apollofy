@@ -14,16 +14,32 @@ export const AudioPlayerStyles = styled.div`
   &_main-controls {
     
       &-button {
-        font-size: 3rem; /* Ajusta el tamaño de los botones principales */
+        font-size: 3rem; 
         color: var(--color-text-pink);
       }
     }
     &_additional-controls {
         &-button {
-          font-size: 1px; /* Ajusta el tamaño de los botones*/
+          font-size: 1px; 
         }
       }
 }
+  @media (width < 480px) {
+    .rhap {
+      &_main-controls {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &_additional-controls {
+        display:none;
+      }
+      &_volume-container {
+        display:none;
+      }
+      }
+    }
+
   
 `;
 
