@@ -10,7 +10,7 @@ export const CardForTrack = ({ id, thumbnail, name, artist, reproductions }: Tra
     <CardForTrackStyles key={id}>
       <Link to={`/player/${id}`} className="cardForTrack">
         <div className="cardForTrack__header">
-        <img className="cardForTrack__header_img" src={thumbnail} />
+        <img alt={name} className="cardForTrack__header_img" src={thumbnail} />
 
         </div>
         <div className="cardForTrack__body">

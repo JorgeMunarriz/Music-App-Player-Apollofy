@@ -3,6 +3,8 @@ export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/button.styles';
 export * from './cardForPlaylist/CardForPlaylist';
+export * from './cardForPlaylistHome/CardForPlaylistPlayerHome';
+export * from './cardForPlaylistHome/cardForPlaylistPlayerHome.styles';
 export * from './cardForPlaylistPlayer/CardForPlaylistPlayer';
 export * from './cardForPlaylistPlayer/cardForPlaylistPlayer.styles';
 export * from './cardForTrack/CardForTrack';

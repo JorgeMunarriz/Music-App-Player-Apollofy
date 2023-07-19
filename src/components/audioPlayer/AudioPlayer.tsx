@@ -12,7 +12,7 @@ export const AudioPlayerComponent = () => {
   
   return (
   <AudioPlayer 
-    autoPlay
+    
     className="rhap_container"
     src= {track?.url}
     onPlay={() => console.log("onPlay")}
