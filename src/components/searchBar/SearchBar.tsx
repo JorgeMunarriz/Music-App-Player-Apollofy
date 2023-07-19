@@ -10,13 +10,6 @@ export const SearchBar = ({setSearchParams, searchParams, handleChangeParams, qu
 	const data: UserFormState = JSON.parse(localStorage.getItem('form') as keyof object) || '';
 	const {name, isLogged} = data;
 
-	// const [searchParams, setSearchParams] = useSearchParams();
-	// const query = searchParams.get('q') || '';
-
-	// const handleChangeParams = ({target}:React.ChangeEvent<HTMLInputElement>) => {
-	//   setSearchParams({q:target.value});
-	// }
-
 	const navigate = useNavigate();
 
 	const handleLogout = () => {

@@ -10,6 +10,7 @@ export const TracksContainerStyles = styled.div`
   border-radius: 0.25rem;
   .mySwiper {
     height: 185px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
