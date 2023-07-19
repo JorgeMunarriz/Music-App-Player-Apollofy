@@ -45,25 +45,25 @@ export const PlayerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50%;
+      width: min-content;
       .playerstyles__img {
-        width: 50px;
+        padding: 0 1rem 0 0;
+        width: 7rem;
       }
       .playerstyles__info {
-        padding-left: 1vh;
-        .playerstyles__info-h4 {
-          font-size: 2vh;
+        h4 {
+          font-size: 1.8rem;
           color: rgba(255, 255, 255, 0.5);
         }
-        .playerstyles__info-paragraph {
-          font-size: 1vh;
-          color: #fff;
+        p {
+          font-size: 1.5rem;
+          color: #c9356c;
         }
       }
     }
 
     .playerstyles__div-container {
-      width: 50%;
+      min-width: 60%;
       display: flex;
       .playerstyles__div-container-audio {
         width: 100%;
@@ -82,9 +82,9 @@ export const PlayerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50%;
       .playerstyles__img {
-        width: 50px;
+        padding: 0 1rem;
+        width: 9rem;
       }
       .playerstyles__info {
         padding-left: 1vh;
@@ -92,9 +92,9 @@ export const PlayerStyles = styled.div`
           font-size: 2vh;
           color: rgba(255, 255, 255, 0.5);
         }
-        .playerstyles__info-paragraph {
-          font-size: 1vh;
-          color: #fff;
+        p {
+          font-size: 2rem;
+          color: #c9356c;
         }
       }
     }
@@ -117,11 +117,21 @@ export const PlayerStyles = styled.div`
     .playerstyles__div-whole {
       display: flex;
       .playerstyles__img {
-        width: 100px;
+        padding: 0 1rem;
+        width: 50px;
       }
     }
 
     .playerstyles__info {
+        h4 {
+          font-size: 2.5rem;
+          color: rgba(255, 255, 255, 0.5);
+        }
+        p {
+          font-size: 2rem;
+          color: #c9356c;
+        }
+      }
     }
     .playerstyles__div-player {
       width: 100px;
@@ -131,38 +141,37 @@ export const PlayerStyles = styled.div`
         font-size: 2rem;
       }
     }
-  }
 
   @media only screen and (min-width: 1025px) {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
     width: 100%;
+
     .playerstyles__div-whole {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50%;
+  		justify-content: space-evenly;
       .playerstyles__img {
-        width: 50px;
+        padding: 0 1rem;
+        width: 9rem;
       }
       .playerstyles__info {
-        padding-left: 5vh;
-        .playerstyles__info-h4 {
-          font-size: 5vh;
+        h4 {
+          font-size: 2.5rem;
           color: rgba(255, 255, 255, 0.5);
         }
-        .playerstyles__info-paragraph {
-          font-size: 3vh;
-          color: #fff;
+        p {
+          font-size: 2rem;
+          color: #c9356c;
         }
       }
     }
 
     .playerstyles__div-container {
-      width: 50%;
       display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70%;
       .playerstyles__div-container-audio {
         width: 100%;
         border: 0 transparent;

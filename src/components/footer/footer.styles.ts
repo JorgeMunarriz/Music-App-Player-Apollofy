@@ -12,7 +12,18 @@ export const FooterStyles = styled.footer`
   justify-content: center;
   align-items: center;
 
-  @media only screen and (min-width: 480px) and (max-width: 768px) {
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    grid-area: 5 / 1 / 6 / 7;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(66, 66, 66, 0.4);
+    display: flex;
+    flex-shrink: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media only screen and (min-width: 481px) and (max-width: 767px) {
     grid-area: 5 / 1 / 6 / 7;
     display: flex;
     justify-content: center;
@@ -32,6 +43,7 @@ export const FooterStyles = styled.footer`
 
   @media only screen and (min-width: 1024px) {
     display: flex;
+    flex-shrink: 1;
     justify-content: center;
     align-items: center;
     grid-area: 5 / 1 / 6 / 6;

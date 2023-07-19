@@ -6,7 +6,7 @@ export const HomeSectionContainerStyles = styled.div`
   justify-content: flex-start;
   width: 100%;
 
-  & a {
+& a {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -15,15 +15,23 @@ export const HomeSectionContainerStyles = styled.div`
     padding: 10px;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
-    font-size: 1rem;
-  }
-  & a:hover {
+    font-size: clamp(1rem, 1.8rem, 2rem);
+}
+& a:hover {
     border-radius: 6px;
     background: #282828;
     padding: 10px;
     color: rgba(255, 255, 255, 1);
-  }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+}
+
+& svg{
+  font-size: clamp(1rem, 1.8rem, 2rem);
+}
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  
+  display: flex;
+  flex-direction: row;
+  & a {
     display: flex;
     flex-direction: row;
     & a {
@@ -56,6 +64,12 @@ export const HomeSectionContainerStyles = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    padding: 10px;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+  
+}
 
     & a {
       display: flex;
@@ -74,14 +88,24 @@ export const HomeSectionContainerStyles = styled.div`
       padding: 10px;
       color: rgba(255, 255, 255, 1);
     }
-  }
+
 
   @media only screen and (min-width: 1025px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: center;
+}
+
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  
+
+  
+}
+
+@media only screen and (min-width : 1025px) {
+  //To determinate the Position in the parent grid
 
     & a {
       display: flex;

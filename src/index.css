@@ -1,53 +1,37 @@
-*/
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
-    scroll-behavior: smooth;
+  }
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+a {
+    text-decoration: none;
 }
 
-*{
-  margin: 0;
+html {
+    font-size: 62.5%;
 }
 
-html,
-body {
-    height: 100%;
-    font-family: sans-serif;
-    min-width: 320px;
-}
-
-body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
+img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
-}
+  }
 
-input,
-button,
-textarea,
-select {
+  input, button, textarea, select {
     font: inherit;
+  }
+
+li {
+    list-style: none;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
-}
-
+  }
 #root,
 #__next {
     isolation: isolate;

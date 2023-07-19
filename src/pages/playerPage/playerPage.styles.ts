@@ -7,7 +7,6 @@ export const PlayerPageStyles = styled.div`
   grid-template-columns: repeat(4, 2fr) 1fr;
   gap: 0.25rem;
   padding: 0.25rem;
-  background-color: black;
   height: 100vh;
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

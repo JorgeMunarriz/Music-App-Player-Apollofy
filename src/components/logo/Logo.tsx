@@ -8,7 +8,7 @@ export const Logo = () => {
     
     <ContainerLogo>
 
-    <img src="src\assets\img\logo-rojo-removebg-preview.png" />
+    <img src="src\assets\img\logo-rojo-removebg-preview.png" alt="logo"/>
 
     </ContainerLogo>
     

@@ -1,4 +1,4 @@
-import {  useNavigate,  useSearchParams } from "react-router-dom";
+import {  Link, useNavigate,  useSearchParams } from "react-router-dom";
 
 import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from ".."
 import {BsSearch} from 'react-icons/bs'
@@ -47,19 +47,18 @@ export const SearchBar = ({setSearchParams, searchParams , handleChangeParams, q
         <input type="search" name="search" placeholder="Search for Artists" value={query} onChange={handleChangeParams}/>
       </SearchBarLeft>
       <SearchBarRight>
-        <RxAvatar/>
       {
         isLogged ?
         <>
            <Button handleClick={handleLogout}>Logout</Button>
-        
           <h4>{name}</h4>
+          <Link to="/profile"><RxAvatar/></Link>
           
         </>
         :
         
           <>
-          <button onClick={goToLogin}>Login</button>
+          <Button handleClick={goToLogin}>Login</Button>
     
           </>
         

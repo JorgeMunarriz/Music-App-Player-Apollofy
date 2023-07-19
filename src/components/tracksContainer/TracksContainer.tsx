@@ -10,7 +10,6 @@ SwiperCore.use([Navigation, Pagination]);
 
 import { useContext } from "react";
 import { DataMusicContext } from "../../context";
-
 import { TracksContainerStyles } from "./tracksContainer.Styles";
 import { CardForTrack } from "..";
 

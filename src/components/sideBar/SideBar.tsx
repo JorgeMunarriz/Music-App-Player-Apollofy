@@ -3,7 +3,7 @@ import { HomeSectionContainer } from './homeSection/HomeSectionContainer'
 import logo from '../../assets/img/logo-homepage.png'
 import { PlaylistSectionContainer } from './playlistSection/PlaylistSectionContainer'
 import { FavoritesSectionContainer } from './favoritesSection/FavoritesSectionContainer'
-import { useCallback } from 'react'
+
 
 
 export const SideBar = () => {
@@ -12,11 +12,8 @@ export const SideBar = () => {
   
   return (
     <SidebarStyles>
-      <div className='sidebar__div'>
-      <img src={logo} className="sidebar__div-img desktop-class"/>
-      </div>
-      
-      <div className='sidebar__sections sidebar-sections'>
+      <img src={logo} alt='logo' className="desktop-class"/>
+      <div className='sidebar-sections'>
         <HomeSectionContainer/>
         <PlaylistSectionContainer/>
         <FavoritesSectionContainer/>
