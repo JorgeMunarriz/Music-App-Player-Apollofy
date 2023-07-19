@@ -1,12 +1,7 @@
 import { createContext, useEffect, useState, ReactNode } from 'react';
-<<<<<<< HEAD
-import { Playlist, Album, Genre, Track, Artist } from '../types/data';
-
-=======
 import {  Playlist, Album, Genre, Track, Artist } from '../types/data';
 import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
 // import { useFetcher } from 'react-router-dom';
->>>>>>> 7e735f44b1f4419f181a26e6cfae63f63fc7c412
 
 
 export interface MusicContextProps {
