@@ -1,3 +1,17 @@
+:root {
+  /* Colores de texto */
+  --color-texto-rosa: #FF0000;
+
+  /* Colores de fondo */
+  --color-fondo-principal:  linear-gradient(#340034, #000);
+
+  /* Colores para elementos específicos */
+  --color-texto-gris: #333333;
+  --color-fondo-footer: var(--color-fondo-principal);
+  --color-fondo-sidebar: var(--color-fondo-principal);
+}
+
+
 *, *::before, *::after {
     box-sizing: border-box;
   }

@@ -11,7 +11,6 @@ export const ProfileMainContainerStyles = styled.main`
     object-fit: contain;
     border-radius: 50%;
     max-width: 13rem;
-    /* padding:0 0 2rem 0 ; */
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
   }
@@ -85,7 +84,6 @@ export const ProfileMainContainerStyles = styled.main`
   @media only screen and (min-width: 1025px) {
     grid-area: 1 / 2 / 5 / 7;
     grid-template-rows: 1fr 4fr 4fr;
-
     width: 100%;
     height: 100%;
   }

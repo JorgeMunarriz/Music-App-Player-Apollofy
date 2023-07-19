@@ -42,7 +42,7 @@ export const HomeSectionContainerStyles = styled.div`
         padding: 10px;
         color: rgba(255, 255, 255, 1);
         cursor: pointer;
-        font-size: 1rem;
+
       }
     }
   }
@@ -76,7 +76,6 @@ export const HomeSectionContainerStyles = styled.div`
       padding: 10px;
       color: rgba(255, 255, 255, 1);
       cursor: pointer;
-      font-size: 1rem;
     }
     & a:hover {
       border-radius: 6px;
@@ -100,7 +99,6 @@ export const HomeSectionContainerStyles = styled.div`
       padding: 10px;
       color: rgba(255, 255, 255, 1);
       cursor: pointer;
-      font-size: 1rem;
     }
     & a:hover {
       border-radius: 6px;
