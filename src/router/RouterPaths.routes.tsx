@@ -4,6 +4,7 @@ import { HomePage, LandingPage, LoginPage, ProfilePage, RegisterPage, PlayerPage
 import "../App.css"; // Asegúrate de tener tus estilos CSS adecuados
 import { PlaylistPage } from "../pages/private/PlaylistPage";
 
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
