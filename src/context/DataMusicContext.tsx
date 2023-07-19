@@ -30,9 +30,9 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
     currentTrack: null,
   });
   const [currentTrack, setCurrentTrack] = useState<Track | null> (null);
-  const [params, setParams] = useState<string>('');
+ 
 
-  console.log(params);
+  
 
   const handleCurrentTrack = (incomingCurrentTrack: Track) => {
     setCurrentTrack (incomingCurrentTrack);
@@ -77,7 +77,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
 //   }
 
   return (
-    <DataMusicContext.Provider value={{data, currentTrack, handleCurrentTrack, setParams }}>
+    <DataMusicContext.Provider value={{data, currentTrack, handleCurrentTrack }}>
       {children}
     </DataMusicContext.Provider>
   );

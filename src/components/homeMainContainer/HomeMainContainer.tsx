@@ -8,7 +8,6 @@ export const HomeMainContainer = () => {
   const query = searchParams.get('q') || '';
 
 
-
   const handleChangeParams = ({target}:React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams({q:target.value});
   }

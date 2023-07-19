@@ -33,10 +33,10 @@ export const TracksContainer = ({query}:ProprQuery) => {
           spaceBetween={10}
           className='mySwiper'
         >
-          { tracks && tracks.filter(({name}) => {
+          { tracks && tracks.filter(({genre}) => {
             if(!query) return true;
             if(query){
-              const nameLowerCase = name.toLowerCase();
+              const nameLowerCase = genre.toLowerCase();
               return nameLowerCase.includes(query.toLowerCase())
             }
           })
