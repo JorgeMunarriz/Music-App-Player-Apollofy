@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes, useLocation} from 'react-router-dom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {HomePage, LandingPage, LoginPage, ProfilePage, RegisterPage, PlayerPage, StartingPage} from '../pages/index';
 import '../App.css'; // Asegúrate de tener tus estilos CSS adecuados
-import {PlaylistPage} from '../pages/playlistPage/PlaylistPage';
+import {PlaylistPage} from '../pages/private/PlaylistPage';
 
 const AnimatedRoutes = () => {
 	const location = useLocation();
