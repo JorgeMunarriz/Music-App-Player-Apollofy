@@ -1,12 +1,13 @@
 import {Login} from '../../components';
-import {LoadingPage} from './loginPage.styles';
+import { GlobalRegularPageStyles } from '../../global';
+
 
 export const LoginPage = () => {
 	return (
 		<>
-			<LoadingPage>
+			<GlobalRegularPageStyles>
 				<Login />
-			</LoadingPage>
+			</GlobalRegularPageStyles>
 		</>
 	);
 };

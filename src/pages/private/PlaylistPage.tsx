@@ -1,15 +1,15 @@
 
 import { Footer,   SideBar } from '../../components'
 import {PlaylistContainer} from '../../components/homeMainContainer/PlaylistContainer'
-import { GlobalPageStyles } from '../../global'
+import { GlobalPrivatePageStyles } from '../../global'
 
 
 export const PlaylistPage = () => {
   return (
-    <GlobalPageStyles>
+    <GlobalPrivatePageStyles>
       <SideBar/>
         <PlaylistContainer/>
       <Footer/>
-    </GlobalPageStyles>
+    </GlobalPrivatePageStyles>
   )
 }

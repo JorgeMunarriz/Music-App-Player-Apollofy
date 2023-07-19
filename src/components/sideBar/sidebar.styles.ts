@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SidebarStyles = styled.div`
-	background-color: rgb(0, 0, 0);
+	background-color: var(--color-background-sidebar);
 	border-radius: 0.25rem;
 	grid-area: 6 / 1 / 7 / 7;
 	display: flex;

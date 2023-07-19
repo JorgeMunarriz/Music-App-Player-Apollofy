@@ -12,17 +12,17 @@ export const PlayerStyles = styled.div`
     justify-content: center;
     width: 50%;
     .playerstyles__img {
-      width: 50px;
+      width: 5rem;
     }
     .playerstyles__info {
       padding-left: 1vh;
       .playerstyles__info-h4 {
-        font-size: 2vh;
+        font-size:clamp(1rem, 2.1rem, 2.8rem);
         color: rgba(255, 255, 255, 0.5);
       }
       .playerstyles__info-paragraph {
-        font-size: 1vh;
-        color: #fff;
+        font-size: clamp(.8rem, 1.7rem, 3rem);
+        color: var(--color-text-pink);
       }
     }
   }
@@ -47,18 +47,7 @@ export const PlayerStyles = styled.div`
       justify-content: center;
       width: min-content;
       .playerstyles__img {
-        padding: 0 1rem 0 0;
-        width: 7rem;
-      }
-      .playerstyles__info {
-        h4 {
-          font-size: 1.8rem;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        p {
-          font-size: 1.5rem;
-          color: #c9356c;
-        }
+        width: 6rem;
       }
     }
 
@@ -83,19 +72,7 @@ export const PlayerStyles = styled.div`
       align-items: center;
       justify-content: center;
       .playerstyles__img {
-        padding: 0 1rem;
         width: 9rem;
-      }
-      .playerstyles__info {
-        padding-left: 1vh;
-        .playerstyles__info-h4 {
-          font-size: 2vh;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        p {
-          font-size: 2rem;
-          color: #c9356c;
-        }
       }
     }
 
@@ -117,21 +94,9 @@ export const PlayerStyles = styled.div`
     .playerstyles__div-whole {
       display: flex;
       .playerstyles__img {
-        padding: 0 1rem;
         width: 50px;
       }
     }
-
-    .playerstyles__info {
-        h4 {
-          font-size: 2.5rem;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        p {
-          font-size: 2rem;
-          color: #c9356c;
-        }
-      }
     }
     .playerstyles__div-player {
       width: 100px;
@@ -150,20 +115,10 @@ export const PlayerStyles = styled.div`
 
     .playerstyles__div-whole {
       display: flex;
+      flex-shrink:0;
   		justify-content: space-evenly;
       .playerstyles__img {
-        padding: 0 1rem;
         width: 9rem;
-      }
-      .playerstyles__info {
-        h4 {
-          font-size: 2.5rem;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        p {
-          font-size: 2rem;
-          color: #c9356c;
-        }
       }
     }
 
