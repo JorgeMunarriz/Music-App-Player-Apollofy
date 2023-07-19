@@ -15,6 +15,7 @@ height: 100vh;
 background-size: cover;
 background-position: center center;
 background-repeat: no-repeat;
+gap:  2.5rem;
 
 
 `;
