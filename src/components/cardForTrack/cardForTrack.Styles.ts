@@ -4,32 +4,35 @@ export const CardForTrackStyles = styled.div`
   display: flex;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
-  border-radius: 3rem;
-  align-items: center;
-  justify-content: flex-start;
+  border-radius: 0rem 1rem 1rem 0rem;
+  padding: 0.25rem;
   gap: 1rem;
   transition: all 0.3s;
-
+  border: 1px solid rgba(66, 66, 66, 0.4);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
   }
+
   .cardForTrack {
     display: flex;
     position: relative;
     gap: 1rem;
     overflow-y: auto;
     min-height: 120px;
+
     &__header{
       position: relative;
       width: 10vw;
       height: 120px;
-      border-radius: 3rem 3rem;
+      border-radius: 0rem 0rem 0rem 0rem;
       overflow: hidden;
       &_img {
       position: absolute;
       width: 120px;
       height: 120px;
       object-fit: cover;
+      opacity: 0.8;
     }
     }
     

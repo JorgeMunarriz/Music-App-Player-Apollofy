@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const PlayerContainerStyles = styled.div`
 .playerContainer{
   display: flex;
+  height: 90%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
