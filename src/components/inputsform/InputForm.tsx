@@ -10,6 +10,8 @@ type InputProps = {
 	inputRef?: React.RefObject<HTMLInputElement>;
 };
 
-export const InputForm = ({placeholder, type, value, name, handleChange, inputRef}: InputProps) => {
+const InputForm = ({placeholder, type, value, name, handleChange, inputRef}: InputProps) => {
 	return <InputStyles placeholder={placeholder} type={type} value={value} name={name} onChange={handleChange} ref={inputRef} />;
 };
+
+export default InputForm

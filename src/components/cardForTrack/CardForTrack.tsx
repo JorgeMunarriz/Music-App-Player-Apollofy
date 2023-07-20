@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {Track} from '../../types/data';
 import {CardForTrackStyles} from '..';
 
-export const CardForTrack = ({id, thumbnail, name, artist, reproductions}: Track) => {
+ const CardForTrack = ({id, thumbnail, name, artist, reproductions}: Track) => {
 	return (
 		<CardForTrackStyles key={id}>
 			<Link to={`/player/${id}`} className="cardForTrack">
@@ -18,3 +18,5 @@ export const CardForTrack = ({id, thumbnail, name, artist, reproductions}: Track
 		</CardForTrackStyles>
 	);
 };
+
+export default CardForTrack

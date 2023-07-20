@@ -1,9 +1,10 @@
+
 import { Footer, HomeMainContainer, SideBar } from "../../components"
 import { GlobalPrivatePageStyles } from "../../global"
 
 
 
-export const HomePage = () => {
+const HomePage = () => {
   
   return (
     <GlobalPrivatePageStyles>
@@ -13,3 +14,5 @@ export const HomePage = () => {
     </GlobalPrivatePageStyles>
   )
 }
+
+export default HomePage

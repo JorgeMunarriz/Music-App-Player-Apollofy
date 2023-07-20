@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { GlobalPrivatePageStyles } from "../../global";
 
 
-export const PlayerPage = () => {
+const PlayerPage = () => {
   const data = useContext(DataMusicContext);
   const tracks = data.data.tracks;
 
@@ -27,3 +27,5 @@ export const PlayerPage = () => {
     </GlobalPrivatePageStyles>
   );
 };
+
+export default PlayerPage

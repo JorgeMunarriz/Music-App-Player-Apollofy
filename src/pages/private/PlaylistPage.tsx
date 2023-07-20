@@ -3,7 +3,7 @@ import { Footer,   PlaylistMainContainer,   SideBar } from '../../components'
 import { GlobalPrivatePageStyles } from '../../global'
 
 
-export const PlaylistPage = () => {
+ const PlaylistPage = () => {
   return (
     <GlobalPrivatePageStyles>
       <SideBar/>
@@ -12,3 +12,4 @@ export const PlaylistPage = () => {
     </GlobalPrivatePageStyles>
   )
 }
+export default PlaylistPage

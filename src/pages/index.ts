@@ -1,4 +1,4 @@
-export * from './private/HomePage';
+
 export * from './private/PlayerPage';
 export * from './private/PlaylistPage';
 export * from './private/ProfilePage';

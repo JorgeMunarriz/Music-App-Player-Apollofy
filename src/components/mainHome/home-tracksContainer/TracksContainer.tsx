@@ -1,3 +1,4 @@
+import {useContext, lazy, Suspense, LazyExoticComponent, ComponentType} from 'react';
 import SwiperCore from 'swiper';
 import {Navigation, Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -8,9 +9,18 @@ import 'swiper/css/pagination';
 
 SwiperCore.use([Navigation, Pagination]);
 
-import {useContext} from 'react';
-import { CardForTrack, TracksContainerStyles } from '../..';
+import {  TracksContainerStyles } from '../..';
 import { DataMusicContext } from '../../../context';
+import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
+
+const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+	return new Promise((resolve) => {
+	  setTimeout(() => {
+		return resolve(import("../../cardForTrack/CardForTrack"));
+	  }, 2000);
+	});
+  });
+
 
 type ProprQuery = {
 	query: string;
@@ -34,8 +44,9 @@ export const TracksContainer = ({query}: ProprQuery) => {
 								}
 							})
 							.map(({id, thumbnail, name, genre, artist, url, liked, reproductions}) => (
-								<SwiperSlide key={id}>
-									<CardForTrack thumbnail={thumbnail} name={name} genre={genre} id={id} artist={artist} url={url} liked={liked} reproductions={reproductions} />
+								<SwiperSlide>
+
+									<Suspense  key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome thumbnail={thumbnail} name={name} genre={genre} id={id} artist={artist} url={url} liked={liked} reproductions={reproductions} /></Suspense>
 								</SwiperSlide>
 							))}
 				</Swiper>

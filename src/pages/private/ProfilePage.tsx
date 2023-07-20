@@ -2,7 +2,7 @@ import { GlobalPrivatePageStyles } from '../../global'
 import { Footer, SideBar, ProfileMainContainer } from '../../components'
 
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   return (
     <GlobalPrivatePageStyles>
       <SideBar/>
@@ -11,3 +11,5 @@ export const ProfilePage = () => {
     </GlobalPrivatePageStyles>
   )
 }
+
+export default ProfilePage

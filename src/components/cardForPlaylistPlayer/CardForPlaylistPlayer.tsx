@@ -24,3 +24,4 @@ export const CardForPlaylistPlayer = ({  thumbnail, name, isFollowed,  }: Playli
     </CardForPlaylistPlayerStyles>
   );
 };
+export default CardForPlaylistPlayer
