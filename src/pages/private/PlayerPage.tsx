@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { PlayerMainContainer, SideBar } from "../../components";
+import { Footer, PlayerMainContainer, SideBar } from "../../components";
 import { DataMusicContext } from "../../context";
 import { useParams } from "react-router-dom";
 import { GlobalPrivatePageStyles } from "../../global";
@@ -23,6 +23,7 @@ export const PlayerPage = () => {
     <GlobalPrivatePageStyles>
       <SideBar />
       <PlayerMainContainer />
+      <Footer/>
     </GlobalPrivatePageStyles>
   );
 };
