@@ -40,7 +40,7 @@ border-radius: 0.25rem;
       height: 5px;
 
     }
-    .swiper-button-prev,
+    .swiper-button-prev:hover,
     .swiper-button-next:hover {
       color: #9d0b28;
       
