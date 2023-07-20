@@ -5,7 +5,8 @@
 Apollofy - Spotify Clone with React and TypeScript.
 
 
-![image](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/1773711d-5929-4bd7-ad95-080f443cd8ef)
+![Captura de pantalla 2023-07-20 171907](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/b0a91bd5-bb41-4c5e-bdd6-8402d44ad622)
+
 
 
 
