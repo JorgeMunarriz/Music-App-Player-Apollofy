@@ -8,11 +8,20 @@ flex-wrap: wrap;
 height: 45%;
 width: 100%;
 
-justify-content: space-around;
-align-items: center;
+// justify-content: space-around;
+// align-items: center;
 
 border: 1px solid rgba(66, 66, 66, 0.4);
 border-radius: 0.25rem;
+
+& h2 {
+  font-size: 35px;
+  color: white;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+  opacity: 0.9;
+}
 
   .mySwiper {
     height: 185px;
