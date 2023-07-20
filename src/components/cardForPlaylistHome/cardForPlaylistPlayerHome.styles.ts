@@ -13,6 +13,7 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
     justify-content: space-around;
     transition: all 0.3s;
     width: 80%;
+    height: 76px;
     color: whitesmoke;
     font-weight: bold;
     position: relative;
@@ -27,8 +28,8 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
     }
     &__img {
       position: relative;
-      width: 50px;
-      height: 50px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       overflow: hidden;
       &-img{

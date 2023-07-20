@@ -13,6 +13,8 @@ Apollofy is a popular digital music streaming platform that offers a vast collec
 # Brief description of the application.
 
 - Libraries and Dependencies
+
+
 Vite: Vite is a fast and lightweight build tool and development server for modern web projects. It offers near-instantaneous development server startup and quick HMR (Hot Module Replacement) updates, making it an excellent choice for React applications.
 
 React: As mentioned earlier, React is a popular JavaScript library for building user interfaces.
