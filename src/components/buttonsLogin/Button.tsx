@@ -10,8 +10,8 @@ export const Button = ({ children, handleClick, isDisabled }: ButtonProps) => {
 	return (
 		<ButtonLogin disabled={isDisabled} onClick={handleClick}>
 			<span className="shadow"></span>
-			<span className="front font-size">
-				<strong>{children}</strong>
+			<span className="front">
+				<strong className='font-size'>{children}</strong>
 			</span>
 		</ButtonLogin>
 	);

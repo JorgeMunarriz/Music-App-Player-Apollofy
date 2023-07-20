@@ -7,9 +7,7 @@ export const ButtonLogin = styled.button`
     padding: 0;
     cursor: pointer;
     outline-offset: 4px;
-   &:hover {
-    filter: brightness(110%);
-  } 
+    font-size:4rem;
   .edge {
     position: absolute;
     top: 0;
@@ -28,9 +26,9 @@ export const ButtonLogin = styled.button`
   .front {
     display: block;
     position: relative;
-    padding: 12px 42px;
+    padding: 8px 25px;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #fafafa;
     background:var(--background-button-color);
     will-change: transform;
@@ -55,6 +53,8 @@ export const ButtonLogin = styled.button`
     transform: translateY(-2px);
     transition: transform 34ms;
   }
+
+
 `;
 
 export const ButtonRedMediun = styled.button`
