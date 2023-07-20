@@ -9,6 +9,8 @@
   /* Colors for specific elements */
   --color-background-footer:  rgba(50, 50, 50, 0.2) ;
   --color-background-sidebar: rgb(0, 0, 0);
+  --swiper-navigation-size:  clamp(1.5rem, 3.1rem, 3.5rem);
+  --swiper-theme-color:#f9637e;
 }
 
 

@@ -4,6 +4,7 @@ import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../glob
 
 
 export interface MusicContextProps {
+  data: any;
   playlists: Playlist[] | null;
   albums: Album[] | null;
   genres: Genre[] | null;

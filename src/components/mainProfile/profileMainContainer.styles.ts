@@ -46,7 +46,7 @@ export const ProfileMainContainerStyles = styled.main`
 
     .profile__numbers-container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       gap: 1rem;
       width: 100%;
 
@@ -57,8 +57,8 @@ export const ProfileMainContainerStyles = styled.main`
     }
     .profile__followers-container {
       display: flex;
-      justify-content: space-around;
-      gap: 1rem;
+      justify-content: space-between;
+      gap: 2rem;
       width: 100%;
       .profile__span-followers {
         color: rgb(134, 129, 134);

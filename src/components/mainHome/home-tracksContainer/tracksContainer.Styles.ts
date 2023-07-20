@@ -35,7 +35,16 @@ border-radius: 0.25rem;
     }
     .swiper-button-prev,
     .swiper-button-next {
-      color: #000;
+      /* color: red; */
+      width: 30px;
+      height: 5px;
+
+    }
+    .swiper-button-prev,
+    .swiper-button-next:hover {
+      color: #9d0b28;
+      
+
     }
   }
 `;
