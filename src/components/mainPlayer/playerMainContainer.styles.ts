@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PlayerMainContainerStyles = styled.div`
-
+grid-area: 1 / 1 / 6 / 7;
 border-radius: 0.25rem;
 overflow-y: auto;
 background: linear-gradient(#340034, #000);
