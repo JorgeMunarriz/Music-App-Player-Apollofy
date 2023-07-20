@@ -16,27 +16,27 @@ Apollofy is a popular digital music streaming platform that offers a vast collec
 
 # Libraries and Dependencies
 
-Vite: Vite is a fast and lightweight build tool and development server for modern web projects. It offers near-instantaneous development server startup and quick HMR (Hot Module Replacement) updates, making it an excellent choice for React applications.
+- Vite: Vite is a fast and lightweight build tool and development server for modern web projects. It offers near-instantaneous development server startup and quick HMR (Hot Module Replacement) updates, making it an excellent choice for React applications.
 
-React: As mentioned earlier, React is a popular JavaScript library for building user interfaces.
+- React: As mentioned earlier, React is a popular JavaScript library for building user interfaces.
 
-TypeScript: TypeScript adds static typing to JavaScript, making the development process more productive and the codebase more robust.
+- TypeScript: TypeScript adds static typing to JavaScript, making the development process more productive and the codebase more robust.
 
-react-h5-audio-player: This library provides an HTML5 audio player component for React, making it easy to play audio files in the application.
+- react-h5-audio-player: This library provides an HTML5 audio player component for React, making it easy to play audio files in the application.
 
-react-icons: A library that offers a vast collection of customizable icons for React applications, making it simple to include icons in the UI.
+- react-icons: A library that offers a vast collection of customizable icons for React applications, making it simple to include icons in the UI.
 
-react-loader-spinner: This library provides a variety of loading spinners for React, enhancing the user experience during data loading.
+- react-loader-spinner: This library provides a variety of loading spinners for React, enhancing the user experience during data loading.
 
-react-router-dom: React Router is used to handle navigation and routing in the application, enabling smooth transitions between different pages.
+- react-router-dom: React Router is used to handle navigation and routing in the application, enabling smooth transitions between different pages.
 
-react-spring: React Spring is a library for animating React components, allowing for smooth and fluid animations in the application.
+- react-spring: React Spring is a library for animating React components, allowing for smooth and fluid animations in the application.
 
-react-transition-group: React Transition Group is another library for creating smooth animations and transitions between React components.
+- react-transition-group: React Transition Group is another library for creating smooth animations and transitions between React components.
 
-styled-components: Styled-components is a popular CSS-in-JS library that allows you to write CSS directly in your React components using tagged template literals.
+- styled-components: Styled-components is a popular CSS-in-JS library that allows you to write CSS directly in your React components using tagged template literals.
 
-swiper: Swiper is a modern carousel/slider library that enables you to create responsive and touch-friendly sliders for your application.
+- swiper: Swiper is a modern carousel/slider library that enables you to create responsive and touch-friendly sliders for your application.
 
 # Clone the Repository
 
