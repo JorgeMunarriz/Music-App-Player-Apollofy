@@ -1,22 +1,17 @@
+import React from 'react';
 import {Playlist} from '../../types/data';
 import {CardForPlaylistPlayerStyles} from './cardForPlaylistPlayer.styles';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 
 
-
-
-
-
-export const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, description}: Playlist) => {
+export const CardForPlaylistPlayer = 
+	({id, thumbnail, name, isFollowed, description}: Playlist) => {
 	const [followed, setFollowed] = useState<boolean>(isFollowed);
 	
-
 	const toggleFollow = () => {
 		setFollowed(!followed);
 	};
-
-	
 
 	return (
 		<CardForPlaylistPlayerStyles>
@@ -28,5 +23,5 @@ export const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, descript
 			</button>
 		</CardForPlaylistPlayerStyles>
 	);
-};
+}
 
