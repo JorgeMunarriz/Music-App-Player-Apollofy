@@ -3,7 +3,7 @@
 
 
 Apollofy - Spotify Clone with React and TypeScript
-src: './src/assets/img/logo-favicon.png
+'./src/assets/img/logo-favicon.png
 
 
 Apollofy is a popular digital music streaming platform that offers a vast collection of tracks, albums, podcasts, and other audio content.
@@ -95,14 +95,6 @@ Happy coding!
 
 
 # Copyright Information
-It's crucial to ensure that the Apollofy project does not violate any copyright laws or intellectual property rights related to music content. To avoid any legal issues, it is recommended to:
-
-
-Use royalty-free or Creative Commons licensed music for demonstration purposes in the application.
-Clearly state in the README that the music used in the project is for demonstration purposes only and not intended for commercial use.
-Provide proper attribution for the music used, if required by the licenses.
-If you plan to deploy the application publicly or distribute it, make sure to follow copyright laws and obtain the necessary licenses or permissions for using copyrighted music.
-
-Please remember that I am an AI language model, and I do not have access to your project's specific details or implementation. Ensure that you comply with all relevant legal requirements and use licensed content responsibly.
+The Apollofy project does not violate any copyright laws or intellectual property rights related to music content.
 
 
