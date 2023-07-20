@@ -42,14 +42,12 @@ border-radius: 0.25rem;
   }
   .swiper-button-prev, .swiper-button-next{
       width: 30px;
-      height: 1px;
+      height: 0px;
 
     }
     .swiper-button-prev:hover,
     .swiper-button-next:hover {
       color: #9d0b28;
-      
-
     }
 }
 `
