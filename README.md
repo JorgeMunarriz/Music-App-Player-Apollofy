@@ -3,14 +3,14 @@
 
 
 Apollofy - Spotify Clone with React and TypeScript
-src: './src/assets/img/logo-favicon.png
+src: './src/assets/img/logo-favicon.png' 
 
 
 Apollofy is a popular digital music streaming platform that offers a vast collection of tracks, albums, podcasts, and other audio content.
 
-Brief description of the application.
+# Brief description of the application.
 
-Libraries and Dependencies
+- Libraries and Dependencies
 Vite: Vite is a fast and lightweight build tool and development server for modern web projects. It offers near-instantaneous development server startup and quick HMR (Hot Module Replacement) updates, making it an excellent choice for React applications.
 
 React: As mentioned earlier, React is a popular JavaScript library for building user interfaces.
@@ -33,7 +33,7 @@ styled-components: Styled-components is a popular CSS-in-JS library that allows 
 
 swiper: Swiper is a modern carousel/slider library that enables you to create responsive and touch-friendly sliders for your application.
 
-Clone the Repository
+# Clone the Repository
 
 To get a local copy of the application, follow these steps:
 
@@ -53,31 +53,38 @@ Install Dependencies
 Before running the application, make sure you have Node.js installed on your system. Then, install the dependencies using npm or yarn (make sure to have yarn installed beforehand):
 
 
-`npm install
-# or
-yarn install`
+`npm install` 
 
-Run the JSON Server (Simulating Backend)
+or 
+
+`yarn install`
+
+# Run the JSON Server (Simulating Backend)
 The Apollofy app uses a JSON server to simulate a backend for fetching data. To run the JSON server, use the following command:
 
 
-`npm run json-server
-# or
-yarn json-server`
+`npm run json-server`
+
+or
+
+`yarn json-server`
 
 
 The JSON server will be running at http://localhost:4000.
-Run the Application
+
+# Run the Application
 Once the dependencies are installed, you can start the application in local development mode with the following command:
 
 
-`npm run dev
-# or
-yarn dev`
+`npm run dev`
+
+or
+
+`yarn dev`
 
 This will launch the application in your browser at http://localhost:5173.
 
-Additional Scripts
+# Additional Scripts
 
 npm run build: This command compiles the TypeScript code and creates an optimized production-ready build.
 
@@ -87,8 +94,9 @@ Feel free to explore and enjoy the Apollofy app! If you encounter any issues or 
 Happy coding!
 
 
-Copyright Information
+# Copyright Information
 It's crucial to ensure that the Apollofy project does not violate any copyright laws or intellectual property rights related to music content. To avoid any legal issues, it is recommended to:
+
 
 Use royalty-free or Creative Commons licensed music for demonstration purposes in the application.
 Clearly state in the README that the music used in the project is for demonstration purposes only and not intended for commercial use.
