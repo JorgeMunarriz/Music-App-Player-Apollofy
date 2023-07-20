@@ -31,7 +31,6 @@ background: linear-gradient(#340034, #000);
 
 @media only screen and (min-width : 1024px) {
   grid-area: 1 / 2 / 5 / 7;
-  display: grid;
 
   
   width: 100%;
