@@ -7,7 +7,7 @@ import { GlobalPrivatePageStyles } from "../../global";
 
 export const PlayerPage = () => {
   const data = useContext(DataMusicContext);
-  const tracks = data?.data?.tracks;
+  const tracks = data.data.tracks;
 
   const idParams = useParams();
   const currentId = parseInt(idParams?.id || "");

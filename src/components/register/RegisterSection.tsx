@@ -46,21 +46,26 @@ export const RegisterSection = () => {
 
 	return (
 		<RegisterContainerStyles>
-			<h2 className="logincontainer__h2">Sign In </h2>
-
-			<div className="logincontainer__div">
-				<label htmlFor="userName">User name</label>
+			<div className='registercontainer'>
+			<h2 className="registercontainer__h2">Sign In</h2>
+			<div className="registercontainer__div">
+				<label className='registercontainer__div-label' htmlFor="userName">User name</label>
 				<InputForm inputRef={inputRef} placeholder="Insert user name" type="text" name="name" handleChange={handleChange} value={form.name} />
 			</div>
-			<div className="logincontainer__div">
-				<label htmlFor="userName">User email</label>
-				<InputForm inputRef={inputRef} placeholder="Insert user email" type="email" name="name" handleChange={handleChange} value={form.email} />
+			<div className="registercontainer__div">
+				<label className='registercontainer__div-label' htmlFor="email">User email</label>
+				<InputForm placeholder="Insert user email" type="email" name="email" handleChange={handleChange} value={form.email} />
 			</div>
 			<div>
-				<label htmlFor="password">Password</label>
+				<label className='registercontainer__div-label' htmlFor="password">Password</label>
+				<InputForm placeholder="Insert user password" type="password" name="password" handleChange={handleChange} value={form.password} />
+			</div>
+			<div>
+				<label className='registercontainer__div-label' htmlFor="password">Confirm Password</label>
 				<InputForm placeholder="Insert user password" type="password" name="password" handleChange={handleChange} value={form.password} />
 			</div>
 			<Button handleClick={handleClick}>Sign In</Button>
+			</div>
 		</RegisterContainerStyles>
 	);
 };
