@@ -10,10 +10,12 @@ export const HomeMainContainer = () => {
 		setSearchParams({q: target.value});
 	};
 	return (
-		<HomeMainContainerStyles>
-			<SearchBar searchParams={searchParams} setSearchParams={setSearchParams} query={query} handleChangeParams={handleChangeParams} />
-			<PlaylistContainerHome />
-			<TracksContainer  query={query} />
-		</HomeMainContainerStyles>
+		
+			<HomeMainContainerStyles>
+				<SearchBar searchParams={searchParams} setSearchParams={setSearchParams} query={query} handleChangeParams={handleChangeParams} />
+				<PlaylistContainerHome />
+				<TracksContainer  query={query} />
+			</HomeMainContainerStyles>
+
 	);
 };

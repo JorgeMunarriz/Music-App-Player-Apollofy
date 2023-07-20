@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const SearchBarContainer = styled.div`
-    grid-row: 1 / 2;
+    height: 10%;
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+
+    border: 1px solid rgba(66, 66, 66, 0.4);
+    border-radius: 0.25rem;
 
     & svg{
         font-size: 1.5rem;
@@ -37,21 +42,17 @@ export const SearchBarLeft = styled.div`
     padding-right:1rem;
     border: 1px solid rgba(66, 66, 66, 0.4);
     border-radius: 1.5rem;
-
 }
-
 & svg{
 color: rgb(135,146,148);
     cursor:pointer;
 }
-
 @media (height < 500px) {
     position: relative;
     display: flex;
     align-items: start;
     width: 100%;
 }
-
 `;
 
 export const SearchBarIcon = styled.div`
@@ -59,7 +60,6 @@ export const SearchBarIcon = styled.div`
   left: 10px; /* Posición del icono dentro del input */
   top: 50%;
   transform: translateY(-50%);
-
 `;
 
 export const SearchBarRight = styled.div`
@@ -87,7 +87,6 @@ export const SearchBarRight = styled.div`
 svg:hover{
     color: #c9356c;
 }
-
 @media (height < 500px) {
     display:none;
 }
