@@ -5,7 +5,7 @@ import { CardForPlaylistPlayerHomeStyles } from "./cardForPlaylistPlayerHome.sty
 import { useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-export const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: Playlist) => {
+const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: Playlist) => {
 //tengo que traer el puto id
   const { userLogged, handleUserLogged } = useContext(UserContext);
   
@@ -50,3 +50,5 @@ export const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: P
     </CardForPlaylistPlayerHomeStyles>
   );
 };
+
+export default CardForPlaylistPlayerHome

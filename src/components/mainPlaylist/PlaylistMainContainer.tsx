@@ -1,8 +1,17 @@
-import {useContext} from 'react';
+import {useContext , Suspense, LazyExoticComponent, ComponentType, lazy} from 'react';
 import {DataMusicContext} from '../../context';
-import {CardForPlaylistPlayer} from '../cardForPlaylistPlayer/CardForPlaylistPlayer';
 import { PlaylistMainContainerStyles } from './playlistMainContainer.styles';
 import { SearchBar } from '..';
+import LoaderPlaylist from '../../assets/skeleton/skeleton';
+
+
+const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+	return new Promise((resolve) => {
+	  setTimeout(() => {
+		return resolve(import("../cardForPlaylistPlayer/CardForPlaylistPlayer"));
+	  }, 1500);
+	});
+  });
 
 export const PlaylistMainContainer = () => {
 	const data = useContext(DataMusicContext);
@@ -12,7 +21,7 @@ export const PlaylistMainContainer = () => {
 		<>
 		<PlaylistMainContainerStyles>
 			<SearchBar/>
-			{playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => <CardForPlaylistPlayer key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} />)}
+			{playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => <Suspense fallback={<LoaderPlaylist />}><LazyCards key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} /></Suspense>)}
 		</PlaylistMainContainerStyles>	
 		</>
 	);

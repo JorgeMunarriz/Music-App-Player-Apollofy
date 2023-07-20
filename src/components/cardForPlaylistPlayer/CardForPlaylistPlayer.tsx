@@ -6,9 +6,7 @@ import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
 
 
 
-
-
-export const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, description}: Playlist) => {
+const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, description}: Playlist) => {
 	const [followed, setFollowed] = useState<boolean>(isFollowed);
 	
 
@@ -29,4 +27,4 @@ export const CardForPlaylistPlayer = ({id, thumbnail, name, isFollowed, descript
 		</CardForPlaylistPlayerStyles>
 	);
 };
-
+export default CardForPlaylistPlayer
