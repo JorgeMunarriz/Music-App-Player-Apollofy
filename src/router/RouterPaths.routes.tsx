@@ -1,12 +1,8 @@
 import {lazy, Suspense} from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { LandingPage, LoginPage,  RegisterPage,  StartingPage } from "../pages/index";
-import "../App.css"; // Asegúrate de tener tus estilos CSS adecuados
-
-import PlaylistLoader from '../assets/skeleton/skeleton.tsx';
-import LoaderPlaylist from '../assets/skeleton/skeleton.tsx';
-import HomeSkeleton from '../assets/skeleton/homeSkeleton.tsx';
+import "../App.css"; 
 import RouteSkeletor from '../assets/skeleton/routeSkeletor.tsx';
 
 
