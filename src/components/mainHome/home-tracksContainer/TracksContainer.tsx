@@ -21,6 +21,7 @@ export const TracksContainer = ({query}: ProprQuery) => {
 
 	return (
 		<TracksContainerStyles>
+		<h2>Most listened songs</h2>
 			{tracks && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
 					{tracks &&
