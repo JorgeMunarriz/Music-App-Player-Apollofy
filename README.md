@@ -1,18 +1,23 @@
 # Music-App-Player-Apollofy
 
-
+![logo-favicon](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/cf2e68ac-2e59-45c5-a4b3-f3d883869f33)
 
 Apollofy - Spotify Clone with React and TypeScript.
 
 
-![logo-favicon](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/cf2e68ac-2e59-45c5-a4b3-f3d883869f33)
+![image](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/1773711d-5929-4bd7-ad95-080f443cd8ef)
+
+
+
+![movil-modified_1](https://github.com/JorgeMunarriz/Music-App-Player-Apollofy/assets/129197162/ca9e7ebc-6502-4364-ace4-0428810c9454)
 
 
 Apollofy is a popular digital music streaming platform that offers a vast collection of tracks, albums, podcasts, and other audio content.
 
 # Brief description of the application.
 
-- Libraries and Dependencies
+# Libraries and Dependencies
+
 Vite: Vite is a fast and lightweight build tool and development server for modern web projects. It offers near-instantaneous development server startup and quick HMR (Hot Module Replacement) updates, making it an excellent choice for React applications.
 
 React: As mentioned earlier, React is a popular JavaScript library for building user interfaces.
