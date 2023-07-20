@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {DataMusicContext} from '../../../context';
-import {PlaylistContainerStyles} from '../..';
+
 import SwiperCore from 'swiper';
 import {Navigation, Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import {CardForPlaylistPlayerHome} from '../../cardForPlaylistHome/CardForPlaylistPlayerHome';
+import { PlaylistContainerStyles } from './PlaylistContainer.Styles';
 
 SwiperCore.use([Navigation, Pagination]);
 

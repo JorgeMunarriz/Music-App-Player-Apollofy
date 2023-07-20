@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-export const PlaylistContainerStylesNew = styled.main`
+export const PlaylistMainContainerStyles = styled.main`
 	display: flex;
 	flex-wrap: wrap;
 	overflow-y: auto;
-	justify-content: space-around;
+    align-items: center;
+	justify-content: center;
+    background-color: red;
 	height: 100%;
 	width: 100%;
 	gap: 1.5rem;
@@ -34,5 +36,9 @@ export const PlaylistContainerStylesNew = styled.main`
 
 		width: 100%;
 		height: 100%;
+
+        align-items: center;
+	justify-content: center;
+    background-color: red;
 	}
 `;

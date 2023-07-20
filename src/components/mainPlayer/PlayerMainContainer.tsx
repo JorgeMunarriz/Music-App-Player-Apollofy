@@ -1,14 +1,14 @@
-import { AudioPlayerComponent, MainContainerStyles, PlayerContainer, SearchBar } from "../.."
+import { AudioPlayerComponent, PlayerMainContainerStyles, PlayerContainer, SearchBar } from ".."
 
 
 export const PlayerMainContainer = () => {
 
   return (
-    <MainContainerStyles>
+    <PlayerMainContainerStyles>
       <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined}/>
       <PlayerContainer id={0} name={""} artist={""} url={""} thumbnail={""} genre={""} liked={false} reproductions={0}/>
-     <AudioPlayerComponent/>
-    </MainContainerStyles>
+      <AudioPlayerComponent/>
+    </PlayerMainContainerStyles>
 
   )
 }

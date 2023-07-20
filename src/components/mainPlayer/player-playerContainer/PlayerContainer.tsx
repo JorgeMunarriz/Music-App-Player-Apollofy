@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { PlayerContainerStyles } from "./playerContainer.styles";
-import { Track } from "../../../../types/data";
-import { DataMusicContext } from "../../../../context/DataMusicContext";
+import { Track } from "../../../types/data";
+import { DataMusicContext } from "../../../context/DataMusicContext";
 
 export const PlayerContainer = ({ id }: Track) => {
   const data = useContext(DataMusicContext);

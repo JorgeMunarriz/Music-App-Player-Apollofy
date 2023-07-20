@@ -1,5 +1,6 @@
 import {useSearchParams} from 'react-router-dom';
-import {HomeMainContainerStyles, PlaylistContainerHome, SearchBar, TracksContainer} from '..';
+import {PlaylistContainerHome, SearchBar, TracksContainer} from '..';
+import { HomeMainContainerStyles } from './homeMainContainer.styles';
 
 export const HomeMainContainer = () => {
 	const [searchParams, setSearchParams] = useSearchParams();

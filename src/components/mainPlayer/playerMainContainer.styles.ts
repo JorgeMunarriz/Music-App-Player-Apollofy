@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainContainerStyles = styled.div`
+export const PlayerMainContainerStyles = styled.div`
 
 background-color: rgba(50, 50, 50, 0.6);
 border-radius: 0.25rem;

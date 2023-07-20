@@ -9,9 +9,8 @@ import 'swiper/css/pagination';
 SwiperCore.use([Navigation, Pagination]);
 
 import {useContext} from 'react';
-import {DataMusicContext} from '../../context';
-import {TracksContainerStyles} from './tracksContainer.styles';
-import {CardForTrack} from '..';
+import { CardForTrack, TracksContainerStyles } from '../..';
+import { DataMusicContext } from '../../../context';
 
 type ProprQuery = {
 	query: string;
