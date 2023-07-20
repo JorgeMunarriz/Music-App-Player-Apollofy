@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 export const PlayerContainerStyles = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+height: 90%;
 .playerContainer{
   display: flex;
+  height: 90%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;

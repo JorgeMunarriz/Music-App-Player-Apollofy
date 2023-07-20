@@ -9,7 +9,7 @@ const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: Playlist
 //tengo que traer el puto id
   const { userLogged, handleUserLogged } = useContext(UserContext);
   
-  console.log(userLogged)
+  console.log(`renderizando el componente: ${id}`)
 
   const isFollowed = () => {
     if (userLogged?.favPlaylists.includes(id)) {

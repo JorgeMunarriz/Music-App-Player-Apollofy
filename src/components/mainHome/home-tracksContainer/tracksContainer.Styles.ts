@@ -1,13 +1,28 @@
 import styled from "styled-components";
 
+
 export const TracksContainerStyles = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  width: 100%;
-  gap: 1.5rem;
-  /* border: 1px solid rgba(66, 66, 66, 0.4); */
-  border-radius: 0.25rem;
+display: flex;
+flex-wrap: wrap;
+
+height: 45%;
+width: 100%;
+
+// justify-content: space-around;
+// align-items: center;
+
+border: 1px solid rgba(66, 66, 66, 0.4);
+border-radius: 0.25rem;
+
+& h2 {
+  font-size: 35px;
+  color: white;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+  opacity: 0.9;
+}
+
   .mySwiper {
     height: 185px;
     width: 100%;
@@ -29,7 +44,16 @@ export const TracksContainerStyles = styled.div`
     }
     .swiper-button-prev,
     .swiper-button-next {
-      color: #000;
+      /* color: red; */
+      width: 30px;
+      height: 5px;
+
+    }
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+      color: #9d0b28;
+      
+
     }
   }
 `;

@@ -44,7 +44,7 @@ export const SearchBar = ({setSearchParams, searchParams, handleChangeParams, qu
 					</>
 				) : (
 					<>
-						<Button handleClick={goToLogin}>Login</Button>
+						<Button  handleClick={goToLogin}>Login</Button>
 					</>
 				)}
 			</SearchBarRight>

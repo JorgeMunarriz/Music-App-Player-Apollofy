@@ -27,8 +27,11 @@ export const PlaylistContainerHome = () => {
 	const data = useContext(DataMusicContext);
 	const playlists = data?.data?.playlists;
 
+	console.log('renderiza el padre')
+
 	return (
 		<PlaylistContainerStyles>
+			<h2>Playlists</h2>
 			{playlists && (
 				<Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
 					{playlists.map(({id, thumbnail, name, description}) => (

@@ -27,10 +27,11 @@ type ProprQuery = {
 };
 export const TracksContainer = ({query}: ProprQuery) => {
 	const data = useContext(DataMusicContext);
-	const tracks = data?.data?.tracks?.sort((elemA, elemB) => elemB.reproductions - elemA.reproductions);
+	const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
 
 	return (
 		<TracksContainerStyles>
+		<h2>Most listened songs</h2>
 			{tracks && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
 					{tracks &&

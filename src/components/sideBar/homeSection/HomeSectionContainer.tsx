@@ -12,7 +12,7 @@ export const HomeSectionContainer = () => {
         <Link to="/home" ><AiOutlineHome/>Home</Link>
         <Link to="/player" ><BsMusicNoteList/>Player</Link>
         <Link to="/profile" > <ImProfile/>Profile</Link>
-        <Link to="/playlists" > <VscLibrary/>Your Playlist</Link>
+        <Link to="/playlists" > <VscLibrary/>Playlist</Link>
     </HomeSectionContainerStyles>
   );
 };

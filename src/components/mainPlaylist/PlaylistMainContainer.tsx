@@ -17,6 +17,13 @@ export const PlaylistMainContainer = () => {
 	const data = useContext(DataMusicContext);
 	const playlist = data?.data?.playlists;
 
+	const [searchParams, setSearchParams] = useSearchParams();
+	const query = searchParams.get('q') || '';
+
+	const handleChangeParams = ({target}: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchParams({q: target.value});
+	};
+
 	return (
 		<>
 		<PlaylistMainContainerStyles>
