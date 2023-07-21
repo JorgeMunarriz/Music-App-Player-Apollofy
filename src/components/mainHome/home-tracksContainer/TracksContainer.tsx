@@ -44,7 +44,7 @@ export const TracksContainer = ({query}: ProprQuery) => {
 								}
 							})
 							.map(({id, thumbnail, name, genre, artist, url, liked, reproductions}) => (
-								<SwiperSlide>
+								<SwiperSlide key={id}>
 
 									<Suspense  key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome thumbnail={thumbnail} name={name} genre={genre} id={id} artist={artist} url={url} liked={liked} reproductions={reproductions} /></Suspense>
 								</SwiperSlide>

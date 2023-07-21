@@ -29,7 +29,7 @@ export const PlaylistMainContainer = () => {
 		<>
 		<PlaylistMainContainerStyles>
 			<SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined}/>
-			{playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => <Suspense fallback={<LoaderPlaylist />}><LazyCards key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} /></Suspense>)}
+			{playlist && playlist.map(({id, isFollowed, name, description, thumbnail}) => <Suspense key={id} fallback={<LoaderPlaylist />}><LazyCards key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} /></Suspense>)}
 		</PlaylistMainContainerStyles>	
 		</>
 	);

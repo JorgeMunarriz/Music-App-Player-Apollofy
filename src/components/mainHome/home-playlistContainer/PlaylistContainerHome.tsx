@@ -35,7 +35,7 @@ export const PlaylistContainerHome = () => {
 			{playlists && (
 				<Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
 					{playlists.map(({id, thumbnail, name, description}) => (
-						<SwiperSlide >
+						<SwiperSlide key={id}>
 							<Suspense key={id} fallback={<HomeSkeleton/>}><LazyCarPlaylistHome thumbnail={thumbnail} name={name} id={id} description={description} /></Suspense>
 						</SwiperSlide>
 					))}
