@@ -1,9 +1,7 @@
-
 import ContentLoader from "react-content-loader"
 
-const LoaderPlaylist = (props) => (
+const LoaderPlaylist = (props: object) => (
   <ContentLoader 
-
     speed={2}
     width={1000}
     height={70}
@@ -12,11 +10,7 @@ const LoaderPlaylist = (props) => (
     foregroundColor="#ecebeb"
     {...props}
   >
-    <rect x="50" y="13" rx="100" ry="50" width="2000" height="280" /> 
-    
-   
-    
-    
+    <rect x="50" y="13" rx="100" ry="50" width="2000" height="280" />     
   </ContentLoader>
 )
 

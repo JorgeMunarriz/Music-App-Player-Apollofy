@@ -1,7 +1,7 @@
-import React from "react"
+
 import ContentLoader from "react-content-loader"
 
-const RouteSkeletor = (props) => (
+const RouteSkeletor = (props: object) => (
     <ContentLoader
     viewBox="0 0 400 160"
     height={160}
