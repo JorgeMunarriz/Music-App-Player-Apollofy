@@ -27,48 +27,48 @@ export const Router = () => {
 					<Route path={REGISTER} element={<RegisterPage />} />
 				</Route>
 
-				{/* <Route path={HOME} element={<PrivateRoute />}> */}
-				<Route
-					path={HOME}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyHomePage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYER}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYERID}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYLISTS}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPlaylistPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PROFILE}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyProfilePage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				{/* </Route> */}
+				<Route path={HOME} element={<PrivateRoute />}>
+					<Route
+						index
+						element={
+							<Suspense fallback={<RouteSkeletor />}>
+								<ProtectedRoutes user={user}><LazyHomePage /></ProtectedRoutes>
+							</Suspense>
+						}
+					/>
+					<Route
+						path={PLAYER}
+						element={
+							<Suspense fallback={<RouteSkeletor />}>
+								<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
+							</Suspense>
+						}
+					/>
+					<Route
+						path={PLAYERID}
+						element={
+							<Suspense fallback={<RouteSkeletor />}>
+								<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
+							</Suspense>
+						}
+					/>
+					<Route
+						path={PLAYLISTS}
+						element={
+							<Suspense fallback={<RouteSkeletor />}>
+								<ProtectedRoutes user={user}><LazyPlaylistPage /></ProtectedRoutes>
+							</Suspense>
+						}
+					/>
+					<Route
+						path={PROFILE}
+						element={
+							<Suspense fallback={<RouteSkeletor />}>
+								<ProtectedRoutes user={user}><LazyProfilePage /></ProtectedRoutes>
+							</Suspense>
+						}
+					/>
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);
