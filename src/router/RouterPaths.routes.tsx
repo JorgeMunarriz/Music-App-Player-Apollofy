@@ -28,9 +28,8 @@ export const Router = () => {
 				</Route>
 
 				<Route path={HOME} element={<PrivateRoute />}>
-<<<<<<< HEAD
 					<Route
-						index
+						path={HOME}
 						element={
 							<Suspense fallback={<RouteSkeletor />}>
 								<ProtectedRoutes user={user}><LazyHomePage /></ProtectedRoutes>
@@ -69,48 +68,6 @@ export const Router = () => {
 							</Suspense>
 						}
 					/>
-=======
-				<Route
-					path={HOME}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyHomePage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYER}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYERID}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPLayerPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PLAYLISTS}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyPlaylistPage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
-				<Route
-					path={PROFILE}
-					element={
-						<Suspense fallback={<RouteSkeletor />}>
-							<ProtectedRoutes user={user}><LazyProfilePage /></ProtectedRoutes>
-						</Suspense>
-					}
-				/>
->>>>>>> d0e96c02f8a51fd65b3180028950938d79a5e68b
 				</Route>
 			</Routes>
 		</BrowserRouter>
