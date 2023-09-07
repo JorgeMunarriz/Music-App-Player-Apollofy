@@ -8,6 +8,7 @@ import { UserFormState } from '../../types/authContext';
 import { Button } from '..';
 import { Boop } from '../../animations/boopAnimation';
 import { useAuth0 } from '@auth0/auth0-react';
+import { PROFILE } from '../../config/routes/paths';
 
 
 export const SearchBar = ({ setSearchParams, searchParams, handleChangeParams, query }) => {
@@ -36,7 +37,7 @@ export const SearchBar = ({ setSearchParams, searchParams, handleChangeParams, q
 						<Button handleClick={() => logout()}>Logout</Button>
 						<h4>{user.given_name}</h4>
 						<Boop rotation={20} timing={200}>
-							<Link to="/profile">
+							<Link to={PROFILE}>
 								<RxAvatar />
 							</Link>
 						</Boop>
