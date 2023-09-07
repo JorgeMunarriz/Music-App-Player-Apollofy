@@ -27,7 +27,7 @@ export const Router = () => {
 					<Route path={REGISTER} element={<RegisterPage />} />
 				</Route>
 
-				{/* <Route path={HOME} element={<PrivateRoute />}> */}
+				<Route path={HOME} element={<PrivateRoute />}>
 				<Route
 					path={HOME}
 					element={
@@ -68,7 +68,7 @@ export const Router = () => {
 						</Suspense>
 					}
 				/>
-				{/* </Route> */}
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);

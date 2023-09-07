@@ -4,22 +4,22 @@ import { LOGIN } from '../../config/routes/paths';
 
 
 export const PrivateRoute = () => {
-    // const { isLoading, isAuthenticated, user } = useAuth0();
-    // console.log(isAuthenticated)
-    // console.log(user)
-    // if (isLoading) {
-    //     return <div>Loading ...</div>;
-    // }
-    // return (
-    //     <>
-    //         {user ? (
-    //             <div>
-    //                 <Outlet />
-    //             </div>
-    //         ) : (
-    //             <Navigate to={LOGIN} />
-    //         )}
-    //     </>
-    // )
+    const {  isAuthenticated, user } = useAuth0();
+    console.log(isAuthenticated)
+    console.log(user)
+    if (!isAuthenticated) {
+        return <div>Loading ...</div>;
+    }
+    return (
+        <>
+            {user ? (
+                <div>
+                    <Outlet />
+                </div>
+            ) : (
+                <Navigate to={LOGIN} />
+            )}
+        </>
+    )
 
 }
