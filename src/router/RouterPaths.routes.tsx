@@ -18,7 +18,7 @@ const LazyPlaylistPage = lazy(() => import('../pages/private/PlaylistPage.tsx'))
 
 export const Router = () => {
 	const { user } = useAuth0();
-	console.log(user)
+
 	return (
 		<BrowserRouter>
 			{/* <AnimatedRoutes /> */}
