@@ -17,7 +17,6 @@ try {
     if (response.ok) {
 
       const data = await response.json();
-      console.log(data);
       return data;
     } else {
       console.error('Error updating user:', response.statusText);
