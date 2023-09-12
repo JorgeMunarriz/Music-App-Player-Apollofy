@@ -86,7 +86,7 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (max-width: ${breakpoints.mobileMax}px) {
+  @media (${breakpoints.min} <= width <= ${breakpoints.mobileMax}px) {
 
     .playerstyles__div-whole {
       display: flex;
@@ -109,7 +109,7 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (min-width: ${breakpoints.mobileMax}px) and (max-width: ${breakpoints.tabletMax}px) {
+  @media (${breakpoints.mobileMax} < width <= ${breakpoints.tabletMax}px) {
 
     .playerstyles__div-whole {
       display: flex;
@@ -123,7 +123,7 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (min-width: ${breakpoints.tabletMax}px) and (max-width: ${breakpoints.laptopsMax}px)  {
+  @media (${breakpoints.tabletMax} < width <= ${breakpoints.laptopsMax}px)  {
 
     .playerstyles__div-whole {
       display: flex;
@@ -142,7 +142,7 @@ const PlayerStyles = styled.div`
 }
 
 
-  @media (min-width: ${breakpoints.laptopsMax}) and (max-width: ${breakpoints.desktopMax}px) {
+  @media (${breakpoints.laptopsMax} < width <= ${breakpoints.desktopMax}px) {
 
 
     .playerstyles__div-whole {
@@ -167,7 +167,7 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (min-width: ${breakpoints.desktopMax}) {
+  @media (width > ${breakpoints.desktopMax}) {
 
     .playerstyles__div-whole {
       display: flex;

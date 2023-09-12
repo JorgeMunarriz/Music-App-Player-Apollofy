@@ -1,11 +1,16 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/breakpoints';
+
 
 export const SidebarStyles = styled.div`
-	background-color: var(--color-background-sidebar);
-	border-radius: 0.25rem;
+
 	grid-area: 6 / 1 / 7 / 7;
 	display: flex;
 	flex-direction: row;
+
+	border-radius: 0.25rem;
+
+	background-color: var(--color-background-sidebar);
 
 	.sidebar__div {
 		display: none;
@@ -28,9 +33,13 @@ export const SidebarStyles = styled.div`
 		}
 	}
 
-	@media only screen and (min-width: 480px) and (max-width: 768px) {
-		display: grid;
 
+	@media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
+		
+	}
+
+
+	@media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
 		grid-area: 6 / 1 / 7 / 7;
 
 		.sidebar__div {
@@ -39,9 +48,9 @@ export const SidebarStyles = styled.div`
 		}
 	}
 
-	@media only screen and (min-width: 768px) and (max-width: 1024px) {
+	@media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px) {
 		//To determinate the Position in the parent grid
-		grid-area: 1 / 1 / 6 / 2;
+		grid-area: 1 / 1 / 5 / 2;
 		//Own properties
 		display: flex;
 		flex-direction: column;
@@ -65,9 +74,9 @@ export const SidebarStyles = styled.div`
 		}
 	}
 
-	@media only screen and (min-width: 1024px) {
+	@media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
 		//To determinate the Position in the parent grid
-		grid-area: 1 / 1 / 6 / 2;
+		grid-area: 1 / 1 / 5 / 2;
 		//Own properties
 		display: flex;
 		flex-direction: column;
@@ -89,5 +98,31 @@ export const SidebarStyles = styled.div`
 			flex-direction: column;
 			justify-content: space-around;
 		}
+	}
+
+	@media (width > ${breakpoints.desktopMax}px) {
+		//To determinate the Position in the parent grid
+		grid-area: 1 / 1 / 5 / 2;
+		//Own properties
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 1rem;
+		width: 100%;
+		height: 100%;
+
+		border-radius: 0.25rem;
+		font-size: 2.5rem;
+		.sidebar__div {
+			display: block;
+			z-index: 0;
+		}
+
+		.sidebar__sections {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}	
 	}
 `;
