@@ -1,14 +1,11 @@
 import { toggleLiked } from "../../api/toggleLiked";
-import { UserContext } from "../../context";
 import { Playlist } from "../../types/data";
 import { CardForPlaylistPlayerHomeStyles } from "./cardForPlaylistPlayerHome.styles";
-import { useState, useContext } from "react";
+import { useState} from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: Playlist) => {
-//tengo que traer el puto id
-  const { userLogged, handleUserLogged } = useContext(UserContext);
-  
+//tengo que traer el puto id  
   console.log(`renderizando el componente: ${id}`)
 
   const isFollowed = () => {

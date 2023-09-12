@@ -8,13 +8,13 @@ function App() {
 	
 	return (
 		<>
-			<DataMusicProvider>
+			{/* <DataMusicProvider> */}
 				<UserProvider>
 
 					<Router />
 
 				</UserProvider>
-			</DataMusicProvider>
+			{/* </DataMusicProvider> */}
 		</>
 	);
 }
