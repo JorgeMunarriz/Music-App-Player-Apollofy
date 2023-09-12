@@ -1,33 +1,42 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/breakpoints'
 
 export const GlobalPrivatePageStyles = styled.div`
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);
-	gap: 0.25rem;
-	padding: 0.25rem;
-	background-color: black;
+	grid-template-columns: repeat(6, 1fr); // 6 columns
+	grid-template-rows: repeat(3, 2fr) repeat(2, 1fr); // 5 rows
+
 	height: 100vh;
 
-	@media (320px < width < 480px) {
-		display: grid;
+	gap: 0.25rem;
+	padding: 0.25rem;
+
+	background-color: black;
+
+	@media (${breakpoints.min} <= width <= ${breakpoints.mobileMax}px)  {
 		grid-template-columns: repeat(6, 1fr);
-		height: 100vh;
+
 	}
 
-	@media (480px < width < 768px) {
-		display: grid;
+	@media (${breakpoints.mobileMax} < width <= ${breakpoints.tabletMax}px){
+		grid-template-columns: repeat(6, 1fr);
 		grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);
-		height: 100vh;
+
 	}
 
-	@media (768px < width < 1024px) {
+	@media (${breakpoints.tabletMax} < width <= ${breakpoints.laptopsMax}px) {
 		grid-template-rows: repeat(5, 1fr);
 		grid-template-columns: repeat(4, 2fr) 1fr;
 	}
 
-	@media (width > 1024px) {
+	@media (${breakpoints.laptopsMax} < width <= ${breakpoints.desktopMax}px) {
 		grid-template-rows: repeat(5, 1fr);
 		grid-template-columns: repeat(4, 2fr) 1fr;
+	}
+
+	@media (width > ${breakpoints.desktopMax}) {
+		grid-template-rows: repeat(5, 1fr);
+		grid-template-columns: repeat(4, 2fr) 1fr;
+
 	}
 `;

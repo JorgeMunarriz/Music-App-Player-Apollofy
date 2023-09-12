@@ -1,15 +1,21 @@
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 import { toggleLiked } from "../../api/toggleLiked";
-import { UserContext } from "../../context";
+// import { UserContext } from "../../context";
 import { Playlist } from "../../types/data";
 import { CardForPlaylistPlayerHomeStyles } from "./cardForPlaylistPlayerHome.styles";
 import { useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useUserContext } from "../../context";
 
 const CardForPlaylistPlayerHome = ({id, thumbnail, name, description }: Playlist) => {
 //tengo que traer el puto id
-  const { userLogged, handleUserLogged } = useContext(UserContext);
+  // const { userLogged, handleUserLogged } = useContext(UserContext);
   
   console.log(`renderizando el componente: ${id}`)
+  const { user, getAccessTokenSilently } = useAuth0();
+  const {userFechture} = useUserContext()
+
 
   const isFollowed = () => {
     if (userLogged?.favPlaylists.includes(id)) {

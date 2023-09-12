@@ -1,38 +1,61 @@
-import { createContext, FC, useState, ReactNode} from "react";
-import { User } from "../types/data";
+import {createContext, FC, useState, ReactNode, useContext} from 'react';
+import {userPost} from '../api/user.req'
+import {User} from '@auth0/auth0-react'
 
-//TOFIX atención igual hay que borrar el fichero authContext.d.ts de la carpeta types
+// interface UserDates {
+// 	id: String;
+// 	userEmail: String;
+// 	userName: String;
+// 	userImage: String;
+// 	userCreatedAt: String;
+// 	userUpdatedAt: String;
+// 	playlistLikedId: String[];
+// 	playlistLiked: Playlist[];
+// 	tracksId: String[];
+// 	tracks: Track[];
+// 	postId: String[];
+// 	post: Post[];
+// 	albumId: String[];
+// 	album: Album[];
+// 	playlistCreatedId: String[];
+// 	playlistCreated: Playlist[];
+// }
 
-export const UserContext = createContext<{ userLogged: User | null; handleUserLogged: (userId: any) => void }>({ userLogged: null, handleUserLogged: () => {} });
-
-
-export const UserProvider: FC<{children: ReactNode}> = ({ children }) => {
-
-    const userHardCo = {
-        "id": 2,
-        "first_name": "Nicasio",
-        "last_name": "Losnenos",
-        "email": "music@assemblerschool.com",
-        "username": "Assembler",
-        "password": "mar23",
-        "profilePicture": "https://robohash.org/suntvoluptasnisi.png?size=50x50&set=set1",
-        "isLoggedin": true,
-        "favTracks": [3, 5, 7],
-        "favPlaylists": [2, 3, 4]
-      }
-    const [userLogged, setUserLogged] = useState <User | null> (userHardCo)
-
-    const handleUserLogged = (modifiedUser: User) => {
-
-        setUserLogged (modifiedUser);
-
-    }
-
-
-return (
-    <UserContext.Provider value={{userLogged, handleUserLogged}}>
-        {children}
-    </UserContext.Provider>
-)
+interface userData {
+    userEmail: string;
+	userName: string;
+	userImage: string;
 
 }
+
+interface UserContextType {
+    userData: userData | null
+    userFechture: (user: User | undefined, getAccessTokenSilently: () => Promise<string>) => void;
+}
+
+// const url = import.meta.env.VITE_API_URL;
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
+	const [userData, setUserData] = useState<userData | null>(null);
+
+	const userFechture = async (user: User |undefined, getAccessTokenSilently: () => Promise<string>) => {
+        if (user) {
+            const userResponse = await userPost(user, getAccessTokenSilently);
+            console.log(userResponse)
+            setUserData(userResponse.user)
+        }
+     }
+
+	return( <UserContext.Provider value={{userData, userFechture}}>
+        {children}
+        </UserContext.Provider>);
+};
+
+export const useUserContext = () => {
+    const context = useContext(UserContext);
+    if (!context) {
+      throw new Error('useUserContext debe ser usado dentro de un UserProvider');
+    }
+    return context;
+  };

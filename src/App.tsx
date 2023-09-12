@@ -8,13 +8,12 @@ function App() {
 	
 	return (
 		<>
-			<DataMusicProvider>
 				<UserProvider>
 
 					<Router />
 
 				</UserProvider>
-			</DataMusicProvider>
+
 		</>
 	);
 }

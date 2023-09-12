@@ -9,10 +9,11 @@ const { VITE_AUTH0_DOMAIN: domain, VITE_AUTH0_CLIENT_ID: clientId, VITE_AUTH0_AU
 const redirectUri = window.location.origin + "/private";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <Auth0Provider
-        domain={domain}
-        clientId={clientId}
-        authorizationParams={{ redirect_uri: redirectUri }}>
-        <App />
-    </Auth0Provider>
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{ redirect_uri: redirectUri,
+        audience: audience }}>
+    <App />
+  </Auth0Provider>
 )
