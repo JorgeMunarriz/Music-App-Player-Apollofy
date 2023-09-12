@@ -4,11 +4,11 @@ import { Footer, SideBar, ProfileMainContainer } from '../../components'
 
 const ProfilePage = () => {
   return (
-    <GlobalPrivatePageStyles>
-      <SideBar/>
-      <ProfileMainContainer/>
-      <Footer/>
-    </GlobalPrivatePageStyles>
+    // <GlobalPrivatePageStyles>
+
+    <ProfileMainContainer />
+
+    // </GlobalPrivatePageStyles>
   )
 }
 

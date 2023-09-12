@@ -20,11 +20,11 @@ const PlayerPage = () => {
   }, [currentId, data, tracks]);
 
   return (
-    <GlobalPrivatePageStyles>
-      <SideBar />
-      <PlayerMainContainer />
-      <Footer/>
-    </GlobalPrivatePageStyles>
+    // <GlobalPrivatePageStyles>
+
+    <PlayerMainContainer />
+
+    // </GlobalPrivatePageStyles>
   );
 };
 

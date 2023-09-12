@@ -1,10 +1,11 @@
-import {SidebarStyles} from './sidebar.styles';
-import {HomeSectionContainer} from './homeSection/HomeSectionContainer';
+import { SidebarStyles } from './sidebar.styles';
+import { HomeSectionContainer } from './homeSection/HomeSectionContainer';
 import logo from '../../assets/img/logo-homepage.png';
-import {PlaylistSectionContainer} from './playlistSection/PlaylistSectionContainer';
-import {FavoritesSectionContainer} from './favoritesSection/FavoritesSectionContainer';
+import { PlaylistSectionContainer } from './playlistSection/PlaylistSectionContainer';
+import { FavoritesSectionContainer } from './favoritesSection/FavoritesSectionContainer';
 
 export const SideBar = () => {
+	console.log('renderiza el SideBar')
 	return (
 		<SidebarStyles>
 			<div className="sidebar__div">

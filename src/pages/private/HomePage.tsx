@@ -1,17 +1,21 @@
 
+import { Outlet } from "react-router-dom"
 import { Footer, HomeMainContainer, SideBar } from "../../components"
 import { GlobalPrivatePageStyles } from "../../global"
 
 
 
 const HomePage = () => {
-  
+
   return (
-    <GlobalPrivatePageStyles>
-        <SideBar/>
-        <HomeMainContainer/>
-        <Footer/>
-    </GlobalPrivatePageStyles>
+
+    <HomeMainContainer />
+
+    // <GlobalPrivatePageStyles>
+    //   <SideBar />
+    //   <Outlet />
+    //   <Footer />
+    // </GlobalPrivatePageStyles>
   )
 }
 
