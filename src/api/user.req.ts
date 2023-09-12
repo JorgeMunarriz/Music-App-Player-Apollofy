@@ -1,6 +1,6 @@
 const {VITE_API_URL} = import.meta.env
 
-export const USER_URL = VITE_API_URL + '/user';
+export const USER_URL = VITE_API_URL + 'user';
 
 export const userPost = async (user: {}, getToken: () => Promise<string> ) => {
 
