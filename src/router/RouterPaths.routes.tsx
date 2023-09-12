@@ -9,7 +9,7 @@ import { PrivateRoute, PublicRoute } from '../components/index.ts';
 import { ProtectedRoutes } from '../utils/ProtectedRoutes.tsx';
 import { useAuth0 } from '@auth0/auth0-react'
 
-const LazyLayout = lazy(() => import('../components/layout/layout.tsx'));
+const LazyLayout = lazy(() => import('../components/layout/Layout.tsx'));
 
 const LazyHomePage = lazy(() => import('../pages/private/HomePage.tsx'));
 const LazyProfilePage = lazy(() => import('../pages/private/ProfilePage.tsx'));
