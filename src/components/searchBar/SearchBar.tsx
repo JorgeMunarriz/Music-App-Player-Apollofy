@@ -1,23 +1,23 @@
-import {Link, useNavigate, useSearchParams} from 'react-router-dom';
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight} from '..';
-import {BsSearch} from 'react-icons/bs';
-import {RxAvatar} from 'react-icons/rx';
-import {UserFormState} from '../../types/authContext';
-import {Button} from '..';
+import { SearchBarContainer, SearchBarIcon, SearchBarLeft, SearchBarRight } from '..';
+import { BsSearch } from 'react-icons/bs';
+import { RxAvatar } from 'react-icons/rx';
+import { UserFormState } from '../../types/authContext';
+import { Button } from '..';
 import { Boop } from '../../animations/boopAnimation';
+import { useAuth0 } from '@auth0/auth0-react';
+import { PROFILE } from '../../config/routes/paths';
 
 
-export const SearchBar = ({setSearchParams, searchParams, handleChangeParams, query}) => {
+export const SearchBar = ({ setSearchParams, searchParams, handleChangeParams, query }) => {
 	const data: UserFormState = JSON.parse(localStorage.getItem('form') as keyof object) || '';
-	const {name, isLogged} = data;
+	const { name } = data;
+	const { logout, user } = useAuth0()
 
 	const navigate = useNavigate();
 
-	const handleLogout = () => {
-		localStorage.removeItem('form');
-		navigate('/login');
-	};
 
 	const goToLogin = () => {
 		navigate('/login');
@@ -32,19 +32,19 @@ export const SearchBar = ({setSearchParams, searchParams, handleChangeParams, qu
 				<input type="search" name="search" placeholder="Search for Genre" value={query} onChange={handleChangeParams} />
 			</SearchBarLeft>
 			<SearchBarRight>
-				{isLogged ? (
+				{user ? (
 					<>
-						<Button handleClick={handleLogout}>Logout</Button>
-						<h4>{name}</h4>
+						<Button handleClick={() => logout()}>Logout</Button>
+						<h4>{user.given_name}</h4>
 						<Boop rotation={20} timing={200}>
-						<Link to="/profile">
-						<RxAvatar />
-						</Link>
+							<Link to={PROFILE}>
+								<RxAvatar />
+							</Link>
 						</Boop>
 					</>
 				) : (
 					<>
-						<Button  handleClick={goToLogin}>Login</Button>
+						<Button handleClick={goToLogin}>Login</Button>
 					</>
 				)}
 			</SearchBarRight>
