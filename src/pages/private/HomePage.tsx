@@ -8,10 +8,10 @@ import { useUserContext } from "../../context";
 
 const HomePage = () => {
   const { user, getAccessTokenSilently } = useAuth0();
-  const {userFechture} = useUserContext()
+  const {userFetch} = useUserContext()
 
   useEffect(() => {
-    userFechture(user, getAccessTokenSilently);
+    userFetch(user, getAccessTokenSilently);
   }, [user]);
   
   return (

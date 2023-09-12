@@ -30,7 +30,7 @@ interface userData {
 
 interface UserContextType {
     userData: UserData | null
-    userFechture: (user: User | undefined, getAccessTokenSilently: () => Promise<string>)  => void;
+    userFetch: (user: User | undefined, getAccessTokenSilently: () => Promise<string>)  => void;
 }
 
 // const url = import.meta.env.VITE_API_URL;
@@ -39,14 +39,14 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
 	const [userData, setUserData] = useState<userData | null>(null);
 
-	const userFechture = async (user: User |undefined, getAccessTokenSilently: () => Promise<string>) => {
+	const userFetch = async (user: User |undefined, getAccessTokenSilently: () => Promise<string>) => {
         if (user) {
             const userResponse = await userPost(user, getAccessTokenSilently);
             setUserData(userResponse.user)
         }
      }
 
-	return( <UserContext.Provider value={{userData, userFechture}}>
+	return( <UserContext.Provider value={{userData, userFetch}}>
         {children}
         </UserContext.Provider>);
 };
