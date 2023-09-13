@@ -1,31 +1,24 @@
 
 import { useEffect } from "react";
-import {  HomeMainContainer } from "../../components"
+import { HomeMainContainer } from "../../components"
 import { useUserContext } from "../../context";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 const HomePage = () => {
-  const {userfetchure} = useUserContext()
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { userFetch } = useUserContext()
+  const { user, getAccessTokenSilently} = useAuth0();
 
   console.log(user)
 
   useEffect(() => {
-    userfetchure(user, getAccessTokenSilently);
-    console.log(user)
+    userFetch(user, getAccessTokenSilently);
   }, [user]);
 
   return (
 
     <HomeMainContainer />
-
-    // <GlobalPrivatePageStyles>
-    //   <SideBar />
-    //   <Outlet />
-    //   <Footer />
-    // </GlobalPrivatePageStyles>
   )
 }
 

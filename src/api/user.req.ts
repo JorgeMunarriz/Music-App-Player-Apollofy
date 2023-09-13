@@ -1,13 +1,10 @@
-const { VITE_API_URL } = import.meta.env
-
-const USER_URL = VITE_API_URL + 'user';
-
+import { urlUser } from "../global";
 
 export const userPost = async (user: {}, getToken: () => Promise<string>) => {
 
   try {
     const token = await getToken();
-    const response = await fetch(`${USER_URL}`, {
+    const response = await fetch(urlUser, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +29,7 @@ export const putUser = async (user: {}, userId: string, getToken: () => Promise<
 
   try {
     const token = await getToken();
-    const response = await fetch(`${USER_URL}/${userId}`, {
+    const response = await fetch(`${urlUser}/${userId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

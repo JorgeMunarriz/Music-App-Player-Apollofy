@@ -13,7 +13,7 @@ export const ProfileMainContainer = () => {
 	return (
 		<ProfileMainContainerStyles>
 			<ProfileIconsContainer>
-			<Boop rotation={20} timing={200}><IoChevronBackOutline /></Boop><Boop rotation={20} timing={200}> <IoEllipsisVerticalSharp /></Boop> 
+			<Boop rotation={20} timing={200}><IoChevronBackOutline /></Boop><Boop rotation={20} timing={200}> <IoEllipsisVerticalSharp /></Boop>
 			</ProfileIconsContainer>
 			<ProfileIconEditContainer>
 			<h2 className="profile__h2">Profile</h2>
