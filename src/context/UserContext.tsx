@@ -1,5 +1,5 @@
 import {createContext, FC, useState, ReactNode, useContext} from 'react';
-import {userPost, putUser} from '../api/user.req'
+import {userPost, UserPut} from '../api/user.req'
 import {User} from '@auth0/auth0-react'
 
 // interface UserDates {
@@ -54,7 +54,7 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
 
      const updatedUserData = async ( userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => {
         try {
-            const userResponse = await putUser(userUpdate, userId, getAccessTokenSilently);
+            const userResponse = await UserPut(userUpdate, userId, getAccessTokenSilently);
         console.log(userResponse)
             setUserUpdate(userResponse);
             setUserData(userResponse.user)

@@ -23,7 +23,7 @@ export const userPost = async (user: {}, getToken: () => Promise<string>) => {
   }
 };
 
-export const putUser = async (userUpdate: {}, userId: string, getToken: () => Promise<string> ) => {
+export const UserPut = async (userUpdate: {}, userId: string, getToken: () => Promise<string> ) => {
   try {
     const token = await getToken();
     const response = await fetch(`${urlUser}/${userId}`, {
