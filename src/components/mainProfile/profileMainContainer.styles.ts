@@ -18,11 +18,7 @@ export const ProfileMainContainerStyles = styled.main`
   & img:hover {
     transform: scale(0.9);
   }
-  .profile__h2 {
-    font-size: clamp(1.5rem, 3rem, 5rem);
-    padding: 1.5rem 0;
-    color: #e85973;
-  }
+ 
   height: 100%;
 
   .profile__img-container {
@@ -99,3 +95,24 @@ export const ProfileIconsContainer = styled.div`
     cursor: pointer;
   }
 `;
+export const ProfileIconEditContainer = styled.div`
+  display: flex;
+  justify-content: center;
+   align-items: center;
+   gap: 1rem;
+  width: 100%;
+  &  .profile__h2 {
+    font-size: clamp(1.5rem, 3rem, 5rem);
+    color: #e85973;
+  }
+
+  .button-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  & svg {
+    font-size: clamp(0.8rem, 2.3rem, 3rem);
+    color: rgba(255, 255, 255, 1);
+  }
+  `;
