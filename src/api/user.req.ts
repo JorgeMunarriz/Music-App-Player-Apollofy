@@ -1,13 +1,16 @@
-const { VITE_API_URL } = import.meta.env
+// const { VITE_API_URL } = import.meta.env
 
-const USER_URL = VITE_API_URL + 'user';
+import { urlUser } from "../global";
+
+// const USER_URL = VITE_API_URL + 'user';
+// console.log(USER_URL);
 
 
 export const userPost = async (user: {}, getToken: () => Promise<string>) => {
-  const URL_USER = USER_URL
+  // const URL_USER = USER_URL
   try {
     const token = await getToken();
-    const response = await fetch(URL_USER, {
+    const response = await fetch(urlUser, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

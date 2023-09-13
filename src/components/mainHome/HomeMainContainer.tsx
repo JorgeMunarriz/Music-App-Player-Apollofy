@@ -15,6 +15,7 @@ export const HomeMainContainer = () => {
 				<SearchBar searchParams={searchParams} setSearchParams={setSearchParams} query={query} handleChangeParams={handleChangeParams} />
 				<PlaylistContainerHome />
 				<TracksContainer  query={query} />
+
 			</HomeMainContainerStyles>
 
 	);
