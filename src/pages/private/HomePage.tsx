@@ -8,13 +8,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const HomePage = () => {
-  const {userFechture} = useUserContext()
+  const { userFechture } = useUserContext()
   const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
+
+  console.log(user)
 
   useEffect(() => {
     userFechture(user, getAccessTokenSilently);
   }, [user]);
-  
+
   return (
 
     <HomeMainContainer />
