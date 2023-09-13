@@ -1,5 +1,5 @@
 import {createContext, FC, useState, ReactNode, useContext} from 'react';
-import {userPost, UserPut} from '../api/user.req'
+import {userPost, UserPut} from '../api/user.fetch'
 import {User} from '@auth0/auth0-react'
 
 // interface UserDates {

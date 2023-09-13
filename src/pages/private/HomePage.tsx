@@ -14,7 +14,6 @@ const HomePage = () => {
    if(!userData){
      userFetch(user, getAccessTokenSilently);
    }
-    
   }, [user]);
 
   return (
