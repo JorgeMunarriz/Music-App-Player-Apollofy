@@ -10,11 +10,13 @@ const HomePage = () => {
   const {userfetchure} = useUserContext()
   const { user, getAccessTokenSilently } = useAuth0();
 
+  console.log(user)
+
   useEffect(() => {
     userfetchure(user, getAccessTokenSilently);
     console.log(user)
   }, [user]);
-  
+
   return (
 
     <HomeMainContainer />

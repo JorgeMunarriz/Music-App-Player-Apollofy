@@ -35,7 +35,7 @@ export const SearchBar = ({ setSearchParams, searchParams, handleChangeParams, q
 				{user ? (
 					<>
 						<Button handleClick={() => logout()}>Logout</Button>
-						<h4>{user.given_name}</h4>
+						<h4>{user.given_name ? user.given_name : user.name?.slice(0, 11) + '...'}</h4>
 						<Boop rotation={20} timing={200}>
 							<Link to={PROFILE}>
 								<RxAvatar />

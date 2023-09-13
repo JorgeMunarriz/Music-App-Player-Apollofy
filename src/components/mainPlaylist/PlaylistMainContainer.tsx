@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      return resolve(import("../cardForPlaylistPlayer/CardForPlaylistPlayer"));
+      return resolve(import("../Cards/CardForPlaylistPlayer"));
     }, 1500);
   });
 });
