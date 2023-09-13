@@ -4,20 +4,30 @@ import { Boop } from '../../animations/boopAnimation';
 import { useUserContext } from '../../context';
 import { useAuth0 } from '@auth0/auth0-react';
 import { TfiPencil } from "react-icons/tfi";
+import { useModal } from '../../hooks/useModal';
+import Modal from '../modal/Modal';
+import { UserForms } from '../userForm/UserForm';
+
 
 
 
 export const ProfileMainContainer = () => {
-	const { user } = useAuth0();
+	const { user} = useAuth0();
 	const {userData} =  useUserContext();
+	const [isOpenModal1, openModal1, closeModal1] = useModal(false)
+
 	return (
+		<>
+		 <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <UserForms />
+      </Modal>
 		<ProfileMainContainerStyles>
 			<ProfileIconsContainer>
 			<Boop rotation={20} timing={200}><IoChevronBackOutline /></Boop><Boop rotation={20} timing={200}> <IoEllipsisVerticalSharp /></Boop>
 			</ProfileIconsContainer>
 			<ProfileIconEditContainer>
 			<h2 className="profile__h2">Profile</h2>
-			<Boop rotation={20} timing={200}><button className='button-icon' type='button'><TfiPencil /></button></Boop>
+			<Boop rotation={20} timing={200}><button onClick={openModal1} className='button-icon' type='button'><TfiPencil /></button></Boop>
 			</ProfileIconEditContainer>
 			<div className="profile__img-container">
 				<img src={userData?.userImage ? userData?.userImage : user?.picture } alt="profile imagen" />
@@ -33,6 +43,7 @@ export const ProfileMainContainer = () => {
 				</div>
 			</div>
 		</ProfileMainContainerStyles>
+		</>
 	);
 };
 

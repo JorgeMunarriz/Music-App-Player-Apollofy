@@ -1,5 +1,5 @@
 import {createContext, FC, useState, ReactNode, useContext} from 'react';
-import {userPost} from '../api/user.req'
+import {userPost, putUser} from '../api/user.req'
 import {User} from '@auth0/auth0-react'
 
 // interface UserDates {
@@ -22,22 +22,26 @@ import {User} from '@auth0/auth0-react'
 // }
 
 interface userData {
+    id?: string | null
     userEmail: string;
 	userName: string;
-	userImage: string;
+	userImage?: string;
 
 }
 
 interface UserContextType {
     userData: userData | null
+    userUpdateData: Response | null
     userFetch: (user: User | undefined, getAccessTokenSilently: () => Promise<string>) => void;
+    updatedUserData: (userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => Promise<Response>
 }
 
-// const url = import.meta.env.VITE_API_URL;
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
 	const [userData, setUserData] = useState<userData | null>(null);
+	const [userUpdateData, setUserUpdate] = useState<Response | null>(null);
+
 
 	const userFetch = async (user: User |undefined, getAccessTokenSilently: () => Promise<string>) => {
         if (user) {
@@ -47,7 +51,23 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
         }
      }
 
-	return( <UserContext.Provider value={{userData, userFetch}}>
+
+     const updatedUserData = async ( userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => {
+        try {
+            const userResponse = await putUser(userUpdate, userId, getAccessTokenSilently);
+        console.log(userResponse)
+            setUserUpdate(userResponse);
+            setUserData(userResponse.user)
+
+        return(userResponse)
+        } catch (error) {
+            console.error('Error user update:', error);
+            throw error;
+          }
+     }
+
+
+	return( <UserContext.Provider value={{userData,userUpdateData, userFetch, updatedUserData}}>
         {children}
         </UserContext.Provider>);
 };

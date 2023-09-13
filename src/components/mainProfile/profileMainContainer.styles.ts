@@ -100,6 +100,7 @@ export const ProfileIconEditContainer = styled.div`
   justify-content: center;
    align-items: center;
    gap: 1rem;
+   padding-left: 2.5rem;
   width: 100%;
   &  .profile__h2 {
     font-size: clamp(1.5rem, 3rem, 5rem);
