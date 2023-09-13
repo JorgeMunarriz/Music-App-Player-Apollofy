@@ -60,6 +60,7 @@ export const UserForms = () => {
                 message: "Name must be at least 3 characters",
               },
             })}
+            autoComplete="off"
           />
             {errors.userName && <p className="error_input">{errors.userName.message}</p>}
             <label className="color">Email :</label>
@@ -71,6 +72,7 @@ export const UserForms = () => {
                 message: "Email must be a valid email address",
               },
             })}
+            autoComplete="off"
           />
           {errors.userEmail && <p className="error_input">{errors.userEmail.message}</p>}
           <button type="submit" className="button_userForm">EDIT</button>

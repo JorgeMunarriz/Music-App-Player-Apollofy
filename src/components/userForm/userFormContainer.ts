@@ -50,10 +50,13 @@ display: flex;
   border: none;
   font-weight: bold;
   font-size: 15px;
-  color:rgb(224, 227, 229);
+   color: rgb(14, 16, 19);
   box-shadow: 2px 2px 12px inset black;
   background: linear-gradient(to right ,rgb(248, 97, 32),rgb(39, 40, 46));
 }
+& .input::placeholder {
+    color: rgb(14, 16, 19);
+  }
 & .color {
   color:#f9637e;
 }

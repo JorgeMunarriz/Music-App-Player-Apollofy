@@ -55,7 +55,7 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
      const updatedUserData = async ( userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => {
         try {
             const userResponse = await UserPut(userUpdate, userId, getAccessTokenSilently);
-        console.log(userResponse)
+            console.log(userResponse)
             setUserUpdate(userResponse);
             setUserData(userResponse.user)
 
