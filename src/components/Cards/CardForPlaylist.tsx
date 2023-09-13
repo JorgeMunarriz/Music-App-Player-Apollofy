@@ -1,6 +1,36 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const CardForPlaylistPlayerHomeStyles = styled.div`
+interface Playlist {
+  id: number
+  name: string
+  isFollowed?: boolean
+  thumbnail: string
+  description?: string
+  publicAccessible?: boolean
+  primaryColor?: string
+  tracksList?: number[]
+  liked?: boolean
+}
+
+export const CardForPlaylist = ({ id, thumbnail, name }: Playlist) => {
+  return (
+    <CardForPlaylistPlayerStyles key={id}>
+      <Link to={`/player/${id}`} className="card-container">
+        <img src={thumbnail} />
+        <div className="card-body">
+          <h3 className="title-h3">{name}</h3>
+        </div>
+      </Link>
+    </CardForPlaylistPlayerStyles>
+  );
+};
+
+const CardForPlaylistPlayerStyles = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .cardForPlaylistPlayer {
     display: grid;
     grid-template-columns: 0.5fr 1.5fr 0.3fr;
@@ -13,7 +43,6 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
     justify-content: space-around;
     transition: all 0.3s;
     width: 80%;
-    height: 76px;
     color: whitesmoke;
     font-weight: bold;
     position: relative;
@@ -22,17 +51,17 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
       background-color: rgba(50, 50, 50, 0.4);
       cursor: pointer;
       .cardForPlaylistPlayer__description {
-        display: flex;        
+        display: flex;
         visibility: visible;
       }
     }
     &__img {
       position: relative;
-      width: 76px;
-      height: 76px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       overflow: hidden;
-      &-img{
+      &-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -43,38 +72,19 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
       font-size: 2vw;
     }
 
-    &__description {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      z-index: 100;
-      width: 120px;
-      height: 100px;
-      color: rgba(250, 250, 250, 0.75);
-      top: -50%; 
-      left: 100%; 
-      transform: translate(-50%, 10px);
-      visibility: hidden;
-      background-color: rgba(50, 50, 50, 1);
-      border-radius: 1rem;
-      padding: 1rem;
-      transition: all 1s ease-in-out;
-    }
-
     &__follow-btn {
-      border: 1px solid transparent;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 30px;
       height: 30px;
-      cursor:pointer;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
 
       & svg {
-        width:70%;
-        height:70%;
+        width: 70%;
+        height: 70%;
       }
     }
 
@@ -83,3 +93,4 @@ export const CardForPlaylistPlayerHomeStyles = styled.div`
     }
   }
 `;
+

@@ -1,6 +1,37 @@
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import { PLAYER } from '../../config/routes/paths';
+import styled from 'styled-components';
 
-export const CardForTrackStyles = styled.div`
+interface Track {
+	id: number
+	name: string
+	artist: string
+	url: string
+	thumbnail: string
+	genre: string
+	liked: boolean
+	reproductions: number
+}
+
+
+const CardForTrack = ({ id, thumbnail, name, artist, reproductions }: Track) => {
+	return (
+		<CardForTrackStyles key={id}>
+			<Link to={`${PLAYER}/${id}`} className="cardForTrack">
+				<div className="cardForTrack__header">
+					<img alt={name} className="cardForTrack__header_img" src={thumbnail} />
+				</div>
+				<div className="cardForTrack__body">
+					<h3 className="cardForTrack__body_title-h3">{name}</h3>
+					<h4 className="cardForTrack__body_title-h4">{artist}</h4>
+					<h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
+				</div>
+			</Link>
+		</CardForTrackStyles>
+	);
+};
+
+const CardForTrackStyles = styled.div`
   display: flex;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
@@ -90,3 +121,6 @@ export const CardForTrackStyles = styled.div`
 
   
 `;
+
+
+export default CardForTrack
