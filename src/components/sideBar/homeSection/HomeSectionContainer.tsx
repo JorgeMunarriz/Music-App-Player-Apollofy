@@ -11,10 +11,10 @@ import { breakpoints } from "../../../styles/breakpoints";
 export const HomeSectionContainer = () => {
   return (
     <HomeSectionContainerStyles>
-      <Link to={HOME} ><AiOutlineHome />Home</Link>
-      <Link to={PLAYER} ><BsMusicNoteList />Player</Link>
-      <Link to={PROFILE} > <ImProfile />Profile</Link>
-      <Link to={PLAYLISTS} > <VscLibrary />Playlist</Link>
+      <Link to={HOME} ><AiOutlineHome /><span className="text">Home</span></Link>
+      <Link to={PLAYER} ><BsMusicNoteList /><span className="text">Player</span></Link>
+      <Link to={PROFILE} > <ImProfile /><span className="text">Profile</span></Link>
+      <Link to={PLAYLISTS} > <VscLibrary /><span className="text">Playlist</span></Link>
     </HomeSectionContainerStyles>
   );
 };
@@ -50,9 +50,11 @@ export const HomeSectionContainerStyles = styled.div`
   @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
     display: flex;
     flex-direction: row;
+    align-items: center;
     & a {
       display: flex;
-      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       & a {
         display: flex;
         align-items: center;
@@ -65,6 +67,9 @@ export const HomeSectionContainerStyles = styled.div`
 
       }
     }
+    .text {
+      display: none;
+    }
   }
 
   @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
@@ -75,6 +80,9 @@ export const HomeSectionContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .text {
+      display: none;
     }
   }
 
