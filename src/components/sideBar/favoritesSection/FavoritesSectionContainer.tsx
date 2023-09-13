@@ -27,16 +27,4 @@ export const FavoritesSectionContainerStyles = styled.div`
 		padding: 10px;
 		color: rgba(255, 255, 255, 1);
 	}
-
-// @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) 
-		
-// @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px)
-
-// @media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px)
-
-// @media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px)
-
-// @media (width > ${breakpoints.desktopMax}px)
-
-
 `;
