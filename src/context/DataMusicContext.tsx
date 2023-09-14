@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, ReactNode, useMemo, useCallback } from 'react';
 import { Playlist, Album, Genre, Track, Artist } from '../types/data';
-import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
+import { urlAlbum, urlArtist, urlGenre, urlPlaylist, urlTrack } from '../global/urls/UrlApi';
 
 
 export interface MusicContextProps {
@@ -28,9 +28,9 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
   });
   const [currentTrack, setCurrentTrack] = useState<Track>();
 
-  const handleCurrentTrack = useCallback((incomingCurrentTrack: Track):void => {
-    setCurrentTrack (incomingCurrentTrack);
-  },[])
+  const handleCurrentTrack = useCallback((incomingCurrentTrack: Track): void => {
+    setCurrentTrack(incomingCurrentTrack);
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,13 +38,13 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
         const playlistResponse = await fetch(urlPlaylist);
         const playlists: Playlist[] = await playlistResponse.json() as Playlist[];
 
-        const albumResponse = await fetch(urlAlbums);
+        const albumResponse = await fetch(urlAlbum);
         const albums: Album[] = await albumResponse.json() as Album[];
 
-        const genreResponse = await fetch(urlGenres);
+        const genreResponse = await fetch(urlGenre);
         const genres: Genre[] = await genreResponse.json() as Genre[];
 
-        const trackResponse = await fetch(urlTracks);
+        const trackResponse = await fetch(urlTrack);
         const tracks: Track[] = await trackResponse.json() as Track[];
 
         const artistResponse = await fetch(urlArtist);
@@ -57,7 +57,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           tracks,
           artists,
           currentTrack: null,
-          handleCurrentTrack: ():undefined => undefined
+          handleCurrentTrack: (): undefined => undefined
         });
       } catch (error) {
         console.log(error);
@@ -67,16 +67,16 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
 
   }, []);
 
-  const updateData = useCallback(function(data:MusicContextProps):void{
+  const updateData = useCallback(function (data: MusicContextProps): void {
     setData(data)
   }, [])
-  
-  const value:MusicContextProps = useMemo(() => ({
+
+  const value: MusicContextProps = useMemo(() => ({
     data,
     updateData,
     handleCurrentTrack,
     currentTrack
-  }), [data,updateData,handleCurrentTrack, currentTrack])
+  }), [data, updateData, handleCurrentTrack, currentTrack])
 
 
   return (
