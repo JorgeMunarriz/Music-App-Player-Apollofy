@@ -51,11 +51,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
 
   return (
     <UserMusicContext.Provider
-      value={{
-        playlistsCreated,
-        playlistsLiked,
-        albums,
-        tracks,
+      value={{playlistsCreated,playlistsLiked,albums,tracks,
         getPlaylistsCreated,
         getPlaylistsLiked,
         getAlbums,
