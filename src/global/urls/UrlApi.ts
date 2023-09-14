@@ -9,4 +9,4 @@ export const urlGenre = `${VITE_API}genre`;
 export const urlPost = `${VITE_API}post`;
 
 
-console.log(urlAlbum)
+// console.log(urlAlbum)

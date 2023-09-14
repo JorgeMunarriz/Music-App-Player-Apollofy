@@ -1,30 +1,34 @@
 import { Outlet } from "react-router-dom";
 import { SideBar } from "..";
 import { Footer } from "..";
-import { GlobalPrivatePageStyles } from "../../global"
-
+import { GlobalPrivatePageStyles, urlAlbum, urlArtist, urlTrack } from "../../global";
+import { getDataApi } from "../../api/request.service";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const Layout = () => {
+  const { getAccessTokenSilently } = useAuth0();
 
-    return (
-        <>
-            <GlobalPrivatePageStyles>
+  console.log( urlTrack)
+  const fetchData = async () => {
+    const data = await getDataApi(urlTrack);
+    console.log(data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-                <SideBar />
+  return (
+    <>
+      <GlobalPrivatePageStyles>
+        <SideBar />
 
-                <Outlet />
+        <Outlet />
 
-                <Footer />
+        <Footer />
+      </GlobalPrivatePageStyles>
+    </>
+  );
+};
 
-            </GlobalPrivatePageStyles>
-        </>
-    )
-
-
-
-}
-
-
-
-
-export default Layout
+export default Layout;

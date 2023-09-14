@@ -27,4 +27,5 @@ export const FavoritesSectionContainerStyles = styled.div`
 		padding: 10px;
 		color: rgba(255, 255, 255, 1);
 	}
+
 `;

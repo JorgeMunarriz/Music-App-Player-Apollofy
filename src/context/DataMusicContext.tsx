@@ -5,11 +5,11 @@ import { urlAlbum, urlArtist, urlGenre, urlPlaylist, urlTrack } from '../global/
 
 export interface MusicContextProps {
   data: any;
-  playlists: Playlist[] | null;
-  albums: Album[] | null;
-  genres: Genre[] | null;
-  tracks: Track[] | null;
-  artists: Artist[] | null;
+  playlist: Playlist[] | null;
+  album: Album[] | null;
+  genre: Genre[] | null;
+  track: Track[] | null;
+  artist: Artist[] | null;
   currentTrack: Track | null;
   handleCurrentTrack: (incomingCurrentTrack: Track) => void;
 }
@@ -18,11 +18,11 @@ export const DataMusicContext = createContext<MusicContextProps>({} as MusicCont
 
 export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [data, setData] = useState<MusicContextProps | null>({
-    playlists: null,
-    albums: null,
-    genres: null,
-    tracks: null,
-    artists: null,
+    playlist: null,
+    album: null,
+    genre: null,
+    track: null,
+    artist: null,
     currentTrack: null,
     handleCurrentTrack: () => null
   });
@@ -51,11 +51,11 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
         const artists: Artist[] = await artistResponse.json() as Artist[];
 
         setData({
-          playlists,
-          albums,
-          genres,
-          tracks,
-          artists,
+          playlist,
+          album,
+          genre,
+          track,
+          artist,
           currentTrack: null,
           handleCurrentTrack: (): undefined => undefined
         });

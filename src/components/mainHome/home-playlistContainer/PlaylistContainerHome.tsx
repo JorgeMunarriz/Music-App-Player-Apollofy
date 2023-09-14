@@ -1,17 +1,15 @@
-import { useContext, lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
-import { DataMusicContext } from '../../../context';
-
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
 import SwiperCore from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { CardForPlaylistPlayerHome } from '../../Cards/CardForPlaylistPlayerHome';
 import { PlaylistContainerStyles } from './PlaylistContainer.Styles';
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
-import PlaylistLoader from '../../../assets/skeleton/skeleton';
+
+import { useTrack } from '../../../context/TrackContext';
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -23,24 +21,37 @@ const LazyCarPlaylistHome: LazyExoticComponent<ComponentType<any>> = lazy(() => 
 	});
 });
 
-export const PlaylistContainerHome = () => {
-	const data = useContext(DataMusicContext);
-	const playlists = data?.data?.playlists;
+interface CardProps {
+	id: string;
+	trackName: string;
+	trackUrl: string;
+	trackImage: string
+}
 
-	console.log('renderiza el padre')
+export const PlaylistContainerHome = () => {
+	const { tracks } = useTrack();
+	console.log(tracks)
+	const { allTrack } = tracks;
+	console.log(allTrack)
+
 
 	return (
 		<PlaylistContainerStyles>
 			<h2>Playlists</h2>
-			{playlists && (
-				<Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
-					{playlists.map(({ id, thumbnail, name, description }) => (
+
+			{allTrack && (
+				< Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
+					{allTrack && allTrack.map(({ id, trackName,
+						trackUrl,
+						trackImage,
+					}: CardProps) => (
 						<SwiperSlide key={id}>
-							<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPlaylistHome thumbnail={thumbnail} name={name} id={id} description={description} /></Suspense>
+							<Suspense fallback={<HomeSkeleton />}><LazyCarPlaylistHome trackImage={trackImage} trackUrl={trackUrl} id={id} trackName={trackName} /></Suspense>
 						</SwiperSlide>
 					))}
 				</Swiper>
-			)}
-		</PlaylistContainerStyles>
+			)
+			}
+		</PlaylistContainerStyles >
 	);
 };
