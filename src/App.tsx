@@ -10,13 +10,11 @@ function App() {
 	return (
 		<>
 			<UserProvider>
-				<TrackProvider>
-					<GenresProvider>
-
+				<GenresProvider>
+					<TrackProvider>
 						<Router />
-
-					</GenresProvider>
-				</TrackProvider>
+					</TrackProvider>
+				</GenresProvider>
 			</UserProvider>
 
 		</>

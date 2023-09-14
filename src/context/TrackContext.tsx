@@ -6,9 +6,6 @@ import { getAllTracks } from '../api/track.service';
 interface Genre {
     genreName: string
 }
-type ChildrenProps = {
-    children: React.ReactNode;
-}
 interface TrackItemProps {
     id: string;
     trackName: string;
@@ -19,7 +16,6 @@ interface TrackItemProps {
     counter?: number;
     allTrack: []
 }
-
 interface TrackProps {
     tracks: TrackItemProps[] | undefined;
     setTracks: React.Dispatch<React.SetStateAction<TrackItemProps[] | undefined>>
@@ -29,7 +25,7 @@ interface TrackProps {
 
 const TrackContext = createContext<TrackProps>({} as TrackProps);
 
-export const TrackProvider = ({ children }: ChildrenProps) => {
+export const TrackProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [tracks, setTracks] = useState<TrackItemProps[] | undefined>([]);
 
 

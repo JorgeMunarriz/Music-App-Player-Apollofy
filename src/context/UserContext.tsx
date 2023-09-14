@@ -1,5 +1,5 @@
 import {createContext, FC, useState, ReactNode, useContext} from 'react';
-import {userPost, UserPut} from '../api/user.fetch'
+import {userPost, UserPatch, userDelete} from '../api/user.fetch'
 import {User} from '@auth0/auth0-react'
 
 // interface UserDates {
@@ -34,6 +34,7 @@ interface UserContextType {
     userUpdateData: Response | null
     userFetch: (user: User | undefined, getAccessTokenSilently: () => Promise<string>) => void;
     updatedUserData: (userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => Promise<Response>
+    deleteUser: (userId:string,  getAccessTokenSilently: () => Promise<string>) => Promise<Response>
 }
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -54,7 +55,7 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
 
      const updatedUserData = async ( userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => {
         try {
-            const userResponse = await UserPut(userUpdate, userId, getAccessTokenSilently);
+            const userResponse = await UserPatch(userUpdate, userId, getAccessTokenSilently);
             console.log(userResponse)
             setUserUpdate(userResponse);
             setUserData(userResponse.user)
@@ -66,8 +67,19 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
           }
      }
 
+     const deleteUser = async(userId:string, getAccessTokenSilently: () => Promise<string>): Promise<Response> => {
+        try {
+            const responseDelete = await userDelete(userId, getAccessTokenSilently);
+                return  responseDelete;
 
-	return( <UserContext.Provider value={{userData,userUpdateData, userFetch, updatedUserData}}>
+        } catch (error) {
+            console.error('Error user Delete:', error);
+            throw error;
+          }
+     }
+
+
+	return( <UserContext.Provider value={{userData,userUpdateData, userFetch, updatedUserData,deleteUser}}>
         {children}
         </UserContext.Provider>);
 };

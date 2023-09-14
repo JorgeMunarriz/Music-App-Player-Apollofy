@@ -15,8 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             redirect_uri: redirectUri,
             audience: audience
         }}>
-
         <App />
-
     </Auth0Provider>
 )
