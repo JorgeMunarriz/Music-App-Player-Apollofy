@@ -72,3 +72,103 @@ export const userDelete = async (userId: string, getToken: () => Promise<string>
     throw error;
   }
 };
+
+export const userPlaylistsCreatedGet = async (userEmail: string, getToken: () => Promise<string>) => {
+  try {
+    const token = getToken()
+    const response = await fetch(`${urlUser}/playlistCreated/${userEmail}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error getting user playlists:', error);
+    throw error;
+  }
+}
+
+export const userPlaylistsLikedGet = async (userEmail: string, getToken: () => Promise<string>) => {
+  try {
+    const token = getToken()
+    const response = await fetch(`${urlUser}/playlistLiked/${userEmail}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error getting user playlists:', error);
+    throw error;
+  }
+}
+
+export const userAlbumsGet = async (userEmail: string, getToken: () => Promise<string>) => {
+  try {
+    const token = getToken()
+    const response = await fetch(`${urlUser}/album/${userEmail}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error getting user albums:', error);
+    throw error;
+  }
+}
+
+export const userTracksGet = async (userEmail: string, getToken: () => Promise<string>) => {
+  try {
+    const token = getToken()
+    const response = await fetch(`${urlUser}/track/${userEmail}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error getting user tracks:', error);
+    throw error;
+  }
+}
