@@ -3,8 +3,11 @@ import { useUserContext } from '../../context/UserContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState,FC } from 'react';
 import { AlertMessageSuccess } from '../confirmationMessage/AlertMessageSuccess';
-import { UserFormContainer } from './userFormContainer';
+import { UserFormContainer } from './userFormEditContainer.styled';
 import { LoaderForm } from '..';
+import Modal from '../modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import { UserDelete } from './UserDelete';
 
 
 interface userUpdate {
@@ -21,6 +24,7 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
     const { getAccessTokenSilently } = useAuth0();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isOpenModal, openModal, closeModal] = useModal(false)
     const form = useForm<userUpdate>({
         defaultValues: {
             userName: userData?.userName,
@@ -53,6 +57,9 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
                 {isSuccess && <AlertMessageSuccess>
                  User data updated!
                 </AlertMessageSuccess>}
+                <Modal isOpen={isOpenModal} closeModal={closeModal}>
+                  <UserDelete onClose={closeModal}/>
+                </Modal>
             <div className="flex">
             <div className="login color">EDIT USER</div>
             <label className="color">Username :</label>
@@ -80,6 +87,7 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
           />
           {errors.userEmail && <p className="error_input">{errors.userEmail.message}</p>}
           <button type="submit" className="button_userForm">EDIT</button>
+          <button onClick={openModal} type="button" className="button_delete">Delete Account</button>
 
             </div>
         </UserFormContainer>

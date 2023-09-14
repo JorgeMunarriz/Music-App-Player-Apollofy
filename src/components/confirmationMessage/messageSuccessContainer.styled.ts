@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const MessageSuccessContainer = styled.div`
  position: fixed;
-  top: 4rem;
-  left: 52rem;
+  top: 10%;
+  left: 36%;
   font-family: system-ui,'Segoe UI',  'Open Sans', 'Helvetica Neue', sans-serif;
   width: 320px;
   padding: 12px;
