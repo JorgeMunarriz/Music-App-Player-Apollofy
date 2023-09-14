@@ -1,5 +1,6 @@
 import { FC, createContext, useContext, useEffect, useState } from "react";
 import { getAllGenres } from "../api/genres.fetch";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type ChildrenProps = {
     children: React.ReactNode;
@@ -16,15 +17,17 @@ const GenresContext = createContext<{ allGenres: GenresProps[], setAllGenres: (n
 export const GenresProvider: FC<ChildrenProps> = ({ children }) => {
 
     const [allGenres, setAllGenres] = useState<GenresProps[]>([])
+    const { isAuthenticated } = useAuth0();
 
     useEffect(() => {
-        async function getAllGenresLauncher() {
-            const newAllGenres = await getAllGenres();
-            setAllGenres(newAllGenres);
-            console.log(allGenres)
+        if (isAuthenticated) {
+            async function getAllGenresLauncher() {
+                const newAllGenres = await getAllGenres();
+                setAllGenres(newAllGenres);
+            }
+            getAllGenresLauncher();
         }
-        getAllGenresLauncher();
-    }, []);
+    }, [isAuthenticated]);
 
 
     return (

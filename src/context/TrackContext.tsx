@@ -6,7 +6,9 @@ import { getAllTracks } from '../api/track.service';
 interface Genre {
     genreName: string
 }
-
+type ChildrenProps = {
+    children: React.ReactNode;
+}
 interface TrackItemProps {
     id: string;
     trackName: string;
@@ -27,7 +29,7 @@ interface TrackProps {
 
 const TrackContext = createContext<TrackProps>({} as TrackProps);
 
-export const TrackProvider: FC<TrackProps> = ({ children }) => {
+export const TrackProvider = ({ children }: ChildrenProps) => {
     const [tracks, setTracks] = useState<TrackItemProps[] | undefined>([]);
 
 
