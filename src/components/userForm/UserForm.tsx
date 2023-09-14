@@ -36,8 +36,8 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
             setIsSuccess(true);
             setTimeout(() => {
                 setIsSuccess(false);
+                closeModal1()
             }, 2000)
-            closeModal1()
         }
     } catch (error) {
         console.error('Error user update:', error);
