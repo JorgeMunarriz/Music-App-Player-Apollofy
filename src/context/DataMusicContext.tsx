@@ -38,16 +38,16 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
         const playlistResponse = await fetch(urlPlaylist);
         const playlists: Playlist[] = await playlistResponse.json() as Playlist[];
 
-        const albumResponse = await fetch(urlAlbums);
+        const albumResponse = await fetch(urlAlbum);
         const albums: Album[] = await albumResponse.json() as Album[];
 
-        const genreResponse = await fetch(urlGenres);
+        const genreResponse = await fetch(urlGenre);
         const genres: Genre[] = await genreResponse.json() as Genre[];
 
-        const trackResponse = await fetch(urlTracks);
+        const trackResponse = await fetch(urlTrack);
         const tracks: Track[] = await trackResponse.json() as Track[];
 
-        const artistResponse = await fetch(urlArtist);
+        const artistResponse = await fetch(urlArtis);
         const artists: Artist[] = await artistResponse.json() as Artist[];
 
         setData({
