@@ -29,17 +29,14 @@ interface CardProps {
 }
 
 export const PlaylistContainerHome = () => {
-	const { tracks } = useTrack();
-	console.log(tracks)
-	const { allTrack } = tracks;
-	console.log(allTrack)
-
+	// const { tracks } = useTrack();
+	// const { allTrack } = tracks;
 
 	return (
 		<PlaylistContainerStyles>
 			<h2>Playlists</h2>
 
-			{allTrack && (
+			{/* {{allTrack && (
 				< Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
 					{allTrack && allTrack.map(({ id, trackName,
 						trackUrl,
@@ -51,7 +48,7 @@ export const PlaylistContainerHome = () => {
 					))}
 				</Swiper>
 			)
-			}
+			}} */}
 		</PlaylistContainerStyles >
 	);
 };

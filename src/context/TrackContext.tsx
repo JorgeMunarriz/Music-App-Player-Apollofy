@@ -7,7 +7,7 @@ interface Genre {
     genreName: string
 }
 
-interface TrackItemProps {
+export interface TrackItemProps {
     id: string;
     trackName: string;
     trackUrl: string;
@@ -37,8 +37,10 @@ export const TrackProvider: FC<TrackProps> = ({ children }) => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const getTracks = await getAllTracks(getUrlTrack);
+
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const data = await getTracks;
+
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             setTracks(data);
         } catch (error) {
