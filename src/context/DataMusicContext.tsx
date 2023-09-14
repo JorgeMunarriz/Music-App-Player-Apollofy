@@ -47,7 +47,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
         const trackResponse = await fetch(urlTrack);
         const tracks: Track[] = await trackResponse.json() as Track[];
 
-        const artistResponse = await fetch(urlArtist);
+        const artistResponse = await fetch(urlArtis);
         const artists: Artist[] = await artistResponse.json() as Artist[];
 
         setData({
