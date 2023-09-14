@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UserFormContainer = styled.form`
-display: flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   background: linear-gradient(to right ,hsl(300, 100%, 10%), #000);

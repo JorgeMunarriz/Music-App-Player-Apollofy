@@ -19,7 +19,7 @@ export const ProfileMainContainer = () => {
 	return (
 		<>
 		 <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <UserForms />
+        <UserForms closeModal1={closeModal1} />
       </Modal>
 		<ProfileMainContainerStyles>
 			<ProfileIconsContainer>
