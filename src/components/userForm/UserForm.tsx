@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useUserContext } from '../../context/UserContext';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from 'react';
+import { useState,FC } from 'react';
 import { AlertMessageSuccess } from '../confirmationMessage/AlertMessageSuccess';
 import { UserFormContainer } from './userFormContainer';
 import { LoaderForm } from '..';
@@ -12,8 +12,11 @@ interface userUpdate {
     userEmail: string;
     userImage: string;
 }
+interface userFormModal {
+  closeModal1: () => void;
+}
 
-export const UserForms = () => {
+export const UserForms: FC <userFormModal> = ({closeModal1}) => {
     const { userData, updatedUserData } = useUserContext();
     const { getAccessTokenSilently } = useAuth0();
     const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +36,7 @@ export const UserForms = () => {
             setIsSuccess(true);
             setTimeout(() => {
                 setIsSuccess(false);
+                closeModal1()
             }, 2000)
         }
     } catch (error) {

@@ -2,8 +2,12 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+<<<<<<< HEAD
 import { TrackItemProps, TrackProvider } from './context/TrackContext.tsx';
 import { SetStateAction } from 'react';
+=======
+
+>>>>>>> 871e5b62f3691c480d58654218ce8048ee28530b
 
 
 
@@ -18,8 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       redirect_uri: redirectUri,
       audience: audience
     }}>
-    <TrackProvider>
       <App />
-    </TrackProvider>
   </Auth0Provider>
 )

@@ -27,7 +27,7 @@ interface TrackProps {
 
 const TrackContext = createContext<TrackProps>({} as TrackProps);
 
-export const TrackProvider: FC<TrackProps> = ({ children }) => {
+export const TrackProvider: FC<{children: ReactNode}>  = ({ children }) => {
     const [tracks, setTracks] = useState<TrackItemProps[] | undefined>([]);
 
 
