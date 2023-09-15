@@ -13,7 +13,7 @@ interface CreateTrackType {
   trackName: string,
   trackUrl: string,
   trackImage: string,
-  trackCreatedAt: string,
+  trackCreatedAt?: string,
   genreId: string[],
   artistId: string[],
   albumId: string[],
@@ -29,10 +29,11 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       trackName: '',
       trackImage: '',
       trackUrl: '',
-      genreId: '',
-      artistId: '',
-      albumId: ''
+      genreId: [],
+      artistId: [],
+      albumId: []
     },
+    mode: 'onChange'
   });
 
   const { register, handleSubmit, formState } = form;
@@ -43,6 +44,40 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     { id: "64e65b8f1c47fa8590a8fb1d", name: "Reggaeton" },
   ];
 
+  const onSubmit = async (newMovieData: CreateTrackType) => {
+    try {
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append('trackName', newMovieData.trackName);
+      formData.append('trackUrl', newMovieData.trackUrl[0]);
+      formData.append('trackImage', newMovieData.trackImage[0]);
+      // se utiliza foreach para agregar todos los campos selecionados
+      newMovieData.artistId.forEach((artistId) => {
+        formData.append('artistId', artistId);
+      });
+      newMovieData.albumId.forEach((albumId) => {
+        formData.append('albumId', albumId);
+      });
+      newMovieData.genreId.forEach((genreId) => {
+        formData.append('genreId', genreId);
+      });
+
+      const response = await createUserTracks(userData?.id ?? '', formData);
+
+      if (response.status.toString() === 'success') {
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+          closeModal()
+        }, 4000)
+      }
+    } catch (error) {
+      console.error('Error saving track:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <TracksFormContainer >
       {isLoading && <LoaderForm />}
@@ -50,7 +85,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
         Track create successfully
       </AlertMessageSuccess>}
       <header>ADD Track</header>
-      <form className="form" >
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
           <label htmlFor='trackName'>Name</label>
           <input
@@ -64,31 +99,31 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="gender_box">
-          <select  {...register("genreId")} id="genre">
-            <option  value="">Select genres</option>
+          <select  {...register("genreId")} multiple id="genre">
+            <option value="">Select genres</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
-          <select  {...register("artistId")} id="artist">
-            <option  value="">Select Artist</option>
+          <select  {...register("artistId")} multiple id="artist">
+            <option value="">Select Artist</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
-          <select  {...register("albumId")} id="album">
-            <option  value="">Select Albums</option>
+          <select  {...register("albumId")} multiple id="album">
+            <option value="">Select Albums</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
-          {errors.genreId && <span className="error_input">Genre is required</span>}
+          {errors.genreId && <span className="error_input">At least one genre is required</span>}
         </div>
         <div className="input_box description"  >
           <label className="label_file" htmlFor='image'>Choose a file:</label>
