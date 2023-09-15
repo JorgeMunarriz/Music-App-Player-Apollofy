@@ -33,6 +33,7 @@ export * from './mainProfile/ProfileMainContainer';
 export * from './mainProfile/profileMainContainer.styles';
 export { default as Modal } from './modal/Modal';
 export * from './modal/modalContainer.styled';
+export * from './modal/musicModal/tracksModal/TracksCreate';
 export * from './modal/userModal/UserDelete';
 export * from './modal/userModal/UserEdit';
 export * from './modal/userModal/userDeleteContainer.styled';

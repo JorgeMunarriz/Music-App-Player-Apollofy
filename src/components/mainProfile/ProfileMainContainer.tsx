@@ -6,8 +6,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { TfiPencil } from "react-icons/tfi";
 import { useModal } from '../../hooks/useModal';
 import Modal from '../modal/Modal';
-import { TracksCreateForm } from '../modal/musicModal/tracksModal/tracksCreate';
 import { useEffect } from 'react';
+import { TracksCreateForm } from '..';
 
 
 
@@ -27,7 +27,7 @@ export const ProfileMainContainer = () => {
 	return (
 		<>
 		 <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <TracksCreateForm closeModal1={closeModal1} />
+        <TracksCreateForm closeModal={closeModal1} />
       </Modal>
 		<ProfileMainContainerStyles>
 			<ProfileIconsContainer>

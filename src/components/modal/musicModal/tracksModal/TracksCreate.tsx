@@ -6,10 +6,10 @@ import { useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 
 interface userFormModal {
-    closeModal1: () => void;
+    closeModal: () => void;
   }
 
-export const TracksCreateForm: FC <userFormModal> = ({closeModal1}) => {
+export const TracksCreateForm: FC <userFormModal> = ({closeModal}) => {
     const {userData, } = useUserContext();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
