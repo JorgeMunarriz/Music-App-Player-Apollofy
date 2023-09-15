@@ -6,7 +6,6 @@ import { getAllTracks } from '../api/track.service';
 interface Genre {
     genreName: string
 }
-
 interface TrackItemProps {
     id: string;
     trackName: string;
@@ -17,7 +16,6 @@ interface TrackItemProps {
     counter?: number;
     allTrack: []
 }
-
 interface TrackProps {
     tracks: TrackItemProps[] | undefined;
     setTracks: React.Dispatch<React.SetStateAction<TrackItemProps[] | undefined>>
@@ -27,7 +25,7 @@ interface TrackProps {
 
 const TrackContext = createContext<TrackProps>({} as TrackProps);
 
-export const TrackProvider: FC<{children: ReactNode}>  = ({ children }) => {
+export const TrackProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [tracks, setTracks] = useState<TrackItemProps[] | undefined>([]);
 
 
@@ -37,8 +35,10 @@ export const TrackProvider: FC<{children: ReactNode}>  = ({ children }) => {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const getTracks = await getAllTracks(getUrlTrack);
+
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const data = await getTracks;
+
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             setTracks(data);
         } catch (error) {

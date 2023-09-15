@@ -1,9 +1,5 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-
-import { useState } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-
 
 interface Playlist {
   id: number
@@ -17,25 +13,15 @@ interface Playlist {
   liked?: boolean
 }
 
-
-const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
-  const [followed, setFollowed] = useState<boolean | undefined>(isFollowed);
-
-  const toggleFollow = () => {
-    setFollowed(!followed);
-  };
-
+export const CardForPlaylist = ({ id, thumbnail, name }: Playlist) => {
   return (
-    <CardForPlaylistPlayerStyles>
-      <div className="cardForPlaylistPlayer">
-        <div className="cardForPlaylistPlayer__img">
-          <img className="cardForPlaylistPlayer__img-img" src={thumbnail} alt={name} />
+    <CardForPlaylistPlayerStyles key={id}>
+      <Link to={`/player/${id}`} className="card-container">
+        <img src={thumbnail} />
+        <div className="card-body">
+          <h3 className="title-h3">{name}</h3>
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{name}</h3>
-        <button onClick={toggleFollow} className="cardForPlaylistPlayer__follow-btn follow_btn">
-          {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />}
-        </button>
-      </div>
+      </Link>
     </CardForPlaylistPlayerStyles>
   );
 };
@@ -43,16 +29,23 @@ const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
 const CardForPlaylistPlayerStyles = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
-  background-color: rgba(230, 22, 22, 0.4);
-  
   .cardForPlaylistPlayer {
-    display: flex;
-    flex-direction: column;
-    background-color: red;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr 0.3fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+    box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
+    background-color: rgb(10, 10, 10);
+    border-radius: 5vh;
+    align-items: center;
+    justify-content: space-around;
+    transition: all 0.3s;
+    width: 80%;
+    color: whitesmoke;
+    font-weight: bold;
+    position: relative;
 
     &:hover {
       background-color: rgba(50, 50, 50, 0.4);
@@ -64,12 +57,12 @@ const CardForPlaylistPlayerStyles = styled.div`
     }
     &__img {
       position: relative;
-      width: 20px;
+      width: 50px;
       height: 50px;
       border-radius: 50%;
       overflow: hidden;
       &-img {
-        width: 80%;
+        width: 100%;
         height: 100%;
         object-fit: cover;
       }
@@ -101,4 +94,3 @@ const CardForPlaylistPlayerStyles = styled.div`
   }
 `;
 
-export default CardForPlaylistPlayer

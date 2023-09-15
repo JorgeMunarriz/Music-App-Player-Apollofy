@@ -14,7 +14,7 @@ export const HomeSectionContainer = () => {
       <Link to={HOME} ><AiOutlineHome /><span className="text">Home</span></Link>
       <Link to={PLAYER} ><BsMusicNoteList /><span className="text">Player</span></Link>
       <Link to={PROFILE} > <ImProfile /><span className="text">Profile</span></Link>
-      <Link to={PLAYLISTS} > <VscLibrary /><span className="text">Playlist</span></Link>
+      <Link to={PLAYLISTS} > <VscLibrary /><span className="text">Library</span></Link> //TOFIX - Name changed but still needed to rework the links...
     </HomeSectionContainerStyles>
   );
 };

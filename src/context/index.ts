@@ -1,3 +1,5 @@
 export * from './DataMusicContext';
-export * from './MusicContext';
+export * from './GenresContext';
+export * from './TrackContext';
 export * from './UserContext';
+export * from './UserMusicContext';

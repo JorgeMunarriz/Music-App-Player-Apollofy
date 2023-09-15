@@ -1,36 +1,40 @@
 import { Link } from 'react-router-dom';
-import { PLAYER } from '../../config/routes/paths';
+import { PLAYER } from '../../../config/routes/paths';
 import styled from 'styled-components';
 
-interface Track {
-	id: string
-	trackName: string
-	trackUrl: string
-	trackImage: string
+interface TrackProps {
+  id: string;
+  trackName: string;
+  trackUrl: string;
+  trackImage: string;
+  trackCreatedAt: string;
+  // playlistId: string[];
+  // trackLikedBy: string[];
+  // albumId: string[];
+  // artistId: string[];
+  // genreId: string[]
 }
 
 
-const CardForTrack = ({ id,
-	trackName,
-	trackUrl,
-	trackImage, }: Track) => {
-	return (
-		<CardForTrackStyles key={id}>
-			<Link to={`${PLAYER}/${id}`} className="cardForTrack">
-				<div className="cardForTrack__header">
-					<img alt={trackUrl} className="cardForTrack__header_img" src={trackImage} />
-				</div>
-				<div className="cardForTrack__body">
-					<h3 className="cardForTrack__body_title-h3">{trackName}</h3>
-					<h4 className="cardForTrack__body_title-h4">{trackName}</h4>
-					<h5 className="cardForTrack__body_title-h5">Reproductions: {0}</h5>
-				</div>
-			</Link>
-		</CardForTrackStyles>
-	);
-};
+const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt }: TrackProps) => {
+  return (
+    <TracksForLibraryStyles key={id}>
+      <Link to={`${PLAYER}/${id}`} className="cardForTrack">
+        <div className="cardForTrack__header">
+          <img alt={trackName} className="cardForTrack__header_img" src={trackUrl} />
+        </div>
+        {/* <div className="cardForTrack__body">
+          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h4 className="cardForTrack__body_title-h4">{artist}</h4>
+          <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
+        </div> */}
+      </Link>
+    </TracksForLibraryStyles>
+  );
+}
 
-const CardForTrackStyles = styled.div`
+
+const TracksForLibraryStyles = styled.div`
   display: flex;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
@@ -39,7 +43,6 @@ const CardForTrackStyles = styled.div`
   gap: 1rem;
   transition: all 0.3s;
   border: 1px solid rgba(66, 66, 66, 0.4);
-  margin: 10px;
   &:hover {
     background-color: rgba(100, 100, 100, 0.4);
     cursor: pointer;
@@ -116,9 +119,8 @@ const CardForTrackStyles = styled.div`
         }
       }
     }
-    }
   }
+} 
 `;
 
-
-export default CardForTrack
+export default TracksForLibrary

@@ -12,26 +12,33 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
-import { useUserMusicContext } from '../../../context';
+import { useTrack } from '../../../context/TrackContext';
 
 const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForPLaylist"));
+			return resolve(import("../../Cards/CardForTrack"));
 		}, 2000);
 	});
 });
 
+
+interface CardProps {
+	id: string;
+	trackName: string;
+	trackUrl: string;
+	trackImage: string
+}
 
 type ProprQuery = {
 	query: string;
 };
 
 
-export const PlaylistContainerHome = ({ query }: ProprQuery) => {
+export const AlbumContainer = ({ query }: ProprQuery) => {
 	// const data = useContext(DataMusicContext);
 	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-	const { playlistsLiked } = useUserMusicContext();
+	const { albums } = useUserMusicContext();
 
 	console.log('AAAAQQQUIIIIII')
 	console.log(playlistsLiked)
