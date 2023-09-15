@@ -13,6 +13,7 @@ import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
 import { useTrack } from '../../../context/TrackContext';
+import { useUserMusicContext } from '../../../context';
 
 const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
@@ -41,15 +42,15 @@ export const AlbumContainer = ({ query }: ProprQuery) => {
 	const { albums } = useUserMusicContext();
 
 	console.log('AAAAQQQUIIIIII')
-	console.log(playlistsLiked)
+	console.log(albums)
 
 	return (
 		<TracksContainerStyles>
 			<h1>Playlists</h1>
-			{playlistsLiked && (
+			{albums && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{playlistsLiked &&
-						playlistsLiked
+					{albums &&
+						albums
 							// .filter(({ genre }) => {
 							// 	if (!query) return true;
 							// 	if (query) {
