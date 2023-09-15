@@ -1,3 +1,4 @@
+
 export const getAllTracks = async (url: string): Promise<any> => {
   try {
     const tracks = await fetch(url);
@@ -7,3 +8,5 @@ export const getAllTracks = async (url: string): Promise<any> => {
     console.log(error);
   }
 };
+
+
