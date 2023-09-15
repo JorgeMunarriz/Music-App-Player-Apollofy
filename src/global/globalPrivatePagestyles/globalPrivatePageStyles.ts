@@ -1,42 +1,37 @@
-import styled from 'styled-components';
-import { breakpoints } from '../../styles/breakpoints'
+import styled from "styled-components";
+import { breakpoints } from "../../styles/breakpoints";
 
 export const GlobalPrivatePageStyles = styled.div`
-	display: grid;
-	grid-template-columns: repeat(6, 1fr); // 6 columns
-	grid-template-rows: repeat(3, 2fr) repeat(2, 1fr); // 5 rows
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);
 
-	height: 100vh;
+  height: 100%;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background-color: black;
 
-	gap: 0.25rem;
-	padding: 0.25rem;
+  @media (${breakpoints.min} <= width <= ${breakpoints.mobileMax}px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 
-	background-color: black;
+  @media (${breakpoints.mobileMax} < width <= ${breakpoints.tabletMax}px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);
+  }
 
-	@media (${breakpoints.min} <= width <= ${breakpoints.mobileMax}px)  {
-		grid-template-columns: repeat(6, 1fr);
+  @media (${breakpoints.tabletMax} < width <= ${breakpoints.laptopsMax}px) {
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 2fr) 1fr;
+  }
 
-	}
+  @media (${breakpoints.laptopsMax} < width <= ${breakpoints.desktopMax}px) {
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 2fr) 1fr;
+  }
 
-	@media (${breakpoints.mobileMax} < width <= ${breakpoints.tabletMax}px){
-		grid-template-columns: repeat(6, 1fr);
-		grid-template-rows: repeat(3, 2fr) repeat(2, 1fr);
-
-	}
-
-	@media (${breakpoints.tabletMax} < width <= ${breakpoints.laptopsMax}px) {
-		grid-template-rows: repeat(5, 1fr);
-		grid-template-columns: repeat(4, 2fr) 1fr;
-	}
-
-	@media (${breakpoints.laptopsMax} < width <= ${breakpoints.desktopMax}px) {
-		grid-template-rows: repeat(5, 1fr);
-		grid-template-columns: repeat(4, 2fr) 1fr;
-	}
-
-	@media (width > ${breakpoints.desktopMax}) {
-		grid-template-rows: repeat(5, 1fr);
-		grid-template-columns: repeat(4, 2fr) 1fr;
-
-	}
+  @media (width > ${breakpoints.desktopMax}) {
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 2fr) 1fr;
+  }
 `;

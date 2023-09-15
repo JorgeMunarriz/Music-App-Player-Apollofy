@@ -9,15 +9,10 @@ import styled from "styled-components";
 
 
 interface Playlist {
-  id: number
-  name: string
-  isFollowed?: boolean
-  thumbnail: string
-  description?: string
-  publicAccessible?: boolean
-  primaryColor?: string
-  tracksList?: number[]
-  liked?: boolean
+  id: string
+  trackImage?: string
+  trackUrl: string
+  trackName?: string
 }
 
 
@@ -75,36 +70,24 @@ const CardForPlaylistPlayerHome = ({ id, trackName, trackUrl, trackImage }: Play
 
 const CardForPlaylistPlayerHomeStyles = styled.div`
   .cardForPlaylistPlayer {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr 0.3fr;
-    grid-template-rows: 1fr;
-    gap: 10px;
-    box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
-    background-color: rgb(10, 10, 10);
-    border-radius: 5vh;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
-    transition: all 0.3s;
-    width: 80%;
-    height: 76px;
-    color: whitesmoke;
-    font-weight: bold;
-    position: relative;
-
+    padding: 3rem;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  
+  
     &:hover {
-      background-color: rgba(50, 50, 50, 0.4);
+  
       cursor: pointer;
-      .cardForPlaylistPlayer__description {
-        display: flex;        
-        visibility: visible;
-      }
     }
     &__img {
       position: relative;
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      overflow: hidden;
+    width: 150px;
+    height: 100px;
+    overflow: hidden;
       &-img{
         width: 100%;
         height: 100%;
@@ -113,27 +96,10 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     }
     &__name {
       color: #fff;
-      font-size: 2vw;
+      font-size: 30px;
     }
 
-    &__description {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      z-index: 100;
-      width: 120px;
-      height: 100px;
-      color: rgba(250, 250, 250, 0.75);
-      top: -50%; 
-      left: 100%; 
-      transform: translate(-50%, 10px);
-      visibility: hidden;
-      background-color: rgba(50, 50, 50, 1);
-      border-radius: 1rem;
-      padding: 1rem;
-      transition: all 1s ease-in-out;
-    }
+    
 
     &__follow-btn {
       border: 1px solid transparent;
