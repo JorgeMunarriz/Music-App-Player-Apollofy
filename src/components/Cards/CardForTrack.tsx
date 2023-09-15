@@ -3,28 +3,26 @@ import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 
 interface Track {
-	id: number
-	name: string
-	artist: string
-	url: string
-	thumbnail: string
-	genre: string
-	liked: boolean
-	reproductions: number
+	id: string
+	trackName: string
+	trackUrl: string
+	trackImage: string
 }
 
 
-const CardForTrack = ({ id, thumbnail, name, artist, reproductions }: Track) => {
+const CardForTrack = ({ id,
+	trackName,
+	trackUrl,
+	trackImage, }: Track) => {
 	return (
 		<CardForTrackStyles key={id}>
 			<Link to={`${PLAYER}/${id}`} className="cardForTrack">
 				<div className="cardForTrack__header">
-					<img alt={name} className="cardForTrack__header_img" src={thumbnail} />
+					<img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
 				</div>
 				<div className="cardForTrack__body">
-					<h3 className="cardForTrack__body_title-h3">{name}</h3>
-					<h4 className="cardForTrack__body_title-h4">{artist}</h4>
-					<h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
+					<h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+					<h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
 				</div>
 			</Link>
 		</CardForTrackStyles>
@@ -40,6 +38,7 @@ const CardForTrackStyles = styled.div`
   gap: 1rem;
   transition: all 0.3s;
   border: 1px solid rgba(66, 66, 66, 0.4);
+  margin: 10px;
   &:hover {
     background-color: rgba(100, 100, 100, 0.4);
     cursor: pointer;
@@ -116,10 +115,8 @@ const CardForTrackStyles = styled.div`
         }
       }
     }
+    }
   }
-}
-
-  
 `;
 
 

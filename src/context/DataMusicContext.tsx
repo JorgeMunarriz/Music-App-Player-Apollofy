@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, ReactNode, useMemo, useCallback } from 'react';
 import { Playlist, Album, Genre, Track, Artist } from '../types/data';
-import { urlAlbum, urlArtist, urlGenre, urlPlaylist, urlTrack } from '../global/urls/UrlApi';
+// import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
 
 
 export interface MusicContextProps {
@@ -47,7 +47,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
         const trackResponse = await fetch(urlTrack);
         const tracks: Track[] = await trackResponse.json() as Track[];
 
-        const artistResponse = await fetch(urlArtist);
+        const artistResponse = await fetch(urlArtis);
         const artists: Artist[] = await artistResponse.json() as Artist[];
 
         setData({

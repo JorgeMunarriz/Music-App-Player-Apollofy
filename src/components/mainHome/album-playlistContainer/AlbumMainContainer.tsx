@@ -1,4 +1,4 @@
-import {lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
+import { lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
 import SwiperCore from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,55 +12,53 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
+
 import { useUserMusicContext } from '../../../context';
 
-const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+const LazyCardAlbumHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForTrack"));
+			return resolve(import("../../Cards/CardForAlbum"));
 		}, 2000);
 	});
 });
 
 
-interface CardProps {
-	id: string;
-	trackName: string;
-	trackUrl: string;
-	trackImage: string
-}
+// interface CardProps {
+// 	id: string;
+// 	trackName: string;
+// 	trackUrl: string;
+// 	trackImage: string
+// }
 
 type ProprQuery = {
 	query: string;
 };
-export const TracksContainer = ({ query }: ProprQuery) => {
-	// const data = useContext(DataMusicContext);
-	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-	const { tracks } = useUserMusicContext();
-	const { allTrack } = tracks;
-	console.log(allTrack);
-	
+
+
+export const AlbumContainer = ({ query }: ProprQuery) => {
+
+	const { albums } = useUserMusicContext();
+	const {gottenAllAlbum}:any = albums
+console.log(albums);
+
 	return (
 		<TracksContainerStyles>
-			<h1>Songs</h1>
-			{allTrack && (
+			<h1>Albums</h1>
+			{gottenAllAlbum && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{allTrack &&
-						allTrack
-							.filter(({ trackName }:any) => {
-								if (!query) return true;
-								if (query) {
-									const nameLowerCase = trackName.toLowerCase();
-									return nameLowerCase.includes(query.toLowerCase());
-								}
-							})
-							.map(({ id,
-								trackName,
-								trackUrl,
-								trackImage }: CardProps) => (
+					{gottenAllAlbum &&
+						gottenAllAlbum
+							// .filter(({ album }) => {
+							// 	if (!query) return true;
+							// 	if (query) {
+							// 		const nameLowerCase = album.toLowerCase();
+							// 		return nameLowerCase.includes(query.toLowerCase());
+							// 	}
+							// })
+							.map(({ id, albumName, albumImage, trackId }:any) => (
 								<SwiperSlide key={id}>
-
-									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} /></Suspense>
+									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCardAlbumHome id={id} albumImage={albumImage} albumName={albumName} trackId={trackId} /></Suspense>
 								</SwiperSlide>
 							))}
 				</Swiper>
@@ -86,7 +84,7 @@ const TracksContainerStyles = styled.div`
 			margin-bottom: 1rem;
 			margin-left: 1.5rem;
 			opacity: 0.9;
-}
+        }
 		.mySwiper{
 		height: 70%;
 		width: 100%;
@@ -99,7 +97,7 @@ const TracksContainerStyles = styled.div`
 			.swiper-slide{
 				margin: 0;
 				padding: 0;
-				margin-top: 5!important;
+				margin-top: 0!important;
 				margin-right: 0!important;
 			}
 		}      
@@ -110,7 +108,6 @@ const TracksContainerStyles = styled.div`
 			transition: all 0.3s;
 			background-color: black;
 			left: 0;
-    /* width: 100%; */
     		top: 200px;
 			
 		}
