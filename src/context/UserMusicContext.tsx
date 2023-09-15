@@ -52,10 +52,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   return (
     <UserMusicContext.Provider
       value={{playlistsCreated,playlistsLiked,albums,tracks,
-        getPlaylistsCreated,
-        getPlaylistsLiked,
-        getAlbums,
-        getTracks,
+      getPlaylistsCreated,getPlaylistsLiked,getAlbums,getTracks,
       }}
     >
       {children}
@@ -64,7 +61,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
 };
 
 
-export const useUserMusicContext = () => {
+export const useUserMusicContext = ():UserMusicContextType => {
   const context = useContext(UserMusicContext);
   if (!context) {
     throw new Error('useUserMusicContext debe ser utilizado dentro de un UserMusicProvider');
