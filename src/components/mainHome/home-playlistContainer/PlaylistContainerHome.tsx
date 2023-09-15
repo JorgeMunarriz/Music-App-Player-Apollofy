@@ -12,53 +12,47 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
-import { useTrack } from '../../../context/TrackContext';
+import { useUserMusicContext } from '../../../context';
 
 const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForTrack"));
+			return resolve(import("../../Cards/CardForPLaylist"));
 		}, 2000);
 	});
 });
 
 
-interface CardProps {
-	id: string;
-	trackName: string;
-	trackUrl: string;
-	trackImage: string
-}
-
 type ProprQuery = {
 	query: string;
 };
+
+
 export const PlaylistContainerHome = ({ query }: ProprQuery) => {
 	// const data = useContext(DataMusicContext);
 	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-	const { tracks } = useTrack();
-	const { allTrack } = tracks;
+	const { playlistsLiked } = useUserMusicContext();
+
+	console.log('AAAAQQQUIIIIII')
+	console.log(playlistsLiked)
+
 	return (
 		<TracksContainerStyles>
-			<h1>Albums</h1>
-			{tracks && (
+			<h1>Playlists</h1>
+			{playlistsLiked && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{allTrack &&
-						allTrack
-							.filter(({ genre }) => {
-								if (!query) return true;
-								if (query) {
-									const nameLowerCase = genre.toLowerCase();
-									return nameLowerCase.includes(query.toLowerCase());
-								}
-							})
-							.map(({ id,
-								trackName,
-								trackUrl,
-								trackImage }: CardProps) => (
+					{playlistsLiked &&
+						playlistsLiked
+							// .filter(({ genre }) => {
+							// 	if (!query) return true;
+							// 	if (query) {
+							// 		const nameLowerCase = genre.toLowerCase();
+							// 		return nameLowerCase.includes(query.toLowerCase());
+							// 	}
+							// })
+							.map(({ id, playlistName, playlistImage, trackId }) => (
 								<SwiperSlide key={id}>
-
-									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} /></Suspense>
+									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} playlistImage={playlistImage} playlistName={playlistName} trackId={trackId} /></Suspense>
 								</SwiperSlide>
 							))}
 				</Swiper>

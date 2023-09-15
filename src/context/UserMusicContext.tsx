@@ -6,8 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 // Definir el tipo para el contexto
 interface UserMusicContextType {
-  playlistsCreated: any[] | null;
-  playlistsLiked: any[] | null;
+  playlistsCreated: PlaylistInterface[];
+  playlistsLiked: PlaylistInterface[];
   albums: any[] | null;
   tracks: any[] | null;
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
@@ -15,17 +15,33 @@ interface UserMusicContextType {
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
 }
+interface PlaylistInterface {
+  id: string,
+  playlistName: string,
+  playlistImage: string,
+  playlistCreatedAt: string,
+  playlistUpdatedAt: string,
+  trackId: string[],
+  playlistLikedById: string[],
+  playlistCreatedById: string[],
+  genreId: string[],
+}
+
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
 
-
 export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
-  const [playlistsCreated, setPlaylistsCreated] = useState<any[] | null>(null);
-  const [playlistsLiked, setPlaylistsLiked] = useState<any[] | null>(null);
+  const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
+  const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
   const [albums, setAlbums] = useState<any[] | null>(null);
   const [tracks, setTracks] = useState<any[] | null>(null);
   const userEmail = user?.email || "";
+
+  console.log(playlistsCreated)
+  console.log(playlistsLiked)
+  console.log(albums)
+  console.log(tracks)
 
   useEffect(() => {
     if (isAuthenticated && userEmail) {

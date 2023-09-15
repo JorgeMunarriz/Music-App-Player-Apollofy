@@ -116,10 +116,8 @@ const CardForTrackStyles = styled.div`
         }
       }
     }
+    }
   }
-}
-
-  
 `;
 
 

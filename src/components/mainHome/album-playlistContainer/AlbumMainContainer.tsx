@@ -15,56 +15,57 @@ import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
 import { useTrack } from '../../../context/TrackContext';
 
 const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            return resolve(import("../../Cards/CardForTrack"));
-        }, 2000);
-    });
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			return resolve(import("../../Cards/CardForTrack"));
+		}, 2000);
+	});
 });
 
 
 interface CardProps {
-    id: string;
-    trackName: string;
-    trackUrl: string;
-    trackImage: string
+	id: string;
+	trackName: string;
+	trackUrl: string;
+	trackImage: string
 }
 
 type ProprQuery = {
-    query: string;
+	query: string;
 };
-export const AlbumContainer = ({ query }: ProprQuery) => {
-    // const data = useContext(DataMusicContext);
-    // const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-    const { tracks } = useTrack();
-    const { allTrack } = tracks;
-    return (
-        <TracksContainerStyles>
-            <h1>Albums</h1>
-            {tracks && (
-                <Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-                    {allTrack &&
-                        allTrack
-                            .filter(({ genre }) => {
-                                if (!query) return true;
-                                if (query) {
-                                    const nameLowerCase = genre.toLowerCase();
-                                    return nameLowerCase.includes(query.toLowerCase());
-                                }
-                            })
-                            .map(({ id,
-                                trackName,
-                                trackUrl,
-                                trackImage }: CardProps) => (
-                                <SwiperSlide key={id}>
 
-                                    <Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} /></Suspense>
-                                </SwiperSlide>
-                            ))}
-                </Swiper>
-            )}
-        </TracksContainerStyles>
-    );
+
+export const AlbumContainer = ({ query }: ProprQuery) => {
+	// const data = useContext(DataMusicContext);
+	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
+	const { albums } = useUserMusicContext();
+
+	console.log('AAAAQQQUIIIIII')
+	console.log(playlistsLiked)
+
+	return (
+		<TracksContainerStyles>
+			<h1>Playlists</h1>
+			{playlistsLiked && (
+				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
+					{playlistsLiked &&
+						playlistsLiked
+							// .filter(({ genre }) => {
+							// 	if (!query) return true;
+							// 	if (query) {
+							// 		const nameLowerCase = genre.toLowerCase();
+							// 		return nameLowerCase.includes(query.toLowerCase());
+							// 	}
+							// })
+							.map(({ id, playlistName, playlistImage, trackId }) => (
+								<SwiperSlide key={id}>
+									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} playlistImage={playlistImage} playlistName={playlistName} trackId={trackId} /></Suspense>
+								</SwiperSlide>
+							))}
+				</Swiper>
+			)}
+		</TracksContainerStyles>
+	);
 };
 
 

@@ -23,11 +23,11 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt 
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackUrl} />
         </div>
-        <div className="cardForTrack__body">
+        {/* <div className="cardForTrack__body">
           <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
           <h4 className="cardForTrack__body_title-h4">{artist}</h4>
           <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
-        </div>
+        </div> */}
       </Link>
     </TracksForLibraryStyles>
   );
@@ -123,4 +123,4 @@ const TracksForLibraryStyles = styled.div`
 } 
 `;
 
-export default CardForTrack
+export default TracksForLibrary
