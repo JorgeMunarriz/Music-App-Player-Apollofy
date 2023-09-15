@@ -1,10 +1,6 @@
 import { createContext, useEffect, useState, ReactNode, useMemo, useCallback } from 'react';
 import { Playlist, Album, Genre, Track, Artist } from '../types/data';
-<<<<<<< HEAD
 import { urlAlbum, urlArtist, urlGenre, urlPlaylist, urlTrack } from '../global/urls/UrlApi';
-=======
-// import { urlAlbums, urlArtist, urlGenres, urlPlaylist, urlTracks } from '../global/urls/UrlApi';
->>>>>>> track-contextTWO
 
 
 export interface MusicContextProps {

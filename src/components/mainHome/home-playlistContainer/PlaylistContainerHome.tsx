@@ -38,7 +38,7 @@ export const PlaylistContainerHome = () => {
 		<PlaylistContainerStyles>
 			<h1>Playlists</h1>
 
-			{/* {{allTrack && (
+			{allTrack && (
 				< Swiper navigation pagination slidesPerView={2} spaceBetween={5} modules={[Pagination]} className="mySwiper">
 					{allTrack && allTrack.map(({ id, trackName,
 						trackUrl,
@@ -50,7 +50,7 @@ export const PlaylistContainerHome = () => {
 					))}
 				</Swiper>
 			)
-			}} */}
+			}
 		</PlaylistContainerStyles >
 	);
 };
