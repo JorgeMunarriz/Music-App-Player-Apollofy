@@ -1,4 +1,4 @@
-import { urlUser } from "../global";
+import { urlAlbum, urlTrack, urlUser } from "../global";
 
 export const userPost = async (user: {}, getToken: () => Promise<string>) => {
 
@@ -123,10 +123,10 @@ export const userPlaylistsLikedGet = async (userEmail: string, getToken: () => P
   }
 }
 
-export const userAlbumsGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userAlbumsGet = async ( getToken: () => Promise<string>) => {
   try {
     const token = getToken()
-    const response = await fetch(`${urlUser}/album/${userEmail}`, {
+    const response = await fetch(urlAlbum, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -148,10 +148,10 @@ export const userAlbumsGet = async (userEmail: string, getToken: () => Promise<s
   }
 }
 
-export const userTracksGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userTracksGet = async ( getToken: () => Promise<string>) => {
   try {
     const token = getToken()
-    const response = await fetch(`${urlUser}/track/${userEmail}`, {
+    const response = await fetch(urlTrack,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",

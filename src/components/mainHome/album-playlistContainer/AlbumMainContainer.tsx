@@ -12,24 +12,24 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
-import { useTrack } from '../../../context/TrackContext';
+
 import { useUserMusicContext } from '../../../context';
 
-const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+const LazyCardAlbumHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForTrack"));
+			return resolve(import("../../Cards/CardForAlbum"));
 		}, 2000);
 	});
 });
 
 
-interface CardProps {
-	id: string;
-	trackName: string;
-	trackUrl: string;
-	trackImage: string
-}
+// interface CardProps {
+// 	id: string;
+// 	trackName: string;
+// 	trackUrl: string;
+// 	trackImage: string
+// }
 
 type ProprQuery = {
 	query: string;
@@ -37,30 +37,28 @@ type ProprQuery = {
 
 
 export const AlbumContainer = ({ query }: ProprQuery) => {
-	// const data = useContext(DataMusicContext);
-	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-	const { albums } = useUserMusicContext();
 
-	console.log('AAAAQQQUIIIIII')
-	console.log(albums)
+	const { albums } = useUserMusicContext();
+	const {gottenAllAlbum}:any = albums
+console.log(albums);
 
 	return (
 		<TracksContainerStyles>
-			<h1>Playlists</h1>
-			{albums && (
+			<h1>Albums</h1>
+			{gottenAllAlbum && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{albums &&
-						albums
-							// .filter(({ genre }) => {
+					{gottenAllAlbum &&
+						gottenAllAlbum
+							// .filter(({ album }) => {
 							// 	if (!query) return true;
 							// 	if (query) {
-							// 		const nameLowerCase = genre.toLowerCase();
+							// 		const nameLowerCase = album.toLowerCase();
 							// 		return nameLowerCase.includes(query.toLowerCase());
 							// 	}
 							// })
-							.map(({ id, playlistName, playlistImage, trackId }) => (
+							.map(({ id, albumName, albumImage, trackId }:any) => (
 								<SwiperSlide key={id}>
-									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} playlistImage={playlistImage} playlistName={playlistName} trackId={trackId} /></Suspense>
+									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCardAlbumHome id={id} albumImage={albumImage} albumName={albumName} trackId={trackId} /></Suspense>
 								</SwiperSlide>
 							))}
 				</Swiper>
@@ -86,7 +84,7 @@ const TracksContainerStyles = styled.div`
 			margin-bottom: 1rem;
 			margin-left: 1.5rem;
 			opacity: 0.9;
-}
+        }
 		.mySwiper{
 		height: 70%;
 		width: 100%;
@@ -110,7 +108,6 @@ const TracksContainerStyles = styled.div`
 			transition: all 0.3s;
 			background-color: black;
 			left: 0;
-    /* width: 100%; */
     		top: 200px;
 			
 		}

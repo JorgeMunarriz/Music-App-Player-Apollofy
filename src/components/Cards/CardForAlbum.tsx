@@ -2,34 +2,35 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 
-interface Track {
+interface AlbumProps {
 	id: string
-	trackName: string
-	trackUrl: string
-	trackImage: string
+	albumName: string
+	albumUrl: string
+	albumImage: string
 }
 
 
-const CardForTrack = ({ id,
-	trackName,
-	trackUrl,
-	trackImage, }: Track) => {
+const CardForAlbum = ({ id,
+	albumName,
+	albumUrl,
+	albumImage, }: AlbumProps) => {
 	return (
-		<CardForTrackStyles key={id}>
-			<Link to={`${PLAYER}/${id}`} className="cardForTrack">
-				<div className="cardForTrack__header">
-					<img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
+		<CardForAlbumStyles key={id}>
+			<Link to={`${PLAYER}/${id}`} className="cardForAlbum">
+				<div className="cardForAlbum__header">
+					<img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
 				</div>
-				<div className="cardForTrack__body">
-					<h3 className="cardForTrack__body_title-h3">{trackName}</h3>
-					<h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
+				<div className="cardForAlbum__body">
+					<h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
+					<h4 className="cardForAlbum__body_title-h4">{albumName}</h4>
+					<h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
 				</div>
 			</Link>
-		</CardForTrackStyles>
+		</CardForAlbumStyles>
 	);
 };
 
-const CardForTrackStyles = styled.div`
+const CardForAlbumStyles = styled.div`
   display: flex;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
@@ -44,7 +45,7 @@ const CardForTrackStyles = styled.div`
     cursor: pointer;
   }
 
-  .cardForTrack {
+  .cardForAlbum {
     display: flex;
     position: relative;
     gap: 1rem;
@@ -90,7 +91,7 @@ const CardForTrackStyles = styled.div`
     }
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .cardForTrack {
+    .cardForAlbum {
     display: flex;
     
     min-height: 120px;
@@ -120,4 +121,4 @@ const CardForTrackStyles = styled.div`
 `;
 
 
-export default CardForTrack
+export default CardForAlbum

@@ -27,6 +27,37 @@ interface PlaylistInterface {
   genreId: string[],
 }
 
+interface albumInterface {
+  id: string,
+  albumName: string,
+  albumImage: string,
+  albumCreatedAt: string,
+  albumUpdatedAt: string,
+  trackId: string[],
+  albumLikedById: string[],
+  albumCreatedById: string[],
+  genreId: string[],
+  artist: string[],
+  artistId: string[],
+  
+}
+
+interface trackInterface {
+  id: string,
+  trackName: string,
+  trackImage: string,
+  trackCreatedAt: string,
+  trackUpdatedAt: string,
+  trackId: string[],
+  trackLikedById: string[],
+  trackCreatedById: string[],
+  genreId: string[],
+  artist: string[],
+  artistId: string[],
+  trackUrl: string
+  
+}
+
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
 
@@ -34,8 +65,8 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
-  const [albums, setAlbums] = useState<any[] | null>(null);
-  const [tracks, setTracks] = useState<any[] | null>(null);
+  const [albums, setAlbums] = useState< albumInterface[] >([]);
+  const [tracks, setTracks] = useState< trackInterface[] >([]);
   const userEmail = user?.email || "";
 
   console.log(playlistsCreated)
@@ -48,8 +79,8 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       async function getAllMusicLauncher() {
         await handleUserPlaylistsCreated(userEmail);
         await handleUserPlaylistsLiked(userEmail);
-        await handleUserAlbums(userEmail);
-        await handleUserTracks(userEmail);
+        await handleUserAlbums();
+        await handleUserTracks();
       }
       getAllMusicLauncher();
     }
@@ -75,9 +106,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     }
   };
 
-  const handleUserAlbums = async (userEmail: string) => {
+  const handleUserAlbums = async () => {
     try {
-      const response = await userAlbumsGet(userEmail, getAccessTokenSilently);
+      const response = await userAlbumsGet( getAccessTokenSilently);
       setAlbums(response);
     } catch (error) {
       console.error('Error getting albums:', error);
@@ -85,9 +116,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     }
   };
 
-  const handleUserTracks = async (userEmail: string) => {
+  const handleUserTracks = async () => {
     try {
-      const response = await userTracksGet(userEmail, getAccessTokenSilently);
+      const response = await userTracksGet(getAccessTokenSilently);
       setTracks(response);
     } catch (error) {
       console.error('Error getting tracks:', error);
