@@ -1,6 +1,9 @@
-import { useState } from "react";
 import styled from "styled-components";
+
+
+import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+
 
 interface Playlist {
   id: number
@@ -13,6 +16,7 @@ interface Playlist {
   tracksList?: number[]
   liked?: boolean
 }
+
 
 const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
   const [followed, setFollowed] = useState<boolean | undefined>(isFollowed);
@@ -39,23 +43,16 @@ const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
 const CardForPlaylistPlayerStyles = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(230, 22, 22, 0.4);
+  
   .cardForPlaylistPlayer {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr 0.3fr;
-    grid-template-rows: 1fr;
-    gap: 10px;
-    box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
-    background-color: rgb(10, 10, 10);
-    border-radius: 5vh;
-    align-items: center;
-    justify-content: space-around;
-    transition: all 0.3s;
-    width: 80%;
-    color: whitesmoke;
-    font-weight: bold;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
 
     &:hover {
       background-color: rgba(50, 50, 50, 0.4);
@@ -67,12 +64,12 @@ const CardForPlaylistPlayerStyles = styled.div`
     }
     &__img {
       position: relative;
-      width: 50px;
+      width: 20px;
       height: 50px;
       border-radius: 50%;
       overflow: hidden;
       &-img {
-        width: 100%;
+        width: 80%;
         height: 100%;
         object-fit: cover;
       }

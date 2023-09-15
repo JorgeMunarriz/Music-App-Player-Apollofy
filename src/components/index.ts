@@ -22,11 +22,10 @@ export * from "./log/loginContainer.styles";
 export * from "./logo/Logo";
 export * from "./logo/logo.styles";
 export * from "./mainHome/HomeMainContainer";
-export * from "./mainHome/home-playlistContainer/PlaylistContainer.Styles";
+
 export * from "./mainHome/home-playlistContainer/PlaylistContainerHome";
 export * from "./mainHome/home-tracksContainer/TracksContainer";
-export * from "./mainHome/home-tracksContainer/tracksContainer.Styles";
-export * from "./mainHome/homeMainContainer.styles";
+
 export * from "./mainPlayer/PlayerMainContainer";
 export * from "./mainPlayer/player-playerContainer/PlayerContainer";
 export * from "./mainPlayer/player-playerContainer/playerContainer.styles";
@@ -34,7 +33,7 @@ export * from "./mainPlayer/playerMainContainer.styles";
 export * from "./mainPlaylist/PlaylistMainContainer";
 export * from "./mainPlaylist/playlistMainContainer.styles";
 export * from "./mainProfile/ProfileMainContainer";
-export * from "./mainProfile/profileMainContainer.styles";
+
 export * from "./player/Player";
 
 export * from "./register/RegisterSection";
