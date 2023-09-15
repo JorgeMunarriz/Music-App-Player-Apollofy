@@ -29,6 +29,24 @@ export const UserFormContainer = styled.form`
   color: rgb(128, 128, 128);
   cursor: pointer;
 }
+& .button_delete {
+  margin-top: 25px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  border: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 19px;
+  font-weight: bold;
+  background-color: #f95959;
+  color: rgb(14, 16, 19);
+  cursor: pointer;
+}
+& .button_delete:hover {
+  box-shadow: 2px 2px 12px white;
+  color:#e4f1fe;
+}
+
 
 &  label {
   margin-top: 20px;
@@ -40,7 +58,7 @@ export const UserFormContainer = styled.form`
 
 & .button_userForm:hover {
   box-shadow: 2px 2px 12px white;
-  color: rgb(14, 16, 19);
+  color:#141010;
 }
 & .input {
   height: 30px;

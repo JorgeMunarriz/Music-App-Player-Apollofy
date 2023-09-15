@@ -22,7 +22,8 @@ interface Playlist {
 
 
 
-const CardForPlaylistPlayerHome = ({ id, thumbnail, name }: Playlist) => {
+const CardForPlaylistPlayerHome = ({ id, trackName, trackUrl, trackImage }: Playlist) => {
+  console.log(trackImage)
   //tengo que traer el puto id
   // const { userLogged, handleUserLogged } = useContext(UserContext);
 
@@ -59,9 +60,9 @@ const CardForPlaylistPlayerHome = ({ id, thumbnail, name }: Playlist) => {
     <CardForPlaylistPlayerHomeStyles>
       <div className="cardForPlaylistPlayer">
         <div className="cardForPlaylistPlayer__img">
-          <img className="cardForPlaylistPlayer__img-img" src={thumbnail} alt={name} />
+          <img className="cardForPlaylistPlayer__img-img" src={trackImage} alt={trackUrl} />
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{name}</h3>
+        <h3 className="cardForPlaylistPlayer__name">{trackName}</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
         <button onClick={() => console.log('click')} className="cardForPlaylistPlayer__follow-btn follow_btn">
           {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
