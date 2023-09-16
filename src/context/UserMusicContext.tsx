@@ -8,8 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
   playlistsLiked: PlaylistInterface[];
-  albums: any[] | null;
-  tracks: any[] | null;
+  albums: AlbumInterface[];
+  tracks: TrackInterface[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
@@ -26,7 +26,30 @@ interface PlaylistInterface {
   playlistCreatedById: string[],
   genreId: string[],
 }
-
+interface AlbumInterface {
+  id: string,
+  albumName: string,
+  albumImage: string,
+  albumCreatedAt: string,
+  artistId: string[],
+  genreId: string[],
+  trackId: string[],
+  albumLikedBy: string[],
+  post: string[],
+}
+interface TrackInterface {
+  id: string,
+  trackName: string,
+  trackUrl: string,
+  trackImage: string,
+  trackCreatedAt: string,
+  playlistId: string[],
+  trackLikedBy: string[],
+  albumId: string[],
+  artistId: string[],
+  genreId: string[],
+  //TOFIX: FALTA TRAER LOS POST...VER COMO SELECCIONARLOS DESDE EL BACK, ETC.
+}
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
 
@@ -34,14 +57,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
-  const [albums, setAlbums] = useState<any[] | null>(null);
-  const [tracks, setTracks] = useState<any[] | null>(null);
+  const [albums, setAlbums] = useState<AlbumInterface[]>([]);
+  const [tracks, setTracks] = useState<TrackInterface[]>([]);
   const userEmail = user?.email || "";
-
-  console.log(playlistsCreated)
-  console.log(playlistsLiked)
-  console.log(albums)
-  console.log(tracks)
 
   useEffect(() => {
     if (isAuthenticated && userEmail) {

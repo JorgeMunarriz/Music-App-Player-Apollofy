@@ -6,6 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
 import TracksForLibrary from "./cards/TracksForLibrary";
+import PlaylistForLibrary from "./cards/PlaylistForLibrary";
+import AlbumForLibrary from "./cards/AlbumForLibrary";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -15,18 +17,24 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   });
 });
 
-interface TrackProps {
-  id: string;
-  trackName: string;
-  trackUrl: string;
-  trackImage: string;
-  trackCreatedAt: string;
-  playlistId: string[];
-  trackLikedBy: string[];
-  albumId: string[];
-  artistId: string[];
-  genreId: string[]
-}
+// interface TrackProps {
+//   id: string;
+//   trackName: string;
+//   trackUrl: string;
+//   trackImage: string;
+//   trackCreatedAt: string;
+//   playlistId: string[];
+//   trackLikedBy: string[];
+//   albumId: string[];
+//   artistId: string[];
+//   genreId: string[]
+// }
+
+
+//TOFIX: ya renderiza. Queda ver que contenido vamos a meter... si hace falta modificar el back para traer artistas, etc...
+//quedan las props preparadas como copia y pega del context. Igual hay que traerse mas info desde el back para los context. Ej: En playlist se muestra el nombre y el userId
+//sería mejor traerse del back el userName para mostrar quien ha creado la playlist, etc.
+
 
 
 export const PlaylistMainContainer = () => {
@@ -34,7 +42,7 @@ export const PlaylistMainContainer = () => {
   const { playlistsCreated, playlistsLiked, albums, tracks } = useUserMusicContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
 
-  const [zoneSelected, setZoneSelected] = useState("playlist")
+  const [zoneSelected, setZoneSelected] = useState("playlists")
 
   const handleChangeZoneSelected = (selection: string) => {
     setZoneSelected(selection)
@@ -55,31 +63,32 @@ export const PlaylistMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="zone-selector">
-          <span className="selections" onClick={() => handleChangeZoneSelected('playlists')}>Playlists</span>
-          <span className="selections" onClick={() => handleChangeZoneSelected('myPlaylists')}>My Playlists</span>
-          <span className="selections" onClick={() => handleChangeZoneSelected('albums')}>Albums</span>
-          <span className="selections" onClick={() => handleChangeZoneSelected('tracks')}>Tracks</span>
+          <span className={`selections ${zoneSelected === 'playlists' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('playlists')}>Playlists</span>
+          <span className={`selections ${zoneSelected === 'myPlaylists' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('myPlaylists')}>My Playlists</span>
+          <span className={`selections ${zoneSelected === 'albums' ? 'selections-active' : ''}`} onClick={() => handleChangeZoneSelected('albums')}>Albums</span>
+          <span className={`selections ${zoneSelected === 'tracks' ? 'selections-active' : ''}`} onClick={() => handleChangeZoneSelected('tracks')}>Tracks</span>
         </section>
+        <section className="zone-cards">
+          {zoneSelected === 'playlists' && playlistsLiked &&
+            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} />
+            ))}
 
-        {zoneSelected === 'playlists' && playlistsLiked &&
-          playlistsLiked.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <TracksForLibrary key={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-          ))}
+          {zoneSelected === 'myPlaylists' && playlistsCreated &&
+            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} />
+            ))}
 
-        {zoneSelected === 'myPlaylists' && playlistsCreated &&
-          playlistsCreated.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <TracksForLibrary key={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-          ))}
+          {zoneSelected === 'albums' && albums &&
+            albums.map(({ id, albumName, albumImage, albumCreatedAt, artistId, trackId }) => (
+              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artistId={artistId} trackId={trackId} />
+            ))}
 
-        {zoneSelected === 'albums' && albums &&
-          albums.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <TracksForLibrary key={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-          ))}
-
-        {zoneSelected === 'tracks' && tracks &&
-          tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <TracksForLibrary key={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-          ))}
+          {zoneSelected === 'tracks' && tracks &&
+            tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
+              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+            ))}
+        </section>
 
         {/* 
         {playlist &&
@@ -98,24 +107,35 @@ export const PlaylistMainContainer = () => {
 export const PlaylistMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: center;
+  padding: 0.5rem;
+  
   height: 100%;
   width: 100%;
+  
   background: linear-gradient(#340034, #000);
   border-radius: 0.25rem;
-
+  
   .zone-selector {
     display: flex;
     width: 100%;
     justify-content: space-around;
-
     padding-top: 0.5vh;
-
     color: white;
   }
   .selections {
     cursor: pointer;
+  }
+  .selection-active {
+    color: var(--color-text-pink);
+  }
+  .zone-cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    padding: 2rem;
+    gap: 1rem;
   }
 
   @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
@@ -126,7 +146,7 @@ export const PlaylistMainContainerStyles = styled.main`
     }
   }
 
-  @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px){
+  @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
     grid-area: 1 / 1 / 5 / 7;
 
     .zone-selector {
