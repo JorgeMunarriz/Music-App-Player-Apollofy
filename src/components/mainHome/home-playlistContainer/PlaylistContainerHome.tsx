@@ -14,10 +14,10 @@ import styled from "styled-components";
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
 import { useUserMusicContext } from '../../../context';
 
-const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+const LazyCardPlaylistHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForPLaylist"));
+			return resolve(import("../../Cards/CardForPlaylist"));
 		}, 2000);
 	});
 });
@@ -43,16 +43,16 @@ export const PlaylistContainerHome = ({ query }: ProprQuery) => {
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
 					{playlistsLiked &&
 						playlistsLiked
-							// .filter(({ genre }) => {
-							// 	if (!query) return true;
-							// 	if (query) {
-							// 		const nameLowerCase = genre.toLowerCase();
-							// 		return nameLowerCase.includes(query.toLowerCase());
-							// 	}
-							// })
+							.filter(({ playlistName }) => {
+								if (!query) return true;
+								if (query) {
+									const nameLowerCase = playlistName.toLowerCase();
+									return nameLowerCase.includes(query.toLowerCase());
+								}
+							})
 							.map(({ id, playlistName, playlistImage, trackId }) => (
 								<SwiperSlide key={id}>
-									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} playlistImage={playlistImage} playlistName={playlistName} trackId={trackId} /></Suspense>
+									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCardPlaylistHome id={id} playlistImage={playlistImage} playlistName={playlistName} trackId={trackId} /></Suspense>
 								</SwiperSlide>
 							))}
 				</Swiper>

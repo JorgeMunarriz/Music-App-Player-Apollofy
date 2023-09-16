@@ -1,19 +1,22 @@
-
-
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from 'react';
-import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet, userTracksGet } from '../api/user.fetch';
+import {
+  userPlaylistsCreatedGet, userPlaylistsLikedGet,
+  userAlbumsGet, userTracksGet, createTrack
+} from '../api/user.fetch';
 import { useAuth0 } from "@auth0/auth0-react";
 
-// Definir el tipo para el contexto
+
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
   playlistsLiked: PlaylistInterface[];
   albums: AlbumInterface[];
   tracks: TrackInterface[];
+  tracksCreated: CreateTrackType[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
+  createUserTracks: (userId: string, trackData: FormData, getAccessTokenSilently: () => Promise<string>) => Promise<void>;
 }
 interface PlaylistInterface {
   id: string,
@@ -31,25 +34,38 @@ interface AlbumInterface {
   albumName: string,
   albumImage: string,
   albumCreatedAt: string,
-  artistId: string[],
-  genreId: string[],
+  albumUpdatedAt: string,
   trackId: string[],
-  albumLikedBy: string[],
-  post: string[],
+  albumLikedById: string[],
+  albumCreatedById: string[],
+  genreId: string[],
+  artist: string[],
+  artistId: string[],
 }
 interface TrackInterface {
   id: string,
   trackName: string,
+  trackImage: string,
+  trackCreatedAt: string,
+  trackUpdatedAt: string,
+  trackId: string[],
+  trackLikedById: string[],
+  trackCreatedById: string[],
+  genreId: string[],
+  artist: string[],
+  artistId: string[],
+  trackUrl: string
+}
+interface CreateTrackType {
+  trackName: string,
   trackUrl: string,
   trackImage: string,
   trackCreatedAt: string,
-  playlistId: string[],
-  trackLikedBy: string[],
-  albumId: string[],
-  artistId: string[],
   genreId: string[],
-  //TOFIX: FALTA TRAER LOS POST...VER COMO SELECCIONARLOS DESDE EL BACK, ETC.
+  artistId: string[],
+  albumId: string[],
 }
+
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
 
@@ -59,6 +75,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
   const [albums, setAlbums] = useState<AlbumInterface[]>([]);
   const [tracks, setTracks] = useState<TrackInterface[]>([]);
+  const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
   const userEmail = user?.email || "";
 
   useEffect(() => {
@@ -66,8 +83,8 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       async function getAllMusicLauncher() {
         await handleUserPlaylistsCreated(userEmail);
         await handleUserPlaylistsLiked(userEmail);
-        await handleUserAlbums(userEmail);
-        await handleUserTracks(userEmail);
+        await handleUserAlbums();
+        await handleUserTracks();
       }
       getAllMusicLauncher();
     }
@@ -93,9 +110,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     }
   };
 
-  const handleUserAlbums = async (userEmail: string) => {
+  const handleUserAlbums = async () => {
     try {
-      const response = await userAlbumsGet(userEmail, getAccessTokenSilently);
+      const response = await userAlbumsGet(getAccessTokenSilently);
       setAlbums(response);
     } catch (error) {
       console.error('Error getting albums:', error);
@@ -103,10 +120,19 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     }
   };
 
-  const handleUserTracks = async (userEmail: string) => {
+  const handleUserTracks = async () => {
     try {
-      const response = await userTracksGet(userEmail, getAccessTokenSilently);
+      const response = await userTracksGet(getAccessTokenSilently);
       setTracks(response);
+    } catch (error) {
+      console.error('Error getting tracks:', error);
+      throw error;
+    }
+  };
+  const createUserTracks = async (userId: string, trackData: FormData, getAccessTokenSilently: () => Promise<string>) => {
+    try {
+      const response = await createTrack(userId, trackData, getAccessTokenSilently);
+      setTracksCreated(response);
     } catch (error) {
       console.error('Error getting tracks:', error);
       throw error;
@@ -120,10 +146,12 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         playlistsLiked,
         albums,
         tracks,
+        tracksCreated,
         handleUserPlaylistsCreated,
         handleUserPlaylistsLiked,
         handleUserAlbums,
         handleUserTracks,
+        createUserTracks
       }}
     >
       {children}
@@ -132,7 +160,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
 };
 
 
-export const useUserMusicContext = () => {
+export const useUserMusicContext = (): UserMusicContextType => {
   const context = useContext(UserMusicContext);
   if (!context) {
     throw new Error('useUserMusicContext debe ser utilizado dentro de un UserMusicProvider');

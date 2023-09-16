@@ -1,4 +1,4 @@
-import { useContext, lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
+import {lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
 import SwiperCore from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +12,7 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from '../../../assets/skeleton/homeSkeleton';
-import { useTrack } from '../../../context/TrackContext';
+import { useUserMusicContext } from '../../../context';
 
 const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
@@ -36,19 +36,21 @@ type ProprQuery = {
 export const TracksContainer = ({ query }: ProprQuery) => {
 	// const data = useContext(DataMusicContext);
 	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
-	const { tracks } = useTrack();
+	const { tracks } = useUserMusicContext();
 	const { allTrack } = tracks;
+	console.log(allTrack);
+	
 	return (
 		<TracksContainerStyles>
 			<h1>Songs</h1>
-			{tracks && (
+			{allTrack && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
 					{allTrack &&
 						allTrack
-							.filter(({ genre }) => {
+							.filter(({ trackName }:any) => {
 								if (!query) return true;
 								if (query) {
-									const nameLowerCase = genre.toLowerCase();
+									const nameLowerCase = trackName.toLowerCase();
 									return nameLowerCase.includes(query.toLowerCase());
 								}
 							})

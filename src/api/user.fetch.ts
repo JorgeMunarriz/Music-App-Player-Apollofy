@@ -1,4 +1,4 @@
-import { urlUser } from "../global";
+import { urlAlbum, urlTrack, urlUser } from "../global";
 
 export const userPost = async (user: {}, getToken: () => Promise<string>) => {
 
@@ -123,10 +123,10 @@ export const userPlaylistsLikedGet = async (userEmail: string, getToken: () => P
   }
 }
 
-export const userAlbumsGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userAlbumsGet = async ( getToken: () => Promise<string>) => {
   try {
     const token = getToken()
-    const response = await fetch(`${urlUser}/album/${userEmail}`, {
+    const response = await fetch(urlAlbum, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -148,10 +148,10 @@ export const userAlbumsGet = async (userEmail: string, getToken: () => Promise<s
   }
 }
 
-export const userTracksGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userTracksGet = async ( getToken: () => Promise<string>) => {
   try {
     const token = getToken()
-    const response = await fetch(`${urlUser}/track/${userEmail}`, {
+    const response = await fetch(urlTrack,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -169,6 +169,31 @@ export const userTracksGet = async (userEmail: string, getToken: () => Promise<s
 
   } catch (error) {
     console.error('Error getting user tracks:', error);
+    throw error;
+  }
+}
+
+export const createTrack = async (userId: string, trackData: FormData, getToken: () => Promise<string>) => {
+  try {
+    const token = getToken()
+    const response = await fetch(`${urlTrack}/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: trackData
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+
+  } catch (error) {
+    console.error('error in the track post request:', error);
     throw error;
   }
 }
