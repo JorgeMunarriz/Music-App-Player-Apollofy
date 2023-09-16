@@ -21,13 +21,13 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt 
     <TracksForLibraryStyles key={id}>
       <Link to={`${PLAYER}/${id}`} className="cardForTrack">
         <div className="cardForTrack__header">
-          <img alt={trackName} className="cardForTrack__header_img" src={trackUrl} />
+          <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
-        {/* <div className="cardForTrack__body">
+        <div className="cardForTrack__body">
           <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
-          <h4 className="cardForTrack__body_title-h4">{artist}</h4>
-          <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5>
-        </div> */}
+          <h4 className="cardForTrack__body_title-h4">artist... {trackCreatedAt}</h4>
+          {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
+        </div>
       </Link>
     </TracksForLibraryStyles>
   );

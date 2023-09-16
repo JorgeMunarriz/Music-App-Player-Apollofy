@@ -13,11 +13,13 @@ interface CreateTrackType {
   trackName: string,
   trackUrl: string,
   trackImage: string,
-  trackCreatedAt?: string,
+  trackCreatedAt: string,
   genreId: string[],
   artistId: string[],
   albumId: string[],
 }
+
+
 
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { userData, } = useUserContext();
@@ -31,40 +33,56 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       trackUrl: '',
       genreId: [],
       artistId: [],
-      albumId: []
+      albumId: [],
+      trackCreatedAt: new Date().toISOString(),
     },
-    mode: 'onChange'
   });
 
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const generos = [
-    { id: "64e6528e8c0d6c104567dc96", name: "Rock" },
-    { id: "64e65b981c47fa8590a8fb1e", name: "Hip hop" },
-    { id: "64e65b8f1c47fa8590a8fb1d", name: "Reggaeton" },
+    { id: "6501915fd1080d57fa618f56", name: "Rock" },
+    { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
+    { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
+  ];
+  const artist = [
+    { id: "65018d00f6f55225268a30d5", name: "pepe2" },
+  ];
+  const album = [
+    { id: "650436027b7f8a478d03fbd0", name: "Thriller" },
+    { id: "65043642224b44978b05e975", name: "Thriller" },
+    { id: "65043c461663adbc9fc2c444", name: "Thriller2" },
   ];
 
-  const onSubmit = async (newMovieData: CreateTrackType) => {
+  const onSubmit = async (newTrackData: CreateTrackType) => {
     try {
+
       setIsLoading(true);
       const formData = new FormData();
-      formData.append('trackName', newMovieData.trackName);
-      formData.append('trackUrl', newMovieData.trackUrl[0]);
-      formData.append('trackImage', newMovieData.trackImage[0]);
+      formData.append('trackName', newTrackData.trackName);
+      formData.append('trackCreatedAt', newTrackData.trackCreatedAt);
+      formData.append('trackUrl', newTrackData.trackUrl[0]);
+      formData.append('trackImage', newTrackData.trackImage[0]);
       // se utiliza foreach para agregar todos los campos selecionados
-      newMovieData.artistId.forEach((artistId) => {
-        formData.append('artistId', artistId);
-      });
-      newMovieData.albumId.forEach((albumId) => {
-        formData.append('albumId', albumId);
-      });
-      newMovieData.genreId.forEach((genreId) => {
-        formData.append('genreId', genreId);
-      });
+      if (Array.isArray(newTrackData.artistId)) {
+        newTrackData.artistId.forEach((artistId) => {
+          formData.append('artistId', artistId);
+        });
+      }
 
+      if (Array.isArray(newTrackData.albumId)) {
+        newTrackData.albumId.forEach((albumId) => {
+          formData.append('albumId', albumId);
+        });
+      }
+      if (Array.isArray(newTrackData.genreId)) {
+        newTrackData.genreId.forEach((genreId) => {
+          formData.append('genreId', genreId);
+        });
+      }
       const response = await createUserTracks(userData?.id ?? '', formData);
 
-      if (response.status.toString() === 'success') {
+      if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
           setIsSuccess(false);
@@ -99,7 +117,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="gender_box">
-          <select  {...register("genreId")} multiple id="genre">
+          <select  {...register("genreId")}  id="genre">
             <option value="">Select genres</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
@@ -107,17 +125,17 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
               </option>
             ))}
           </select>
-          <select  {...register("artistId")} multiple id="artist">
+          <select  {...register("artistId")} id="artist">
             <option value="">Select Artist</option>
-            {generos.map((genero) => (
+            {artist.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
-          <select  {...register("albumId")} multiple id="album">
+          <select  {...register("albumId")} id="album">
             <option value="">Select Albums</option>
-            {generos.map((genero) => (
+            {album.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>

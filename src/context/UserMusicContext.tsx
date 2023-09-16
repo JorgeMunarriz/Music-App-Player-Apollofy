@@ -1,17 +1,17 @@
-
-
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from 'react';
-import { userPlaylistsCreatedGet, userPlaylistsLikedGet,
-   userAlbumsGet, userTracksGet,createTrack } from '../api/user.fetch';
+import {
+  userPlaylistsCreatedGet, userPlaylistsLikedGet,
+  userAlbumsGet, userTracksGet, createTrack
+} from '../api/user.fetch';
 import { useAuth0 } from "@auth0/auth0-react";
 
-// Definir el tipo para el contexto
+
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
   playlistsLiked: PlaylistInterface[];
-  albums: albumInterface[];
-  tracks: trackInterface[] | null;
-  tracksCreated: CreateTrackType[]
+  albums: AlbumInterface[];
+  tracks: TrackInterface[];
+  tracksCreated: CreateTrackType[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
@@ -29,8 +29,7 @@ interface PlaylistInterface {
   playlistCreatedById: string[],
   genreId: string[],
 }
-
-interface albumInterface {
+interface AlbumInterface {
   id: string,
   albumName: string,
   albumImage: string,
@@ -42,10 +41,8 @@ interface albumInterface {
   genreId: string[],
   artist: string[],
   artistId: string[],
-  
 }
-
-interface trackInterface {
+interface TrackInterface {
   id: string,
   trackName: string,
   trackImage: string,
@@ -58,9 +55,7 @@ interface trackInterface {
   artist: string[],
   artistId: string[],
   trackUrl: string
-  
 }
-
 interface CreateTrackType {
   trackName: string,
   trackUrl: string,
@@ -72,22 +67,16 @@ interface CreateTrackType {
 }
 
 
-
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
 
 export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
-  const [albums, setAlbums] = useState< albumInterface[] >([]);
-  const [tracks, setTracks] = useState< trackInterface[] >([]);
-  const [tracksCreated , setTracksCreated] = useState< CreateTrackType[] >([]);
+  const [albums, setAlbums] = useState<AlbumInterface[]>([]);
+  const [tracks, setTracks] = useState<TrackInterface[]>([]);
+  const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
   const userEmail = user?.email || "";
-
-  console.log(playlistsCreated)
-  console.log(playlistsLiked)
-  console.log(albums)
-  console.log(tracks)
 
   useEffect(() => {
     if (isAuthenticated && userEmail) {
@@ -123,7 +112,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
 
   const handleUserAlbums = async () => {
     try {
-      const response = await userAlbumsGet( getAccessTokenSilently);
+      const response = await userAlbumsGet(getAccessTokenSilently);
       setAlbums(response);
     } catch (error) {
       console.error('Error getting albums:', error);
@@ -142,7 +131,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   };
   const createUserTracks = async (userId: string, trackData: FormData): Promise<Response> => {
     try {
-      const response = await createTrack(userId,trackData,getAccessTokenSilently);
+      const response = await createTrack(userId, trackData, getAccessTokenSilently);
       setTracksCreated(response);
       return response
     } catch (error) {
@@ -172,7 +161,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
 };
 
 
-export const useUserMusicContext = ():UserMusicContextType => {
+export const useUserMusicContext = (): UserMusicContextType => {
   const context = useContext(UserMusicContext);
   if (!context) {
     throw new Error('useUserMusicContext debe ser utilizado dentro de un UserMusicProvider');
