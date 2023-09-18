@@ -23,11 +23,7 @@ export const ProfileMainContainer = () => {
   return (
     <>
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-<<<<<<< HEAD
-        <AlbumCreateForm closeModal={closeModal1} />
-=======
         <TracksCreateForm closeModal={closeModal1} />
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
       </Modal>
       {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
         <ArtistCreateForm closeModal={closeModal1} />
