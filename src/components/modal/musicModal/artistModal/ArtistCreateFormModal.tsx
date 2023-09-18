@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState, FC } from "react";
 import { AlertMessageSuccess, LoaderForm } from "../../..";
 import { useForm } from "react-hook-form";
-import { useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 
 interface userFormModal {
@@ -15,22 +14,19 @@ interface CreateArtistType {
   popularity: number;
   albumId: string[];
   genreId: string[];
-  trackId: string[];
 }
 
 export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { userData } = useUserContext();
-  const { createUserArtist, albums } = useUserMusicContext();
+  const { createNewArtist, albums } = useUserMusicContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
     defaultValues: {
       artistName: "",
       artistImage: "",
-      popularity: "",
+      popularity: 0,
       albumId: [],
       genreId: [],
-      trackId: [],
     },
   });
 
@@ -49,12 +45,6 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
       formData.append("artistName", newArtistData.artistName);
       formData.append("artistImage", newArtistData.artistImage[0]);
       // se utiliza foreach para agregar todos los campos selecionados
-      if (Array.isArray(newArtistData.trackId)) {
-        newArtistData.trackId.forEach((trackId) => {
-          formData.append("trackId", trackId);
-        });
-      }
-
       if (Array.isArray(newArtistData.albumId)) {
         newArtistData.albumId.forEach((albumId) => {
           formData.append("albumId", albumId);
@@ -65,8 +55,7 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genreId);
         });
       }
-      const response = await createUserArtist(userData?.id ?? "", formData);
-
+      const response = await createNewArtist(formData);
       if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
@@ -139,9 +128,6 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
               required: "Please choose a file",
             })}
           />
-          <label className="label_file" htmlFor="audio">
-            Choose a artist:
-          </label>
         </div>
         <button type="submit">ADD artist</button>
       </form>
