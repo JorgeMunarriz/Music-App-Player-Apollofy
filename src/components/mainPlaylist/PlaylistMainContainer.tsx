@@ -38,7 +38,6 @@ export const PlaylistMainContainer = () => {
   const { playlistsCreated, playlistsLiked, albums, tracks } = useUserMusicContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
 
-  console.log(tracks);
 
   const [zoneSelected, setZoneSelected] = useState("playlists");
 

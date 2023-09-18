@@ -30,8 +30,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
     const [currentTrack, setCurrentTrack] = useState<TrackInterface | undefined>();
     const [nextTracks, setNextTracks] = useState();
 
-    console.log(currentTrack);
-
+    console.log(currentTrack)
     const handleCurrentTrackById = (id: string) => {
         console.log(id)
 
