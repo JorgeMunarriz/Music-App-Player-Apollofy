@@ -5,6 +5,7 @@ import { UserProvider } from './context';
 import { GenresProvider } from './context/GenresContext';
 import { TrackProvider } from './context/TrackContext';
 import { UserMusicProvider } from './context/UserMusicContext';
+import { QueuePlayerProvider } from './context/QueuePlayerContext';
 
 function App() {
 
@@ -12,11 +13,13 @@ function App() {
 		<>
 			<UserProvider>
 				<UserMusicProvider>
-				<GenresProvider>
-					<TrackProvider>
-						<Router />
-					</TrackProvider>
-				</GenresProvider>
+					<GenresProvider>
+						<TrackProvider>
+							<QueuePlayerProvider>
+								<Router />
+							</QueuePlayerProvider>
+						</TrackProvider>
+					</GenresProvider>
 				</UserMusicProvider>
 			</UserProvider>
 

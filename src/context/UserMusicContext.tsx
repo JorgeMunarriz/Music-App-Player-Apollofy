@@ -26,7 +26,7 @@ interface PlaylistInterface {
   playlistLikedById: string[];
   playlistCreatedById: string[];
   genreId: string[];
-  genre: { genreName: string; id: string };
+  genre: [{ genreName: string; id: string }];
 }
 interface AlbumInterface {
   id: string;
@@ -50,8 +50,9 @@ interface TrackInterface {
   trackId: string[];
   trackLikedById: string[];
   trackCreatedById: string[];
+  genre: [{ genreName: string }];
   genreId: string[];
-  artist: string[];
+  artist: [{ artistName: string }];
   artistId: string[];
   trackUrl: string;
 }
