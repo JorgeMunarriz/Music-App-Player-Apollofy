@@ -16,7 +16,7 @@ interface UserMusicContextType {
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
-  createUserTracks: (userId: string, trackData: FormData, getAccessTokenSilently: () => Promise<string>) => Promise<void>;
+  createUserTracks: (userId: string, trackData: FormData)=> Promise<Response>;
 }
 interface PlaylistInterface {
   id: string,
@@ -129,10 +129,11 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
-  const createUserTracks = async (userId: string, trackData: FormData, getAccessTokenSilently: () => Promise<string>) => {
+  const createUserTracks = async (userId: string, trackData: FormData): Promise<Response> => {
     try {
       const response = await createTrack(userId, trackData, getAccessTokenSilently);
       setTracksCreated(response);
+      return response
     } catch (error) {
       console.error('Error getting tracks:', error);
       throw error;

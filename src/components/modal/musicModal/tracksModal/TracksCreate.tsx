@@ -19,6 +19,8 @@ interface CreateTrackType {
   albumId: string[],
 }
 
+
+
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { userData, } = useUserContext();
   const { createUserTracks } = useUserMusicContext();
@@ -29,19 +31,70 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       trackName: '',
       trackImage: '',
       trackUrl: '',
-      genreId: '',
-      artistId: '',
-      albumId: ''
+      genreId: [],
+      artistId: [],
+      albumId: [],
+      trackCreatedAt: new Date().toISOString(),
     },
   });
 
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const generos = [
-    { id: "64e6528e8c0d6c104567dc96", name: "Rock" },
-    { id: "64e65b981c47fa8590a8fb1e", name: "Hip hop" },
-    { id: "64e65b8f1c47fa8590a8fb1d", name: "Reggaeton" },
+    { id: "6501915fd1080d57fa618f56", name: "Rock" },
+    { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
+    { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
   ];
+  const artist = [
+    { id: "65018d00f6f55225268a30d5", name: "pepe2" },
+  ];
+  const album = [
+    { id: "650436027b7f8a478d03fbd0", name: "Thriller" },
+    { id: "65043642224b44978b05e975", name: "Thriller" },
+    { id: "65043c461663adbc9fc2c444", name: "Thriller2" },
+  ];
+
+  const onSubmit = async (newTrackData: CreateTrackType) => {
+    try {
+
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append('trackName', newTrackData.trackName);
+      formData.append('trackCreatedAt', newTrackData.trackCreatedAt);
+      formData.append('trackUrl', newTrackData.trackUrl[0]);
+      formData.append('trackImage', newTrackData.trackImage[0]);
+      // se utiliza foreach para agregar todos los campos selecionados
+      if (Array.isArray(newTrackData.artistId)) {
+        newTrackData.artistId.forEach((artistId) => {
+          formData.append('artistId', artistId);
+        });
+      }
+
+      if (Array.isArray(newTrackData.albumId)) {
+        newTrackData.albumId.forEach((albumId) => {
+          formData.append('albumId', albumId);
+        });
+      }
+      if (Array.isArray(newTrackData.genreId)) {
+        newTrackData.genreId.forEach((genreId) => {
+          formData.append('genreId', genreId);
+        });
+      }
+      const response = await createUserTracks(userData?.id ?? '', formData);
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+          closeModal()
+        }, 4000)
+      }
+    } catch (error) {
+      console.error('Error saving track:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <TracksFormContainer >
@@ -50,7 +103,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
         Track create successfully
       </AlertMessageSuccess>}
       <header>ADD Track</header>
-      <form className="form" >
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
           <label htmlFor='trackName'>Name</label>
           <input
@@ -64,8 +117,8 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="gender_box">
-          <select  {...register("genreId")} id="genre">
-            <option  value="">Select genres</option>
+          <select  {...register("genreId")}  id="genre">
+            <option value="">Select genres</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
@@ -73,22 +126,22 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
             ))}
           </select>
           <select  {...register("artistId")} id="artist">
-            <option  value="">Select Artist</option>
-            {generos.map((genero) => (
+            <option value="">Select Artist</option>
+            {artist.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
           <select  {...register("albumId")} id="album">
-            <option  value="">Select Albums</option>
-            {generos.map((genero) => (
+            <option value="">Select Albums</option>
+            {album.map((genero) => (
               <option key={genero.id} value={genero.id}>
                 {genero.name}
               </option>
             ))}
           </select>
-          {errors.genreId && <span className="error_input">Genre is required</span>}
+          {errors.genreId && <span className="error_input">At least one genre is required</span>}
         </div>
         <div className="input_box description"  >
           <label className="label_file" htmlFor='image'>Choose a file:</label>

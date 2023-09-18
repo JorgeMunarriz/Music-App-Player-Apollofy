@@ -173,23 +173,23 @@ export const userTracksGet = async ( getToken: () => Promise<string>) => {
   }
 }
 
-export const createTrack = async (userId: string, trackData: FormData, getToken: () => Promise<string>) => {
+export const createTrack = async (userId: string,  formData: FormData, getToken: () => Promise<string>) => {
   try {
-    const token = getToken()
+    const token = await getToken()
     const response = await fetch(`${urlTrack}/${userId}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: trackData
+      body: formData
     });
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(`Error connecting to DB: ${errorData.message}`);
+      throw new Error(`Error connecting to DB: ${errorData}`);
     }
 
-    const data = response.json();
+    const data = await response.json();
+    console.log(data);
     return data;
 
   } catch (error) {
