@@ -7,6 +7,7 @@ interface UserMusicContextType {
   playlistsLiked: PlaylistInterface[];
   albums: AlbumInterface[];
   tracks: TrackInterface[];
+  artistCreated: CreateArtistType[];
   tracksCreated: CreateTrackType[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
@@ -54,6 +55,7 @@ interface TrackInterface {
   artistId: string[];
   trackUrl: string;
 }
+
 interface CreateTrackType {
   trackName: string;
   trackUrl: string;
@@ -148,7 +150,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const createNewArtist = async (artistData: FormData): Promise<Response> => {
     try {
       const response = await createArtist(artistData, getAccessTokenSilently);
-      setTracksCreated(response);
+      setArtistCreated(response);
       return response;
     } catch (error) {
       console.error("Error getting tracks:", error);
@@ -164,6 +166,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         albums,
         tracks,
         tracksCreated,
+        artistCreated,
         handleUserPlaylistsCreated,
         handleUserPlaylistsLiked,
         handleUserAlbums,
