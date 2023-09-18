@@ -1,10 +1,9 @@
 export { default as CardForAlbum } from './Cards/CardForAlbum';
-export { default as CardForPlaylist } from './Cards/CardForPlaylist';
+export { default as CardForPLaylist } from './Cards/CardForPLaylist';
 export { default as CardForPlaylistPlayer } from './Cards/CardForPlaylistPlayer';
 export { default as CardForPlaylistPlayerHome } from './Cards/CardForPlaylistPlayerHome';
 export * from './Cards/CardForPlaylist_old';
 export { default as CardForTrack } from './Cards/CardForTrack';
-export * from './audioPlayer/AudioPlayer.styles';
 export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/button.styles';

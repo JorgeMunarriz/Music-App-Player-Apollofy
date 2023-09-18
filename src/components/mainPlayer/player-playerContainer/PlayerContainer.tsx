@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 import { Track } from "../../../types/data";
 import { useUserMusicContext } from "../../../context";
+import { useQueuePlayerContext } from '../../../context/QueuePlayerContext';
 
-export const PlayerContainer = ({ id }: Track) => {
+export const PlayerContainer = () => {
 
-  const { tracks } = useUserMusicContext();
-
+  const { currentTrack } = useQueuePlayerContext();
 
   return (
     <PlayerContainerStyles >
       <div className="playerContainer">
-        {/* <img className="playerContainer__img-big" src={tracks?.} />
-        <h3 className="playerContainer__h3">{tracks?.name}</h3>
-        <span className="playerContainer__span">{tracks?.artist}</span> */}
+        <img className="playerContainer__img-big" src={currentTrack?.trackImage} />
+        <h3 className="playerContainer__h3">{currentTrack?.trackName}</h3>
+        <h4 className="playerContainer__span">{currentTrack?.artist.map(artist => artist.artistName).join(', ')}</h4>
+        <span className="playerContainer__span">{currentTrack?.genre.map(genre => genre.genreName).join(', ')}</span>
       </div>
     </PlayerContainerStyles>
   );

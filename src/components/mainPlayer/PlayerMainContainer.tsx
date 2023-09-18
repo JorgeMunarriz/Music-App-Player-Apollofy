@@ -9,17 +9,14 @@ import { useUserMusicContext } from '../../context';
 
 export const PlayerMainContainer = () => {
 
-  const { tracks } = useUserMusicContext()
-
   return (
     <PlayerMainContainerStyles>
       <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
-      {/* <PlayerContainer key={tracks.id} /> */}
+      <PlayerContainer />
     </PlayerMainContainerStyles>
 
   )
 }
-
 
 
 export const PlayerMainContainerStyles = styled.div`
@@ -30,17 +27,13 @@ border-radius: 0.25rem;
 overflow-y: auto;
 background: linear-gradient(#340034, #000);
 
-
-
 @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
   grid-area: 1 / 1 / 5 / 7;
-  
-  
+   
 }
 
 @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
   grid-area: 1 / 1 / 5 / 7;
-  
   
 }
 
@@ -54,7 +47,6 @@ background: linear-gradient(#340034, #000);
 @media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
   grid-area: 1 / 2 / 5 / 7;
 
-  
   width: 100%;
   height: 100%;
 }
@@ -62,7 +54,6 @@ background: linear-gradient(#340034, #000);
 @media (width > ${breakpoints.desktopMax}px) {
   grid-area: 1 / 2 / 5 / 7;
 
-  
 width: 100%;
 height: 100%;
 }

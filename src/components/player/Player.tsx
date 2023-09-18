@@ -3,22 +3,22 @@ import { useContext } from "react";
 import { DataMusicContext } from "../../context";
 import { AudioPlayerComponent } from "..";
 import { breakpoints } from '../../styles/breakpoints.ts'
+import { useQueuePlayerContext } from "../../context/QueuePlayerContext.tsx";
 
 
 export const Player = () => {
 
-  const data = useContext(DataMusicContext);
-  const track = data?.currentTrack;
+  const { currentTrack } = useQueuePlayerContext();
 
   return (
     <PlayerStyles>
-      {track ?
+      {currentTrack ?
         <>
           <div className="playerstyles__div-whole">
-            <img className="playerstyles__img" src={track?.thumbnail} alt={track?.name} />
+            <img className="playerstyles__img" src={currentTrack?.trackImage} alt={currentTrack?.trackName} />
             <div className="playerstyles__info">
-              <h4 className="playerstyles__info-h4">{track?.name}</h4>
-              <p className="playerstyles__info-paragraph">{track?.artist}</p>
+              <h4 className="playerstyles__info-h4">{currentTrack?.trackName}</h4>
+              <p className="playerstyles__info-paragraph">{currentTrack?.artist.map((artist) => artist.artistName).join(', ')}</p>
             </div>
           </div>
           <div className="playerstyles__div-container">

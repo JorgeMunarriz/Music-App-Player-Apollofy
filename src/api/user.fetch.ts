@@ -1,7 +1,7 @@
 import { urlAlbum, urlArtist, urlTrack, urlUser } from "../global";
+export type GetTokenFunction = () => Promise<string>;
 
-export const userPost = async (user: {}, getToken: () => Promise<string>) => {
-
+export const userPost = async (user: {}, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response = await fetch(`${urlUser}`, {
@@ -16,14 +16,14 @@ export const userPost = async (user: {}, getToken: () => Promise<string>) => {
       const data = await response.json();
       return data;
     } else {
-      console.error('Error updating user:', response.statusText);
+      console.error("Error updating user:", response.statusText);
     }
   } catch (error) {
-    console.error('Error updating user:', error);
+    console.error("Error updating user:", error);
   }
 };
 
-export const UserPatch = async (userUpdate: {}, userId: string, getToken: () => Promise<string>) => {
+export const UserPatch = async (userUpdate: {}, userId: string, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response: Response = await fetch(`${urlUser}/${userId}`, {
@@ -42,23 +42,22 @@ export const UserPatch = async (userUpdate: {}, userId: string, getToken: () => 
       console.error(errorMessage);
       throw new Error(errorMessage);
     }
-
   } catch (error) {
-    console.error('Error updating user:', error);
+    console.error("Error updating user:", error);
     throw error;
   }
 };
 
-export const userDelete = async (userId: string, getToken: () => Promise<string>) => {
+export const userDelete = async (userId: string, getToken: GetTokenFunction) => {
   try {
-    const token = getToken()
+    const token = getToken();
     const response: Response = await fetch(`${urlUser}/${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -66,23 +65,22 @@ export const userDelete = async (userId: string, getToken: () => Promise<string>
     }
 
     return response;
-
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error("Error deleting user:", error);
     throw error;
   }
 };
 
-export const userPlaylistsCreatedGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userPlaylistsCreatedGet = async (userEmail: string, getToken: GetTokenFunction) => {
   try {
-    const token = getToken()
+    const token = getToken();
     const response = await fetch(`${urlUser}/playlistCreated/${userEmail}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -91,23 +89,22 @@ export const userPlaylistsCreatedGet = async (userEmail: string, getToken: () =>
 
     const data = response.json();
     return data;
-
   } catch (error) {
-    console.error('Error getting user playlists:', error);
+    console.error("Error getting user playlists:", error);
     throw error;
   }
-}
+};
 
-export const userPlaylistsLikedGet = async (userEmail: string, getToken: () => Promise<string>) => {
+export const userPlaylistsLikedGet = async (userEmail: string, getToken: GetTokenFunction) => {
   try {
-    const token = getToken()
+    const token = getToken();
     const response = await fetch(`${urlUser}/playlistLiked/${userEmail}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -116,23 +113,22 @@ export const userPlaylistsLikedGet = async (userEmail: string, getToken: () => P
 
     const data = response.json();
     return data;
-
   } catch (error) {
-    console.error('Error getting user playlists:', error);
+    console.error("Error getting user playlists:", error);
     throw error;
   }
-}
+};
 
-export const userAlbumsGet = async ( getToken: () => Promise<string>) => {
+export const userAlbumsGet = async (getToken: GetTokenFunction) => {
   try {
-    const token = getToken()
+    const token = getToken();
     const response = await fetch(urlAlbum, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -141,23 +137,22 @@ export const userAlbumsGet = async ( getToken: () => Promise<string>) => {
 
     const data = response.json();
     return data;
-
   } catch (error) {
-    console.error('Error getting user albums:', error);
+    console.error("Error getting user albums:", error);
     throw error;
   }
-}
+};
 
-export const userTracksGet = async ( getToken: () => Promise<string>) => {
+export const userTracksGet = async (getToken: GetTokenFunction) => {
   try {
-    const token = getToken()
-    const response = await fetch(urlTrack,{
+    const token = getToken();
+    const response = await fetch(urlTrack, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -166,22 +161,21 @@ export const userTracksGet = async ( getToken: () => Promise<string>) => {
 
     const data = response.json();
     return data;
-
   } catch (error) {
-    console.error('Error getting user tracks:', error);
+    console.error("Error getting user tracks:", error);
     throw error;
   }
-}
+};
 
-export const createArtist = async (  formData: FormData, getToken: () => Promise<string>) => {
+export const createArtist = async (formData: FormData, getToken: GetTokenFunction) => {
   try {
-    const token = await getToken()
+    const token = await getToken();
     const response = await fetch(urlArtist, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body: formData
+      body: formData,
     });
     if (!response.ok) {
       const errorData = await response.json();
@@ -191,21 +185,20 @@ export const createArtist = async (  formData: FormData, getToken: () => Promise
     const data = await response.json();
     console.log(data);
     return data;
-
   } catch (error) {
-    console.error('error in the track post request:', error);
+    console.error("error in the track post request:", error);
     throw error;
   }
-}
-export const createTrack = async (userId: string,  formData: FormData, getToken: () => Promise<string>) => {
+};
+export const createTrack = async (userId: string, formData: FormData, getToken: GetTokenFunction) => {
   try {
-    const token = await getToken()
+    const token = await getToken();
     const response = await fetch(`${urlTrack}/${userId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body: formData
+      body: formData,
     });
     if (!response.ok) {
       const errorData = await response.json();
@@ -215,9 +208,8 @@ export const createTrack = async (userId: string,  formData: FormData, getToken:
     const data = await response.json();
     console.log(data);
     return data;
-
   } catch (error) {
-    console.error('error in the track post request:', error);
+    console.error("error in the track post request:", error);
     throw error;
   }
 }
