@@ -42,6 +42,8 @@ export const PlaylistMainContainer = () => {
   const { playlistsCreated, playlistsLiked, albums, tracks } = useUserMusicContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
 
+  console.log(tracks)
+
   const [zoneSelected, setZoneSelected] = useState("playlists")
 
   const handleChangeZoneSelected = (selection: string) => {
@@ -65,8 +67,8 @@ export const PlaylistMainContainer = () => {
         <section className="zone-selector">
           <span className={`selections ${zoneSelected === 'playlists' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('playlists')}>Playlists</span>
           <span className={`selections ${zoneSelected === 'myPlaylists' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('myPlaylists')}>My Playlists</span>
-          <span className={`selections ${zoneSelected === 'albums' ? 'selections-active' : ''}`} onClick={() => handleChangeZoneSelected('albums')}>Albums</span>
-          <span className={`selections ${zoneSelected === 'tracks' ? 'selections-active' : ''}`} onClick={() => handleChangeZoneSelected('tracks')}>Tracks</span>
+          <span className={`selections ${zoneSelected === 'albums' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('albums')}>Albums</span>
+          <span className={`selections ${zoneSelected === 'tracks' ? 'selection-active' : ''}`} onClick={() => handleChangeZoneSelected('tracks')}>Tracks</span>
         </section>
         <section className="zone-cards">
           {zoneSelected === 'playlists' && playlistsLiked &&
