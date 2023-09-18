@@ -1,4 +1,4 @@
-import { LazyExoticComponent, ComponentType, lazy, useState } from "react";
+import { LazyExoticComponent, ComponentType, lazy} from "react";
 import styled from "styled-components";
 import { SearchBar } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -17,9 +17,9 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const AlbumMainContainer = () => {
   const { id } = useParams();
   const { albums, tracks } = useUserMusicContext();
-  const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
+//   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
   const selectedAlbum = albums.find((album) => album.id === id);
-  console.log(selectedAlbum?.track);
+  
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
