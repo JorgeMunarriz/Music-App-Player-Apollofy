@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { PLAYER } from '../../config/routes/paths';
+import { ALBUM } from '../../config/routes/paths';
 import styled from 'styled-components';
 
 interface AlbumProps {
@@ -16,7 +16,7 @@ const CardForAlbum = ({ id,
   albumImage, }: AlbumProps) => {
   return (
     <CardForAlbumStyles key={id}>
-      <Link to={`${PLAYER}/${id}`} className="cardForAlbum">
+      <Link to={`${ALBUM}/${id}`} className="cardForAlbum">
         <div className="cardForAlbum__header">
           <img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
         </div>

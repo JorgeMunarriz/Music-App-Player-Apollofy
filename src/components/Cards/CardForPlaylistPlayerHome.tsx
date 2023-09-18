@@ -7,25 +7,19 @@ import { toggleLiked } from "../../api/toggleLiked";
 // import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import styled from "styled-components";
 
-
 interface Playlist {
-  id: string
-  playlistImage?: string
-  playlistName: string
-  trackId?: string
+  id: string;
+  playlistImage?: string;
+  playlistName: string;
+  trackId?: string;
 }
-
-
 
 const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
   // console.log(trackImage)
   //tengo que traer el puto id
   // const { userLogged, handleUserLogged } = useContext(UserContext);
-
-  console.log(`renderizando el componente: ${id}`)
   // const { user, getAccessTokenSilently } = useAuth0();
   // const { userFechture } = useUserContext()
-
 
   // const isFollowed = () => {
   //   if (userLogged?.favPlaylists.includes(id)) {
@@ -59,7 +53,9 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
         </div>
         <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
-        <button onClick={() => console.log('click')} className="cardForPlaylistPlayer__follow-btn follow_btn"> Hola
+        <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
+          {" "}
+          Hola
           {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
         </button>
       </div>
@@ -67,9 +63,7 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
   );
 };
 
-
 const CardForPlaylistPlayerHomeStyles = styled.div`
- 
   .cardForPlaylistPlayer {
     display: flex;
 
@@ -80,8 +74,8 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     height: 15rem;
     width: 90%;
     box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
-   background-color: rgba(34, 15, 42, 0.4);
-   margin-right: 10px;
+    background-color: rgba(34, 15, 42, 0.4);
+    margin-right: 10px;
 
     &:hover {
       background-color: rgba(50, 50, 50, 0.4);
@@ -129,9 +123,9 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
       color: #340034;
     }
   }
-  .cardForPlaylistPlayer__name{
-        font-size: 20px;
-    }
+  .cardForPlaylistPlayer__name {
+    font-size: 20px;
+  }
 
   @media only screen and (min-width: 363px) and (max-width: 700px) {
     margin: 10px;
@@ -141,9 +135,8 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
       align-items: center;
       height: 200px;
     }
-    .cardForPlaylistPlayer__img{
+    .cardForPlaylistPlayer__img {
       width: 100%;
-     
     }
     &__img {
       position: relative;
@@ -151,13 +144,10 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
       height: 100%;
       background-position: center center;
     }
-    .cardForPlaylistPlayer__name{
-        font-size: 15px;
+    .cardForPlaylistPlayer__name {
+      font-size: 15px;
     }
-
   }
+`;
 
-  
-  `
-
-export default CardForPlaylistPlayerHome
+export default CardForPlaylistPlayerHome;

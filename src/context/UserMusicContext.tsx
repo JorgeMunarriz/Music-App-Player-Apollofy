@@ -38,6 +38,7 @@ interface AlbumInterface {
   albumCreatedAt: string;
   albumUpdatedAt: string;
   trackId: string[];
+  track: TrackInterface[];
   albumLikedById: string[];
   albumCreatedById: string[];
   genreId: string[];
@@ -67,6 +68,8 @@ interface TrackInterface {
   artist: [{ artistName: string }];
   artistId: string[];
   trackUrl: string;
+  albumId: string;
+
 }
 
 interface CreateTrackType {
