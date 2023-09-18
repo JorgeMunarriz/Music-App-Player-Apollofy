@@ -10,15 +10,15 @@ import styled from "styled-components";
 
 interface Playlist {
   id: string
-  trackImage?: string
-  trackUrl: string
-  trackName?: string
+  playlistImage?: string
+  playlistName: string
+  trackId?: string
 }
 
 
 
-const CardForPlaylistPlayerHome = ({ id, trackName, trackUrl, trackImage }: Playlist) => {
-  console.log(trackImage)
+const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
+  // console.log(trackImage)
   //tengo que traer el puto id
   // const { userLogged, handleUserLogged } = useContext(UserContext);
 
@@ -55,11 +55,11 @@ const CardForPlaylistPlayerHome = ({ id, trackName, trackUrl, trackImage }: Play
     <CardForPlaylistPlayerHomeStyles>
       <div className="cardForPlaylistPlayer">
         <div className="cardForPlaylistPlayer__img">
-          <img className="cardForPlaylistPlayer__img-img" src={trackImage} alt={trackUrl} />
+          <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{trackName}</h3>
+        <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
-        <button onClick={() => console.log('click')} className="cardForPlaylistPlayer__follow-btn follow_btn">
+        <button onClick={() => console.log('click')} className="cardForPlaylistPlayer__follow-btn follow_btn"> Hola
           {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
         </button>
       </div>
@@ -69,26 +69,33 @@ const CardForPlaylistPlayerHome = ({ id, trackName, trackUrl, trackImage }: Play
 
 
 const CardForPlaylistPlayerHomeStyles = styled.div`
+ 
   .cardForPlaylistPlayer {
     display: flex;
-    justify-content: space-between;
+
+    justify-content: space-around;
     align-items: center;
-    padding: 3rem;
-    border-radius: 10px;
+    padding: 1rem;
+    gap: 10px;
+    height: 15rem;
     width: 100%;
-    height: 100%;
-  
-  
+    box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
+
     &:hover {
-  
+      background-color: rgba(50, 50, 50, 0.4);
       cursor: pointer;
+      .cardForPlaylistPlayer__description {
+        display: flex;
+        visibility: visible;
+      }
     }
     &__img {
       position: relative;
-    width: 150px;
-    height: 100px;
-    overflow: hidden;
-      &-img{
+      width: 20%;
+      height: 100%;
+
+      overflow: hidden;
+      &-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -96,24 +103,22 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     }
     &__name {
       color: #fff;
-      font-size: 30px;
+      font-size: 25px;
     }
 
-    
-
     &__follow-btn {
-      border: 1px solid transparent;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 30px;
       height: 30px;
-      cursor:pointer;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
 
       & svg {
-        width:70%;
-        height:70%;
+        width: 70%;
+        height: 70%;
       }
     }
 
@@ -121,7 +126,24 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
       color: #340034;
     }
   }
-`;
 
+  @media only screen and (min-width: 320px) and (max-width: 700px) {
+    .cardForPlaylistPlayer {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+    .cardForPlaylistPlayer__img{
+      width: 100%;
+    }
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+  `
 
 export default CardForPlaylistPlayerHome

@@ -3,31 +3,31 @@ import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 
 interface AlbumProps {
-	id: string
-	albumName: string
-	albumUrl: string
-	albumImage: string
+  id: string
+  albumName: string
+  albumUrl: string
+  albumImage: string
 }
 
 
 const CardForAlbum = ({ id,
-	albumName,
-	albumUrl,
-	albumImage, }: AlbumProps) => {
-	return (
-		<CardForAlbumStyles key={id}>
-			<Link to={`${PLAYER}/${id}`} className="cardForAlbum">
-				<div className="cardForAlbum__header">
-					<img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
-				</div>
-				<div className="cardForAlbum__body">
-					<h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
-					<h4 className="cardForAlbum__body_title-h4">{albumName}</h4>
-					<h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
-				</div>
-			</Link>
-		</CardForAlbumStyles>
-	);
+  albumName,
+  albumUrl,
+  albumImage, }: AlbumProps) => {
+  return (
+    <CardForAlbumStyles key={id}>
+      <Link to={`${PLAYER}/${id}`} className="cardForAlbum">
+        <div className="cardForAlbum__header">
+          <img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
+        </div>
+        <div className="cardForAlbum__body">
+          <h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
+          <h4 className="cardForAlbum__body_title-h4">{albumName}</h4>
+          <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
+        </div>
+      </Link>
+    </CardForAlbumStyles>
+  );
 };
 
 const CardForAlbumStyles = styled.div`
@@ -90,34 +90,54 @@ const CardForAlbumStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 700px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     .cardForAlbum {
-    display: flex;
-    
-    min-height: 120px;
-
-    
-    &__body {
-      display: flex;
       flex-direction: column;
-      gap: 1rem;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &.h3 {
-          font-size: 1rem;
-        }
-        &.h4 {
-          font-size: 0.75rem;
-        }
-        &.h5 {
-          font-size: 0.5rem;
-        }
-      }
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      width: 100%;
     }
+    .cardForAlbum__header{
+      width: 100%;
+   
     }
+    .cardForAlbum__header_img{
+      width: 100%;
+      align-items: center;
+      object-fit: cover;
+    }
+        
+   .cardForAlbum__body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow: hidden;
+          padding: 1vh;
+          margin-bottom: 20px;
+          &_title {
+            color: #fff;
+            &-h3 {
+              font-size: 15px;
+              color: var(--color-text-pink);
+            }
+            &-h4 {
+              font-size: 20px;
+              color: var(--color-text-gray);
+            }
+            &-h5 {
+              font-size:10px;
+              color: rgba(255, 255, 255, 0.7)
+            }
+          }
+    }
+
   }
+
 `;
 
 

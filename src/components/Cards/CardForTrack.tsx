@@ -3,30 +3,30 @@ import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 
 interface Track {
-	id: string
-	trackName: string
-	trackUrl: string
-	trackImage: string
+  id: string
+  trackName: string
+  trackUrl: string
+  trackImage: string
 }
 
 
 const CardForTrack = ({ id,
-	trackName,
-	trackUrl,
-	trackImage, }: Track) => {
-	return (
-		<CardForTrackStyles key={id}>
-			<Link to={`${PLAYER}/${id}`} className="cardForTrack">
-				<div className="cardForTrack__header">
-					<img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
-				</div>
-				<div className="cardForTrack__body">
-					<h3 className="cardForTrack__body_title-h3">{trackName}</h3>
-					<h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
-				</div>
-			</Link>
-		</CardForTrackStyles>
-	);
+  trackName,
+  trackUrl,
+  trackImage, }: Track) => {
+  return (
+    <CardForTrackStyles key={id}>
+      <Link to={`${PLAYER}/${id}`} className="cardForTrack">
+        <div className="cardForTrack__header">
+          <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
+        </div>
+        <div className="cardForTrack__body">
+          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
+        </div>
+      </Link>
+    </CardForTrackStyles>
+  );
 };
 
 const CardForTrackStyles = styled.div`
@@ -89,33 +89,22 @@ const CardForTrackStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 700px) {
     .cardForTrack {
-    display: flex;
-    
-    min-height: 120px;
-
-    
-    &__body {
-      display: flex;
       flex-direction: column;
-      gap: 1rem;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &.h3 {
-          font-size: 1rem;
-        }
-        &.h4 {
-          font-size: 0.75rem;
-        }
-        &.h5 {
-          font-size: 0.5rem;
-        }
-      }
+      justify-content: center;
+      align-items: center;
+      height: 200px;
     }
+    .cardForAlbum__header_img{
+      width: 100%;
     }
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
   }
 `;
 

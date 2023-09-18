@@ -17,7 +17,7 @@ import { useUserMusicContext } from '../../../context';
 const LazyCardPlaylistHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			return resolve(import("../../Cards/CardForPlaylist"));
+			return resolve(import("../../Cards/CardForPlaylistPlayerHome"));
 		}, 2000);
 	});
 });
@@ -32,8 +32,6 @@ export const PlaylistContainerHome = ({ query }: ProprQuery) => {
 	// const data = useContext(DataMusicContext);
 	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
 	const { playlistsLiked } = useUserMusicContext();
-
-	console.log('AAAAQQQUIIIIII')
 	console.log(playlistsLiked)
 
 	return (
