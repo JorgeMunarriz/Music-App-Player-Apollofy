@@ -1,23 +1,18 @@
-
-import { IoChevronBackOutline, IoEllipsisVerticalSharp } from 'react-icons/io5';
-import { Boop } from '../../animations/boopAnimation';
-import { useUserContext } from '../../context';
-import { useAuth0 } from '@auth0/auth0-react';
+import { IoChevronBackOutline, IoEllipsisVerticalSharp } from "react-icons/io5";
+import { Boop } from "../../animations/boopAnimation";
+import { useUserContext } from "../../context";
+import { useAuth0 } from "@auth0/auth0-react";
 import { TfiPencil } from "react-icons/tfi";
-import { useModal } from '../../hooks/useModal';
-import Modal from '../modal/Modal';
-import { useEffect } from 'react';
-import { TracksCreateForm } from '..';
-import styled from 'styled-components';
-
-
-
-
+import { useModal } from "../../hooks/useModal";
+import Modal from "../modal/Modal";
+import { useEffect } from "react";
+import { ArtistCreateForm, TracksCreateForm } from "..";
+import styled from "styled-components";
 
 export const ProfileMainContainer = () => {
   const { user, getAccessTokenSilently } = useAuth0();
   const { userData, userFetch } = useUserContext();
-  const [isOpenModal1, openModal1, closeModal1] = useModal(false)
+  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
 
   useEffect(() => {
     if (!userData) {
@@ -25,18 +20,31 @@ export const ProfileMainContainer = () => {
     }
   }, [user, userData]);
 
-	return (
-		<>
-		 <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+  return (
+    <>
+      <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
         <TracksCreateForm closeModal={closeModal1} />
       </Modal>
+      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <ArtistCreateForm closeModal={closeModal1} />
+      </Modal> */}
       <ProfileMainContainerStyles>
         <ProfileIconsContainer>
-          <Boop rotation={20} timing={200}><IoChevronBackOutline /></Boop><Boop rotation={20} timing={200}> <IoEllipsisVerticalSharp /></Boop>
+          <Boop rotation={20} timing={200}>
+            <IoChevronBackOutline />
+          </Boop>
+          <Boop rotation={20} timing={200}>
+            {" "}
+            <IoEllipsisVerticalSharp />
+          </Boop>
         </ProfileIconsContainer>
         <ProfileIconEditContainer>
           <h2 className="profile__h2">Profile</h2>
-          <Boop rotation={20} timing={200}><button onClick={openModal1} className='button-icon' type='button'><TfiPencil /></button></Boop>
+          <Boop rotation={20} timing={200}>
+            <button onClick={openModal1} className="button-icon" type="button">
+              <TfiPencil />
+            </button>
+          </Boop>
         </ProfileIconEditContainer>
         <div className="profile__img-container">
           <img src={userData?.userImage ? userData?.userImage : user?.picture} alt="profile imagen" />
@@ -56,9 +64,6 @@ export const ProfileMainContainer = () => {
   );
 };
 
-
-
-
 const ProfileMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
@@ -77,7 +82,7 @@ const ProfileMainContainerStyles = styled.main`
   & img:hover {
     transform: scale(0.9);
   }
- 
+
   height: 100%;
 
   .profile__img-container {
@@ -157,11 +162,11 @@ const ProfileIconsContainer = styled.div`
 const ProfileIconEditContainer = styled.div`
   display: flex;
   justify-content: center;
-   align-items: center;
-   gap: 1rem;
-   padding-left: 2.5rem;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 2.5rem;
   width: 100%;
-  &  .profile__h2 {
+  & .profile__h2 {
     font-size: clamp(1.5rem, 3rem, 5rem);
     color: #e85973;
   }
@@ -175,4 +180,4 @@ const ProfileIconEditContainer = styled.div`
     font-size: clamp(0.8rem, 2.3rem, 3rem);
     color: rgba(255, 255, 255, 1);
   }
-  `;
+`;

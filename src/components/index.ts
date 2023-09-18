@@ -1,9 +1,9 @@
+export { default as CardForAlbum } from './Cards/CardForAlbum';
 export { default as CardForPLaylist } from './Cards/CardForPLaylist';
 export { default as CardForPlaylistPlayer } from './Cards/CardForPlaylistPlayer';
 export { default as CardForPlaylistPlayerHome } from './Cards/CardForPlaylistPlayerHome';
 export * from './Cards/CardForPlaylist_old';
 export { default as CardForTrack } from './Cards/CardForTrack';
-export * from './audioPlayer/AudioPlayer.styles';
 export * from './audioPlayer/AudioPlayer';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/button.styles';
@@ -31,6 +31,7 @@ export { default as TracksForLibrary } from './mainPlaylist/cards/TracksForLibra
 export * from './mainProfile/ProfileMainContainer';
 export { default as Modal } from './modal/Modal';
 export * from './modal/modalContainer.styled';
+export * from './modal/musicModal/artistModal/ArtistCreateFormModal';
 export * from './modal/musicModal/tracksModal/TracksCreate';
 export * from './modal/userModal/UserDelete';
 export * from './modal/userModal/UserEdit';

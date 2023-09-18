@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
+import { currentTrackSet } from '../../utils/currentTrackSET';
+import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
 
 interface Track {
   id: string
@@ -10,13 +12,13 @@ interface Track {
 }
 
 
-const CardForTrack = ({ id,
-  trackName,
-  trackUrl,
-  trackImage, }: Track) => {
+const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
+
+  const { handleCurrentTrackById } = useQueuePlayerContext();
+
   return (
     <CardForTrackStyles key={id}>
-      <Link to={`${PLAYER}/${id}`} className="cardForTrack">
+      <Link to={`${PLAYER}`} className="cardForTrack" onClick={() => handleCurrentTrackById(id)}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
