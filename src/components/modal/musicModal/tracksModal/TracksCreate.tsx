@@ -20,13 +20,8 @@ interface CreateTrackType {
 }
 
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
-<<<<<<< HEAD
   const { userData, } = useUserContext();
   const { createUserTracks, albums } = useUserMusicContext();
-=======
-  const { userData } = useUserContext();
-  const { createUserTracks } = useUserMusicContext();
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
@@ -48,19 +43,10 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
     { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
   ];
-<<<<<<< HEAD
   const artist = [
     { id: "65018d00f6f55225268a30d5", name: "pepe2" },
   ];
 
-=======
-  const artist = [{ id: "65018d00f6f55225268a30d5", name: "pepe2" }];
-  const album = [
-    { id: "650436027b7f8a478d03fbd0", name: "Thriller" },
-    { id: "65043642224b44978b05e975", name: "Thriller" },
-    { id: "65043c461663adbc9fc2c444", name: "Thriller2" },
-  ];
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
 
   const onSubmit = async (newTrackData: CreateTrackType) => {
     try {
@@ -87,7 +73,6 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genreId);
         });
       }
-<<<<<<< HEAD
       await createUserTracks(userData?.id ?? '', formData);
 
       setIsSuccess(true);
@@ -96,17 +81,6 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
         closeModal()
       }, 4000)
 
-=======
-      const response = await createUserTracks(userData?.id ?? "", formData);
-
-      if (response.ok) {
-        setIsSuccess(true);
-        setTimeout(() => {
-          setIsSuccess(false);
-          closeModal();
-        }, 4000);
-      }
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
     } catch (error) {
       console.error("Error saving track:", error);
     } finally {
@@ -134,13 +108,8 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
-<<<<<<< HEAD
-        <div className="gender_box">
-          <select  {...register("genreId")} id="genre">
-=======
         <div className="form__gender_box">
           <select {...register("genreId")} id="genre">
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
             <option value="">Select genres</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>

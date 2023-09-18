@@ -58,7 +58,6 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genreId);
         });
       }
-<<<<<<< HEAD
       await createNewArtist(formData);
 
       setIsSuccess(true);
@@ -67,17 +66,6 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
         closeModal();
       }, 4000);
 
-=======
-      const response = await createNewArtist(formData);
-      if (response.ok) {
-        setIsSuccess(true);
-        setTimeout(() => {
-          setIsSuccess(false);
-          closeModal();
-        }, 4000);
-      }
-      console.log(formData);
->>>>>>> 29acfa93ecf8225911bf375b5b4cd0005ac97186
     } catch (error) {
       console.error("Error saving artist:", error);
     } finally {
