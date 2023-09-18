@@ -1,4 +1,4 @@
-import { urlAlbum, urlTrack, urlUser } from "../global";
+import { urlAlbum, urlArtist, urlTrack, urlUser } from "../global";
 
 export const userPost = async (user: {}, getToken: () => Promise<string>) => {
 
@@ -173,6 +173,30 @@ export const userTracksGet = async ( getToken: () => Promise<string>) => {
   }
 }
 
+export const createArtist = async (  formData: FormData, getToken: () => Promise<string>) => {
+  try {
+    const token = await getToken()
+    const response = await fetch(urlArtist, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+
+  } catch (error) {
+    console.error('error in the track post request:', error);
+    throw error;
+  }
+}
 export const createTrack = async (userId: string,  formData: FormData, getToken: () => Promise<string>) => {
   try {
     const token = await getToken()
