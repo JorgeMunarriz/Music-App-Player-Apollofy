@@ -23,7 +23,7 @@ interface CreateTrackType {
 
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { userData, } = useUserContext();
-  const { createUserTracks } = useUserMusicContext();
+  const { createUserTracks, albums } = useUserMusicContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
@@ -48,11 +48,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const artist = [
     { id: "65018d00f6f55225268a30d5", name: "pepe2" },
   ];
-  const album = [
-    { id: "650436027b7f8a478d03fbd0", name: "Thriller" },
-    { id: "65043642224b44978b05e975", name: "Thriller" },
-    { id: "65043c461663adbc9fc2c444", name: "Thriller2" },
-  ];
+
 
   const onSubmit = async (newTrackData: CreateTrackType) => {
     try {
@@ -80,15 +76,14 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append('genreId', genreId);
         });
       }
-      const response = await createUserTracks(userData?.id ?? '', formData);
+      await createUserTracks(userData?.id ?? '', formData);
 
-      if (response.ok) {
-        setIsSuccess(true);
-        setTimeout(() => {
-          setIsSuccess(false);
-          closeModal()
-        }, 4000)
-      }
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        closeModal()
+      }, 4000)
+
     } catch (error) {
       console.error('Error saving track:', error);
     } finally {
@@ -117,7 +112,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="gender_box">
-          <select  {...register("genreId")}  id="genre">
+          <select  {...register("genreId")} id="genre">
             <option value="">Select genres</option>
             {generos.map((genero) => (
               <option key={genero.id} value={genero.id}>
@@ -135,9 +130,9 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           </select>
           <select  {...register("albumId")} id="album">
             <option value="">Select Albums</option>
-            {album.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
+            {albums.map((album) => (
+              <option key={album.id} value={album.id}>
+                {album.albumName}
               </option>
             ))}
           </select>

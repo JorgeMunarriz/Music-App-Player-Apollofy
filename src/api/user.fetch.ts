@@ -222,4 +222,26 @@ export const createTrack = async (userId: string,  formData: FormData, getToken:
   }
 }
 
-// export const albumCreate = ()
+export const createAlbum = async( formData: FormData, getToken: () => Promise<string>) => {
+  try {
+    const token = await getToken()
+    const response = await fetch(urlAlbum, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData
+    });
+    // if (!response.ok) {
+    //   const errorData = await response.json();
+    //   throw new Error(`Error connecting to DB: ${errorData}`);
+    // }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error('error in the track post request:', error);
+    throw error;
+  }
+}

@@ -11,6 +11,7 @@ export * from './buttonsLogin/button.styles';
 export * from './confirmationMessage/AlertMessageSuccess';
 export * from './confirmationMessage/messageSuccessContainer.styled';
 export * from './footer/Footer';
+export * from './index';
 export { default as InputForm } from './inputsform/InputForm';
 export * from './inputsform/inputForm.styles';
 export { default as Layout } from './layout/Layout';
@@ -32,6 +33,7 @@ export { default as TracksForLibrary } from './mainPlaylist/cards/TracksForLibra
 export * from './mainProfile/ProfileMainContainer';
 export { default as Modal } from './modal/Modal';
 export * from './modal/modalContainer.styled';
+export * from './modal/musicModal/albumModal/AlbumsCreateForm';
 export * from './modal/musicModal/artistModal/ArtistCreateFormModal';
 export * from './modal/musicModal/tracksModal/TracksCreate';
 export * from './modal/userModal/UserDelete';

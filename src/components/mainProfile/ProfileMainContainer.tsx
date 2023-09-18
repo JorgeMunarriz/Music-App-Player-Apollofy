@@ -6,7 +6,7 @@ import { TfiPencil } from "react-icons/tfi";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/Modal";
 import { useEffect } from "react";
-import { ArtistCreateForm, TracksCreateForm } from "..";
+import { ArtistCreateForm, TracksCreateForm,AlbumCreateForm } from "..";
 import styled from "styled-components";
 
 export const ProfileMainContainer = () => {
@@ -26,7 +26,7 @@ export const ProfileMainContainer = () => {
         <TracksCreateForm closeModal={closeModal1} />
       </Modal> */}
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <ArtistCreateForm closeModal={closeModal1} />
+        <AlbumCreateForm closeModal={closeModal1} />
       </Modal>
       <ProfileMainContainerStyles>
         <ProfileIconsContainer>
