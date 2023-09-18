@@ -63,7 +63,6 @@ const CardForPlaylistStyles = styled.div`
       opacity: 0.8;
     }
     }
-    
     &__body {
       display: flex;
       flex-direction: column;
@@ -88,6 +87,7 @@ const CardForPlaylistStyles = styled.div`
     }
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
+    
     .cardForTrack {
     display: flex;
     flex-direction: column;

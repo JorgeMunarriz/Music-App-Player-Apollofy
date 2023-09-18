@@ -22,7 +22,7 @@ const CardForAlbum = ({ id,
         </div>
         <div className="cardForAlbum__body">
           <h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
-          <h4 className="cardForAlbum__body_title-h4">{albumName}</h4>
+
           <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
         </div>
       </Link>
@@ -56,12 +56,12 @@ const CardForAlbumStyles = styled.div`
       position: relative;
       width: 10vw;
       height: 120px;
-      border-radius: 0rem 0rem 0rem 0rem;
+
       overflow: hidden;
       &_img {
       position: absolute;
       width: 120px;
-      height: 120px;
+      height: 169px;
       object-fit: cover;
       opacity: 0.8;
     }
@@ -90,26 +90,31 @@ const CardForAlbumStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 700px) {
+  @media only screen and (min-width: 310px) and (max-width: 700px) {
+   
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 97%;
+    height: 79%;
     .cardForAlbum {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 200px;
+      height: 300px;
       width: 100%;
+      margin: 20px;
+      /* padding: 20px; */
     }
     .cardForAlbum__header{
       width: 100%;
-   
+      height: 90%;
     }
     .cardForAlbum__header_img{
       width: 100%;
-      align-items: center;
-      object-fit: cover;
+    height: 180px;
+    align-items: center;
+    object-fit: cover;
     }
         
    .cardForAlbum__body {
@@ -117,8 +122,7 @@ const CardForAlbumStyles = styled.div`
           flex-direction: column;
           justify-content: center;
           overflow: hidden;
-          padding: 1vh;
-          margin-bottom: 20px;
+          margin-top: 10px;
           &_title {
             color: #fff;
             &-h3 {
@@ -136,6 +140,7 @@ const CardForAlbumStyles = styled.div`
           }
     }
 
+   
   }
 
 `;

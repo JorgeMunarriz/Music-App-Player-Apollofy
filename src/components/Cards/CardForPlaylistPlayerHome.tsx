@@ -78,8 +78,10 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     padding: 1rem;
     gap: 10px;
     height: 15rem;
-    width: 100%;
+    width: 90%;
     box-shadow: 15px 7px 19px -3px rgba(0, 0, 0, 0.75);
+   background-color: rgba(34, 15, 42, 0.4);
+   margin-right: 10px;
 
     &:hover {
       background-color: rgba(50, 50, 50, 0.4);
@@ -99,11 +101,12 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        background-position: center center;
       }
     }
     &__name {
       color: #fff;
-      font-size: 25px;
+      font-size: 20px;
     }
 
     &__follow-btn {
@@ -126,8 +129,12 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
       color: #340034;
     }
   }
+  .cardForPlaylistPlayer__name{
+        font-size: 20px;
+    }
 
-  @media only screen and (min-width: 320px) and (max-width: 700px) {
+  @media only screen and (min-width: 363px) and (max-width: 700px) {
+    margin: 10px;
     .cardForPlaylistPlayer {
       flex-direction: column;
       justify-content: center;
@@ -136,14 +143,21 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     }
     .cardForPlaylistPlayer__img{
       width: 100%;
+     
     }
     &__img {
       position: relative;
       width: 100%;
       height: 100%;
+      background-position: center center;
+    }
+    .cardForPlaylistPlayer__name{
+        font-size: 15px;
     }
 
   }
+
+  
   `
 
 export default CardForPlaylistPlayerHome
