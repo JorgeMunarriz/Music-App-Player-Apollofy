@@ -92,7 +92,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <TracksFormContainer>
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>Track create successfully</AlertMessageSuccess>}
-      <header>ADD Track</header>
+      <header className="modalTitle">Aaa Track</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form__input_box">
           <label htmlFor="trackName" className="form__input_box-label">
@@ -162,7 +162,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.trackUrl && <span className="error_input">{errors.trackUrl.message}</span>}
         </div>
-        <button type="submit">ADD Track</button>
+        <button className="form__btnSubmit" type="submit">ADD Track</button>
       </form>
     </TracksFormContainer>
   );
@@ -171,12 +171,12 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
 const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
-  background: linear-gradient(to right, hsl(300, 100%, 10%), #000);
+  background: linear-gradient(to right, hsl(300, 100%, 10%), hsl(0deg 71.01% 13.53%));
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  header {
+  .modalTitle {
     font-size: 1.5rem;
     color: #f5f4e8;
     font-weight: 600;
@@ -260,7 +260,7 @@ const TracksFormContainer = styled.section`
       flex-wrap: wrap;
       margin-top: 0.3rem;
     }
-    & button {
+    &__btnSubmit {
       /* height: 40px; */
       padding: 1.2rem 0;
       width: 100%;
