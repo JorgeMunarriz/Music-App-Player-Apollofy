@@ -1,11 +1,13 @@
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from "react";
-import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet, userTracksGet, createTrack, createArtist } from "../api/user.fetch";
+import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet,
+ userTracksGet, createTrack, createArtist,createAlbum } from "../api/user.fetch";
 import { useAuth0 } from "@auth0/auth0-react";
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
   playlistsLiked: PlaylistInterface[];
   albums: AlbumInterface[];
+  albumCreated: albumCreateInteface[];
   tracks: TrackInterface[];
   artistCreated: CreateArtistType[];
   tracksCreated: CreateTrackType[];
@@ -15,6 +17,7 @@ interface UserMusicContextType {
   handleUserTracks: (userEmail: string) => Promise<void>;
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
   createNewArtist: (formData: FormData) => Promise<Response>;
+  createNewAlbum: (formData: FormData) => Promise<Response>;
 }
 interface PlaylistInterface {
   id: string;
@@ -40,6 +43,15 @@ interface AlbumInterface {
   genreId: string[];
   artist: string[];
   artistId: string[];
+}
+
+interface albumCreateInteface {
+  albumName: string,
+  albumImage: string,
+  albumCreatedAt: string,
+  genreId: string[],
+  artistId: string[],
+  trackId: string[],
 }
 interface TrackInterface {
   id: string;
@@ -84,6 +96,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const [tracks, setTracks] = useState<TrackInterface[]>([]);
   const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
   const [artistCreated, setArtistCreated] = useState<CreateArtistType[]>([]);
+  const [albumCreated, setAlbumCreated] = useState<albumCreateInteface[]>([]);
   const userEmail = user?.email || "";
 
   useEffect(() => {
@@ -153,7 +166,17 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       setArtistCreated(response);
       return response;
     } catch (error) {
-      console.error("Error getting tracks:", error);
+      console.error("Error getting artist:", error);
+      throw error;
+    }
+  };
+  const createNewAlbum = async (formData: FormData): Promise<Response> => {
+    try {
+      const response = await createAlbum(formData, getAccessTokenSilently);
+      setAlbumCreated(response);
+      return response;
+    } catch (error) {
+      console.error("Error getting albums:", error);
       throw error;
     }
   };
@@ -167,12 +190,14 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         tracks,
         tracksCreated,
         artistCreated,
+        albumCreated,
         handleUserPlaylistsCreated,
         handleUserPlaylistsLiked,
         handleUserAlbums,
         handleUserTracks,
         createUserTracks,
         createNewArtist,
+        createNewAlbum
       }}>
       {children}
     </UserMusicContext.Provider>

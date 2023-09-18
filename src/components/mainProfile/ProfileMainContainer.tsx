@@ -6,7 +6,7 @@ import { TfiPencil } from "react-icons/tfi";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/Modal";
 import { useEffect } from "react";
-import { ArtistCreateForm, TracksCreateForm } from "..";
+import { ArtistCreateForm, TracksCreateForm,AlbumCreateForm } from "..";
 import styled from "styled-components";
 
 export const ProfileMainContainer = () => {

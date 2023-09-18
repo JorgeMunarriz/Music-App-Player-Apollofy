@@ -20,8 +20,8 @@ interface CreateTrackType {
 }
 
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { userData } = useUserContext();
-  const { createUserTracks } = useUserMusicContext();
+  const { userData, } = useUserContext();
+  const { createUserTracks, albums } = useUserMusicContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
@@ -43,12 +43,10 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
     { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
   ];
-  const artist = [{ id: "65018d00f6f55225268a30d5", name: "pepe2" }];
-  const album = [
-    { id: "650436027b7f8a478d03fbd0", name: "Thriller" },
-    { id: "65043642224b44978b05e975", name: "Thriller" },
-    { id: "65043c461663adbc9fc2c444", name: "Thriller2" },
+  const artist = [
+    { id: "65018d00f6f55225268a30d5", name: "pepe2" },
   ];
+
 
   const onSubmit = async (newTrackData: CreateTrackType) => {
     try {
@@ -75,15 +73,14 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genreId);
         });
       }
-      const response = await createUserTracks(userData?.id ?? "", formData);
+      await createUserTracks(userData?.id ?? '', formData);
 
-      if (response.ok) {
-        setIsSuccess(true);
-        setTimeout(() => {
-          setIsSuccess(false);
-          closeModal();
-        }, 4000);
-      }
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        closeModal()
+      }, 4000)
+
     } catch (error) {
       console.error("Error saving track:", error);
     } finally {
@@ -95,7 +92,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <TracksFormContainer>
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>Track create successfully</AlertMessageSuccess>}
-      <header>ADD Track</header>
+      <header className="modalTitle">Aaa Track</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form__input_box">
           <label htmlFor="trackName" className="form__input_box-label">
@@ -130,9 +127,9 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           </select>
           <select {...register("albumId")} id="album">
             <option value="">Select Albums</option>
-            {album.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
+            {albums.map((album) => (
+              <option key={album.id} value={album.id}>
+                {album.albumName}
               </option>
             ))}
           </select>
@@ -165,7 +162,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.trackUrl && <span className="error_input">{errors.trackUrl.message}</span>}
         </div>
-        <button type="submit">ADD Track</button>
+        <button className="form__btnSubmit" type="submit">ADD Track</button>
       </form>
     </TracksFormContainer>
   );
@@ -174,12 +171,12 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
 const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
-  background: linear-gradient(to right, hsl(300, 100%, 10%), #000);
+  background: linear-gradient(to right, hsl(300, 100%, 10%), hsl(0deg 71.01% 13.53%));
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  header {
+  .modalTitle {
     font-size: 1.5rem;
     color: #f5f4e8;
     font-weight: 600;
@@ -263,7 +260,7 @@ const TracksFormContainer = styled.section`
       flex-wrap: wrap;
       margin-top: 0.3rem;
     }
-    & button {
+    &__btnSubmit {
       /* height: 40px; */
       padding: 1.2rem 0;
       width: 100%;
