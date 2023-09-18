@@ -14,7 +14,7 @@ interface UserMusicContextType {
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
-  createNewArtist: (artistData: FormData) => Promise<Response>;
+  createNewArtist: (formData: FormData) => Promise<Response>;
 }
 interface PlaylistInterface {
   id: string;
@@ -72,7 +72,6 @@ interface CreateArtistType {
   popularity: string;
   albumId: string[];
   genreId: string[];
-  trackId: string[];
 }
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);
@@ -148,9 +147,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
-  const createNewArtist = async (artistData: FormData): Promise<Response> => {
+  const createNewArtist = async (formData: FormData): Promise<Response> => {
     try {
-      const response = await createArtist(artistData, getAccessTokenSilently);
+      const response = await createArtist(formData, getAccessTokenSilently);
       setArtistCreated(response);
       return response;
     } catch (error) {

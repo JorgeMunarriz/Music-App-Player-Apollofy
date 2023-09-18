@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { useState, FC } from "react";
 import { AlertMessageSuccess, LoaderForm } from "../../..";
 import { useForm } from "react-hook-form";
-import { useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
+import { useGenresContext } from "../../../../context";
+import { MultiSelect } from "react-multi-select-component";
 
 interface userFormModal {
   closeModal: () => void;
@@ -15,32 +16,29 @@ interface CreateArtistType {
   popularity: number;
   albumId: string[];
   genreId: string[];
-  trackId: string[];
 }
 
 export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { userData } = useUserContext();
-  const { createUserArtist, albums } = useUserMusicContext();
+  const { createNewArtist, albums } = useUserMusicContext();
+  const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [selected, setSelected] = useState([]);
   const form = useForm({
     defaultValues: {
       artistName: "",
       artistImage: "",
-      popularity: "",
+      popularity: 0,
       albumId: [],
       genreId: [],
-      trackId: [],
     },
   });
 
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
-  const generos = [
-    { id: "6501915fd1080d57fa618f56", name: "Rock" },
-    { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
-    { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
-  ];
+
+  const genresMultiselect = allGenres.map((genres) => ({ label: genres.genreName, value: genres.genreName }));
+  const popularityNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const onSubmit = async (newArtistData: CreateArtistType) => {
     try {
@@ -48,13 +46,8 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
       const formData = new FormData();
       formData.append("artistName", newArtistData.artistName);
       formData.append("artistImage", newArtistData.artistImage[0]);
+      formData.append("popularity", newArtistData.popularity.toString());
       // se utiliza foreach para agregar todos los campos selecionados
-      if (Array.isArray(newArtistData.trackId)) {
-        newArtistData.trackId.forEach((trackId) => {
-          formData.append("trackId", trackId);
-        });
-      }
-
       if (Array.isArray(newArtistData.albumId)) {
         newArtistData.albumId.forEach((albumId) => {
           formData.append("albumId", albumId);
@@ -65,8 +58,7 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genreId);
         });
       }
-      const response = await createUserArtist(userData?.id ?? "", formData);
-
+      const response = await createNewArtist(formData);
       if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
@@ -74,6 +66,7 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           closeModal();
         }, 4000);
       }
+      console.log(formData);
     } catch (error) {
       console.error("Error saving artist:", error);
     } finally {
@@ -100,22 +93,14 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.artistName && <span className="error_input">{errors.artistName.message}</span>}
         </div>
         <div className="gender_box">
-          <select {...register("genreId")} id="genre">
-            <option value="">Select genres</option>
-            {generos.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
-              </option>
+          <MultiSelect {...register("genreId")} options={genresMultiselect} value={selected} onChange={setSelected} labelledBy="Select genres" />
+
+          <select {...register("popularity")} id="popularity">
+            <option value="">Select Popularity</option>
+            {popularityNumbers.map((popularity) => (
+              <option key={popularity}>{popularity}</option>
             ))}
           </select>
-          {/* <select  {...register("trackId")} id="track">
-            <option value="">Select Artist</option>
-            {artist.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
-              </option>
-            ))}
-          </select> */}
           <select {...register("albumId")} id="album">
             <option value="">Select Albums</option>
             {albums.map((album) => (
@@ -139,9 +124,6 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
               required: "Please choose a file",
             })}
           />
-          <label className="label_file" htmlFor="audio">
-            Choose a artist:
-          </label>
         </div>
         <button type="submit">ADD artist</button>
       </form>
@@ -150,7 +132,7 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
 };
 
 const ArtistsFormContainer = styled.section`
-  max-width: 500px;
+  /* max-width: 500px; */
   width: 100%;
   background: linear-gradient(to right, hsl(300, 100%, 10%), #000);
   padding: 25px;
@@ -170,13 +152,15 @@ const ArtistsFormContainer = styled.section`
   .form .input_box {
     width: 100%;
     padding-top: 0.1rem;
-  }
-
-  .input_box label {
-    color: #f5f4e8;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding-top: 0.3rem;
+    & label {
+      color: #f5f4e8;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding-top: 0.3rem;
+    }
+    & input:focus {
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    }
   }
 
   .form :where(.input_box input, .select_box) {
@@ -191,10 +175,6 @@ const ArtistsFormContainer = styled.section`
     border-radius: 6px;
     padding: 0 15px;
     background: #fcedda;
-  }
-
-  .input_box input:focus {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   }
 
   .form .column {
@@ -273,11 +253,10 @@ const ArtistsFormContainer = styled.section`
     cursor: pointer;
     transition: all 0.2s ease;
     background: #ee4e34;
-  }
-
-  .form button:hover {
-    background: #ee3e34;
-    color: #f5f4e8;
+    &:hover {
+      background: #ee3e34;
+      color: #f5f4e8;
+    }
   }
 
   .label_file {
