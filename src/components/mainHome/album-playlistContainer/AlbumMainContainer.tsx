@@ -39,16 +39,14 @@ type ProprQuery = {
 export const AlbumContainer = ({ query }: ProprQuery) => {
 
 	const { albums } = useUserMusicContext();
-	const {gottenAllAlbum}:any = albums
-console.log(albums);
 
 	return (
 		<TracksContainerStyles>
 			<h1>Albums</h1>
-			{gottenAllAlbum && (
+			{albums && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{gottenAllAlbum &&
-						gottenAllAlbum
+					{albums &&
+						albums
 							// .filter(({ album }) => {
 							// 	if (!query) return true;
 							// 	if (query) {
@@ -56,7 +54,7 @@ console.log(albums);
 							// 		return nameLowerCase.includes(query.toLowerCase());
 							// 	}
 							// })
-							.map(({ id, albumName, albumImage, trackId }:any) => (
+							.map(({ id, albumName, albumImage, trackId }: any) => (
 								<SwiperSlide key={id}>
 									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCardAlbumHome id={id} albumImage={albumImage} albumName={albumName} trackId={trackId} /></Suspense>
 								</SwiperSlide>

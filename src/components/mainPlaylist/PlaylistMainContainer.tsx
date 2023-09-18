@@ -110,7 +110,6 @@ export const PlaylistMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
   
   height: 100%;
   width: 100%;

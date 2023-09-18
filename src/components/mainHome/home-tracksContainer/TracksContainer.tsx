@@ -1,4 +1,4 @@
-import {lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
+import { lazy, Suspense, LazyExoticComponent, ComponentType } from 'react';
 import SwiperCore from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -37,17 +37,15 @@ export const TracksContainer = ({ query }: ProprQuery) => {
 	// const data = useContext(DataMusicContext);
 	// const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
 	const { tracks } = useUserMusicContext();
-	const { allTrack } = tracks;
-	console.log(allTrack);
-	
+
 	return (
 		<TracksContainerStyles>
 			<h1>Songs</h1>
-			{allTrack && (
+			{tracks && (
 				<Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
-					{allTrack &&
-						allTrack
-							.filter(({ trackName }:any) => {
+					{tracks &&
+						tracks
+							.filter(({ trackName }: any) => {
 								if (!query) return true;
 								if (query) {
 									const nameLowerCase = trackName.toLowerCase();
@@ -59,7 +57,6 @@ export const TracksContainer = ({ query }: ProprQuery) => {
 								trackUrl,
 								trackImage }: CardProps) => (
 								<SwiperSlide key={id}>
-
 									<Suspense key={id} fallback={<HomeSkeleton />}><LazyCarPTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} /></Suspense>
 								</SwiperSlide>
 							))}
