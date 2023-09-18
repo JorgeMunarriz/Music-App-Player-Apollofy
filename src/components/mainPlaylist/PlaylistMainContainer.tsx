@@ -72,13 +72,13 @@ export const PlaylistMainContainer = () => {
         </section>
         <section className="zone-cards">
           {zoneSelected === 'playlists' && playlistsLiked &&
-            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} />
+            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} />
             ))}
 
           {zoneSelected === 'myPlaylists' && playlistsCreated &&
-            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} />
+            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} />
             ))}
 
           {zoneSelected === 'albums' && albums &&

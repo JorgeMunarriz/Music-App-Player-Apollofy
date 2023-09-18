@@ -1,35 +1,40 @@
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 import { PLAYER } from '../../../config/routes/paths';
 import styled from 'styled-components';
 
 interface PlaylistProps {
-    id: string,
-    playlistName: string,
-    playlistImage: string,
-    // playlistCreatedAt: string,
-    // playlistUpdatedAt: string,
-    trackId: string[],
-    // playlistLikedById: string[],
-    playlistCreatedById: string[],
-    // genreId: string[],
+  id: string,
+  playlistName: string,
+  playlistImage: string,
+  // playlistCreatedAt: string,
+  // playlistUpdatedAt: string,
+  trackId: string[],
+  // playlistLikedById: string[],
+  playlistCreatedById: string[],
+  // genreId: string[],
+  genre: [{ genreName: string, id: string }]
 }
 
 
-const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedById, trackId }: PlaylistProps) => {
-    return (
-        <PlaylistsForLibraryStyles key={id}>
-            <Link to={`${PLAYER}/${trackId[0]}`} className="cardForTrack">
-                <div className="cardForTrack__header">
-                    <img alt={playlistName} className="cardForTrack__header_img" src={playlistImage} />
-                </div>
-                <div className="cardForTrack__body">
-                    <h3 className="cardForTrack__body_title-h3">{playlistName}</h3>
-                    <h4 className="cardForTrack__body_title-h4">{playlistCreatedById}</h4>
-                    {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
-                </div>
-            </Link>
-        </PlaylistsForLibraryStyles>
-    );
+const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }: PlaylistProps) => {
+
+  const genres = genre.map(object => object.genreName);
+  const genresNames = genres.join(', ');
+
+  return (
+    <PlaylistsForLibraryStyles key={id}>
+      <Link to={`${PLAYER}/${trackId[0]}`} className="cardForTrack">
+        <div className="cardForTrack__header">
+          <img alt={playlistName} className="cardForTrack__header_img" src={playlistImage} />
+        </div>
+        <div className="cardForTrack__body">
+          <h3 className="cardForTrack__body_title-h3">{playlistName}</h3>
+          <h4 className="cardForTrack__body_title-h4">{genresNames}</h4>
+          {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
+        </div>
+      </Link>
+    </PlaylistsForLibraryStyles>
+  );
 }
 
 

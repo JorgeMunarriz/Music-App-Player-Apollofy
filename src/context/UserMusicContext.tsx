@@ -16,7 +16,7 @@ interface UserMusicContextType {
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
-  createUserTracks: (userId: string, trackData: FormData)=> Promise<Response>;
+  createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
 }
 interface PlaylistInterface {
   id: string,
@@ -28,6 +28,7 @@ interface PlaylistInterface {
   playlistLikedById: string[],
   playlistCreatedById: string[],
   genreId: string[],
+  genre: { genreName: string, id: string }
 }
 interface AlbumInterface {
   id: string,
