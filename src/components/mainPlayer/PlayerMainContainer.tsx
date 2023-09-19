@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { PlayerContainer, SearchBar } from ".."
 import { breakpoints } from '../../styles/breakpoints';
-import { useUserMusicContext } from '../../context';
-
-
-
 
 
 export const PlayerMainContainer = () => {
