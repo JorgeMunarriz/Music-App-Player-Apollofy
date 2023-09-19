@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
 import { BiSolidPlaylist } from 'react-icons/bi'
+import { useQueuePlayerContext } from "../../context/QueuePlayerContext";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -17,6 +18,8 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const AlbumMainContainer = () => {
   const { id } = useParams();
   const { albums } = useUserMusicContext();
+  const { handleListChange } = useQueuePlayerContext();
+
   const selectedAlbum = albums.find((album) => album.id === id);
 
   return (
@@ -25,7 +28,7 @@ export const AlbumMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" /> </h2>
+          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedAlbum ? selectedAlbum?.trackId : [])} /> </h2>
         </section>
         <section className="zone-cards">
           {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (

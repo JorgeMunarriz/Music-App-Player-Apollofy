@@ -1,12 +1,16 @@
 import { FC, ReactNode, createContext, useContext, useState } from "react";
 import { useUserMusicContext } from "./UserMusicContext";
+import { set } from "react-hook-form";
 
 interface QueuePlayerContextType {
     currentTrack: TrackInterface | undefined;
     handleCurrentTrackById: (id: string) => void;
-    nextTracks: TrackInterface[] | undefined;
+    nextTracks: TrackInterface[] | [];
+    prevTracks: TrackInterface[] | [];
     handleNextTrackInList: () => void;
     handleNewTrackInList: (id: string) => void;
+    handleListChange: (ids: string[]) => void;
+    handlePrevTrackInList: () => void;
 }
 interface TrackInterface {
     id: string;
@@ -45,7 +49,6 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         if (incomingTrack) {
             setNextTracks(prevNextTracks => [...prevNextTracks, incomingTrack])
         }
-        console.log('entra en handle')
     }
 
     const handleNextTrackInList = () => {
@@ -61,12 +64,33 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
             }
         }
     }
+    const handlePrevTrackInList = () => {
+        if (prevTracks && prevTracks?.length > 0) {
+            const selectedPrevTrack = prevTracks[prevTracks.length - 1];
 
+            if (currentTrack) {
+                const newNextTracks = [currentTrack, ...nextTracks];
+                setNextTracks(newNextTracks)
+            }
+            setCurrentTrack(selectedPrevTrack);
+
+            if (prevTracks && prevTracks.length <= 1) {
+                setPrevTracks([])
+            } else {
+                const index = prevTracks.length - 1
+                const newPrevTracks = prevTracks.slice(0, index)
+                setPrevTracks(newPrevTracks!)
+            }
+        }
+    }
+
+    console.log(prevTracks)
+    console.log(currentTrack)
     console.log(nextTracks)
 
     const handleListChange = (ids: string[]) => {
 
-        const newNextTracks: TrackInterface[] = []
+        const newNextTracks: TrackInterface[] = [];
 
         ids.forEach((id) => {
             const selectedTrack = tracks.find(track => track.id === id);
@@ -80,7 +104,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
 
 
     return (
-        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, handleNextTrackInList, handleNewTrackInList }}>
+        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, prevTracks, handleNextTrackInList, handleNewTrackInList, handleListChange, handlePrevTrackInList }}>
             {children}
         </QueuePlayerContext.Provider>
     )
