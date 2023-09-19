@@ -15,7 +15,7 @@ import HomeSkeleton from "../../../assets/skeleton/homeSkeleton";
 import { useUserMusicContext } from "../../../context";
 import { breakpoints } from "../../../styles/breakpoints";
 
-const LazyCarPTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+const LazyCardTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
       return resolve(import("../../cards/CardForTrack"));
@@ -53,7 +53,7 @@ export const TracksContainer = ({ query }: ProprQuery) => {
               .map(({ id, trackName, trackUrl, trackImage }: CardProps) => (
                 <SwiperSlide key={id}>
                   <Suspense key={id} fallback={<HomeSkeleton />}>
-                    <LazyCarPTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} />
+                    <LazyCardTrackHome id={id} trackImage={trackImage} trackName={trackName} trackUrl={trackUrl} />
                   </Suspense>
                 </SwiperSlide>
               ))}

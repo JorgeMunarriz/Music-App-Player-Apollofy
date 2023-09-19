@@ -4,7 +4,7 @@ import { SearchBar } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
-import { BiSolidPlaylist } from 'react-icons/bi'
+import { BiSolidPlaylist } from "react-icons/bi";
 import { useQueuePlayerContext } from "../../context/QueuePlayerContext";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
@@ -35,11 +35,13 @@ export const PlaylistMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName} <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} /> </h2>
+          <h2 className="titleDiv__h2">
+            {selectedPlaylist && selectedPlaylist.playlistName} <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} />{" "}
+          </h2>
         </section>
         <section className="zone-cards">
-          {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+          {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
+            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} />
           ))}
         </section>
       </PlaylistMainContainerStyles>
@@ -66,8 +68,14 @@ export const PlaylistMainContainerStyles = styled.main`
     color: white;
     &__h2 {
       font-size: 2rem;
+      display: flex;
     }
-    &__title
+    &__icon {
+      display: flex;
+      font-size: 2.5rem;
+      cursor: grabbing;
+      margin-left: 1rem;
+    }
   }
   .selections {
     cursor: pointer;

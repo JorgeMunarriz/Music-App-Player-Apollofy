@@ -13,11 +13,21 @@ interface PlaylistProps {
   // playlistLikedById: string[],
   playlistCreatedById: string[],
   // genreId: string[],
-  genre: [{ genreName: string, id: string }]
+  genre: [{ genreName: string, id: string }],
+  artist: ArtistProps[]
+}
+interface ArtistProps {
+  id: string;
+  artistName: string;
+  artistImage: string;
+  popularity: number;
+  albumId: string[];
+  genreId: string[];
+  trackId: string[];
 }
 
 
-const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }: PlaylistProps) => {
+const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }: PlaylistProps) => {
 
   const genres = genre.map(object => object.genreName);
   const genresNames = genres.join(', ');
@@ -29,8 +39,11 @@ const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedB
           <img alt={playlistName} className="cardForTrack__header__img" src={playlistImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{playlistName}</h3>
-          <h4 className="cardForTrack__body_title-h4">{genresNames}</h4>
+        <h3 className="cardForTrack__body_title-playlistName">{playlistName}</h3>
+          <div className="cardForTrack__body_title">
+            <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName).join(", ") : null}</h4>
+            <h4 className="cardForTrack__body_title-createdAt">{genresNames}</h4>
+          </div>
         </div>
       </Link>
     </PlaylistsForLibraryStyles>
