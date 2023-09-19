@@ -1,32 +1,22 @@
-import { LazyExoticComponent, ComponentType, lazy} from "react";
+import { LazyExoticComponent, ComponentType, lazy } from "react";
 import styled from "styled-components";
-import { SearchBar, TracksForLibrary } from "..";
-import { useParams, useSearchParams } from "react-router-dom";
+import { SearchBar } from "..";
+import { useParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
-
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      return resolve(import("../cards/CardForPlaylistPlayer"));
+      return resolve(import("../mainLibrary/cards/TracksForLibrary"));
     }, 1500);
   });
 });
 
 export const AlbumMainContainer = () => {
   const { id } = useParams();
-  const { albums, tracks } = useUserMusicContext();
-//   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
+  const { albums } = useUserMusicContext();
   const selectedAlbum = albums.find((album) => album.id === id);
-  
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q") || "";
-
-  const handleChangeParams = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchParams({ q: target.value });
-  };
 
   return (
     <>
@@ -37,9 +27,9 @@ export const AlbumMainContainer = () => {
           <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName}</h2>
         </section>
         <section className="zone-cards">
-        {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-            ))}
+          {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
+            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+          ))}
         </section>
       </AlbumMainContainerStyles>
     </>

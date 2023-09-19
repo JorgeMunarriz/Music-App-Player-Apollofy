@@ -54,7 +54,7 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
         <div className="cardForPlaylistPlayer__img">
           <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{playlistName}Hola</h3>
+        <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
         <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
           {" "}

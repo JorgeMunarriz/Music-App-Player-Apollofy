@@ -5,6 +5,7 @@ import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
 import { useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { BiSolidPlaylist } from 'react-icons/bi'
+import { Artist } from '../../types/data';
 
 
 interface Track {
@@ -12,13 +13,20 @@ interface Track {
   trackName: string
   trackUrl: string
   trackImage: string
+  artist: ArtistProps[]
+}
+interface ArtistProps {
+  artistName: string;
+  artistImage: string;
+  popularity: string;
+  albumId: string[];
+  genreId: string[];
 }
 
-
-const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
+const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) => {
 
   const { handleCurrentTrackById } = useQueuePlayerContext();
-
+  console.log(artist)
   return (
     <CardForTrackStyles key={id}>
       <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
@@ -26,7 +34,7 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h3 className="cardForTrack__body_title-h3">{}{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
         <div className='cardForTrack__footer'>
@@ -117,21 +125,11 @@ const CardForTrackStyles = styled.div`
   }
   @media only screen and (min-width: 320px) and (max-width: 700px) {
     .cardForTrack {
-<<<<<<< HEAD
-    display: flex;
-    min-height: 120px;
-
-    &__body {
-      display: flex;
-=======
->>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 200px;
     }
-<<<<<<< HEAD
-=======
     .cardForAlbum__header_img{
       width: 100%;
     }
@@ -141,9 +139,8 @@ const CardForTrackStyles = styled.div`
       height: 100%;
     }
 
->>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
   }
-}
+
 `;
 
 

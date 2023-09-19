@@ -38,7 +38,7 @@ export const LibraryMainContainer = () => {
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
 
   const [zoneSelected, setZoneSelected] = useState("playlists");
-
+  console.log(tracks);
   const handleChangeZoneSelected = (selection: string) => {
     setZoneSelected(selection);
   };
@@ -90,8 +90,8 @@ export const LibraryMainContainer = () => {
 
           {zoneSelected === "tracks" &&
             tracks &&
-            tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+            tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
+              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} />
             ))}
         </section>
 
