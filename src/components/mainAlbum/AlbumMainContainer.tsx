@@ -1,10 +1,10 @@
 import { LazyExoticComponent, ComponentType, lazy} from "react";
 import styled from "styled-components";
-import { SearchBar } from "..";
+import { SearchBar, TracksForLibrary } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
-import TracksForLibrary from "../mainPlaylist/cards/TracksForLibrary";
+
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {

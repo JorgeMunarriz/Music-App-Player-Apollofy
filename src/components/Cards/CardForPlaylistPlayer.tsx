@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { PLAYLISTS } from "../../config/routes/paths";
+import { Link } from "react-router-dom";
 
 
 interface Playlist {
@@ -27,6 +29,7 @@ const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
 
   return (
     <CardForPlaylistPlayerStyles>
+      <Link  to={`${PLAYLISTS}/${id}`} >
       <div className="cardForPlaylistPlayer">
         <div className="cardForPlaylistPlayer__img">
           <img className="cardForPlaylistPlayer__img-img" src={thumbnail} alt={name} />
@@ -36,6 +39,7 @@ const CardForPlaylistPlayer = ({ thumbnail, name, isFollowed, }: Playlist) => {
           {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />}
         </button>
       </div>
+      </Link>
     </CardForPlaylistPlayerStyles>
   );
 };

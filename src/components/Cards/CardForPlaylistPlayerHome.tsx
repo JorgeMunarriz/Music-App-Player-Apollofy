@@ -6,6 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { toggleLiked } from "../../api/toggleLiked";
 // import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { PLAYLISTS } from "../../config/routes/paths";
 
 interface Playlist {
   id: string;
@@ -47,11 +49,12 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
 
   return (
     <CardForPlaylistPlayerHomeStyles>
+      <Link  to={`${PLAYLISTS}/${id}`} >
       <div className="cardForPlaylistPlayer">
         <div className="cardForPlaylistPlayer__img">
           <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
+        <h3 className="cardForPlaylistPlayer__name">{playlistName}Hola</h3>
         {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
         <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
           {" "}
@@ -59,6 +62,7 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
           {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
         </button>
       </div>
+      </Link>
     </CardForPlaylistPlayerHomeStyles>
   );
 };

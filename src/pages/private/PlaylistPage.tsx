@@ -1,15 +1,9 @@
-
-import { Footer, PlaylistMainContainer, SideBar } from '../../components'
-import { GlobalPrivatePageStyles } from '../../global'
+import {  PlaylistMainContainer } from "../../components"
 
 
 const PlaylistPage = () => {
   return (
-    // <GlobalPrivatePageStyles>
-
-    <PlaylistMainContainer />
-
-    // </GlobalPrivatePageStyles>
+   <PlaylistMainContainer/>
   )
 }
-export default PlaylistPage
+export default PlaylistPage;

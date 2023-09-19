@@ -1,11 +1,12 @@
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from "react";
-import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet,
- userTracksGet, createTrack, createArtist,createAlbum } from "../api/user.fetch";
+import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet, userTracksGet, createTrack, createArtist, createAlbum } from "../api/user.fetch";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getAllPlaylist } from "../api/playlist.fetch";
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
   playlistsLiked: PlaylistInterface[];
+  playlistsAll: PlaylistInterface[];
   albums: AlbumInterface[];
   albumCreated: albumCreateInteface[];
   tracks: TrackInterface[];
@@ -13,6 +14,7 @@ interface UserMusicContextType {
   tracksCreated: CreateTrackType[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
+  handlePlaylistsAll: () => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
@@ -26,6 +28,7 @@ interface PlaylistInterface {
   playlistCreatedAt: string;
   playlistUpdatedAt: string;
   trackId: string[];
+  track: TrackInterface[];
   playlistLikedById: string[];
   playlistCreatedById: string[];
   genreId: string[];
@@ -47,12 +50,12 @@ interface AlbumInterface {
 }
 
 interface albumCreateInteface {
-  albumName: string,
-  albumImage: string,
-  albumCreatedAt: string,
-  genreId: string[],
-  artistId: string[],
-  trackId: string[],
+  albumName: string;
+  albumImage: string;
+  albumCreatedAt: string;
+  genreId: string[];
+  artistId: string[];
+  trackId: string[];
 }
 interface TrackInterface {
   id: string;
@@ -69,7 +72,6 @@ interface TrackInterface {
   artistId: string[];
   trackUrl: string;
   albumId: string;
-
 }
 
 interface CreateTrackType {
@@ -95,6 +97,8 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
+  const [playlistsAll, setPlaylistsAll] = useState<PlaylistInterface[]>([]);
+
   const [albums, setAlbums] = useState<AlbumInterface[]>([]);
   const [tracks, setTracks] = useState<TrackInterface[]>([]);
   const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
@@ -109,6 +113,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         await handleUserPlaylistsLiked(userEmail);
         await handleUserAlbums();
         await handleUserTracks();
+        await handlePlaylistsAll();
       }
       getAllMusicLauncher();
     }
@@ -128,6 +133,15 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     try {
       const response = await userPlaylistsLikedGet(userEmail, getAccessTokenSilently);
       setPlaylistsLiked(response);
+    } catch (error) {
+      console.error("Error getting liked playlists:", error);
+      throw error;
+    }
+  };
+  const handlePlaylistsAll = async () => {
+    try {
+      const response = await getAllPlaylist( getAccessTokenSilently);
+      setPlaylistsAll(response);
     } catch (error) {
       console.error("Error getting liked playlists:", error);
       throw error;
@@ -189,6 +203,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       value={{
         playlistsCreated,
         playlistsLiked,
+        playlistsAll,
         albums,
         tracks,
         tracksCreated,
@@ -196,11 +211,12 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         albumCreated,
         handleUserPlaylistsCreated,
         handleUserPlaylistsLiked,
+        handlePlaylistsAll,
         handleUserAlbums,
         handleUserTracks,
         createUserTracks,
         createNewArtist,
-        createNewAlbum
+        createNewAlbum,
       }}>
       {children}
     </UserMusicContext.Provider>

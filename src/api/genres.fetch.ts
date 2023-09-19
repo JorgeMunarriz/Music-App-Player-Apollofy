@@ -1,10 +1,7 @@
 import { urlGenre } from "../global";
 
 
-interface GenresProps {
-    id: string,
-    name: string
-}
+
 
 
 export const getAllGenres = async () => {

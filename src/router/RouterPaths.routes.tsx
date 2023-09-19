@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LandingPage, LoginPage, RegisterPage, StartingPage } from "../pages/index";
 import "../App.css";
 import RouteSkeletor from "../assets/skeleton/routeSkeletor.tsx";
-import { ALBUM, HOME, LANDING, LOGIN, PLAYER, PLAYERID, PLAYLISTS, PROFILE, REGISTER, STARTING } from "../config/routes/paths.ts";
+import { ALBUM, HOME, LANDING, LIBRARY, LOGIN, PLAYER, PLAYERID, PLAYLISTS, PROFILE, REGISTER, STARTING } from "../config/routes/paths.ts";
 import { PublicRoute } from "../components/index.ts";
 import { ProtectedRoutes } from "../utils/ProtectedRoutes.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -14,6 +14,7 @@ const LazyLayout = lazy(() => import("../components/layout/Layout.tsx"));
 const LazyHomePage = lazy(() => import("../pages/private/HomePage.tsx"));
 const LazyProfilePage = lazy(() => import("../pages/private/ProfilePage.tsx"));
 const LazyPLayerPage = lazy(() => import("../pages/private/PlayerPage.tsx"));
+const LazyLibraryPage = lazy(() => import("../pages/private/LibraryPage.tsx"));
 const LazyPlaylistPage = lazy(() => import("../pages/private/PlaylistPage.tsx"));
 const LazyAlbumPage = lazy(() => import("../pages/private/AlbumPage.tsx"));
 
@@ -69,11 +70,21 @@ export const Router = () => {
             }
           />
           <Route
-            path={PLAYLISTS}
+            path={`${PLAYLISTS}/:id`}
             element={
               <Suspense fallback={<RouteSkeletor />}>
                 <ProtectedRoutes user={user}>
                   <LazyPlaylistPage />
+                </ProtectedRoutes>
+              </Suspense>
+            }
+          />
+          <Route
+            path={LIBRARY}
+            element={
+              <Suspense fallback={<RouteSkeletor />}>
+                <ProtectedRoutes user={user}>
+                  <LazyLibraryPage />
                 </ProtectedRoutes>
               </Suspense>
             }
