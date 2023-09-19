@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { DataMusicContext } from "../../context";
 import { AudioPlayerComponent } from "..";
 import { breakpoints } from '../../styles/breakpoints.ts'
 import { useQueuePlayerContext } from "../../context/QueuePlayerContext.tsx";
@@ -53,7 +51,7 @@ const PlayerStyles = styled.div`
     justify-content: center;
     width: 50%;
     .playerstyles__img {
-      width: 5rem;
+      width: 3rem;
     }
     .playerstyles__info {
       padding-left: 1vh;
@@ -86,30 +84,57 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (${breakpoints.min} <= width <= ${breakpoints.mobileMax}px) {
+  @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
 
-    .playerstyles__div-whole {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: min-content;
-      .playerstyles__img {
-        width: 6rem;
-      }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  
+  .playerstyles__div-whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    .playerstyles__img {
+      width: 3rem;
     }
-
-    .playerstyles__div-container {
-      min-width: 60%;
-      display: flex;
-      .playerstyles__div-container-audio {
-        width: 100%;
-        border: 0 transparent;
+    .playerstyles__info {
+      padding-left: 1vh;
+      .playerstyles__info-h4 {
+        font-size:clamp(1rem, 1.5rem, 2rem);
+        color: rgba(255, 255, 255, 0.5);
+        text-align:center;
+      }
+      .playerstyles__info-paragraph {
+        font-size: clamp(.5rem, 1rem, 1.5rem);
+        color: var(--color-text-pink);
+        text-align: center;
       }
     }
   }
 
+  .playerstyles__div-container {
+    width: 70%;
+    display: flex;
+    .playerstyles__div-container-audio {
+      width: 100%;
+      border: 0 transparent;
+    }
+  }
+  .playerstyles__div-container-solo {
+    width: 95%;
+    display: flex;
+    .playerstyles__div-container-audio {
+      width: 100%;
+      border: 0 transparent;
+    }
+  }
+  }
 
-  @media (${breakpoints.mobileMax} < width <= ${breakpoints.tabletMax}px) {
+  @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
 
     .playerstyles__div-whole {
       display: flex;
@@ -123,12 +148,13 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (${breakpoints.tabletMax} < width <= ${breakpoints.laptopsMax}px)  {
+  @media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px)  {
 
     .playerstyles__div-whole {
       display: flex;
+      justify-content: space-evenly;
       .playerstyles__img {
-        width: 50px;
+        width: 9rem;
       }
     }
     .playerstyles__div-player {
@@ -139,10 +165,10 @@ const PlayerStyles = styled.div`
         font-size: 2rem;
       }
   }
-}
+  }
 
 
-  @media (${breakpoints.laptopsMax} < width <= ${breakpoints.desktopMax}px) {
+  @media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
 
 
     .playerstyles__div-whole {
@@ -167,7 +193,7 @@ const PlayerStyles = styled.div`
   }
 
 
-  @media (width > ${breakpoints.desktopMax}) {
+  @media (width > ${breakpoints.desktopMax}px) {
 
     .playerstyles__div-whole {
       display: flex;
@@ -189,4 +215,5 @@ const PlayerStyles = styled.div`
       }
     }
   }
+
 `;

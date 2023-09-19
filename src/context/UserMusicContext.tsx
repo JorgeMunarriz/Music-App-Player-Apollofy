@@ -59,6 +59,7 @@ interface albumCreateInteface {
   genreId: string[];
   artistId: string[];
   trackId: string[];
+  artist: ArtistInterface[];
 }
 interface TrackInterface {
   id: string;

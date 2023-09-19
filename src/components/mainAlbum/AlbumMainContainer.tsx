@@ -28,11 +28,11 @@ export const AlbumMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedAlbum ? selectedAlbum?.trackId : [])} /> </h2>
+          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName}<BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedAlbum ? selectedAlbum?.trackId : [])} /> </h2>
         </section>
         <section className="zone-cards">
-          {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+          {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
+            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} />
           ))}
         </section>
       </AlbumMainContainerStyles>
@@ -65,6 +65,7 @@ export const AlbumMainContainerStyles = styled.main`
       display: flex;
       font-size: 2.5rem;
       cursor: grabbing;
+      margin-left: 1rem;
     }
   }
   .selections {
