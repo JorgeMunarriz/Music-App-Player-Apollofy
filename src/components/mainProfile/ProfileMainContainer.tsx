@@ -25,8 +25,11 @@ export const ProfileMainContainer = () => {
       {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
         <TracksCreateForm closeModal={closeModal1} />
       </Modal> */}
+      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <TracksCreateForm closeModal={closeModal1} />
+      </Modal> */}
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <ArtistCreateForm closeModal={closeModal1} />
+        <AlbumCreateForm closeModal={closeModal1} />
       </Modal>
       <ProfileMainContainerStyles>
         <ProfileIconsContainer>

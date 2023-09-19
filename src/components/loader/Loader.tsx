@@ -26,7 +26,7 @@ export const LoaderForm = () => {
 		  width={100}
 		  color="#E85973"
 		  ariaLabel="audio-loading"
-		  wrapperStyle={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+		  wrapperStyle={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',  zIndex: '9999' }}
 		  wrapperClass="wrapper-class"
 		  visible={true}
 		/>
