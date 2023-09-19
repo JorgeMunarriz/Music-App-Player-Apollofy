@@ -18,7 +18,7 @@ interface Playlist {
   trackId?: string;
 }
 
-const CardForPlaylistPlayerHome = async ({ id, playlistImage, playlistName, trackId }: Playlist) => {
+const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
   const { getAccessTokenSilently } = useAuth0();
   const { playlists, playlistsLiked, setPlaylistsLiked } = useUserMusicContext();
   const { userData } = useUserContext();

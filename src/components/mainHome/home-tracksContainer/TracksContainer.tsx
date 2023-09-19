@@ -63,7 +63,7 @@ export const TracksContainer = ({ query }: ProprQuery) => {
   );
 };
 
-const TracksContainerStyles = styled.div`
+const TracksContainerStyles = styled.section`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
