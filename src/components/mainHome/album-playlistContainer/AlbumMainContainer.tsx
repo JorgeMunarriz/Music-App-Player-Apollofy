@@ -14,6 +14,7 @@ import styled from "styled-components";
 import HomeSkeleton from "../../../assets/skeleton/homeSkeleton";
 
 import { useUserMusicContext } from "../../../context";
+import { breakpoints } from "../../../styles/breakpoints";
 
 const LazyCardAlbumHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -74,13 +75,13 @@ const TracksContainerStyles = styled.div`
     font-size: 35px;
     color: white;
     align-items: flex-start;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
     margin-left: 1.5rem;
     opacity: 0.9;
   }
   .mySwiper {
-    height: 70%;
+    height: 80%;
     width: 100%;
     .swiper-wrapper {
       display: flex;
@@ -100,7 +101,7 @@ const TracksContainerStyles = styled.div`
       height: 10px;
       border-radius: 10px;
       transition: all 0.3s;
-      background-color: black;
+      background-color: #ffffff;
       left: 0;
       top: 200px;
     }
@@ -119,6 +120,37 @@ const TracksContainerStyles = styled.div`
       color: #9d0b28;
     }
     .swiper-pagination {
+      bottom: 0px;
     }
   }
+
+@media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
+  .swiper-pagination {
+    display: none;
+  }
+}
+		
+@media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
+  .swiper-pagination {
+    display: none;
+  }
+}
+
+@media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px) {
+  .playlistTitle {
+    font-size: 25px;
+  }
+}
+
+@media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
+  .playlistTitle {
+    font-size: 25px;
+  }
+}
+
+@media (width > ${breakpoints.desktopMax}px) {
+  .albumsTitle {
+    font-size: 25px;
+  }
+}
 `;

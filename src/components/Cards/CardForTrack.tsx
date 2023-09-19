@@ -5,6 +5,7 @@ import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useState } from 'react';
+import { breakpoints } from '../../styles/breakpoints';
 
 
 interface Track {
@@ -34,7 +35,7 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) =>
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{}{trackName}</h3>
+          <h3 className="cardForTrack__body_title-h3">{ }{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
       </Link>
@@ -121,7 +122,7 @@ const CardForTrackStyles = styled.div`
     cursor: grabbing;
   }
 
-  @media only screen and (min-width: 320px) and (max-width: 700px) {
+  @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
     .cardForTrack {
       flex-direction: column;
       justify-content: center;
