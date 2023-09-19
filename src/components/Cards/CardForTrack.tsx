@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
-import { useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { BiSolidPlaylist } from 'react-icons/bi'
+import { useState } from 'react';
 
 
 interface Track {
@@ -17,11 +17,12 @@ interface Track {
 
 const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
 
-  const { handleCurrentTrackById } = useQueuePlayerContext();
+  const { handleCurrentTrackById, handleNewTrackInList } = useQueuePlayerContext();
+  const [goToPlayer, setGoToPlayer] = useState(true);
 
   return (
     <CardForTrackStyles key={id}>
-      <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
+      <Link className="cardForTrack" onClick={() => handleCurrentTrackById(id)} to={`${PLAYER}`}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
@@ -29,17 +30,17 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
           <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
-        <div className='cardForTrack__footer'>
-          <div className='cardForTrack__footer__selection'><BiSolidPlaylist /></div>
-          <Link className='cardForTrack__footer__selection' to={`${PLAYER}`} ><AiFillPlayCircle /></Link>
-        </div>
       </Link>
+
+      <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
+
     </CardForTrackStyles>
   );
 };
 
 const CardForTrackStyles = styled.div`
   display: flex;
+  position: relative;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
   border-radius: 0rem 1rem 1rem 0rem;
@@ -57,7 +58,7 @@ const CardForTrackStyles = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     /* position: relative; */
     gap: 1rem;
     overflow-y: auto;
@@ -100,38 +101,26 @@ const CardForTrackStyles = styled.div`
         }
       }
     }
-    &__footer {
-        display: flex;
-        /* position: absolute; */
-        flex-direction: column;
-        justify-content: space-between;
-        top: 2%;
-        right: 2%;
-        bottom: 2%;
-
-      &__selection{
-        font-size: 1.5vw;
-        color: var(--color-text-gray);
-      }
-    }
   }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
+  }
+
   @media only screen and (min-width: 320px) and (max-width: 700px) {
     .cardForTrack {
-<<<<<<< HEAD
-    display: flex;
-    min-height: 120px;
-
-    &__body {
-      display: flex;
-=======
->>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 200px;
     }
-<<<<<<< HEAD
-=======
     .cardForAlbum__header_img{
       width: 100%;
     }
@@ -141,7 +130,6 @@ const CardForTrackStyles = styled.div`
       height: 100%;
     }
 
->>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
   }
 }
 `;

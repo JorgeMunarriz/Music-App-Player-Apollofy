@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export const AudioPlayerComponent = () => {
 
-  const { currentTrack } = useQueuePlayerContext();
+  const { currentTrack, handleNextTrackInList } = useQueuePlayerContext();
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,8 @@ export const AudioPlayerComponent = () => {
         showSkipControls={true}
         autoPlay={true}
         autoPlayAfterSrcChange={true}
-      // onClickNext={ }
+        onClickNext={() => handleNextTrackInList()}
+        onEnded={() => handleNextTrackInList()}
       // onClickPrevious={ }
       />
     </AudioPlayerStyles>

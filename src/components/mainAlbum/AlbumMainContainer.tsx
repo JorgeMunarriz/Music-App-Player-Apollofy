@@ -1,9 +1,10 @@
-import { LazyExoticComponent, ComponentType, lazy} from "react";
+import { LazyExoticComponent, ComponentType, lazy } from "react";
 import styled from "styled-components";
 import { SearchBar, TracksForLibrary } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
+import { BiSolidPlaylist } from 'react-icons/bi'
 
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
@@ -17,9 +18,9 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const AlbumMainContainer = () => {
   const { id } = useParams();
   const { albums, tracks } = useUserMusicContext();
-//   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
+  //   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
   const selectedAlbum = albums.find((album) => album.id === id);
-  
+
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -34,12 +35,12 @@ export const AlbumMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName}</h2>
+          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" /> </h2>
         </section>
         <section className="zone-cards">
-        {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-            ))}
+          {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
+            <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+          ))}
         </section>
       </AlbumMainContainerStyles>
     </>
@@ -64,7 +65,13 @@ export const AlbumMainContainerStyles = styled.main`
     padding-top: 0.5vh;
     color: white;
     &__h2 {
+      display: flex;
       font-size: 2rem;
+    }
+    &__icon {
+      display: flex;
+      font-size: 2.5rem;
+      cursor: grabbing;
     }
   }
   .selections {
