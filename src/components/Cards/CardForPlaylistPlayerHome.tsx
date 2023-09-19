@@ -1,13 +1,14 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-// import { UserContext } from "../../context";
-// import { useUserContext } from "../../context";
-import { toggleLiked } from "../../api/toggleLiked";
-// import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+
+import { useUserContext, useUserMusicContext } from "../../context";
+// import { toggleLiked } from "../../api/toggleLiked";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { PLAYLISTS } from "../../config/routes/paths";
+import { getPlaylistById } from "../../api/playlist.fetch";
 
 interface Playlist {
   id: string;
@@ -16,36 +17,33 @@ interface Playlist {
   trackId?: string;
 }
 
-const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
-  // console.log(trackImage)
-  //tengo que traer el puto id
-  // const { userLogged, handleUserLogged } = useContext(UserContext);
-  // const { user, getAccessTokenSilently } = useAuth0();
-  // const { userFechture } = useUserContext()
+const CardForPlaylistPlayerHome = async ({ id, playlistImage, playlistName, trackId }: Playlist) => {
+  const { getAccessTokenSilently } = useAuth0();
+  const { playlists, playlistsLiked, setPlaylistsLiked } = useUserMusicContext();
+  const { userData } = useUserContext();
+  const [liked, setLiked] = useState<boolean>(false);
 
-  // const isFollowed = () => {
-  //   if (userLogged?.favPlaylists.includes(id)) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
-  // const [followed, setFollowed] = useState(isFollowed);
 
-  // const toggleFollow = async () => {
-  //   setFollowed(!followed);
 
-  //   try {
-  //     await toggleLiked(userLogged?.id, 'playlist', id, followed ? 'FALSE' : 'TRUE');
+  console.log(userData)
 
-  //     const modifiedUser = { ...userLogged, favPlaylists: followed ? userLogged?.favPlaylists.filter((playlistId) => playlistId !== id) : [...userLogged?.favPlaylists, id] };
+  const handleLiked = (id: string) => {
 
-  //     handleUserLogged(modifiedUser);
+    const incomingPlaylist = getPlaylistById(getAccessTokenSilently, id);
+    console.log(incomingPlaylist)
+    setLiked(!liked)
+    const selectedPlaylist = playlistsLiked.map(playlist => {
 
-  //   } catch (error) {
-  //     console.error('Error al cambiar la lista favorita:', error);
-  //   }
-  // };
+      if (!playlistsLiked.includes(incomingPlaylist.id)) {
+        setPlaylistsLiked([...playlistsLiked, incomingPlaylist])
+        setLiked(!liked);
+
+        // userData?.playlistLikedId.push(playlist.id)
+      }
+    })
+  }
+
 
   return (
     <CardForPlaylistPlayerHomeStyles>
@@ -56,10 +54,8 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
           </div>
           <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
           {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
-          <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
-            {" "}
-            Hola
-            {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
+          <button onClick={() => handleLiked(id)} className="cardForPlaylistPlayer__follow-btn follow_btn">
+            {liked ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />}
           </button>
         </div>
       </Link>
@@ -155,3 +151,32 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
 `;
 
 export default CardForPlaylistPlayerHome;
+// const isFollowed = () => {
+//   if (userLogged?.favPlaylists.includes(id)) {
+//     return true;
+//   }
+//   return false;
+// }
+
+// const [followed, setFollowed] = useState(isFollowed);
+
+// const toggleFollow = async () => {
+//   setFollowed(!followed);
+
+//   try {
+//     await toggleLiked(userLogged?.id, 'playlist', id, followed ? 'FALSE' : 'TRUE');
+
+//     const modifiedUser = { ...userLogged, favPlaylists: followed ? userLogged?.favPlaylists.filter((playlistId) => playlistId !== id) : [...userLogged?.favPlaylists, id] };
+
+//     handleUserLogged(modifiedUser);
+
+//   } catch (error) {
+//     console.error('Error al cambiar la lista favorita:', error);
+//   }
+// };
+
+// console.log(trackImage)
+//tengo que traer el puto id
+// const { userLogged, handleUserLogged } = useContext(UserContext);
+// const { user, getAccessTokenSilently } = useAuth0();
+// const { userFechture } = useUserContext()
