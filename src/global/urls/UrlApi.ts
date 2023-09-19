@@ -7,6 +7,3 @@ export const urlAlbum = `${VITE_API}album`;
 export const urlArtist = `${VITE_API}artist`;
 export const urlGenre = `${VITE_API}genre`;
 export const urlPost = `${VITE_API}post`;
-
-
-// console.log(urlAlbum)

@@ -115,30 +115,33 @@ const CardForTrackStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 320px) and (max-width: 700px) {
     .cardForTrack {
+<<<<<<< HEAD
     display: flex;
     min-height: 120px;
 
     &__body {
       display: flex;
+=======
+>>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
       flex-direction: column;
-      gap: 1rem;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &.h3 {
-          font-size: 1rem;
-        }
-        &.h4 {
-          font-size: 0.75rem;
-        }
-        &.h5 {
-          font-size: 0.5rem;
-        }
-      }
+      justify-content: center;
+      align-items: center;
+      height: 200px;
     }
+<<<<<<< HEAD
+=======
+    .cardForAlbum__header_img{
+      width: 100%;
+    }
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+>>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
   }
 }
 `;

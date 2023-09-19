@@ -35,7 +35,7 @@ const CardForPlaylistStyles = styled.div`
   padding: 0.25rem;
   gap: 1rem;
   transition: all 0.3s;
-  border: 1px solid rgba(66, 66, 66, 0.4);
+  border: 1px solid rgba(9, 9, 9, 0.4);
   margin: 10px;
   &:hover {
     background-color: rgba(100, 100, 100, 0.4);
@@ -63,7 +63,6 @@ const CardForPlaylistStyles = styled.div`
       opacity: 0.8;
     }
     }
-    
     &__body {
       display: flex;
       flex-direction: column;
@@ -88,12 +87,13 @@ const CardForPlaylistStyles = styled.div`
     }
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
+    
     .cardForTrack {
     display: flex;
-    
+    flex-direction: column;
     min-height: 120px;
-
-    
+    align-items: center;
+    justify-content: center;
     &__body {
       display: flex;
       flex-direction: column;

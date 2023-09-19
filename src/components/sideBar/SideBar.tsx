@@ -7,7 +7,7 @@ import { breakpoints } from '../../styles/breakpoints';
 
 
 export const SideBar = () => {
-	console.log('renderiza el SideBar')
+	
 	return (
 		<SidebarStyles>
 			<div className="sidebar__div">

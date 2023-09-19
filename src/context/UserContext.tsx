@@ -47,7 +47,7 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
 	const userFetch = async (user: User |undefined, getAccessTokenSilently: () => Promise<string>) => {
         if (user) {
             const userResponse = await userPost(user, getAccessTokenSilently);
-            console.log(userResponse)
+           
             setUserData(userResponse.user)
         }
      }
@@ -56,7 +56,7 @@ export const UserProvider: FC<{children: ReactNode}> = ({children}) => {
      const updatedUserData = async ( userUpdate: userData, userId:string,  getAccessTokenSilently: () => Promise<string>) => {
         try {
             const userResponse = await UserPatch(userUpdate, userId, getAccessTokenSilently);
-            console.log(userResponse)
+           
             setUserUpdate(userResponse);
             setUserData(userResponse.user)
 

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState, FC } from 'react'
 import { AlertMessageSuccess, LoaderForm } from "../../..";
 import { useForm } from 'react-hook-form'
-import { useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 
 interface userFormModal {
@@ -21,8 +20,7 @@ interface CreateAlbumType {
 
 
 export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { userData, } = useUserContext();
-  const { createUserTracks,tracks } = useUserMusicContext();
+  const { createNewAlbum,tracks } = useUserMusicContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
@@ -53,8 +51,8 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
       setIsLoading(true);
       const formData = new FormData();
       formData.append('albumName', newAlbumData.albumName);
-      formData.append('trackCreatedAt', newAlbumData.albumCreatedAt);
-      formData.append('trackImage', newAlbumData.albumImage[0]);
+      formData.append('albumImage', newAlbumData.albumImage[0]);
+      formData.append('albumCreatedAt', newAlbumData.albumCreatedAt);
       // se utiliza foreach para agregar todos los campos selecionados
       if (Array.isArray(newAlbumData.artistId)) {
         newAlbumData.artistId.forEach((artistId) => {
@@ -72,15 +70,15 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append('genreId', genreId);
         });
       }
-      const response = await createUserTracks(userData?.id ?? '', formData);
+      console.log(newAlbumData)
+       await createNewAlbum(formData);
 
-      if (response.ok) {
         setIsSuccess(true);
         setTimeout(() => {
           setIsSuccess(false);
           closeModal()
         }, 4000)
-      }
+
     } catch (error) {
       console.error('Error saving track:', error);
     } finally {
@@ -119,9 +117,9 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
           </select>
           <select  {...register("artistId")} id="artist">
             <option value="">Select Artist</option>
-            {artist.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
+            {artist.map((artist) => (
+              <option key={artist.id} value={artist.id}>
+                {artist.name}
               </option>
             ))}
           </select>

@@ -3,7 +3,7 @@ import { Player } from '..'
 import { breakpoints } from "../../styles/breakpoints";
 
 export const Footer = () => {
-  console.log('renderiza el Footer')
+ 
   return (
     <FooterStyles>
       <Player />
