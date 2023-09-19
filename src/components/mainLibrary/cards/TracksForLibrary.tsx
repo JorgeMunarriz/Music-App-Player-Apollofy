@@ -29,10 +29,11 @@ interface ArtistProps {
 
 const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }: TrackProps) => {
   const { handleCurrentTrackById } = useQueuePlayerContext();
-  console.log(artist.map((art) => art.artistName));
+  
 
   return (
-    <TracksForLibraryStyles key={id}>
+    (artist ? 
+      <TracksForLibraryStyles key={id}>
       <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
@@ -40,13 +41,29 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
         <div className="cardForTrack__body">
           <h3 className="cardForTrack__body-trackName">{trackName}</h3>
           <div className="cardForTrack__body_title">
-            <h4 className="cardForTrack__body_title-artistName">{artist.map((art) => art.artistName)}</h4>
+            <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName): null}</h4>
             <h4 className="cardForTrack__body_title-createdAt">{trackCreatedAt}</h4>
           </div>
           {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
         </div>
       </Link>
     </TracksForLibraryStyles>
+    :
+      <TracksForLibraryStyles key={id}>
+      <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
+        <div className="cardForTrack__header">
+          <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
+        </div>
+        <div className="cardForTrack__body">
+          <h3 className="cardForTrack__body-trackName">{trackName}</h3>
+          <div className="cardForTrack__body_title">
+            {/* <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName): null}</h4> */}
+            <h4 className="cardForTrack__body_title-createdAt">{trackCreatedAt}</h4>
+          </div>
+          {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
+        </div>
+      </Link>
+    </TracksForLibraryStyles>)
   );
 };
 
