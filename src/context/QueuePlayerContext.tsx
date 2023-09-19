@@ -63,7 +63,8 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         }
     }
     const handleDeleteTrackInList = (index: number) => {
-        setNextTracks(nextTracks.slice(index, 1));
+        const newNextTracks = nextTracks.filter((track, i) => i !== index);
+        setNextTracks(newNextTracks);
     }
     const handleNextTrackInList = () => {
         if (nextTracks && nextTracks?.length > 0) {
