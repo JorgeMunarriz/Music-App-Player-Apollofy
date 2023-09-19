@@ -8,6 +8,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { PLAYLISTS } from "../../config/routes/paths";
+import { breakpoints } from "../../styles/breakpoints";
 import { getPlaylistById } from "../../api/playlist.fetch";
 
 interface Playlist {
@@ -22,9 +23,6 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
   const { playlists, playlistsLiked, setPlaylistsLiked } = useUserMusicContext();
   const { userData } = useUserContext();
   const [liked, setLiked] = useState<boolean>(false);
-
-
-
 
   console.log(userData)
 
@@ -127,7 +125,7 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
     font-size: 20px;
   }
 
-  @media only screen and (min-width: 363px) and (max-width: 700px) {
+  @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
     margin: 10px;
     .cardForPlaylistPlayer {
       flex-direction: column;

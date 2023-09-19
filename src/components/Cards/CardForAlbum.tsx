@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ALBUM } from '../../config/routes/paths';
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/breakpoints';
 
 interface AlbumProps {
   id: string
@@ -90,7 +91,7 @@ const CardForAlbumStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 310px) and (max-width: 700px) {
+  @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
    
     flex-direction: column;
     justify-content: center;
