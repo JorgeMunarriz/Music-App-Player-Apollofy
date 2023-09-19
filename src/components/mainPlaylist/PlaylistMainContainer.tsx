@@ -1,9 +1,11 @@
-import { LazyExoticComponent, ComponentType, lazy} from "react";
+import { LazyExoticComponent, ComponentType, lazy } from "react";
 import styled from "styled-components";
 import { SearchBar, TracksForLibrary } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
+import { BiSolidPlaylist } from 'react-icons/bi'
+import { useQueuePlayerContext } from "../../context/QueuePlayerContext";
 
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
@@ -17,10 +19,9 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const PlaylistMainContainer = () => {
   const { id } = useParams();
   const { albums, tracks, playlistsAll } = useUserMusicContext();
-//   const { handleUserPlaylistsCreated, handleUserplaylistsAll, handleUserAlbums, handleUserTracks } = useUserMusicContext();
-console.log(playlistsAll)
+  const { handleListChange } = useQueuePlayerContext();
+
   const selectedPlaylist = playlistsAll.find((playlist) => playlist.id === id);
-  
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -35,12 +36,12 @@ console.log(playlistsAll)
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName}</h2>
+          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} /> </h2>
         </section>
         <section className="zone-cards">
-        {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
-            ))}
+          {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
+            <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+          ))}
         </section>
       </PlaylistMainContainerStyles>
     </>
