@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { useState, FC } from "react";
 import { AlertMessageSuccess, LoaderForm } from "../../..";
-import { useForm } from "react-hook-form";
-import { useUserContext } from "../../../../context";
+import { useForm,Controller } from "react-hook-form";
+import { useGenresContext, useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
+import { MultiSelect } from "react-multi-select-component";
 
 interface userFormModal {
   closeModal: () => void;
@@ -19,9 +20,15 @@ interface CreateTrackType {
   albumId: string[];
 }
 
+interface Option {
+  label: string;
+  value: string;
+}
+
 export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { userData, } = useUserContext();
-  const { createUserTracks, albums } = useUserMusicContext();
+  const { allGenres } = useGenresContext();
+  const { createUserTracks, albums, artists } = useUserMusicContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const form = useForm({
@@ -36,16 +43,8 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     },
   });
 
-  const { register, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState,control } = form;
   const { errors } = formState;
-  const generos = [
-    { id: "6501915fd1080d57fa618f56", name: "Rock" },
-    { id: "65017fdfd78b706a5fdf4513", name: "Hip hop" },
-    { id: "650191dcd1080d57fa618f61", name: "Reggaeton" },
-  ];
-  const artist = [
-    { id: "65018d00f6f55225268a30d5", name: "pepe2" },
-  ];
 
 
   const onSubmit = async (newTrackData: CreateTrackType) => {
@@ -56,22 +55,22 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       formData.append("trackCreatedAt", newTrackData.trackCreatedAt);
       formData.append("trackUrl", newTrackData.trackUrl[0]);
       formData.append("trackImage", newTrackData.trackImage[0]);
-      // se utiliza foreach para agregar todos los campos selecionados
+
       if (Array.isArray(newTrackData.artistId)) {
-        newTrackData.artistId.forEach((artistId) => {
-          formData.append("artistId", artistId);
-        });
+        for (const artist of newTrackData.artistId as unknown as Option[]) {
+          formData.append("artistId", artist.value);
+        }
       }
 
       if (Array.isArray(newTrackData.albumId)) {
-        newTrackData.albumId.forEach((albumId) => {
-          formData.append("albumId", albumId);
-        });
+        for (const album of newTrackData.albumId as unknown as Option[]) {
+          formData.append("albumId", album.value);
+        }
       }
       if (Array.isArray(newTrackData.genreId)) {
-        newTrackData.genreId.forEach((genreId) => {
-          formData.append("genreId", genreId);
-        });
+        for (const genre of newTrackData.genreId as unknown as Option[]) {
+          formData.append("genreId", genre.value);
+        }
       }
       await createUserTracks(userData?.id ?? '', formData);
 
@@ -92,7 +91,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <TracksFormContainer>
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>Track create successfully</AlertMessageSuccess>}
-      <header className="modalTitle">Aaa Track</header>
+      <header className="modalTitle">ADD Track</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form__input_box">
           <label htmlFor="trackName" className="form__input_box-label">
@@ -109,30 +108,51 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="form__gender_box">
-          <select {...register("genreId")} id="genre">
-            <option value="">Select genres</option>
-            {generos.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
-              </option>
-            ))}
-          </select>
-          <select {...register("artistId")} id="artist">
-            <option value="">Select Artist</option>
-            {artist.map((genero) => (
-              <option key={genero.id} value={genero.id}>
-                {genero.name}
-              </option>
-            ))}
-          </select>
-          <select {...register("albumId")} id="album">
-            <option value="">Select Albums</option>
-            {albums.map((album) => (
-              <option key={album.id} value={album.id}>
-                {album.albumName}
-              </option>
-            ))}
-          </select>
+        <Controller
+            name="genreId"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect
+                options={allGenres.map((genre) => ({ label: genre.genreName, value: genre.id }))}
+                labelledBy="Select Genre"
+                {...field}
+                overrideStrings={{
+                  selectSomeItems: 'Select Genre',
+                }}
+              />
+
+            )}
+          />
+          {errors.genreId && <span className="error_input">At least one genre is required</span>}
+          <Controller
+            name="artistId"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect
+                options={artists.map((artist) => ({ label: artist.artistName, value: artist.id }))}
+                labelledBy="Select Artist"
+                {...field}
+                overrideStrings={{
+                  selectSomeItems: 'Select Artist',
+                }}
+              />
+            )}
+          />
+          <Controller
+            name="albumId"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect
+                options={albums.map((album) => ({ label: album.albumName, value: album.id }))}
+                labelledBy="Select Album"
+                {...field}
+                overrideStrings={{
+                  selectSomeItems: 'Select Album',
+                }}
+              />
+
+            )}
+          />
           {errors.genreId && <span className="error_input">At least one genre is required</span>}
         </div>
         <div className="form__input_box description">
@@ -172,7 +192,7 @@ const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
   background: linear-gradient(to right, hsl(300, 100%, 10%), hsl(0deg 71.01% 13.53%));
-  padding: 25px;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
@@ -229,11 +249,6 @@ const TracksFormContainer = styled.section`
     }
     &__gender_box {
       color: #f5f4e8;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding-top: 1rem;
-      gap: 0.8rem;
       & select {
         font-size: 1.3rem;
         font-weight: 700;
@@ -303,6 +318,53 @@ const TracksFormContainer = styled.section`
     font-size: 1rem;
     background: #fcedda;
   }
+  .rmsc {
+  --rmsc-main: #4285f4;
+  --rmsc-hover: #dbe1e7;
+  --rmsc-selected: #275f01c8;
+  --rmsc-border: #ccc;
+  --rmsc-gray: #000000;
+  --rmsc-bg:  rgb(134, 129, 134);
+  --rmsc-p: 0.5rem; /* Spacing */
+  --rmsc-radius: 4px; /* Radius */
+  --rmsc-h: 38px; /* Height */
+}
 
+.rmsc .dropdown-heading {
+  padding:  var(--rmsc-p);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--rmsc-h);
+  cursor: pointer;
+  outline: 0;
+}
+.rmsc .dropdown-heading .dropdown-heading-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    width: 100%;
+    color: hsl(0, 0%, 100%);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.rmsc .dropdown-container {
+  z-index:1;
+    outline: 0;
+    margin: 1rem 0;
+    background-color: var(--rmsc-bg);
+    border: 1px solid var(--rmsc-border);
+    border-radius: var(--rmsc-radius);
+}
+.rmsc .dropdown-content {
+    color: hsl(0, 100%, 0.7843137254901961%);
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    border: 1px solid var(--rmsc-border);
+    border-radius: var(--rmsc-radius);
+}
   
 `;
