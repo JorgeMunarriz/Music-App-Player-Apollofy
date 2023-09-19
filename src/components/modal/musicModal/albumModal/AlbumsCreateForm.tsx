@@ -19,8 +19,10 @@ interface CreateAlbumType {
   trackId: string[],
 }
 
-
-
+interface Option {
+  label: string;
+  value: string;
+}
 
 export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { createNewAlbum, tracks, } = useUserMusicContext();
@@ -46,10 +48,6 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
     { id: "65018d00f6f55225268a30d5", name: "pepe2" },
   ];
 
-  interface Option {
-   label: string;
-    value: string;
-  }
   const onSubmit: SubmitHandler<CreateAlbumType> = async (newAlbumData: CreateAlbumType) => {
     try {
 
@@ -76,7 +74,6 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
         }
       }
 
-      console.log(newAlbumData.artistId[0])
       await createNewAlbum(formData);
 
       setIsSuccess(true);

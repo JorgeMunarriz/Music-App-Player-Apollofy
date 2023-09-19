@@ -1,8 +1,7 @@
-
-export * from './private/PlayerPage';
-export * from './private/PlaylistPage';
-export * from './private/ProfilePage';
-export * from './regular/LandingPage';
-export * from './regular/LoginPage';
-export * from './regular/RegisterPage';
-export * from './regular/StartingPage';
+export * from "./private/PlayerPage";
+export * from "./private/LibraryPage";
+export * from "./private/ProfilePage";
+export * from "./public/LandingPage";
+export * from "./public/LoginPage";
+export * from "./public/RegisterPage";
+export * from "./public/StartingPage";

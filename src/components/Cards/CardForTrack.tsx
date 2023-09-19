@@ -1,38 +1,53 @@
 import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
-import { currentTrackSet } from '../../utils/currentTrackSET';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
+import { AiFillPlayCircle } from 'react-icons/ai'
+import { BiSolidPlaylist } from 'react-icons/bi'
+import { useState } from 'react';
+
 
 interface Track {
   id: string
   trackName: string
   trackUrl: string
   trackImage: string
+  artist: ArtistProps[]
+}
+interface ArtistProps {
+  artistName: string;
+  artistImage: string;
+  popularity: string;
+  albumId: string[];
+  genreId: string[];
 }
 
+const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) => {
 
-const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
-
-  const { handleCurrentTrackById } = useQueuePlayerContext();
+  const { handleCurrentTrackById, handleNewTrackInList } = useQueuePlayerContext();
+  const [goToPlayer, setGoToPlayer] = useState(true);
 
   return (
     <CardForTrackStyles key={id}>
-      <Link to={`${PLAYER}`} className="cardForTrack" onClick={() => handleCurrentTrackById(id)}>
+      <Link className="cardForTrack" onClick={() => handleCurrentTrackById(id)} to={`${PLAYER}`}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h3 className="cardForTrack__body_title-h3">{}{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
       </Link>
+
+      <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
+
     </CardForTrackStyles>
   );
 };
 
 const CardForTrackStyles = styled.div`
   display: flex;
+  position: relative;
   box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
   background-color: rgba(50, 50, 50, 0.4);
   border-radius: 0rem 1rem 1rem 0rem;
@@ -48,7 +63,10 @@ const CardForTrackStyles = styled.div`
 
   .cardForTrack {
     display: flex;
-    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    /* position: relative; */
     gap: 1rem;
     overflow-y: auto;
     min-height: 120px;
@@ -86,39 +104,41 @@ const CardForTrackStyles = styled.div`
         }
         &-h5 {
           font-size: 0.75vw;
-          color: rgba(255, 255, 255, 0.7)
+          color: rgba(255, 255, 255, 0.7);
         }
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .cardForTrack {
+  .addToQueue {
     display: flex;
-    
-    min-height: 120px;
-
-    
-    &__body {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &.h3 {
-          font-size: 1rem;
-        }
-        &.h4 {
-          font-size: 0.75rem;
-        }
-        &.h5 {
-          font-size: 0.5rem;
-        }
-      }
-    }
-    }
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
   }
+
+  @media only screen and (min-width: 320px) and (max-width: 700px) {
+    .cardForTrack {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+    .cardForAlbum__header_img{
+      width: 100%;
+    }
+    &__img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+
 `;
 
 

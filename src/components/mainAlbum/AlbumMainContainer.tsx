@@ -1,7 +1,7 @@
 import { LazyExoticComponent, ComponentType, lazy } from "react";
 import styled from "styled-components";
 import { SearchBar } from "..";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
 import { BiSolidPlaylist } from 'react-icons/bi'
@@ -15,39 +15,32 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   });
 });
 
-export const PlaylistMainContainer = () => {
+export const AlbumMainContainer = () => {
   const { id } = useParams();
-  const { albums, tracks, playlistsAll } = useUserMusicContext();
+  const { albums } = useUserMusicContext();
   const { handleListChange } = useQueuePlayerContext();
 
-  const selectedPlaylist = playlistsAll.find((playlist) => playlist.id === id);
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q") || "";
-
-  const handleChangeParams = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchParams({ q: target.value });
-  };
+  const selectedAlbum = albums.find((album) => album.id === id);
 
   return (
     <>
-      <PlaylistMainContainerStyles>
+      <AlbumMainContainerStyles>
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} /> </h2>
+          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedAlbum ? selectedAlbum?.trackId : [])} /> </h2>
         </section>
         <section className="zone-cards">
-          {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
+          {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
             <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
           ))}
         </section>
-      </PlaylistMainContainerStyles>
+      </AlbumMainContainerStyles>
     </>
   );
 };
 
-export const PlaylistMainContainerStyles = styled.main`
+export const AlbumMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +58,13 @@ export const PlaylistMainContainerStyles = styled.main`
     padding-top: 0.5vh;
     color: white;
     &__h2 {
+      display: flex;
       font-size: 2rem;
+    }
+    &__icon {
+      display: flex;
+      font-size: 2.5rem;
+      cursor: grabbing;
     }
   }
   .selections {

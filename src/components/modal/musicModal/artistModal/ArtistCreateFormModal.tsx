@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 import { useGenresContext } from "../../../../context";
 import { MultiSelect } from "react-multi-select-component";
-
+MultiSelect
 interface userFormModal {
   closeModal: () => void;
 }

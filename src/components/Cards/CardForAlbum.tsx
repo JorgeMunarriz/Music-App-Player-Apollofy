@@ -1,33 +1,33 @@
 import { Link } from 'react-router-dom';
-import { PLAYER } from '../../config/routes/paths';
+import { ALBUM } from '../../config/routes/paths';
 import styled from 'styled-components';
 
 interface AlbumProps {
-	id: string
-	albumName: string
-	albumUrl: string
-	albumImage: string
+  id: string
+  albumName: string
+  albumUrl: string
+  albumImage: string
 }
 
 
 const CardForAlbum = ({ id,
-	albumName,
-	albumUrl,
-	albumImage, }: AlbumProps) => {
-	return (
-		<CardForAlbumStyles key={id}>
-			<Link to={`${PLAYER}/${id}`} className="cardForAlbum">
-				<div className="cardForAlbum__header">
-					<img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
-				</div>
-				<div className="cardForAlbum__body">
-					<h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
-					<h4 className="cardForAlbum__body_title-h4">{albumName}</h4>
-					<h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
-				</div>
-			</Link>
-		</CardForAlbumStyles>
-	);
+  albumName,
+  albumUrl,
+  albumImage, }: AlbumProps) => {
+  return (
+    <CardForAlbumStyles key={id}>
+      <Link to={`${ALBUM}/${id}`} className="cardForAlbum">
+        <div className="cardForAlbum__header">
+          <img alt={albumUrl} className="cardForAlbum__header_img" src={albumImage} />
+        </div>
+        <div className="cardForAlbum__body">
+          <h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
+
+          <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
+        </div>
+      </Link>
+    </CardForAlbumStyles>
+  );
 };
 
 const CardForAlbumStyles = styled.div`
@@ -56,12 +56,12 @@ const CardForAlbumStyles = styled.div`
       position: relative;
       width: 10vw;
       height: 120px;
-      border-radius: 0rem 0rem 0rem 0rem;
+
       overflow: hidden;
       &_img {
       position: absolute;
       width: 120px;
-      height: 120px;
+      height: 169px;
       object-fit: cover;
       opacity: 0.8;
     }
@@ -90,34 +90,59 @@ const CardForAlbumStyles = styled.div`
       }
     }
   }
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
+  @media only screen and (min-width: 310px) and (max-width: 700px) {
+   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 97%;
+    height: 79%;
     .cardForAlbum {
-    display: flex;
-    
-    min-height: 120px;
-
-    
-    &__body {
-      display: flex;
       flex-direction: column;
-      gap: 1rem;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &.h3 {
-          font-size: 1rem;
-        }
-        &.h4 {
-          font-size: 0.75rem;
-        }
-        &.h5 {
-          font-size: 0.5rem;
-        }
-      }
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      width: 100%;
+      margin: 20px;
+      /* padding: 20px; */
     }
+    .cardForAlbum__header{
+      width: 100%;
+      height: 90%;
     }
+    .cardForAlbum__header_img{
+      width: 100%;
+    height: 180px;
+    align-items: center;
+    object-fit: cover;
+    }
+        
+   .cardForAlbum__body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          overflow: hidden;
+          margin-top: 10px;
+          &_title {
+            color: #fff;
+            &-h3 {
+              font-size: 15px;
+              color: var(--color-text-pink);
+            }
+            &-h4 {
+              font-size: 20px;
+              color: var(--color-text-gray);
+            }
+            &-h5 {
+              font-size:10px;
+              color: rgba(255, 255, 255, 0.7)
+            }
+          }
+    }
+
+   
   }
+
 `;
 
 

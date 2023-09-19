@@ -26,6 +26,13 @@ export const ModalContainer = styled.article`
       right: 2rem;
       cursor: pointer;
       color: brown;
+      background-color: rgba(250, 250, 250, 0.75);
+      border: 1px solid rgba(0, 0, 0, 0.75);
+      transition: all 0.2s ease-in-out;
+
+      &:hover{
+        background-color: rgba(250, 250, 250, 1);
+      }
     }
   }
 `;

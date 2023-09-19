@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export const AudioPlayerComponent = () => {
 
-  const { currentTrack } = useQueuePlayerContext();
+  const { currentTrack, handleNextTrackInList, handlePrevTrackInList } = useQueuePlayerContext();
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -19,9 +19,18 @@ export const AudioPlayerComponent = () => {
 
   return (
     <AudioPlayerStyles>
-      <AudioPlayer className="rhap_container"
+      <AudioPlayer
+        className="rhap_container"
         src={currentTrack?.trackUrl}
-        onPlay={() => console.log("onPlay")} />
+        onPlay={() => console.log("onPlay")}
+        showSkipControls={true}
+        autoPlay={true}
+        autoPlayAfterSrcChange={true}
+        onClickNext={() => handleNextTrackInList()}
+        onEnded={() => handleNextTrackInList()}
+        showJumpControls={false}
+        onClickPrevious={() => handlePrevTrackInList()}
+      />
     </AudioPlayerStyles>
   );
 };
