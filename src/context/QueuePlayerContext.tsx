@@ -32,11 +32,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
     const [currentTrack, setCurrentTrack] = useState<TrackInterface | undefined>();
     const [nextTracks, setNextTracks] = useState<TrackInterface[] | undefined>([]);
 
-<<<<<<< HEAD
 
-=======
-    console.log(currentTrack)
->>>>>>> c7dd4d1d389052b94e8a98ece860332af4aa4f9d
     const handleCurrentTrackById = (id: string) => {
         const incomingTrack = tracks.find(track => track.id === id);
         if (incomingTrack) {
@@ -45,14 +41,11 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
     }
 
     const handleNextTrackInList = () => {
-
         if (nextTracks && nextTracks?.length > 0) {
             const id = nextTracks[0].id
-
             if (currentTrack) {
                 setPrevTracks(prevTracks => [...prevTracks, currentTrack]);
             }
-
             const incomingTrack = tracks.find(track => track.id === id);
             if (incomingTrack) {
                 setCurrentTrack(incomingTrack);
@@ -61,13 +54,18 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         }
     }
 
-    const handleListChange = () => {
-        //Borrar todo
-        //playlist[0]->currentTrack
-        //setear la playlist[1 en adelante] a la lista de reproducción
-        // setNextTracks ()
+    const handleListChange = (ids: string[]) => {
 
+        const newNextTracks: TrackInterface[] = []
 
+        ids.forEach((id) => {
+            const selectedTrack = tracks.find(track => track.id === id);
+            if (selectedTrack) {
+                newNextTracks.push(selectedTrack)
+            }
+        })
+        setCurrentTrack(newNextTracks[0]);
+        setNextTracks(newNextTracks.slice(1))
     }
 
 

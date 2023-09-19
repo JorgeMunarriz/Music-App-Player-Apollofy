@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../../config/routes/paths';
 import styled from 'styled-components';
 import { breakpoints } from '../../../styles/breakpoints';
+import { useQueuePlayerContext } from '../../../context/QueuePlayerContext';
 
 interface TrackProps {
   id: string;
@@ -18,9 +19,12 @@ interface TrackProps {
 
 
 const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt }: TrackProps) => {
+
+  const { handleCurrentTrackById } = useQueuePlayerContext();
+
   return (
     <TracksForLibraryStyles key={id}>
-      <Link to={`${PLAYER}/${id}`} className="cardForTrack">
+      <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
