@@ -57,7 +57,6 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
         <div className="cardForTrack__body">
           <h3 className="cardForTrack__body-trackName">{trackName}</h3>
           <div className="cardForTrack__body_title">
-            {/* <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName): null}</h4> */}
             <h4 className="cardForTrack__body_title-createdAt">{trackCreatedAt}</h4>
           </div>
           {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
