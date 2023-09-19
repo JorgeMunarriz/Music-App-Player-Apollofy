@@ -19,9 +19,16 @@ export const AudioPlayerComponent = () => {
 
   return (
     <AudioPlayerStyles>
-      <AudioPlayer className="rhap_container"
+      <AudioPlayer
+        className="rhap_container"
         src={currentTrack?.trackUrl}
-        onPlay={() => console.log("onPlay")} />
+        onPlay={() => console.log("onPlay")}
+        showSkipControls={true}
+        autoPlay={true}
+        autoPlayAfterSrcChange={true}
+      // onClickNext={ }
+      // onClickPrevious={ }
+      />
     </AudioPlayerStyles>
   );
 };

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
-import { currentTrackSet } from '../../utils/currentTrackSET';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
+import { useState } from 'react';
+import { AiFillPlayCircle } from 'react-icons/ai'
+import { BiSolidPlaylist } from 'react-icons/bi'
+
 
 interface Track {
   id: string
@@ -18,13 +21,17 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
 
   return (
     <CardForTrackStyles key={id}>
-      <Link to={`${PLAYER}`} className="cardForTrack" onClick={() => handleCurrentTrackById(id)}>
+      <Link className="cardForTrack" to={`${PLAYER}`} onClick={() => handleCurrentTrackById(id)}>
         <div className="cardForTrack__header">
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
           <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
+        </div>
+        <div className='cardForTrack__footer'>
+          <div className='cardForTrack__footer__selection'><BiSolidPlaylist /></div>
+          <Link className='cardForTrack__footer__selection' to={`${PLAYER}`} ><AiFillPlayCircle /></Link>
         </div>
       </Link>
     </CardForTrackStyles>
@@ -48,7 +55,10 @@ const CardForTrackStyles = styled.div`
 
   .cardForTrack {
     display: flex;
-    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    /* position: relative; */
     gap: 1rem;
     overflow-y: auto;
     min-height: 120px;
@@ -86,18 +96,30 @@ const CardForTrackStyles = styled.div`
         }
         &-h5 {
           font-size: 0.75vw;
-          color: rgba(255, 255, 255, 0.7)
+          color: rgba(255, 255, 255, 0.7);
         }
+      }
+    }
+    &__footer {
+        display: flex;
+        /* position: absolute; */
+        flex-direction: column;
+        justify-content: space-between;
+        top: 2%;
+        right: 2%;
+        bottom: 2%;
+
+      &__selection{
+        font-size: 1.5vw;
+        color: var(--color-text-gray);
       }
     }
   }
   @media only screen and (min-width: 320px) and (max-width: 480px) {
     .cardForTrack {
     display: flex;
-    
     min-height: 120px;
 
-    
     &__body {
       display: flex;
       flex-direction: column;
@@ -117,8 +139,8 @@ const CardForTrackStyles = styled.div`
         }
       }
     }
-    }
   }
+}
 `;
 
 
