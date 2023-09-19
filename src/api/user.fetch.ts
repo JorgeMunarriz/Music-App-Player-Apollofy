@@ -289,3 +289,27 @@ export const toggleLikedPlaylist = async (
     throw error;
   }
 };
+
+export const artistGet = async (getToken: GetTokenFunction) => {
+  try {
+    const token = getToken();
+    const response = await fetch(urlArtist, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error("Error getting artist:", error);
+    throw error;
+  }
+};

@@ -22,15 +22,15 @@ export const ProfileMainContainer = () => {
 
   return (
     <>
-      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <TracksCreateForm closeModal={closeModal1} />
-      </Modal> */}
-      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <TracksCreateForm closeModal={closeModal1} />
-      </Modal> */}
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <AlbumCreateForm closeModal={closeModal1} />
+        <TracksCreateForm closeModal={closeModal1} />
       </Modal>
+      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <ArtistCreateForm closeModal={closeModal1} />
+      </Modal> */}
+      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <AlbumCreateForm closeModal={closeModal1} />
+      </Modal> */}
       <ProfileMainContainerStyles>
         <ProfileIconsContainer>
           <Boop rotation={20} timing={200}>

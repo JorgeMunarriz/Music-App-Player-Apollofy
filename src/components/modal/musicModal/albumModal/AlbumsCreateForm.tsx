@@ -25,7 +25,7 @@ interface Option {
 }
 
 export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { createNewAlbum, tracks, } = useUserMusicContext();
+  const { createNewAlbum, tracks, artists} = useUserMusicContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -44,9 +44,6 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { register, handleSubmit, formState, control } = form;
   const { errors } = formState;
 
-  const artist = [
-    { id: "65018d00f6f55225268a30d5", name: "pepe2" },
-  ];
 
   const onSubmit: SubmitHandler<CreateAlbumType> = async (newAlbumData: CreateAlbumType) => {
     try {
@@ -131,7 +128,7 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
             rules={{ required: true }}
             render={({ field }) => (
               <MultiSelect
-                options={artist.map((artist) => ({ label: artist.name, value: artist.id }))}
+                options={artists.map((artist) => ({ label: artist.artistName, value: artist.id }))}
                 labelledBy="Select Artist"
                 {...field}
                 overrideStrings={{

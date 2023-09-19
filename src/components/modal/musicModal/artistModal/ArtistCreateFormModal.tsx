@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, FC } from "react";
 import { AlertMessageSuccess, LoaderForm } from "../../..";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 import { useGenresContext } from "../../../../context";
 import { MultiSelect } from "react-multi-select-component";
@@ -18,12 +18,16 @@ interface CreateArtistType {
   genreId: string[];
 }
 
+interface Option {
+  label: string;
+  value: string;
+}
+
 export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { createNewArtist, albums } = useUserMusicContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [selected, setSelected] = useState([]);
   const form = useForm({
     defaultValues: {
       artistName: "",
@@ -34,10 +38,9 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
     },
   });
 
-  const { register, handleSubmit, formState } = form;
+  const { register, handleSubmit, formState, control } = form;
   const { errors } = formState;
 
-  const genresMultiselect = allGenres.map((genres) => ({ label: genres.genreName, value: genres.genreName }));
   const popularityNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const onSubmit = async (newArtistData: CreateArtistType) => {
@@ -47,16 +50,17 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
       formData.append("artistName", newArtistData.artistName);
       formData.append("artistImage", newArtistData.artistImage[0]);
       formData.append("popularity", newArtistData.popularity.toString());
-      // se utiliza foreach para agregar todos los campos selecionados
+
       if (Array.isArray(newArtistData.albumId)) {
-        newArtistData.albumId.forEach((albumId) => {
-          formData.append("albumId", albumId);
-        });
+        for (const album of newArtistData.albumId as unknown as Option[]) {
+          formData.append("albumId", album.value);
+        }
       }
+
       if (Array.isArray(newArtistData.genreId)) {
-        newArtistData.genreId.forEach((genreId) => {
-          formData.append("genreId", genreId);
-        });
+        for (const genre of newArtistData.genreId as unknown as Option[]) {
+          formData.append("genreId", genre.value);
+        }
       }
       await createNewArtist(formData);
 
@@ -91,24 +95,48 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.artistName && <span className="error_input">{errors.artistName.message}</span>}
         </div>
-        <div className="gender_box">
-          <MultiSelect {...register("genreId")} options={genresMultiselect} value={selected} onChange={setSelected} labelledBy="Select genres" />
+        <div className="form__gender_box">
+          <Controller
+            name="genreId"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect
+                options={allGenres.map((genre) => ({ label: genre.genreName, value: genre.id }))}
+                labelledBy="Select Genre"
+                {...field}
+                overrideStrings={{
+                  selectSomeItems: 'Select Genre',
+                }}
+              />
 
-          <select {...register("popularity")} id="popularity">
+            )}
+          />
+          {errors.genreId && <span className="error_input">At least one genre is required</span>}
+          <Controller
+            name="albumId"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect
+                options={albums.map((album) => ({ label: album.albumName, value: album.id }))}
+                labelledBy="Select Album"
+                {...field}
+                overrideStrings={{
+                  selectSomeItems: 'Select Album',
+                }}
+              />
+
+            )}
+          />
+          {errors.albumId && <span className="error_input">At least one album is required</span>}
+          <select className="select" {...register("popularity")} id="popularity">
             <option value="">Select Popularity</option>
             {popularityNumbers.map((popularity) => (
-              <option key={popularity}>{popularity}</option>
-            ))}
-          </select>
-          <select {...register("albumId")} id="album">
-            <option value="">Select Albums</option>
-            {albums.map((album) => (
-              <option key={album.id} value={album.id}>
-                {album.albumName}
+              <option key={popularity} value={popularity}>
+                {popularity}
               </option>
             ))}
           </select>
-          {errors.genreId && <span className="error_input">At least one genre is required</span>}
+          {errors.popularity && <span className="error_input">select popularity</span>}
         </div>
         <div className="input_box description">
           <label className="label_file" htmlFor="image">
@@ -124,154 +152,203 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
             })}
           />
         </div>
-        <button type="submit">ADD artist</button>
+        <button className="form_button-Submit" type="submit">ADD artist</button>
       </form>
     </ArtistsFormContainer>
   );
 };
 
 const ArtistsFormContainer = styled.section`
-  /* max-width: 500px; */
+  max-width: 500px;
   width: 100%;
-  background: linear-gradient(to right, hsl(300, 100%, 10%), #000);
+  background: linear-gradient(to right ,hsl(300, 100%, 10%), #000);
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-  header {
-    font-size: 1.5rem;
-    color: #f5f4e8;
-    font-weight: 600;
-    text-align: center;
-  }
+ header {
+  font-size: 1.5rem;
+  color: #f5f4e8;
+  font-weight: 600;
+  text-align: center;
+}
 
-  .form {
-    margin-top: 15px;
-  }
-  .form .input_box {
-    width: 100%;
-    padding-top: 0.1rem;
-    & label {
-      color: #f5f4e8;
-      font-size: 1.2rem;
-      font-weight: 700;
-      padding-top: 0.3rem;
-    }
-    & input:focus {
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    }
-  }
+.form {
+  margin-top: 15px;
+}
+.form .input_box {
+  width: 100%;
+  padding-top: 0.1rem;
+}
 
-  .form :where(.input_box input, .select_box) {
-    position: relative;
-    height: 35px;
-    width: 100%;
-    outline: none;
-    font-size: 1rem;
-    color: #2b1c1c;
-    margin-top: 5px;
-    border: 1px solid #ee4e34;
-    border-radius: 6px;
-    padding: 0 15px;
-    background: #fcedda;
-  }
+.input_box label {
+  color: #f5f4e8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-top: 0.3rem;
+}
 
-  .form .column {
-    display: flex;
-    column-gap: 15px;
-  }
+.form :where(.input_box input) {
+  position: relative;
+  height: 35px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #2b1c1c;
+  margin-top: 5px;
+  border: 1px solid #EE4E34;
+  border-radius: 6px;
+  padding: 0 15px;
+  background: #FCEDDA;
+}
 
-  .form .gender_box {
-    color: #f5f4e8;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 1rem;
-    gap: 0.8rem;
-    & select {
-      font-size: 1.3rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-  }
+.input_box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
 
-  .form :where(.gender_option, .gender) {
-    display: flex;
-    align-items: center;
-    column-gap: 50px;
-    flex-wrap: wrap;
-    margin-top: 0.3rem;
-  }
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
 
-  .description {
-    margin-top: 0.5rem;
-  }
+.form .gender_box {
+  color: #f5f4e8;
+  width: 100%;
+  padding-top: 1rem;
+  gap: 0.8rem;
+}
 
-  .error_input {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Open Sans", "Helvetica Neue", sans-serif;
-    font-weight: bold;
-    width: 14rem;
-    padding: 0.5rem 0 0 0;
-    display: flex;
-    align-items: center;
-    color: #ef665b;
-  }
+.form :where(.gender_option, .gender) {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
+  margin-top:  0.3rem;
+}
 
-  .form .gender {
-    column-gap: 5px;
-  }
+.description {
+  margin-top:  0.5rem;
+}
 
-  .gender input {
-    accent-color: #ee4e34;
-  }
+.error_input {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  width: 14rem;
+  padding: 0.5rem 0 0 0 ;
+  display: flex;
+  align-items: center;
+  color: #EF665B;
+}
 
-  .form :where(.gender input, .gender label) {
+.form .gender {
+  column-gap: 5px;
+}
+
+.gender input {
+  accent-color: #EE4E34;
+}
+
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
+}
+
+  .select {
+  width: 100%;
+  padding: 1.2rem 0;
+  border-radius: 5px;
+  border:1px solid #ccc;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: hsl(0, 100%, 0.9803921568627451%);
+  background-color:  rgb(134, 129, 134);
+  cursor: pointer;
+  & option {
     cursor: pointer;
   }
-
-  .select_box select {
-    height: 100%;
-    width: 100%;
-    outline: none;
-    border: none;
-    color: #808080;
-    font-size: 1rem;
-    background: #fcedda;
   }
 
-  .form button {
-    /* height: 40px; */
-    padding: 1.2rem 0;
+.form_button-Submit {
+  padding: 1.2rem 0;
+  width: 100%;
+  color: #000;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #EE4E34;
+}
+
+.form_button-Submit:hover {
+  background: #EE3E34;
+   color: #f5f4e8;
+}
+
+.label_file {
+  padding-top: 0.5rem;
+  font-weight: bold;
+  display: block;
+  cursor: pointer;
+}
+
+.inpdut[type="file"] {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  background-color:  rgb(134, 129, 134);
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+  .rmsc {
+  --rmsc-main: #4285f4;
+  --rmsc-hover: #dbe1e7;
+  --rmsc-selected: #275f01c8;
+  --rmsc-border: #ccc;
+  --rmsc-gray: #000000;
+  --rmsc-bg:  rgb(134, 129, 134);
+  --rmsc-p: 0.5rem; /* Spacing */
+  --rmsc-radius: 4px; /* Radius */
+  --rmsc-h: 38px; /* Height */
+}
+
+.rmsc .dropdown-heading {
+  padding:  var(--rmsc-p);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--rmsc-h);
+  cursor: pointer;
+  outline: 0;
+}
+.rmsc .dropdown-heading .dropdown-heading-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
     width: 100%;
-    color: #000;
-    font-size: 1.3rem;
+    color: hsl(0, 0%, 100%);
     font-weight: 700;
-    margin-top: 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: #ee4e34;
-    &:hover {
-      background: #ee3e34;
-      color: #f5f4e8;
-    }
-  }
+    font-size: 1.3rem;
+}
 
-  .label_file {
-    padding-top: 0.5rem;
-    font-weight: bold;
-    display: block;
-    cursor: pointer;
-  }
-
-  .inpdut[type="file"] {
-    padding: 10px;
-    margin-bottom: 1rem;
-    border: none;
-    background-color: rgb(134, 129, 134);
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-  }
+.rmsc .dropdown-container {
+  z-index:1;
+    outline: 0;
+    margin: 1rem 0;
+    background-color: var(--rmsc-bg);
+    border: 1px solid var(--rmsc-border);
+    border-radius: var(--rmsc-radius);
+}
+.rmsc .dropdown-content {
+    color: hsl(0, 100%, 0.7843137254901961%);
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+    border: 1px solid var(--rmsc-border);
+    border-radius: var(--rmsc-radius);
+}
 `;
