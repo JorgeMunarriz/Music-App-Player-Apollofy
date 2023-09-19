@@ -35,7 +35,7 @@ export const PlaylistMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} /> </h2>
+          <h2 className="titleDiv__h2">{selectedPlaylist && selectedPlaylist.playlistName} <BiSolidPlaylist className="titleDiv__icon" onClick={() => handleListChange(selectedPlaylist ? selectedPlaylist?.trackId : [])} /> </h2>
         </section>
         <section className="zone-cards">
           {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
@@ -67,6 +67,7 @@ export const PlaylistMainContainerStyles = styled.main`
     &__h2 {
       font-size: 2rem;
     }
+    &__title
   }
   .selections {
     cursor: pointer;
