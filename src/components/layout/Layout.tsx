@@ -9,14 +9,6 @@ import { useEffect } from "react";
 const Layout = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  
-  // const fetchData = async () => {
-  //   const data = await getDataApi(urlTrack);
-  //   console.log(data);
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <>

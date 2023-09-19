@@ -31,7 +31,6 @@ export const PlaylistContainerHome = ({ query }: ProprQuery) => {
   // const data = useContext(DataMusicContext);
   // const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
   const { playlistsAll } = useUserMusicContext();
-  console.log(playlistsAll)
 
   return (
     <TracksContainerStyles>

@@ -199,7 +199,7 @@ export const createArtist = async (
     }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -226,7 +226,7 @@ export const createTrack = async (
     }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -253,7 +253,7 @@ export const createAlbum = async (
     // }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -277,7 +277,7 @@ export const toggleLikedPlaylist = async (
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
+      
       return data;
     } else {
       const errorMessage = `Error updating user: ${response.statusText}`;
