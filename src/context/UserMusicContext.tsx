@@ -68,7 +68,7 @@ interface TrackInterface {
   trackCreatedById: string[];
   genre: [{ genreName: string }];
   genreId: string[];
-  artist: [{ artistName: string }];
+  artist: ArtistInterface[];
   artistId: string[];
   trackUrl: string;
   albumId: string;
@@ -84,11 +84,21 @@ interface CreateTrackType {
   albumId: string[];
 }
 interface CreateArtistType {
-  artitName: string;
-  artitImage: string;
+  artistName: string;
+  artistImage: string;
   popularity: string;
   albumId: string[];
   genreId: string[];
+}
+interface ArtistInterface {
+  id: string
+  artistName: string;
+  artistImage: string;
+  popularity: number;
+  albumId: string[];
+  genreId: string[];
+  trackId: string[]
+
 }
 
 const UserMusicContext = createContext<UserMusicContextType | undefined>(undefined);

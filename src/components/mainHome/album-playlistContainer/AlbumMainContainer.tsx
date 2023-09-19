@@ -44,13 +44,13 @@ export const AlbumContainer = ({ query }: ProprQuery) => {
         <Swiper navigation pagination slidesPerView={3} spaceBetween={10} className="mySwiper">
           {albums &&
             albums
-              // .filter(({ album }) => {
-              // 	if (!query) return true;
-              // 	if (query) {
-              // 		const nameLowerCase = album.toLowerCase();
-              // 		return nameLowerCase.includes(query.toLowerCase());
-              // 	}
-              // })
+              .filter(({ albumName }) => {
+                if (!query) return true;
+                if (query) {
+                  const nameLowerCase = albumName.toLowerCase();
+                  return nameLowerCase.includes(query.toLowerCase());
+                }
+              })
               .map(({ id, albumName, albumImage, trackId }) => (
                 <SwiperSlide key={id}>
                   <Suspense key={id} fallback={<HomeSkeleton />}>

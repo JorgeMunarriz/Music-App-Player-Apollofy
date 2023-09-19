@@ -12,10 +12,17 @@ interface Track {
   trackName: string
   trackUrl: string
   trackImage: string
+  artist: ArtistProps[]
+}
+interface ArtistProps {
+  artistName: string;
+  artistImage: string;
+  popularity: string;
+  albumId: string[];
+  genreId: string[];
 }
 
-
-const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
+const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) => {
 
   const { handleCurrentTrackById, handleNewTrackInList } = useQueuePlayerContext();
   const [goToPlayer, setGoToPlayer] = useState(true);
@@ -27,7 +34,7 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, }: Track) => {
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h3 className="cardForTrack__body_title-h3">{}{trackName}</h3>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
       </Link>
@@ -131,7 +138,7 @@ const CardForTrackStyles = styled.div`
     }
 
   }
-}
+
 `;
 
 

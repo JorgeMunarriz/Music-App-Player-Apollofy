@@ -1,17 +1,16 @@
 import { LazyExoticComponent, ComponentType, lazy } from "react";
 import styled from "styled-components";
-import { SearchBar, TracksForLibrary } from "..";
+import { SearchBar } from "..";
 import { useParams, useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useQueuePlayerContext } from "../../context/QueuePlayerContext";
 
-
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      return resolve(import("../cards/CardForPlaylistPlayer"));
+      return resolve(import("../mainLibrary/cards/TracksForLibrary"));
     }, 1500);
   });
 });
@@ -40,7 +39,7 @@ export const PlaylistMainContainer = () => {
         </section>
         <section className="zone-cards">
           {selectedPlaylist?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
-            <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
+            <LazyCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} />
           ))}
         </section>
       </PlaylistMainContainerStyles>
