@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import { Track } from "../../../types/data";
 import { useUserMusicContext } from "../../../context";
 import { useQueuePlayerContext } from '../../../context/QueuePlayerContext';
+import { FaTimes } from 'react-icons/fa';
 
 export const PlayerContainer = () => {
 
-  const { currentTrack } = useQueuePlayerContext();
+  const { currentTrack, nextTracks, handleDeleteTrackInList } = useQueuePlayerContext();
 
   return (
     <PlayerContainerStyles >
@@ -15,6 +16,15 @@ export const PlayerContainer = () => {
         <h4 className="playerContainer__span">{currentTrack?.artist.map(artist => artist.artistName).join(', ')}</h4>
         <span className="playerContainer__span">{currentTrack?.genre.map(genre => genre.genreName).join(', ')}</span>
       </div>
+      <section>
+        {nextTracks.map((track, index) => (
+          <div key={track.id}>
+            <h4>{track.trackName}</h4>
+            <h5>{track.artist.map(artist => artist.artistName).join(', ')}</h5>
+            <FaTimes onClick={() => handleDeleteTrackInList(index)} />
+          </div>
+        ))}
+      </section>
     </PlayerContainerStyles>
   );
 };

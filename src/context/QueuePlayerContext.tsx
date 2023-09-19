@@ -8,6 +8,7 @@ interface QueuePlayerContextType {
     nextTracks: TrackInterface[] | [];
     prevTracks: TrackInterface[] | [];
     handleNextTrackInList: () => void;
+    handleDeleteTrackInList: (index: number) => void;
     handleNewTrackInList: (id: string) => void;
     handleListChange: (ids: string[]) => void;
     handlePrevTrackInList: () => void;
@@ -23,9 +24,20 @@ interface TrackInterface {
     trackCreatedById: string[];
     genre: [{ genreName: string }];
     genreId: string[];
-    artist: [{ artistName: string }];
+    artist: ArtistInterface[];
     artistId: string[];
     trackUrl: string;
+    albumId: string;
+}
+interface ArtistInterface {
+    id: string
+    artistName: string;
+    artistImage: string;
+    popularity: number;
+    albumId: string[];
+    genreId: string[];
+    trackId: string[]
+
 }
 
 const QueuePlayerContext = createContext<QueuePlayerContextType | undefined>(undefined);
@@ -50,7 +62,9 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
             setNextTracks(prevNextTracks => [...prevNextTracks, incomingTrack])
         }
     }
-
+    const handleDeleteTrackInList = (index: number) => {
+        setNextTracks(nextTracks.slice(index, 1));
+    }
     const handleNextTrackInList = () => {
         if (nextTracks && nextTracks?.length > 0) {
             const id = nextTracks[0].id
@@ -104,7 +118,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
 
 
     return (
-        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, prevTracks, handleNextTrackInList, handleNewTrackInList, handleListChange, handlePrevTrackInList }}>
+        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, prevTracks, handleNextTrackInList, handleNewTrackInList, handleDeleteTrackInList, handleListChange, handlePrevTrackInList }}>
             {children}
         </QueuePlayerContext.Provider>
     )
