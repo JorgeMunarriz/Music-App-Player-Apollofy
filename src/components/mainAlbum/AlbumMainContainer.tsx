@@ -4,6 +4,7 @@ import { SearchBar } from "..";
 import { useParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
+import { BiSolidPlaylist } from 'react-icons/bi'
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -24,7 +25,7 @@ export const AlbumMainContainer = () => {
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="titleDiv">
-          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName}</h2>
+          <h2 className="titleDiv__h2">{selectedAlbum && selectedAlbum.albumName} &nbsp;&nbsp; <BiSolidPlaylist className="titleDiv__icon" /> </h2>
         </section>
         <section className="zone-cards">
           {selectedAlbum?.track.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt }) => (
@@ -54,7 +55,13 @@ export const AlbumMainContainerStyles = styled.main`
     padding-top: 0.5vh;
     color: white;
     &__h2 {
+      display: flex;
       font-size: 2rem;
+    }
+    &__icon {
+      display: flex;
+      font-size: 2.5rem;
+      cursor: grabbing;
     }
   }
   .selections {

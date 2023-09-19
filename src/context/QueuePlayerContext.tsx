@@ -5,7 +5,8 @@ interface QueuePlayerContextType {
     currentTrack: TrackInterface | undefined;
     handleCurrentTrackById: (id: string) => void;
     nextTracks: TrackInterface[] | undefined;
-    handleNextTrackInList: (id: string) => void;
+    handleNextTrackInList: () => void;
+    handleNewTrackInList: (id: string) => void;
 }
 interface TrackInterface {
     id: string;
@@ -30,7 +31,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
     const { tracks } = useUserMusicContext();
     const [prevTracks, setPrevTracks] = useState<TrackInterface[]>([]);
     const [currentTrack, setCurrentTrack] = useState<TrackInterface | undefined>();
-    const [nextTracks, setNextTracks] = useState<TrackInterface[] | undefined>([]);
+    const [nextTracks, setNextTracks] = useState<TrackInterface[]>([]);
 
 
     const handleCurrentTrackById = (id: string) => {
@@ -38,6 +39,13 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         if (incomingTrack) {
             setCurrentTrack(incomingTrack);
         }
+    }
+    const handleNewTrackInList = (id: string) => {
+        const incomingTrack = tracks.find(track => track.id === id)
+        if (incomingTrack) {
+            setNextTracks(prevNextTracks => [...prevNextTracks, incomingTrack])
+        }
+        console.log('entra en handle')
     }
 
     const handleNextTrackInList = () => {
@@ -53,6 +61,8 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
             }
         }
     }
+
+    console.log(nextTracks)
 
     const handleListChange = (ids: string[]) => {
 
@@ -70,7 +80,7 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
 
 
     return (
-        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, handleNextTrackInList }}>
+        <QueuePlayerContext.Provider value={{ currentTrack, handleCurrentTrackById, nextTracks, handleNextTrackInList, handleNewTrackInList }}>
             {children}
         </QueuePlayerContext.Provider>
     )

@@ -49,19 +49,19 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
 
   return (
     <CardForPlaylistPlayerHomeStyles>
-      <Link  to={`${PLAYLISTS}/${id}`} >
-      <div className="cardForPlaylistPlayer">
-        <div className="cardForPlaylistPlayer__img">
-          <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
+      <Link to={`${PLAYLISTS}/${id}`} >
+        <div className="cardForPlaylistPlayer">
+          <div className="cardForPlaylistPlayer__img">
+            <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
+          </div>
+          <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
+          {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
+          <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
+            {" "}
+            Hola
+            {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
+          </button>
         </div>
-        <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
-        {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
-        <button onClick={() => console.log("click")} className="cardForPlaylistPlayer__follow-btn follow_btn">
-          {" "}
-          Hola
-          {/* {followed ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />} */}
-        </button>
-      </div>
       </Link>
     </CardForPlaylistPlayerHomeStyles>
   );
