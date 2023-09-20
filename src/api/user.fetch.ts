@@ -45,25 +45,19 @@ export const userGet = async (userEmail: string, getToken: GetTokenFunction) => 
   }
 };
 
-export const UserPatch = async (userUpdate: {}, userId: string, getToken: GetTokenFunction) => {
+export const UserPatch = async (userUpdate: FormData, userId: string, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response: Response = await fetch(`${urlUser}/${userId}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(userUpdate),
+      body: userUpdate,
     });
-    if (response.ok) {
       const data = await response.json();
       return data;
-    } else {
-      const errorMessage = `Error updating user: ${response.statusText}`;
-      console.error(errorMessage);
-      throw new Error(errorMessage);
-    }
+   
   } catch (error) {
     console.error("Error updating user:", error);
     throw error;

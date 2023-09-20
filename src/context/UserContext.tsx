@@ -40,7 +40,7 @@ interface userUpdateData {
 interface UserContextType {
     userData: userData | null
     // userUpdateData: Response | null
-    updatedUserData: (userUpdateData: userUpdateData, userId: string) => Promise<void>
+    updatedUserData: (userUpdateData: FormData, userId: string) => Promise<void>
     handleUserData: (id: string, dataType: string) => void
     deleteUser: (userId: string, getAccessTokenSilently: () => Promise<string>) => Promise<Response>
 }
@@ -79,7 +79,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     //     }
     // }
 
-    const updatedUserData = async (userData: userUpdateData, userId: string) => {
+    const updatedUserData = async (userData: FormData, userId: string) => {
         try {
             const newUserData = await UserPatch(userData, userId, getAccessTokenSilently)
             setUserData(newUserData.user)

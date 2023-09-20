@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 import { useUserContext } from '../../../context/UserContext';
-import { useAuth0 } from '@auth0/auth0-react';
 import { useState,FC } from 'react';
 import { AlertMessageSuccess } from '../../confirmationMessage/AlertMessageSuccess';
 import { UserFormContainer } from './userFormEditContainer.styled';
@@ -8,6 +7,7 @@ import { LoaderForm } from '../..';
 import Modal from '../Modal';
 import { useModal } from '../../../hooks/useModal';
 import { UserDelete } from './UserDelete';
+import {useAuth0 } from '@auth0/auth0-react'
 
 
 interface userUpdate {
@@ -24,20 +24,27 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isOpenModal, openModal, closeModal] = useModal(false)
+    const { user} = useAuth0();
     const form = useForm<userUpdate>({
         defaultValues: {
             userName: userData?.userName,
-            userEmail: userData?.userEmail
+            userEmail: userData?.userEmail,
+            userImage: user?.picture
         }
     });
     const { register, handleSubmit, formState:{errors} } = form;
     const onSubmit = async (userUpdate: userUpdate) => {
-        try {
-          setIsLoading(true)
-             await updatedUserData(userUpdate, userData?.id ?? '');
-            setIsSuccess(true);
-            setTimeout(() => {
-                setIsSuccess(false);
+      try {
+        setIsLoading(true)
+        const formData = new FormData();
+        formData.append('userName', userUpdate.userName);
+        formData.append('userEmail', userUpdate.userEmail);
+        formData.append('userImage', userUpdate.userImage[0]);
+        await updatedUserData(formData, userData?.id ?? '');
+        console.log(userUpdate)
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
                 closeModal1()
             }, 2000)
     } catch (error) {
@@ -83,6 +90,18 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
             autoComplete="off"
           />
           {errors.userEmail && <p className="error_input">{errors.userEmail.message}</p>}
+          <label className="color" htmlFor="image">
+            Choose a file:
+          </label>
+          <input
+            className="inpdut"
+            id="image"
+            type="file"
+            accept="image/*"
+            {...register("userImage", {
+              required: "Please choose a file",
+            })}
+          />
           <button type="submit" className="button_userForm">EDIT</button>
           <button onClick={openModal} type="button" className="button_delete">Delete Account</button>
 

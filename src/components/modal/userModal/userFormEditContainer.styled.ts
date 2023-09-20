@@ -49,7 +49,7 @@ export const UserFormContainer = styled.form`
 
 
 &  label {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 5px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -75,6 +75,21 @@ export const UserFormContainer = styled.form`
 & .input::placeholder {
     color: rgb(14, 16, 19);
   }
+  .inpdut[type="file"] {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  background-color:  rgb(134, 129, 134);
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+.label_file {
+  display:block;
+  color: rgb(7, 7, 7);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 & .color {
   color:#f9637e;
 }
