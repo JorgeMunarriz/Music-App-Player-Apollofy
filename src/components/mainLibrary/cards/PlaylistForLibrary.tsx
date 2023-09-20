@@ -101,11 +101,11 @@ const PlaylistsForLibraryStyles = styled.div`
 
       &_title {
         color: #fff;
-        &-h3 {
+        &-playlistName {
           font-size: 3.5vw;
           color: var(--color-text-pink);
         }
-        &-h4 {
+        &-artistName {
           font-size: 3vw;
           color: var(--color-text-gray);
         }
@@ -145,11 +145,11 @@ const PlaylistsForLibraryStyles = styled.div`
 
       &_title {
         color: #fff;
-        &-h3 {
+        &-playlistName {
           font-size: 3.0vw;
           color: var(--color-text-pink);
         }
-        &-h4 {
+        &-artistName {
           font-size: 2.5vw;
           color: var(--color-text-gray);
         }
@@ -190,11 +190,11 @@ const PlaylistsForLibraryStyles = styled.div`
 
       &_title {
         color: #fff;
-        &-h3 {
+        &-playlistName {
           font-size: 3.0vw;
           color: var(--color-text-pink);
         }
-        &-h4 {
+        &-artistName {
           font-size: 2.5vw;
           color: var(--color-text-gray);
         }
@@ -234,11 +234,11 @@ const PlaylistsForLibraryStyles = styled.div`
 
       &_title {
         color: #fff;
-        &-h3 {
-          font-size: 2.5vw;
+        &-playlistName {
+          font-size: 2vw;
           color: var(--color-text-pink);
         }
-        &-h4 {
+        &-artistName {
           font-size: 2vw;
           color: var(--color-text-gray);
         }
@@ -279,11 +279,11 @@ const PlaylistsForLibraryStyles = styled.div`
 
       &_title {
         color: #fff;
-        &-h3 {
-          font-size: 2.5vw;
+        &-playlistName {
+          font-size: 2vw;
           color: var(--color-text-pink);
         }
-        &-h4 {
+        &-artistName {
           font-size: 2vw;
           color: var(--color-text-gray);
         }

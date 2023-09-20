@@ -55,7 +55,6 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         if (isAuthenticated) {
             async function userGetLauncher() {
                 await createUser(user);
-                await getUserData(user?.email ?? '');
             }
             userGetLauncher();
         }
