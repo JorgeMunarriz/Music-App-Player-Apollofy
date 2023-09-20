@@ -12,7 +12,7 @@ SwiperCore.use([Navigation, Pagination]);
 import styled from "styled-components";
 
 import HomeSkeleton from "../../../assets/skeleton/homeSkeleton";
-import { useUserMusicContext } from "../../../context";
+import { useUserContext, useUserMusicContext } from "../../../context";
 import { breakpoints } from "../../../styles/breakpoints";
 
 const LazyCardTrackHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
@@ -35,7 +35,7 @@ type ProprQuery = {
 };
 export const TracksContainer = ({ query }: ProprQuery) => {
   const { tracks } = useUserMusicContext();
-
+  const { userData } = useUserContext();
   return (
     <TracksContainerStyles>
       <h2 className="tracksTitle">Songs</h2>

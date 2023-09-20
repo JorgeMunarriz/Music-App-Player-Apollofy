@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-
-
-import { useUserContext, useUserMusicContext } from "../../context";
-// import { toggleLiked } from "../../api/toggleLiked";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useState } from "react";
+import { BsHeartFill, BsHeart } from 'react-icons/bs'
+import { useUserContext } from "../../context";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { PLAYLISTS } from "../../config/routes/paths";
 import { breakpoints } from "../../styles/breakpoints";
-import { getPlaylistById } from "../../api/playlist.fetch";
+
 
 interface Playlist {
   id: string;
@@ -18,30 +14,16 @@ interface Playlist {
   trackId?: string;
 }
 
-const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
-  const { getAccessTokenSilently } = useAuth0();
-  const { playlists, playlistsLiked, setPlaylistsLiked } = useUserMusicContext();
-  const { userData } = useUserContext();
-  const [liked, setLiked] = useState<boolean>(false);
 
-  console.log(userData)
+const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
+
+  const { userData, handleUserData } = useUserContext();
+  const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
 
   const handleLiked = (id: string) => {
-
-    const incomingPlaylist = getPlaylistById(getAccessTokenSilently, id);
-    console.log(incomingPlaylist)
-    setLiked(!liked)
-    const selectedPlaylist = playlistsLiked.map(playlist => {
-
-      if (!playlistsLiked.includes(incomingPlaylist.id)) {
-        setPlaylistsLiked([...playlistsLiked, incomingPlaylist])
-        setLiked(!liked);
-
-        // userData?.playlistLikedId.push(playlist.id)
-      }
-    })
+    handleUserData(id, "playlist");
+    setIsLiked(!isLiked)
   }
-
 
   return (
     <CardForPlaylistPlayerHomeStyles>
@@ -51,12 +33,13 @@ const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }:
             <img className="cardForPlaylistPlayer__img-img" src={playlistImage} alt={trackId} />
           </div>
           <h3 className="cardForPlaylistPlayer__name">{playlistName}</h3>
-          {/* <span className="cardForPlaylistPlayer__description playlist-description">{description}</span> */}
-          <button onClick={() => handleLiked(id)} className="cardForPlaylistPlayer__follow-btn follow_btn">
-            {liked ? <AiFillHeart size={20} className="full-heart" /> : <AiOutlineHeart size={10} />}
-          </button>
         </div>
       </Link>
+
+      <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
+        {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}
+      </button>
+
     </CardForPlaylistPlayerHomeStyles>
   );
 };
@@ -124,7 +107,27 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
   .cardForPlaylistPlayer__name {
     font-size: 20px;
   }
-
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+  }
   @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
     margin: 10px;
     .cardForPlaylistPlayer {
