@@ -3,7 +3,7 @@ import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet,
   userTracksGet, createTrack, createArtist, createAlbum,artistGet } from "../api/user.fetch";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getAllPlaylist } from "../api/playlist.fetch";
-import { trackDelete } from "../api/track.service";
+import { trackDelete, trackPatch } from "../api/track.service";
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
@@ -12,7 +12,7 @@ interface UserMusicContextType {
   albums: AlbumInterface[];
   albumCreated: albumCreateInteface[];
   tracks: TrackInterface[];
-  deleteTrack: TrackInterface[];
+  deleteTrack: () => void;
   artistCreated: CreateArtistType[];
   artists: ArtistInterface[];
   tracksCreated: CreateTrackType[];
@@ -21,8 +21,9 @@ interface UserMusicContextType {
   handlePlaylistsAll: () => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
-  handleDeleteUserTrack: (trackId: string)=> Promise<void>;
+  handleDeleteTrack: (trackId: string)=> Promise<void>;
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
+  modifyTrack: (trackId: string, trackData: FormData) => Promise<Response>;
   createNewArtist: (formData: FormData) => Promise<Response>;
   createNewAlbum: (formData: FormData) => Promise<Response>;
   getArtists: () => Promise<Response>;
@@ -187,11 +188,11 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
-  const handleDeleteUserTrack = async (trackId: string) => {
+  const handleDeleteTrack = async (trackId: string) => {
     try {
       
       const responseDelete = await trackDelete(trackId, getAccessTokenSilently);
-      setDeleteTrack(responseDelete);
+      setTracks((prevTracks) => prevTracks.filter((track) => track.id !== trackId));
       const response = await userTracksGet(getAccessTokenSilently);
       setTracks(response);
     } catch (error) {
@@ -203,6 +204,16 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     try {
       const response = await createTrack(userId, trackData, getAccessTokenSilently);
       setTracksCreated(response);
+      return response;
+    } catch (error) {
+      console.error("Error getting tracks:", error);
+      throw error;
+    }
+  };
+  const modifyTrack = async (trackId: string, trackData: FormData): Promise<Response> => {
+    try {
+      const response = await trackPatch(trackId, trackData, getAccessTokenSilently);
+      setTracks(response);
       return response;
     } catch (error) {
       console.error("Error getting tracks:", error);
@@ -260,8 +271,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         handlePlaylistsAll,
         handleUserAlbums,
         handleUserTracks,
-        handleDeleteUserTrack,
+        handleDeleteTrack,
         createUserTracks,
+        modifyTrack,
         createNewArtist,
         getArtists,
         createNewAlbum,

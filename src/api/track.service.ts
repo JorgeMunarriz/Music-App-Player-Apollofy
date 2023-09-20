@@ -48,7 +48,7 @@ export const trackDelete = async (
   getToken: GetTokenFunction
 ) => {
   try {
-    const token = getToken();
+    const token = await getToken();
     const response: Response = await fetch(`${urlTrack}/${trackId}`, {
       method: "DELETE",
       headers: {
