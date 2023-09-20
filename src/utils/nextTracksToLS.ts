@@ -1,8 +1,7 @@
 
 export const saveNextTracksToLS = (nextTracks, userEmail) => {
 
-    console.log(nextTracks)
-    console.log(userEmail)
+    
     try {
         const nextTracksLS = JSON.stringify(nextTracks);
         localStorage.setItem(`apollofy${userEmail}`, nextTracksLS);

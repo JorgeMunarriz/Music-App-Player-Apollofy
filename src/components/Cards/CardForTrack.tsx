@@ -37,7 +37,6 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
   const trackDetail = tracks.find(track => track.id === id);
   const trackArtistId = trackDetail?.artistId;
   const trackArtists = artists.filter(artist => trackArtistId?.includes(artist.id)).map(artist => artist.artistName);
-  console.log(trackArtists)
 
 
   const handleLiked = (id: string) => {
