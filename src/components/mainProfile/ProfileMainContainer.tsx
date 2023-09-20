@@ -5,12 +5,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { TfiPencil } from "react-icons/tfi";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/Modal";
-import { useEffect } from "react";
 import { UserForms, ArtistCreateForm } from "..";
 import styled from "styled-components";
 
 export const ProfileMainContainer = () => {
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { user } = useAuth0();
   const { userData } = useUserContext();
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);

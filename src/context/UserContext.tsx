@@ -55,7 +55,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         if (isAuthenticated) {
             async function userGetLauncher() {
                 await createUser(user);
-                await getUserData(user?.email ?? '');
+                // await getUserData(user?.email ?? '');
             }
             userGetLauncher();
         }
@@ -72,12 +72,12 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
     }
 
-    const getUserData = async (userEmail: string) => {
-        if (user) {
-            const userResponse = await userGet(userEmail, getAccessTokenSilently);
-            setUserData(userResponse)
-        }
-    }
+    // const getUserData = async (userEmail: string) => {
+    //     if (user) {
+    //         const userResponse = await userGet(userEmail, getAccessTokenSilently);
+    //         setUserData(userResponse)
+    //     }
+    // }
 
     const updatedUserData = async (userData: userUpdateData, userId: string) => {
         try {
