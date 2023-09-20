@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
-import { BsHeartFill, BsHeart } from 'react-icons/bs'
+import { BsHeartFill, BsHeart, BsFillHeartFill } from 'react-icons/bs'
+import { FaHeart } from 'react-icons/fa'
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useState } from 'react';
 import { breakpoints } from '../../styles/breakpoints';
@@ -50,9 +51,9 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
         </div>
       </Link>
       <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
-      <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
+      <div className="addToLike" onClick={() => handleLiked(id)} >
         {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}
-      </button>
+      </div>
     </CardForTrackStyles>
   );
 };
@@ -60,14 +61,15 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
 const CardForTrackStyles = styled.div`
   display: flex;
   position: relative;
-  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
-  background-color: rgba(50, 50, 50, 0.4);
-  border-radius: 0rem 1rem 1rem 0rem;
+
   padding: 0.25rem;
   gap: 1rem;
-  transition: all 0.3s;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
   border: 1px solid rgba(66, 66, 66, 0.4);
-  margin: 10px;
+  transition: all 0.3s;
   &:hover {
     background-color: rgba(100, 100, 100, 0.4);
     cursor: pointer;
@@ -154,23 +156,412 @@ const CardForTrackStyles = styled.div`
     }
   }
 
-  @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
-    .cardForTrack {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 200px;
-    }
-    .cardForAlbum__header_img{
-      width: 100%;
-    }
-    &__img {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
 
+@media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
+
+}
+		
+@media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
+  display: flex;
+  position: relative;
+
+  padding: 0.25rem;
+  gap: 1rem;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
+  border: 1px solid rgba(66, 66, 66, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
   }
+
+  .cardForTrack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    &__header{
+      position: relative;
+      width: 10vw;
+      height: 120px;
+      border-radius: 0rem 0rem 0rem 0rem;
+      overflow: hidden;
+      &_img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    }
+    
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      &_title {
+        color: #fff;
+        &-h3 {
+          font-size: 1.5vw;
+          color: var(--color-text-pink);
+        }
+        &-h4 {
+          font-size: 1vw;
+          color: var(--color-text-gray);
+        }
+        &-h5 {
+          font-size: 0.75vw;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    cursor: pointer;
+  }
+  .addToLike {
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    z-index: 10;
+    &__fill-heart {
+      font-size: 2rem;
+      align-items: end;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+      &:hover {
+        cursor: grabbing;
+      }
+    }
+    &__out-heart {
+      font-size: 2rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+      &:hover {
+        cursor: grabbing;
+      }
+    }
+  }
+}
+
+@media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px) {
+  display: flex;
+  position: relative;
+
+  padding: 0.25rem;
+  gap: 1rem;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
+  border: 1px solid rgba(66, 66, 66, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
+  }
+
+  .cardForTrack {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    /* position: relative; */
+    gap: 1rem;
+    overflow-y: auto;
+    min-height: 120px;
+
+    &__header{
+      position: relative;
+      width: 10vw;
+      height: 120px;
+      border-radius: 0rem 0rem 0rem 0rem;
+      overflow: hidden;
+      &_img {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    }
+    
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      &_title {
+        color: #fff;
+        &-h3 {
+          font-size: 1.5vw;
+          color: var(--color-text-pink);
+        }
+        &-h4 {
+          font-size: 1vw;
+          color: var(--color-text-gray);
+        }
+        &-h5 {
+          font-size: 0.75vw;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
+  }
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 2rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 2rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
+  display: flex;
+  position: relative;
+
+  padding: 0.25rem;
+  gap: 1rem;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
+  border: 1px solid rgba(66, 66, 66, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
+  }
+
+  .cardForTrack {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    /* position: relative; */
+    gap: 1rem;
+    overflow-y: auto;
+    min-height: 120px;
+
+    &__header{
+      position: relative;
+      width: 10vw;
+      height: 120px;
+      border-radius: 0rem 0rem 0rem 0rem;
+      overflow: hidden;
+      &_img {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    }
+    
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      &_title {
+        color: #fff;
+        &-h3 {
+          font-size: 1.5vw;
+          color: var(--color-text-pink);
+        }
+        &-h4 {
+          font-size: 1vw;
+          color: var(--color-text-gray);
+        }
+        &-h5 {
+          font-size: 0.75vw;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 2.5rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
+  }
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 2.5rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 2.5rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+  }
+}
+
+@media (width > ${breakpoints.desktopMax}px) {
+  display: flex;
+  position: relative;
+
+  padding: 0.25rem;
+  gap: 1rem;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
+  border: 1px solid rgba(66, 66, 66, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
+  }
+
+  .cardForTrack {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    /* position: relative; */
+    gap: 1rem;
+    overflow-y: auto;
+    min-height: 120px;
+
+    &__header{
+      position: relative;
+      width: 10vw;
+      height: 120px;
+      border-radius: 0rem 0rem 0rem 0rem;
+      overflow: hidden;
+      &_img {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    }
+    
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      &_title {
+        color: #fff;
+        &-h3 {
+          font-size: 1.5vw;
+          color: var(--color-text-pink);
+        }
+        &-h4 {
+          font-size: 1vw;
+          color: var(--color-text-gray);
+        }
+        &-h5 {
+          font-size: 0.75vw;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
+  }
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+  }
+}
 
 `;
 

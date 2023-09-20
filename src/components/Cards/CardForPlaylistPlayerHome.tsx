@@ -18,7 +18,7 @@ interface Playlist {
 const CardForPlaylistPlayerHome = ({ id, playlistImage, playlistName, trackId }: Playlist) => {
 
   const { userData, handleUserData } = useUserContext();
-  const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
+  const [isLiked, setIsLiked] = useState(userData?.playlistLikedId.includes(id));
 
   const handleLiked = (id: string) => {
     handleUserData(id, "playlist");
