@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { ALBUM } from '../../config/routes/paths';
 import styled from 'styled-components';
+import { BsHeartFill, BsHeart } from 'react-icons/bs'
 import { breakpoints } from '../../styles/breakpoints';
+import { useUserContext } from '../../context';
+import { useState } from 'react';
 
 interface AlbumProps {
   id: string
@@ -15,6 +18,15 @@ const CardForAlbum = ({ id,
   albumName,
   albumUrl,
   albumImage, }: AlbumProps) => {
+
+  const { userData, handleUserData } = useUserContext();
+  const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
+
+  const handleLiked = (id: string) => {
+    handleUserData(id, "album");
+    setIsLiked(!isLiked)
+  }
+
   return (
     <CardForAlbumStyles key={id}>
       <Link to={`${ALBUM}/${id}`} className="cardForAlbum">
@@ -27,6 +39,11 @@ const CardForAlbum = ({ id,
           <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
         </div>
       </Link>
+
+      <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
+        {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}
+      </button>
+
     </CardForAlbumStyles>
   );
 };
@@ -89,6 +106,27 @@ const CardForAlbumStyles = styled.div`
           color: rgba(255, 255, 255, 0.7)
         }
       }
+    }
+  }
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
     }
   }
   @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {

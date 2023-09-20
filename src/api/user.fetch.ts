@@ -23,6 +23,27 @@ export const userPost = async (user: {}, getToken: GetTokenFunction) => {
   }
 };
 
+export const userGet = async (userEmail: string, getToken: GetTokenFunction) => {
+  try {
+    const token = await getToken();
+    const response = await fetch(`${urlUser}/${userEmail}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    if (response.ok) {
+      const userData = await response.json();
+      return userData;
+    } else {
+      console.error("Error updating user:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+  }
+};
+
 export const UserPatch = async (
   userUpdate: {},
   userId: string,
@@ -37,6 +58,36 @@ export const UserPatch = async (
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userUpdate),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      const errorMessage = `Error updating user: ${response.statusText}`;
+      console.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+};
+
+export const UserPatchLiked = async (incomingTrackId: string[], incomingAlbumId: string[], incomingPlaylistLikedId: string[], userEmail: string, getToken: GetTokenFunction) => {
+
+  const tracksId = incomingTrackId.join(',');
+  const albumId = incomingAlbumId.join(',');
+  const playlistLikedId = incomingPlaylistLikedId.join(',');
+
+  try {
+    const token = await getToken();
+    const response: Response = await fetch(`${urlUser}/liked/${userEmail}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ tracksId, albumId, playlistLikedId }),
     });
     if (response.ok) {
       const data = await response.json();
@@ -206,6 +257,7 @@ export const createArtist = async (
     throw error;
   }
 };
+
 export const createTrack = async (
   userId: string,
   formData: FormData,

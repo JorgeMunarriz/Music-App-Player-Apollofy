@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
+import { BsHeartFill, BsHeart } from 'react-icons/bs'
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useState } from 'react';
 import { breakpoints } from '../../styles/breakpoints';
+import { useUserContext } from '../../context';
 
 
 
@@ -14,6 +16,7 @@ interface Track {
   trackUrl: string
   trackImage: string
   artist: ArtistProps[]
+  userData: any
 }
 interface ArtistProps {
   artistName: string;
@@ -23,10 +26,17 @@ interface ArtistProps {
   genreId: string[];
 }
 
-const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) => {
+const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
+
 
   const { handleCurrentTrackById, handleNewTrackInList } = useQueuePlayerContext();
-  const [goToPlayer, setGoToPlayer] = useState(true);
+  const { userData, handleUserData } = useUserContext();
+  const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
+
+  const handleLiked = (id: string) => {
+    handleUserData(id, "track");
+    setIsLiked(!isLiked)
+  }
 
   return (
     <CardForTrackStyles key={id}>
@@ -40,7 +50,9 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) =>
         </div>
       </Link>
       <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
-
+      <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
+        {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}
+      </button>
     </CardForTrackStyles>
   );
 };
@@ -119,6 +131,27 @@ const CardForTrackStyles = styled.div`
     font-size: 3rem;
     color: var(--color-text-gray);
     cursor: grabbing;
+  }
+  .addToLike {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    cursor: grabbing;
+    &__fill-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
+    &__out-heart {
+      font-size: 3rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+    }
   }
 
   @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
