@@ -371,7 +371,7 @@ const TracksFormContainer = styled.section`
 }
 
  `
-const ButtonAdd = styled.button`
+export const ButtonAdd = styled.button`
 background: var( --background-button-shade-color);
 width: 100%;
   border-radius: 12px;

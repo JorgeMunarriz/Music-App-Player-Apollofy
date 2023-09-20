@@ -10,10 +10,12 @@ interface AlbumProps {
   albumCreatedAt: string;
   artistId: string[];
   artist: ArtistProps[];
-  // genreId: string[],
+  genre: GenresProps[];
   trackId: string[];
-  // albumLikedBy: string[],
-  // post: string[],
+}
+interface GenresProps {
+  id: string;
+  genreName: string;
 }
 interface ArtistProps {
   id: string;
@@ -25,7 +27,8 @@ interface ArtistProps {
   trackId: string[];
 }
 
-const AlbumForLibrary = ({ id, albumName, albumImage, albumCreatedAt, artist, trackId }: AlbumProps) => {
+const AlbumForLibrary = ({ id, albumName, albumImage, albumCreatedAt, artist, trackId, genre }: AlbumProps) => {
+
   return (
     <PlaylistsForLibraryStyles key={id}>
       <Link to={`${PLAYER}/${trackId[0]}`} className="cardForTrack">
@@ -38,7 +41,7 @@ const AlbumForLibrary = ({ id, albumName, albumImage, albumCreatedAt, artist, tr
             <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName).join(", ") : null}</h4>
             <h4 className="cardForTrack__body_title-createdAt">{albumCreatedAt}</h4>
           </div>
-          {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
+          <h4 className="cardForTrack__body_title-genreName">{genre ? genre.map((genre) => genre.genreName).join(", ") : null}</h4>
         </div>
       </Link>
     </PlaylistsForLibraryStyles>
@@ -88,6 +91,10 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 0.75rem;
           color: rgba(255, 255, 255, 0.7);
         }
+        &-genreName {
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.7);
+        }
       }
     }
   }
@@ -124,6 +131,10 @@ const PlaylistsForLibraryStyles = styled.div`
             color: var(--color-text-gray);
           }
           &-createdAt {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          &-genreName {
             font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.7);
           }
@@ -168,6 +179,10 @@ const PlaylistsForLibraryStyles = styled.div`
             font-size: 1.25rem;
             color: rgba(255, 255, 255, 0.7);
           }
+          &-genreName {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
         }
       }
     }
@@ -205,12 +220,16 @@ const PlaylistsForLibraryStyles = styled.div`
           &-artistName {
             font-size: 1.5rem;
             color: var(--color-text-gray);
-            padding: 0;
+            
           }
           &-createdAt {
             font-size: 1.5rem;
             color: rgba(255, 255, 255, 0.7);
-            padding: 0;
+            
+          }
+          &-genreName {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
           }
         }
       }
@@ -250,6 +269,10 @@ const PlaylistsForLibraryStyles = styled.div`
             color: var(--color-text-gray);
           }
           &-createdAt {
+            font-size: 1.75rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          &-genreName {
             font-size: 1.75rem;
             color: rgba(255, 255, 255, 0.7);
           }
@@ -295,6 +318,10 @@ const PlaylistsForLibraryStyles = styled.div`
             color: var(--color-text-gray);
           }
           &-createdAt {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          &-genreName {
             font-size: 2rem;
             color: rgba(255, 255, 255, 0.7);
           }

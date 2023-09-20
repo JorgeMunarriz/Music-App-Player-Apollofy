@@ -4,40 +4,35 @@ import { AlbumCreateForm, Modal, PlaylistCreateForm, SearchBar, TracksCreateForm
 import { useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
-import TracksForLibrary from "./cards/TracksForLibrary";
-import PlaylistForLibrary from "./cards/PlaylistForLibrary";
-import AlbumForLibrary from "./cards/AlbumForLibrary";
 import { HiPlus } from "react-icons/hi";
 import { useModal } from "../../hooks/useModal";
 import { useUserContext } from "../../context";
 
-const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+const LazyPlaylistCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      return resolve(import("../cards/CardForPlaylistPlayerHome"));
-    }, 1500);
+      return resolve(import("./cards/PlaylistForLibrary"));
+    }, 500);
+  });
+});
+const LazyAlbumCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      return resolve(import("./cards/AlbumForLibrary"));
+    }, 500);
+  });
+});
+const LazyTrackCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      return resolve(import("./cards/TracksForLibrary"));
+    }, 500);
   });
 });
 
-// interface TrackProps {
-//   id: string;
-//   trackName: string;
-//   trackUrl: string;
-//   trackImage: string;
-//   trackCreatedAt: string;
-//   playlistId: string[];
-//   trackLikedBy: string[];
-//   albumId: string[];
-//   artistId: string[];
-//   genreId: string[]
-// }
-
-//TOFIX: ya renderiza. Queda ver que contenido vamos a meter... si hace falta modificar el back para traer artistas, etc...
-//quedan las props preparadas como copia y pega del context. Igual hay que traerse mas info desde el back para los context. Ej: En playlist se muestra el nombre y el userId
-//sería mejor traerse del back el userName para mostrar quien ha creado la playlist, etc.
 
 export const LibraryMainContainer = () => {
-  const { playlistsAll, albums, tracks } = useUserMusicContext();
+  const { playlistsAll, albums, tracks, playlistsCreated } = useUserMusicContext();
   const { userData } = useUserContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
@@ -47,13 +42,13 @@ export const LibraryMainContainer = () => {
   const handleChangeZoneSelected = (selection: string) => {
     setZoneSelected(selection);
   };
-
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") || "";
 
   const handleChangeParams = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams({ q: target.value });
   };
+
 
   return (
     <>
@@ -72,15 +67,15 @@ export const LibraryMainContainer = () => {
 
         <section className="zone-selector">
           <span className={`selections ${zoneSelected === "playlists" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("playlists")}>
-            Playlists
-            <button onClick={openModal1} className="button-icon tooltip" type="button">
-              <span className="tooltiptext">Add</span>
-              <HiPlus />
-            </button>
+            Playlists           
           </span>
 
           <span className={`selections ${zoneSelected === "myPlaylists" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("myPlaylists")}>
             My Playlists
+            <button onClick={openModal1} className="button-icon tooltip" type="button">
+              <span className="tooltiptext">Add</span>
+              <HiPlus />
+            </button>
           </span>
           <span className={`selections ${zoneSelected === "albums" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("albums")}>
             Albums
@@ -102,24 +97,23 @@ export const LibraryMainContainer = () => {
             playlistsAll &&
             playlistsAll
               .filter((playlist) => userData?.playlistLikedId.includes(playlist.id))
-              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist }) => (
-                <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} />
+              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist, genre }) => (
+                <LazyPlaylistCards key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} genre={genre} />
               ))}
 
           {zoneSelected === "myPlaylists" &&
-            playlistsAll &&
-            playlistsAll
-              .filter((playlist) => userData?.playlistCreatedId.includes(playlist.id))
-              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist }) => (
-                <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} />
+            playlistsCreated &&
+            playlistsCreated
+              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist, genre }) => (
+                <LazyPlaylistCards key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} genre={genre} />
               ))}
 
           {zoneSelected === "albums" &&
             albums &&
             albums
               .filter((album) => userData?.albumId.includes(album.id))
-              .map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId, artistId }) => (
-                <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
+              .map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId, artistId, genre }) => (
+                <LazyAlbumCards key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} genre={genre} />
               ))}
 
           {zoneSelected === "tracks" &&
@@ -127,17 +121,9 @@ export const LibraryMainContainer = () => {
             tracks
               .filter((track) => userData?.tracksId.includes(track.id))
               .map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist, genreId, genre, artistId, albumId }) => (
-                <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} albumId={albumId} trackId={id} />
+                <LazyTrackCards key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} albumId={albumId} trackId={id} />
               ))}
         </section>
-
-        {/* 
-        {playlist &&
-          playlist.map(({ id, isFollowed, name, description, thumbnail }) => (
-            <Suspense key={id} fallback={<LoaderPlaylist />}>
-              <LazyCards key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} />
-            </Suspense>
-          ))} */}
       </LibraryMainContainerStyles>
     </>
   );
@@ -162,6 +148,9 @@ const LibraryMainContainerStyles = styled.main`
     color: white;
   }
   .selections {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
   }
   .selection-active {

@@ -68,6 +68,11 @@ interface AlbumInterface {
   genreId: string[];
   artist: ArtistInterface[];
   artistId: string[];
+  genre: GenreInterface[];
+}
+interface GenreInterface {
+  id: string,
+  genreName: string,
 }
 
 interface albumCreateInteface {
