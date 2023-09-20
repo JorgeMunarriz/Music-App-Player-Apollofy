@@ -33,7 +33,7 @@ interface userData {
 }
 interface UserContextType {
     userData: userData | null
-    // userUpdateData: Response | null
+    userUpdateData: Response | null
     handleUserData: (id: string, dataType: string) => void
     deleteUser: (userId: string, getAccessTokenSilently: () => Promise<string>) => Promise<Response>
 }

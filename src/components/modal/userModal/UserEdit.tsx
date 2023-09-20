@@ -20,7 +20,7 @@ interface userFormModal {
 }
 
 export const UserForms: FC <userFormModal> = ({closeModal1}) => {
-    const { userData, updatedUserData } = useUserContext();
+    const { userData,  } = useUserContext();
     const { getAccessTokenSilently } = useAuth0();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);

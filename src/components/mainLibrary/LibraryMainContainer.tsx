@@ -111,13 +111,8 @@ export const LibraryMainContainer = () => {
 
           {zoneSelected === "albums" &&
             albums &&
-<<<<<<< HEAD
-            albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId }) => (
-              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} />
-=======
             albums.map(({ id, albumName, albumImage, albumCreatedAt,artist, trackId, artistId }) => (
               <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
->>>>>>> 72d0d2e06db647533b88140866419cf7ec92b6b2
             ))}
 
           {zoneSelected === "tracks" &&
