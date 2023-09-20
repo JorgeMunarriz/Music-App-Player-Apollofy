@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import {useState, FC} from 'react';
-import {useForm, Controller} from 'react-hook-form';
-import {useGenresContext, useUserContext} from '../../context';
-import {useUserMusicContext} from '../../context/UserMusicContext';
-import {MultiSelect} from 'react-multi-select-component';
-import {AlertMessageSuccess, LoaderForm} from '..';
+import { useState, FC } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useGenresContext, useUserContext } from '../../context';
+import { useUserMusicContext } from '../../context/UserMusicContext';
+import { MultiSelect } from 'react-multi-select-component';
+import { AlertMessageSuccess, LoaderForm } from '..';
 
 interface trackFormModal {
 	closeModal2: () => void;
-	trackId: string;
+	id: string;
 	trackName: string;
 	trackUrl: string;
 	trackImage: string;
@@ -18,14 +18,14 @@ interface trackFormModal {
 	albumId: string[];
 }
 interface ModifyTrackType {
-	trackId: string;
+	id: string;
 	trackName: string;
 	trackUrl: string;
 	trackImage: string;
 	trackCreatedAt: string;
 	genreId: string[];
 	artistId: string[];
-	albumId: string[];
+	albumId: string;
 }
 
 interface Option {
@@ -33,12 +33,14 @@ interface Option {
 	value: string;
 }
 
-export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trackName, trackUrl, trackImage, trackCreatedAt, genreId, artistId, albumId}) => {
+export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, id, trackName, trackUrl, trackImage, trackCreatedAt,genre, genreId, artistId, albumId}) => {
 	const {userData} = useUserContext();
 	const {allGenres} = useGenresContext();
 	const {tracks, albums, artists, modifyTrack} = useUserMusicContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [selected, setSelected] = useState([]);
+	
 	const form = useForm({
 		defaultValues: {
 			trackName: trackName,
@@ -51,9 +53,11 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trac
 		},
 	});
 	console.log(trackName)
+	console.log(genreId)
+
 	const {register, handleSubmit, formState, control} = form;
 	const {errors} = formState;
-	console.log(trackId);
+	
 
 	const onSubmit = async (modifyTrackData: ModifyTrackType) => {
 		try {
@@ -80,7 +84,7 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trac
 					formData.append('genreId', genre.value);
 				}
 			}
-			await modifyTrack(trackId, formData);
+			await modifyTrack(id, formData);
 
 			setIsSuccess(true);
 			setTimeout(() => {
@@ -119,10 +123,10 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trac
 					<Controller
 						name="genreId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
 								options={allGenres.map((genre) => ({label: genre.genreName, value: genre.id}))}
-								value={genreId}
+								
 								labelledBy="Select Genre"
 								{...field}
 								overrideStrings={{
@@ -135,9 +139,9 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trac
 					<Controller
 						name="artistId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
-								options={artists.map((artist) => ({label: artist.artistName, value: artist.id}))}
+								options={artists.map((artist) => ({ label: artist.artistName, value: artist.id }))}
 								labelledBy="Select Artist"
 								{...field}
 								overrideStrings={{
@@ -149,9 +153,9 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, trackId, trac
 					<Controller
 						name="albumId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
-								options={albums.map((album) => ({label: album.albumName, value: album.id}))}
+								options={albums.map((album) => ({ label: album.albumName, value: album.id }))}
 								labelledBy="Select Album"
 								{...field}
 								overrideStrings={{

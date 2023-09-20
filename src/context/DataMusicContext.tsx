@@ -60,7 +60,7 @@ export const DataMusicProvider: React.FC<{ children: ReactNode }> = ({ children 
           handleCurrentTrack: (): undefined => undefined
         });
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     void fetchData();

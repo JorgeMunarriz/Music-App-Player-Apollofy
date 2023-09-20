@@ -126,8 +126,8 @@ export const LibraryMainContainer = () => {
             tracks &&
             tracks
               .filter((track) => userData?.tracksId.includes(track.id))
-              .map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
-                <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackId={[]} trackLikedById={[]} trackCreatedById={[]} genre={[{ genreName: "chipiti" }]} genreId={[]} artistId={[]} albumId={[]} />
+              .map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist, genreId, genre, artistId, albumId }) => (
+                <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} albumId={albumId} trackId={id} />
               ))}
         </section>
 

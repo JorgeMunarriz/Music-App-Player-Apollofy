@@ -18,9 +18,8 @@ export const addReproductions = async (trackId: number) => {
             },
             body: JSON.stringify(modifiedTrack)
         });
-        console.log('Si envía');
-    } 
+    }
     catch (error) {
-        throw new Error ('Error trying to connect to server');
+        throw new Error('Error trying to connect to server');
     }
 }

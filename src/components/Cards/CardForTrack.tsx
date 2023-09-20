@@ -158,7 +158,109 @@ const CardForTrackStyles = styled.div`
 
 
 @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
+  display: flex;
+  position: relative;
 
+  padding: 0.25rem;
+  gap: 1rem;
+  /* margin: 10px; */
+
+  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: rgba(50, 50, 50, 0.4);
+  border: 1px solid rgba(66, 66, 66, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.4);
+    cursor: pointer;
+  }
+
+  .cardForTrack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+    gap: 1rem;
+
+    &__header{
+      position: relative;
+      width: 70px;
+      height: 110px;
+      border-radius: 0rem 0rem 0rem 0rem;
+      overflow: hidden;
+      &_img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    }
+    
+    &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      &_title {
+        color: #fff;
+        &-h3 {
+          font-size: 2.5vw;
+          color: var(--color-text-pink);
+        }
+        &-h4 {
+          font-size: 1.5vw;
+          color: var(--color-text-gray);
+        }
+        &-h5 {
+          font-size: 1vw;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    cursor: pointer;
+  }
+  .addToLike {
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    z-index: 10;
+    &__fill-heart {
+      font-size: 1.5rem;
+      align-items: end;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+      &:hover {
+        cursor: grabbing;
+      }
+    }
+    &__out-heart {
+      font-size: 1.5rem;
+      color: var(--color-text-gray);
+      border: none;
+      opacity: 0.9;
+      &:hover {
+        cursor: grabbing;
+      }
+    }
+  }
 }
 		
 @media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
@@ -185,11 +287,12 @@ const CardForTrackStyles = styled.div`
     height: 100%;
     justify-content: center;
     align-items: center;
+    padding-top: 0.5rem;
     gap: 1rem;
 
     &__header{
       position: relative;
-      width: 10vw;
+      width: 100px;
       height: 120px;
       border-radius: 0rem 0rem 0rem 0rem;
       overflow: hidden;
@@ -211,15 +314,15 @@ const CardForTrackStyles = styled.div`
       &_title {
         color: #fff;
         &-h3 {
-          font-size: 1.5vw;
+          font-size: 2vw;
           color: var(--color-text-pink);
         }
         &-h4 {
-          font-size: 1vw;
+          font-size: 1.5vw;
           color: var(--color-text-gray);
         }
         &-h5 {
-          font-size: 0.75vw;
+          font-size: 1vw;
           color: rgba(255, 255, 255, 0.7);
         }
       }

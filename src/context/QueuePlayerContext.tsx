@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useContext, useState } from "react";
 import { useUserMusicContext } from "./UserMusicContext";
-import { set } from "react-hook-form";
+
 
 interface QueuePlayerContextType {
     currentTrack: TrackInterface | undefined;
@@ -37,7 +37,6 @@ interface ArtistInterface {
     albumId: string[];
     genreId: string[];
     trackId: string[]
-
 }
 
 const QueuePlayerContext = createContext<QueuePlayerContextType | undefined>(undefined);
@@ -48,7 +47,6 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
     const [prevTracks, setPrevTracks] = useState<TrackInterface[]>([]);
     const [currentTrack, setCurrentTrack] = useState<TrackInterface | undefined>();
     const [nextTracks, setNextTracks] = useState<TrackInterface[]>([]);
-
 
     const handleCurrentTrackById = (id: string) => {
         const incomingTrack = tracks.find(track => track.id === id);
@@ -98,11 +96,6 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
             }
         }
     }
-
-    console.log(prevTracks)
-    console.log(currentTrack)
-    console.log(nextTracks)
-
     const handleListChange = (ids: string[]) => {
 
         const newNextTracks: TrackInterface[] = [];

@@ -22,7 +22,6 @@ export const AudioPlayerComponent = () => {
       <AudioPlayer
         className="rhap_container"
         src={currentTrack?.trackUrl}
-        onPlay={() => console.log("onPlay")}
         showSkipControls={true}
         autoPlay={true}
         autoPlayAfterSrcChange={true}

@@ -8,7 +8,7 @@ import { useUserContext } from '../../context';
 
 interface ModalConfirmationProps {
     onClose: () => void;
-    trackId: string;
+    id: string;
   }
   interface TrackInterface {
     id: string;
@@ -38,17 +38,17 @@ interface ModalConfirmationProps {
   
   }
 
-export const DeleteTrackModal:FC<ModalConfirmationProps> = ({ onClose, trackId }) => {
+export const DeleteTrackModal:FC<ModalConfirmationProps> = ({ onClose, id }) => {
   const {userData} =   useUserContext()   
 const { tracks, handleUserTracks } = useUserMusicContext()
-const { getAccessTokenSilently, logout } = useAuth0();
+const { getAccessTokenSilently } = useAuth0();
 const [isLoading, setIsLoading] = useState(false);
 const [isSuccess, setIsSuccess] = useState(false);
 
 const handleDelete = async()=> {
     try{
         setIsLoading(true);
-       await trackDelete(trackId, getAccessTokenSilently)
+       await trackDelete(id, getAccessTokenSilently)
        await handleUserTracks(userData?.userEmail ?? "")
           setIsSuccess(true);
               setTimeout(() => {
@@ -76,7 +76,7 @@ const handleDelete = async()=> {
         <p>Are you sure you want to delete the track?</p>
         <div className="button_container">
           <button type='button' className="cancel_button" onClick={onClose}>Cancel</button>
-          <button type='button' className="confirm_button" onClick={handleDelete}>Delete</button>
+          <button type='button' className="confirm_button" onClick={()=> handleDelete}>Delete</button>
         </div>
       </div>
     </TrackDeleteContainer>
