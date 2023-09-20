@@ -66,7 +66,6 @@ export const createPlaylist = async (
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("error in the playlist post request:", error);

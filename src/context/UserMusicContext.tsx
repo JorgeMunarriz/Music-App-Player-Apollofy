@@ -238,7 +238,6 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const getArtists = async (): Promise<Response> => {
     try {
       const response = await artistGet(getAccessTokenSilently);
-      console.log(response)
       setArtist(response);
       return response;
     } catch (error) {

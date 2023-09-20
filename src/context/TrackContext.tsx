@@ -42,7 +42,7 @@ export const TrackProvider: FC<{ children: ReactNode }> = ({ children }) => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             setTracks(data);
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
