@@ -1,7 +1,5 @@
 import { HomeSectionContainer } from './homeSection/HomeSectionContainer';
 import logo from '../../assets/img/logo-homepage.png';
-import { PlaylistSectionContainer } from './playlistSection/PlaylistSectionContainer';
-import { FavoritesSectionContainer } from './favoritesSection/FavoritesSectionContainer';
 import styled from 'styled-components';
 import { breakpoints } from '../../styles/breakpoints';
 
@@ -15,8 +13,6 @@ export const SideBar = () => {
 			</div>
 			<div className="sidebar__sections">
 				<HomeSectionContainer />
-				<PlaylistSectionContainer />
-				<FavoritesSectionContainer />
 			</div>
 		</SidebarStyles>
 	);

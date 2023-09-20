@@ -13,7 +13,7 @@ interface TrackProps {
   trackImage: string;
   trackCreatedAt: string;
   trackUpdatedAt: string;
-  trackId: string[];
+  trackId: string;
   trackLikedById: string[];
   trackCreatedById: string[];
   genre: [{ genreName: string }];
@@ -21,7 +21,7 @@ interface TrackProps {
   artist: ArtistProps[];
   artistId: string[];
   trackUrl: string;
-  albumId: string[];
+  albumId: string;
 }
 interface ArtistProps {
   id: string;
@@ -58,7 +58,7 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
       </Link>
       <div>
         <BurgerMenu onClick={handleToggleMenu} />
-        <DropdownMenu isOpen={isOpen} trackId={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId} />
+        <DropdownMenu isOpen={isOpen} id={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId} />
       </div>
     </TracksForLibraryStyles>
   );

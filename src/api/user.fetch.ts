@@ -1,5 +1,5 @@
 import { urlAlbum, urlArtist, urlTrack, urlUser } from "../global";
-import { User } from '@auth0/auth0-react'
+import { User } from "@auth0/auth0-react";
 export type GetTokenFunction = () => Promise<string>;
 
 export const userPost = async (user: User | undefined, getToken: GetTokenFunction) => {
@@ -32,7 +32,7 @@ export const userGet = async (userEmail: string, getToken: GetTokenFunction) => 
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      }
+      },
     });
     if (response.ok) {
       const userData = await response.json();
@@ -45,29 +45,19 @@ export const userGet = async (userEmail: string, getToken: GetTokenFunction) => 
   }
 };
 
-export const UserPatch = async (
-  userUpdate: {},
-  userId: string,
-  getToken: GetTokenFunction
-) => {
+export const UserPatch = async (userUpdate: FormData, userId: string, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response: Response = await fetch(`${urlUser}/${userId}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(userUpdate),
+      body: userUpdate,
     });
-    if (response.ok) {
       const data = await response.json();
       return data;
-    } else {
-      const errorMessage = `Error updating user: ${response.statusText}`;
-      console.error(errorMessage);
-      throw new Error(errorMessage);
-    }
+   
   } catch (error) {
     console.error("Error updating user:", error);
     throw error;
@@ -75,10 +65,9 @@ export const UserPatch = async (
 };
 
 export const UserPatchLiked = async (incomingTrackId: string[], incomingAlbumId: string[], incomingPlaylistLikedId: string[], userEmail: string, getToken: GetTokenFunction) => {
-
-  const tracksId = incomingTrackId.join(',');
-  const albumId = incomingAlbumId.join(',');
-  const playlistLikedId = incomingPlaylistLikedId.join(',');
+  const tracksId = incomingTrackId.join(",");
+  const albumId = incomingAlbumId.join(",");
+  const playlistLikedId = incomingPlaylistLikedId.join(",");
 
   try {
     const token = await getToken();
@@ -104,10 +93,7 @@ export const UserPatchLiked = async (incomingTrackId: string[], incomingAlbumId:
   }
 };
 
-export const userDelete = async (
-  userId: string,
-  getToken: GetTokenFunction
-) => {
+export const userDelete = async (userId: string, getToken: GetTokenFunction) => {
   try {
     const token = getToken();
     const response: Response = await fetch(`${urlUser}/${userId}`, {
@@ -130,10 +116,7 @@ export const userDelete = async (
   }
 };
 
-export const userPlaylistsCreatedGet = async (
-  userEmail: string,
-  getToken: GetTokenFunction
-) => {
+export const userPlaylistsCreatedGet = async (userEmail: string, getToken: GetTokenFunction) => {
   try {
     const token = getToken();
     const response = await fetch(`${urlUser}/playlistCreated/${userEmail}`, {
@@ -157,10 +140,7 @@ export const userPlaylistsCreatedGet = async (
   }
 };
 
-export const userPlaylistsLikedGet = async (
-  userEmail: string,
-  getToken: GetTokenFunction
-) => {
+export const userPlaylistsLikedGet = async (userEmail: string, getToken: GetTokenFunction) => {
   try {
     const token = getToken();
     const response = await fetch(`${urlUser}/playlistLiked/${userEmail}`, {
@@ -232,10 +212,7 @@ export const userTracksGet = async (getToken: GetTokenFunction) => {
   }
 };
 
-export const createArtist = async (
-  formData: FormData,
-  getToken: GetTokenFunction
-) => {
+export const createArtist = async (formData: FormData, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response = await fetch(urlArtist, {
@@ -251,7 +228,7 @@ export const createArtist = async (
     }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -259,11 +236,7 @@ export const createArtist = async (
   }
 };
 
-export const createTrack = async (
-  userId: string,
-  formData: FormData,
-  getToken: GetTokenFunction
-) => {
+export const createTrack = async (userId: string, formData: FormData, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response = await fetch(`${urlTrack}/${userId}`, {
@@ -279,7 +252,7 @@ export const createTrack = async (
     }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -287,11 +260,7 @@ export const createTrack = async (
   }
 };
 
-
-export const createAlbum = async (
-  formData: FormData,
-  getToken: () => Promise<string>
-) => {
+export const createAlbum = async (formData: FormData, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response = await fetch(urlAlbum, {
@@ -307,7 +276,7 @@ export const createAlbum = async (
     // }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -315,11 +284,7 @@ export const createAlbum = async (
   }
 };
 
-export const toggleLikedPlaylist = async (
-  userEmail: string,
-  // incomingTrackId: string,
-  getToken: GetTokenFunction
-) => {
+export const toggleLikedPlaylist = async (userEmail: string, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response: Response = await fetch(`${urlUser}/${userEmail}`, {
@@ -331,7 +296,7 @@ export const toggleLikedPlaylist = async (
     });
     if (response.ok) {
       const data = await response.json();
-      
+
       return data;
     } else {
       const errorMessage = `Error updating user: ${response.statusText}`;

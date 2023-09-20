@@ -8,7 +8,7 @@ import { AlertMessageSuccess, LoaderForm } from '..';
 
 interface trackFormModal {
 	closeModal2: () => void;
-	trackId: string;
+	id: string;
 	trackName: string;
 	trackUrl: string;
 	trackImage: string;
@@ -18,14 +18,14 @@ interface trackFormModal {
 	albumId: string[];
 }
 interface ModifyTrackType {
-	trackId: string;
+	id: string;
 	trackName: string;
 	trackUrl: string;
 	trackImage: string;
 	trackCreatedAt: string;
 	genreId: string[];
 	artistId: string[];
-	albumId: string[];
+	albumId: string;
 }
 
 interface Option {
@@ -33,12 +33,14 @@ interface Option {
 	value: string;
 }
 
-export const ModifyTrackModal: FC<trackFormModal> = ({ closeModal2, trackId, trackName, trackUrl, trackImage, trackCreatedAt, genreId, artistId, albumId }) => {
-	const { userData } = useUserContext();
-	const { allGenres } = useGenresContext();
-	const { tracks, albums, artists, modifyTrack } = useUserMusicContext();
+export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, id, trackName, trackUrl, trackImage, trackCreatedAt,genre, genreId, artistId, albumId}) => {
+	const {userData} = useUserContext();
+	const {allGenres} = useGenresContext();
+	const {tracks, albums, artists, modifyTrack} = useUserMusicContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [selected, setSelected] = useState([]);
+	
 	const form = useForm({
 		defaultValues: {
 			trackName: trackName,
@@ -50,8 +52,12 @@ export const ModifyTrackModal: FC<trackFormModal> = ({ closeModal2, trackId, tra
 			trackCreatedAt: trackCreatedAt,
 		},
 	});
-	const { register, handleSubmit, formState, control } = form;
-	const { errors } = formState;
+	console.log(trackName)
+	console.log(genreId)
+
+	const {register, handleSubmit, formState, control} = form;
+	const {errors} = formState;
+	
 
 	const onSubmit = async (modifyTrackData: ModifyTrackType) => {
 		try {
@@ -78,7 +84,7 @@ export const ModifyTrackModal: FC<trackFormModal> = ({ closeModal2, trackId, tra
 					formData.append('genreId', genre.value);
 				}
 			}
-			await modifyTrack(trackId, formData);
+			await modifyTrack(id, formData);
 
 			setIsSuccess(true);
 			setTimeout(() => {
@@ -119,8 +125,8 @@ export const ModifyTrackModal: FC<trackFormModal> = ({ closeModal2, trackId, tra
 						control={control}
 						render={({ field }) => (
 							<MultiSelect
-								options={allGenres.map((genre) => ({ label: genre.genreName, value: genre.id }))}
-								value={genreId}
+								options={allGenres.map((genre) => ({label: genre.genreName, value: genre.id}))}
+								
 								labelledBy="Select Genre"
 								{...field}
 								overrideStrings={{

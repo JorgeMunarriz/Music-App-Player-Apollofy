@@ -6,7 +6,7 @@ import {useModal} from '../../hooks/useModal';
 
 interface DropdownMenuInterface {
 	isOpen: boolean;
-	trackId: string;
+	id: string;
 	trackName: string;
 	trackImage: string;
 	trackCreatedAt: string;
@@ -17,22 +17,22 @@ interface DropdownMenuInterface {
 	genreId: string[];
 	artistId: string[];
 	trackUrl: string;
-	albumId: string[];
+	albumId: string;
 }
 
-export const DropdownMenu: FC<DropdownMenuInterface> = ({isOpen, trackId, trackName, trackUrl, trackImage, trackCreatedAt, genreId, artistId, albumId}) => {
+export const DropdownMenu: FC<DropdownMenuInterface> = ({isOpen, id, trackName, trackUrl, trackImage, trackCreatedAt, genreId, artistId, albumId}) => {
 	const [isOpenModal, openModal, closeModal] = useModal(false);
 	const [isOpenModal2, openModal2, closeModal2] = useModal(false);
 
 	return isOpen ? (
 		<DropdownMenuStyles>
 			<Modal isOpen={isOpenModal} closeModal={closeModal}>
-				<DeleteTrackModal onClose={closeModal} trackId={trackId} />
+				<DeleteTrackModal onClose={closeModal} id={id} />
 			</Modal>
 			<Modal isOpen={isOpenModal2} closeModal={closeModal2}>
 				<ModifyTrackModal
 					closeModal2={closeModal2}
-					trackId={trackId}
+					id={id}
 					trackName={trackName}
 					trackUrl={trackUrl}
 					trackImage={trackImage}
