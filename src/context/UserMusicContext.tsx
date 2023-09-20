@@ -153,7 +153,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       }
       getAllMusicLauncher();
     }
-  }, [isAuthenticated, userData]);
+  }, [isAuthenticated]);
 
   const handleUserPlaylistsCreated = async (userEmail: string) => {
     try {
