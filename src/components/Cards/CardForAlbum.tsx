@@ -20,7 +20,7 @@ const CardForAlbum = ({ id,
   albumImage, }: AlbumProps) => {
 
   const { userData, handleUserData } = useUserContext();
-  const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
+  const [isLiked, setIsLiked] = useState(userData?.albumId.includes(id));
 
   const handleLiked = (id: string) => {
     handleUserData(id, "album");
