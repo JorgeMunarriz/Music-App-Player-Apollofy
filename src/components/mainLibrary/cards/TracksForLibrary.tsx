@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import {useState} from 'react'
 import { PLAYER } from "../../../config/routes/paths";
 import styled from "styled-components";
 import { breakpoints } from "../../../styles/breakpoints";
 import { useQueuePlayerContext } from "../../../context/QueuePlayerContext";
+import { BurgerMenu } from "../../burgerMenu/BurgerMenu";
+import { DropdownMenu } from "../../burgerMenu/DropdownMenu";
 
 interface TrackProps {
   id: string;
@@ -29,6 +32,11 @@ interface ArtistProps {
 
 const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }: TrackProps) => {
   const { handleCurrentTrackById } = useQueuePlayerContext();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
 
   return (
     <TracksForLibraryStyles key={id}>
@@ -45,6 +53,10 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
           {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
         </div>
       </Link>
+      <div>
+      <BurgerMenu onClick={handleToggleMenu}/>
+      <DropdownMenu isOpen={isOpen} trackId={id}/>
+      </div>
     </TracksForLibraryStyles>    
   );
 };

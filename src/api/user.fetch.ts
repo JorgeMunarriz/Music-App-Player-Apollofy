@@ -250,7 +250,7 @@ export const createArtist = async (
     }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -278,7 +278,7 @@ export const createTrack = async (
     }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -305,7 +305,7 @@ export const createAlbum = async (
     // }
 
     const data = await response.json();
-    console.log(data);
+    
     return data;
   } catch (error) {
     console.error("error in the track post request:", error);
@@ -329,7 +329,7 @@ export const toggleLikedPlaylist = async (
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
+      
       return data;
     } else {
       const errorMessage = `Error updating user: ${response.statusText}`;
@@ -338,6 +338,30 @@ export const toggleLikedPlaylist = async (
     }
   } catch (error) {
     console.error("Error updating user:", error);
+    throw error;
+  }
+};
+
+export const artistGet = async (getToken: GetTokenFunction) => {
+  try {
+    const token = getToken();
+    const response = await fetch(urlArtist, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData.message}`);
+    }
+
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error("Error getting artist:", error);
     throw error;
   }
 };

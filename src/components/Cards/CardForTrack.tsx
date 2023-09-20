@@ -9,6 +9,7 @@ import { breakpoints } from '../../styles/breakpoints';
 import { useUserContext } from '../../context';
 
 
+
 interface Track {
   id: string
   trackName: string
@@ -48,7 +49,6 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
       </Link>
-
       <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
       <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
         {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}

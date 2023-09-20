@@ -152,32 +152,3 @@ const CardForPlaylistPlayerHomeStyles = styled.div`
 `;
 
 export default CardForPlaylistPlayerHome;
-// const isFollowed = () => {
-//   if (userLogged?.favPlaylists.includes(id)) {
-//     return true;
-//   }
-//   return false;
-// }
-
-// const [followed, setFollowed] = useState(isFollowed);
-
-// const toggleFollow = async () => {
-//   setFollowed(!followed);
-
-//   try {
-//     await toggleLiked(userLogged?.id, 'playlist', id, followed ? 'FALSE' : 'TRUE');
-
-//     const modifiedUser = { ...userLogged, favPlaylists: followed ? userLogged?.favPlaylists.filter((playlistId) => playlistId !== id) : [...userLogged?.favPlaylists, id] };
-
-//     handleUserLogged(modifiedUser);
-
-//   } catch (error) {
-//     console.error('Error al cambiar la lista favorita:', error);
-//   }
-// };
-
-// console.log(trackImage)
-//tengo que traer el puto id
-// const { userLogged, handleUserLogged } = useContext(UserContext);
-// const { user, getAccessTokenSilently } = useAuth0();
-// const { userFechture } = useUserContext()
