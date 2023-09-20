@@ -8,7 +8,6 @@ import TracksForLibrary from "./cards/TracksForLibrary";
 import PlaylistForLibrary from "./cards/PlaylistForLibrary";
 import AlbumForLibrary from "./cards/AlbumForLibrary";
 import { HiPlus } from "react-icons/hi";
-import { Boop } from "../../animations/boopAnimation";
 import { useModal } from "../../hooks/useModal";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
@@ -66,7 +65,7 @@ export const LibraryMainContainer = () => {
       <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
         <TracksCreateForm closeModal={closeModal3} />
       </Modal>
-      <PlaylistMainContainerStyles>
+      <LibraryMainContainerStyles>
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="zone-selector">
@@ -106,24 +105,19 @@ export const LibraryMainContainer = () => {
           {zoneSelected === "myPlaylists" &&
             playlistsCreated &&
             playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist}/>
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist} />
             ))}
 
           {zoneSelected === "albums" &&
             albums &&
-<<<<<<< HEAD
-            albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId }) => (
-              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} />
-=======
-            albums.map(({ id, albumName, albumImage, albumCreatedAt,artist, trackId, artistId }) => (
+            albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId, artistId }) => (
               <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
->>>>>>> 72d0d2e06db647533b88140866419cf7ec92b6b2
             ))}
 
           {zoneSelected === "tracks" &&
             tracks &&
             tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} />
+              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackId={[]} trackLikedById={[]} trackCreatedById={[]} genre={[{ genreName: "chipiti" }]} genreId={[]} artistId={[]} albumId={[]} />
             ))}
         </section>
 
@@ -139,7 +133,7 @@ export const LibraryMainContainer = () => {
   );
 };
 
- const LibraryMainContainerStyles = styled.main`
+const LibraryMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -54,12 +54,23 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     useEffect(() => {
         if (isAuthenticated) {
             async function userGetLauncher() {
+                await createUser(user);
                 await getUserData(user?.email ?? '');
             }
             userGetLauncher();
         }
     }, [isAuthenticated])
 
+    const createUser = async (user: User) => {
+        try {
+            const newUserData = await userPost(user, getAccessTokenSilently)
+            setUserData(newUserData.user)
+            return newUserData.user
+        } catch (error) {
+            console.error('Error user update:', error);
+            throw error;
+        }
+    }
 
     const getUserData = async (userEmail: string) => {
         if (user) {

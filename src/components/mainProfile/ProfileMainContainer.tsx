@@ -6,20 +6,15 @@ import { TfiPencil } from "react-icons/tfi";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/Modal";
 import { useEffect } from "react";
-import {  UserForms,ArtistCreateForm} from "..";
+import { UserForms, ArtistCreateForm } from "..";
 import styled from "styled-components";
 
 export const ProfileMainContainer = () => {
   const { user, getAccessTokenSilently } = useAuth0();
-  const { userData, userFetch } = useUserContext();
+  const { userData } = useUserContext();
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
 
-  useEffect(() => {
-    if (!userData) {
-      userFetch(user, getAccessTokenSilently);
-    }
-  }, [user, userData]);
 
   return (
     <>
@@ -52,12 +47,12 @@ export const ProfileMainContainer = () => {
           <span className="profile__span-email">{userData?.userEmail}</span>
           <h3 className="profile__h3-name">{userData?.userName}</h3>
           <div className="profile__numbers-container">
-          <ButtonAdd onClick={openModal2}>
-			<span className="shadow"></span>
-			<span className="front">
-				<strong className='font-size'>ADD Artist</strong>
-			</span>
-		</ButtonAdd>
+            <ButtonAdd onClick={openModal2}>
+              <span className="shadow"></span>
+              <span className="front">
+                <strong className='font-size'>ADD Artist</strong>
+              </span>
+            </ButtonAdd>
           </div>
         </div>
       </ProfileMainContainerStyles>
