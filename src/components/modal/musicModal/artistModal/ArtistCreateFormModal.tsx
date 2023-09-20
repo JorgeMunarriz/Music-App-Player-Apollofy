@@ -152,9 +152,12 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
             })}
           />
         </div>
-        <button className="form_button-Submit" type="submit">
-          ADD artist
-        </button>
+        <ButtonAdd>
+          <span className="shadow"></span>
+          <span className="front">
+            <strong className='font-size'>ADD Artist</strong>
+          </span>
+        </ButtonAdd>
       </form>
     </ArtistsFormContainer>
   );
@@ -250,21 +253,6 @@ const ArtistsFormContainer = styled.section`
 .form :where(.gender input, .gender label) {
   cursor: pointer;
 }
-
-  .select {
-  width: 100%;
-  height:100%;
-  padding: 1.2rem 0;
-  border-radius: 5px;
-  border:1px solid #ccc;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: hsl(0, 100%, 0.9803921568627451%);
-  background-color:  rgb(134, 129, 134);
-  cursor: pointer;
-  & option {
-    cursor: pointer;
-  }
 
   .select {
     width: 100%;
@@ -369,6 +357,7 @@ const ArtistsFormContainer = styled.section`
     border: 1px solid var(--rmsc-border);
     border-radius: var(--rmsc-radius);
   }
+
 `;
 const ButtonAdd = styled.button`
 background: var( --background-button-shade-color);

@@ -1,7 +1,8 @@
 import { urlAlbum, urlArtist, urlTrack, urlUser } from "../global";
+import { User } from '@auth0/auth0-react'
 export type GetTokenFunction = () => Promise<string>;
 
-export const userPost = async (user: {}, getToken: GetTokenFunction) => {
+export const userPost = async (user: User | undefined, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
     const response = await fetch(`${urlUser}`, {
@@ -316,7 +317,7 @@ export const createAlbum = async (
 
 export const toggleLikedPlaylist = async (
   userEmail: string,
-  incomingTrackId: string,
+  // incomingTrackId: string,
   getToken: GetTokenFunction
 ) => {
   try {
