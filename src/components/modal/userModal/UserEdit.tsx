@@ -20,8 +20,7 @@ interface userFormModal {
 }
 
 export const UserForms: FC <userFormModal> = ({closeModal1}) => {
-    const { userData,  } = useUserContext();
-    const { getAccessTokenSilently } = useAuth0();
+    const { userData, updatedUserData } = useUserContext();
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isOpenModal, openModal, closeModal] = useModal(false)
@@ -35,14 +34,12 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
     const onSubmit = async (userUpdate: userUpdate) => {
         try {
           setIsLoading(true)
-          const response = await updatedUserData(userUpdate, userData?.id ?? '', getAccessTokenSilently);
-          if (response.status.toString() === 'success') {
+             await updatedUserData(userUpdate, userData?.id ?? '');
             setIsSuccess(true);
             setTimeout(() => {
                 setIsSuccess(false);
                 closeModal1()
             }, 2000)
-        }
     } catch (error) {
         console.error('Error user update:', error);
     }  finally {
@@ -93,3 +90,5 @@ export const UserForms: FC <userFormModal> = ({closeModal1}) => {
         </UserFormContainer>
       );
         }
+
+
