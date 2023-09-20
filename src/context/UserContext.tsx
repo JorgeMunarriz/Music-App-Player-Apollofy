@@ -31,9 +31,16 @@ interface userData {
     albumId: string[];
     tracksId: string[];
 }
+interface userUpdateData {
+    id?: string | null;
+    userEmail: string;
+    userName: string;
+    userImage: string;
+}
 interface UserContextType {
     userData: userData | null
-    userUpdateData: Response | null
+    // userUpdateData: Response | null
+    updatedUserData: (userUpdateData: userUpdateData, userId: string) => Promise<void>
     handleUserData: (id: string, dataType: string) => void
     deleteUser: (userId: string, getAccessTokenSilently: () => Promise<string>) => Promise<Response>
 }
@@ -44,16 +51,26 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const [userData, setUserData] = useState<userData | null>(null);
 
-
     useEffect(() => {
         if (isAuthenticated) {
             async function userGetLauncher() {
+                await createUser(user);
                 await getUserData(user?.email ?? '');
             }
             userGetLauncher();
         }
     }, [isAuthenticated])
 
+    const createUser = async (user: User | undefined) => {
+        try {
+            const newUserData = await userPost(user, getAccessTokenSilently)
+            setUserData(newUserData.user)
+            return newUserData.user
+        } catch (error) {
+            console.error('Error user update:', error);
+            throw error;
+        }
+    }
 
     const getUserData = async (userEmail: string) => {
         if (user) {
@@ -61,6 +78,18 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
             setUserData(userResponse)
         }
     }
+
+    const updatedUserData = async (userData: userUpdateData, userId: string) => {
+        try {
+            const newUserData = await UserPatch(userData, userId, getAccessTokenSilently)
+            setUserData(newUserData.user)
+            return newUserData.user
+        } catch (error) {
+            console.error('Error user update:', error);
+            throw error;
+        }
+    }
+
     const handleUserData = async (id: string, dataType: string) => {
 
         try {
@@ -113,8 +142,6 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
             throw error;
         }
     }
-
-
     const deleteUser = async (userId: string, getAccessTokenSilently: () => Promise<string>): Promise<Response> => {
         try {
             const responseDelete = await userDelete(userId, getAccessTokenSilently);
@@ -127,7 +154,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
 
 
-    return (<UserContext.Provider value={{ userData, handleUserData, deleteUser }}>
+    return (<UserContext.Provider value={{ userData, handleUserData, deleteUser, updatedUserData }}>
         {children}
     </UserContext.Provider>);
 };

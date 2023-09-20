@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {useState} from 'react'
+import { useState } from 'react'
 import { PLAYER } from "../../../config/routes/paths";
 import styled from "styled-components";
 import { breakpoints } from "../../../styles/breakpoints";
@@ -33,7 +33,7 @@ interface ArtistProps {
   trackId: string[];
 }
 
-const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,artistId, artist, trackUpdatedAt, genre, genreId, albumId,  }: TrackProps) => {
+const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt, artistId, artist, trackUpdatedAt, genre, genreId, albumId }: TrackProps) => {
   const { handleCurrentTrackById } = useQueuePlayerContext();
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleMenu = () => {
@@ -57,10 +57,10 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
         </div>
       </Link>
       <div>
-      <BurgerMenu onClick={handleToggleMenu}/>
-      <DropdownMenu isOpen={isOpen} trackId={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId}/>
+        <BurgerMenu onClick={handleToggleMenu} />
+        <DropdownMenu isOpen={isOpen} trackId={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId} />
       </div>
-    </TracksForLibraryStyles>    
+    </TracksForLibraryStyles>
   );
 };
 
