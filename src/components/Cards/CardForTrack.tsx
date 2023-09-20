@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { PLAYER } from '../../config/routes/paths';
 import styled from 'styled-components';
 import { useQueuePlayerContext } from '../../context/QueuePlayerContext';
-import { AiFillPlayCircle } from 'react-icons/ai'
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useState } from 'react';
 import { breakpoints } from '../../styles/breakpoints';
+
 
 
 interface Track {
@@ -39,7 +39,6 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage, artist }: Track) =>
           <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
         </div>
       </Link>
-
       <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>
 
     </CardForTrackStyles>

@@ -3,6 +3,7 @@ import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet,
   userTracksGet, createTrack, createArtist, createAlbum,artistGet } from "../api/user.fetch";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getAllPlaylist } from "../api/playlist.fetch";
+import { trackDelete } from "../api/track.service";
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
@@ -11,6 +12,7 @@ interface UserMusicContextType {
   albums: AlbumInterface[];
   albumCreated: albumCreateInteface[];
   tracks: TrackInterface[];
+  deleteTrack: TrackInterface[];
   artistCreated: CreateArtistType[];
   artists: ArtistInterface[];
   tracksCreated: CreateTrackType[];
@@ -19,6 +21,7 @@ interface UserMusicContextType {
   handlePlaylistsAll: () => Promise<void>;
   handleUserAlbums: (userEmail: string) => Promise<void>;
   handleUserTracks: (userEmail: string) => Promise<void>;
+  handleDeleteUserTrack: (trackId: string)=> Promise<void>;
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
   createNewArtist: (formData: FormData) => Promise<Response>;
   createNewAlbum: (formData: FormData) => Promise<Response>;
@@ -36,6 +39,7 @@ interface PlaylistInterface {
   playlistCreatedById: string[];
   genreId: string[];
   genre: [{ genreName: string; id: string }];
+  artist: ArtistInterface[];
 }
 interface AlbumInterface {
   id: string;
@@ -48,7 +52,7 @@ interface AlbumInterface {
   albumLikedById: string[];
   albumCreatedById: string[];
   genreId: string[];
-  artist: string[];
+  artist: ArtistInterface[];
   artistId: string[];
 }
 
@@ -112,9 +116,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const [playlistsCreated, setPlaylistsCreated] = useState<PlaylistInterface[]>([]);
   const [playlistsLiked, setPlaylistsLiked] = useState<PlaylistInterface[]>([]);
   const [playlistsAll, setPlaylistsAll] = useState<PlaylistInterface[]>([]);
-
   const [albums, setAlbums] = useState<AlbumInterface[]>([]);
   const [tracks, setTracks] = useState<TrackInterface[]>([]);
+  const [deleteTrack, setDeleteTrack] = useState<TrackInterface[]>([]);
   const [artists, setArtist] = useState<ArtistInterface[]>([]);
   const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
   const [artistCreated, setArtistCreated] = useState<CreateArtistType[]>([]);
@@ -183,6 +187,18 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
+  const handleDeleteUserTrack = async (trackId: string) => {
+    try {
+      
+      const responseDelete = await trackDelete(trackId, getAccessTokenSilently);
+      setDeleteTrack(responseDelete);
+      const response = await userTracksGet(getAccessTokenSilently);
+      setTracks(response);
+    } catch (error) {
+      console.error("Error getting tracks:", error);
+      throw error;
+    }
+  };
   const createUserTracks = async (userId: string, trackData: FormData): Promise<Response> => {
     try {
       const response = await createTrack(userId, trackData, getAccessTokenSilently);
@@ -234,6 +250,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         playlistsAll,
         albums,
         tracks,
+        deleteTrack,
         tracksCreated,
         artistCreated,
         albumCreated,
@@ -243,6 +260,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         handlePlaylistsAll,
         handleUserAlbums,
         handleUserTracks,
+        handleDeleteUserTrack,
         createUserTracks,
         createNewArtist,
         getArtists,
