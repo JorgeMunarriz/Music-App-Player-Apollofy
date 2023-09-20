@@ -68,7 +68,7 @@ export const UserFormContainer = styled.form`
   border: none;
   font-weight: bold;
   font-size: 15px;
-   color: rgb(14, 16, 19);
+  color: rgba(255, 255, 255, 1);
   box-shadow: 2px 2px 12px inset black;
   background: linear-gradient(to right ,rgb(248, 97, 32),rgb(39, 40, 46));
 }

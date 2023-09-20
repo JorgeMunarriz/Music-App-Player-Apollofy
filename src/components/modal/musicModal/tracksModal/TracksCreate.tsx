@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, FC } from "react";
 import { AlertMessageSuccess, LoaderForm } from "../../..";
-import { useForm,Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useGenresContext, useUserContext } from "../../../../context";
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 import { MultiSelect } from "react-multi-select-component";
@@ -43,7 +43,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     },
   });
 
-  const { register, handleSubmit, formState,control } = form;
+  const { register, handleSubmit, formState, control } = form;
   const { errors } = formState;
 
 
@@ -91,7 +91,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <TracksFormContainer>
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>Track create successfully</AlertMessageSuccess>}
-      <header className="modalTitle">ADD Track</header>
+      <header className="modalTitle">Create Track</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form__input_box">
           <label htmlFor="trackName" className="form__input_box-label">
@@ -108,7 +108,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
         </div>
         <div className="form__gender_box">
-        <Controller
+          <Controller
             name="genreId"
             control={control}
             render={({ field }) => (
@@ -182,7 +182,12 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.trackUrl && <span className="error_input">{errors.trackUrl.message}</span>}
         </div>
-        <button className="form__btnSubmit" type="submit">ADD Track</button>
+        <ButtonAdd>
+          <span className="shadow"></span>
+          <span className="front">
+            <strong className='font-size'>ADD Track</strong>
+          </span>
+        </ButtonAdd>
       </form>
     </TracksFormContainer>
   );
@@ -191,8 +196,8 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
 const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
-  background: linear-gradient(to right, hsl(300, 100%, 10%), hsl(0deg 71.01% 13.53%));
-  padding: 2rem;
+  background: linear-gradient(to right ,hsl(300, 100%, 10%), #000);
+  padding: 25px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
@@ -215,7 +220,9 @@ const TracksFormContainer = styled.section`
         padding-top: 0.3rem;
         &-file {
           padding-top: 0.5rem;
-          font-weight: bold;
+          color: #f5f4e8;
+          font-size: 1.2rem;
+          font-weight: 700;
           display: block;
           cursor: pointer;
         }
@@ -250,6 +257,7 @@ const TracksFormContainer = styled.section`
     &__gender_box {
       color: #f5f4e8;
       & select {
+        z-index:999;
         font-size: 1.3rem;
         font-weight: 700;
         cursor: pointer;
@@ -308,6 +316,13 @@ const TracksFormContainer = styled.section`
     align-items: center;
     color: #ef665b;
   }
+
+  .label_file {
+  padding-top: 0.5rem;
+  font-weight: bold;
+  display: block;
+  cursor: pointer;
+}
 
   .select_box select {
     height: 100%;
@@ -368,3 +383,60 @@ const TracksFormContainer = styled.section`
 }
   
 `;
+
+const ButtonAdd = styled.button`
+background: var( --background-button-shade-color);
+width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-size:4rem;
+  padding-top: 0.5rem;
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+   background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+.front {
+  display: block;
+  position: relative;
+  padding: 8px 25px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  color: #fafafa;
+  background:var(--background-button-color);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+&:hover {
+  filter: brightness(110%);
+
+}
+&:hover .front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+&:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+`

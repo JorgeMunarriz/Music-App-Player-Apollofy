@@ -25,7 +25,7 @@ interface Option {
 }
 
 export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { createNewAlbum, tracks, artists} = useUserMusicContext();
+  const { createNewAlbum, tracks, artists } = useUserMusicContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -92,7 +92,7 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
       {isSuccess && <AlertMessageSuccess>
         Album create successfully
       </AlertMessageSuccess>}
-      <header>ADD Album</header>
+      <header>Create Album</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
           <label htmlFor='albumName'>Name</label>
@@ -168,7 +168,12 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.albumImage && <span className="error_input">{errors.albumImage.message}</span>}
         </div>
-        <button className="form_button-Submit" type='submit'>ADD Album</button>
+        <ButtonAdd>
+          <span className="shadow"></span>
+          <span className="front">
+            <strong className='font-size'>ADD Album</strong>
+          </span>
+        </ButtonAdd>
       </form>
     </TracksFormContainer>
   )
@@ -366,3 +371,59 @@ const TracksFormContainer = styled.section`
 }
 
  `
+const ButtonAdd = styled.button`
+background: var( --background-button-shade-color);
+width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-size:4rem;
+  padding-top: 0.5rem;
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+   background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+.front {
+  display: block;
+  position: relative;
+  padding: 8px 25px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  color: #fafafa;
+  background:var(--background-button-color);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+&:hover {
+  filter: brightness(110%);
+
+}
+&:hover .front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+&:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+`

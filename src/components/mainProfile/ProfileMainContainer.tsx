@@ -6,13 +6,14 @@ import { TfiPencil } from "react-icons/tfi";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../modal/Modal";
 import { useEffect } from "react";
-import { ArtistCreateForm, TracksCreateForm,AlbumCreateForm } from "..";
+import {  UserForms,ArtistCreateForm} from "..";
 import styled from "styled-components";
 
 export const ProfileMainContainer = () => {
   const { user, getAccessTokenSilently } = useAuth0();
   const { userData, userFetch } = useUserContext();
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
+  const [isOpenModal2, openModal2, closeModal2] = useModal(false);
 
   useEffect(() => {
     if (!userData) {
@@ -23,14 +24,11 @@ export const ProfileMainContainer = () => {
   return (
     <>
       <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <TracksCreateForm closeModal={closeModal1} />
+        <UserForms closeModal1={closeModal1} />
       </Modal>
-      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <ArtistCreateForm closeModal={closeModal1} />
-      </Modal> */}
-      {/* <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
-        <AlbumCreateForm closeModal={closeModal1} />
-      </Modal> */}
+      <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
+        <ArtistCreateForm closeModal={closeModal2} />
+      </Modal>
       <ProfileMainContainerStyles>
         <ProfileIconsContainer>
           <Boop rotation={20} timing={200}>
@@ -54,12 +52,12 @@ export const ProfileMainContainer = () => {
           <span className="profile__span-email">{userData?.userEmail}</span>
           <h3 className="profile__h3-name">{userData?.userName}</h3>
           <div className="profile__numbers-container">
-            <span className="profile__span-numbers">778</span>
-            <span className="profile__span-numbers">243</span>
-          </div>
-          <div className="profile__followers-container">
-            <span className="profile__span-followers">Followers</span>
-            <span className="profile__span-followers">followed</span>
+          <ButtonAdd onClick={openModal2}>
+			<span className="shadow"></span>
+			<span className="front">
+				<strong className='font-size'>ADD Artist</strong>
+			</span>
+		</ButtonAdd>
           </div>
         </div>
       </ProfileMainContainerStyles>
@@ -184,3 +182,60 @@ const ProfileIconEditContainer = styled.div`
     color: rgba(255, 255, 255, 1);
   }
 `;
+
+const ButtonAdd = styled.button`
+background: var( --background-button-shade-color);
+width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-size:4rem;
+  padding-top: 0.5rem;
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+   background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+.front {
+  display: block;
+  position: relative;
+  padding: 8px 25px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  color: #fafafa;
+  background:var(--background-button-color);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+&:hover {
+  filter: brightness(110%);
+
+}
+&:hover .front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+&:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+} 
+`

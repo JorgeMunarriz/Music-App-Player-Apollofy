@@ -1,21 +1,22 @@
 import styled from "styled-components";
-import { useState, FC } from "react";
+import { useState, FC, } from 'react'
 import { AlertMessageSuccess, LoaderForm } from "../../..";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
-import { useGenresContext } from "../../../../context";
 import { MultiSelect } from "react-multi-select-component";
-MultiSelect
+import { useGenresContext, useUserContext } from "../../../../context";
+
+
 interface userFormModal {
   closeModal: () => void;
 }
 
-interface CreateArtistType {
-  artistName: string;
-  artistImage: string;
-  popularity: number;
-  albumId: string[];
-  genreId: string[];
+interface CreatePlaylistType {
+  playlistName: string,
+  playlistImage: string;
+  playlistCreatedById: string;
+  genreId: string[],
+  trackId: string[],
 }
 
 interface Option {
@@ -23,79 +24,84 @@ interface Option {
   value: string;
 }
 
-export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { createNewArtist, albums } = useUserMusicContext();
+export const PlaylistCreateForm: FC<userFormModal> = ({ closeModal }) => {
+  const { createNewPlaylist, tracks} = useUserMusicContext();
+  const {userData} = useUserContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
   const form = useForm({
     defaultValues: {
-      artistName: "",
-      artistImage: "",
-      popularity: 0,
-      albumId: [],
+      playlistName: '',
+      playlistImage: '',
+      playlistCreatedById: userData?.userEmail ?? '',
       genreId: [],
+      trackId: [],
     },
   });
 
   const { register, handleSubmit, formState, control } = form;
   const { errors } = formState;
 
-  const popularityNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const onSubmit = async (newArtistData: CreateArtistType) => {
+  const onSubmit: SubmitHandler<CreatePlaylistType> = async (newPlaylistData: CreatePlaylistType) => {
     try {
+
       setIsLoading(true);
       const formData = new FormData();
-      formData.append("artistName", newArtistData.artistName);
-      formData.append("artistImage", newArtistData.artistImage[0]);
-      formData.append("popularity", newArtistData.popularity.toString());
+      formData.append('playlistName', newPlaylistData.playlistName);
+      formData.append('playlistCreatedById', newPlaylistData.playlistCreatedById);
+      formData.append('playlistImage', newPlaylistData.playlistImage[0]);
 
-      if (Array.isArray(newArtistData.albumId)) {
-        for (const album of newArtistData.albumId as unknown as Option[]) {
-          formData.append("albumId", album.value);
+      if (Array.isArray(newPlaylistData.trackId)) {
+        for (const track of newPlaylistData.trackId as unknown as Option[]) {
+          formData.append("trackId", track.value)
         }
       }
 
-      if (Array.isArray(newArtistData.genreId)) {
-        for (const genre of newArtistData.genreId as unknown as Option[]) {
+      if (Array.isArray(newPlaylistData.genreId)) {
+        for (const genre of newPlaylistData.genreId as unknown as Option[]) {
           formData.append("genreId", genre.value);
         }
       }
-      await createNewArtist(formData);
+console.log(newPlaylistData)
+      await createNewPlaylist(userData?.userEmail ?? '',formData);
 
       setIsSuccess(true);
       setTimeout(() => {
         setIsSuccess(false);
-        closeModal();
-      }, 4000);
+        closeModal()
+      }, 4000)
 
     } catch (error) {
-      console.error("Error saving artist:", error);
+      console.error('Error saving playlist:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <ArtistsFormContainer>
+    <TracksFormContainer >
       {isLoading && <LoaderForm />}
-      {isSuccess && <AlertMessageSuccess>artist create successfully</AlertMessageSuccess>}
-      <header>Create Artist</header>
+      {isSuccess && <AlertMessageSuccess>
+        playlist create successfully
+      </AlertMessageSuccess>}
+      <header>Create Playlist</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
-          <label htmlFor="artistName">Name</label>
+          <label htmlFor='playlistName'>Name</label>
           <input
-            {...register("artistName", {
-              required: "Name is required",
+            {...register('playlistName', {
+              required: 'Name is required',
             })}
-            placeholder="Enter full Name"
-            type="text"
-            id="artistName"
+            placeholder='Enter full Name'
+            type='text'
+            id='playlistName'
           />
-          {errors.artistName && <span className="error_input">{errors.artistName.message}</span>}
+          {errors.playlistName && <span className="error_input">{errors.playlistName.message}</span>}
         </div>
-        <div className="form__gender_box">
+        <div className="gender_box">
           <Controller
             name="genreId"
             control={control}
@@ -111,32 +117,22 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
 
             )}
           />
-          {errors.genreId && <span className="error_input">At least one genre is required</span>}
+
           <Controller
-            name="albumId"
+            name="trackId"
             control={control}
             render={({ field }) => (
               <MultiSelect
-                options={albums.map((album) => ({ label: album.albumName, value: album.id }))}
-                labelledBy="Select Album"
+                options={tracks.map((track) => ({ label: track.trackName, value: track.id }))}
+                labelledBy="Select Track"
                 {...field}
                 overrideStrings={{
-                  selectSomeItems: 'Select Album',
+                  selectSomeItems: 'Select Track',
                 }}
               />
-
             )}
           />
-          {errors.albumId && <span className="error_input">At least one album is required</span>}
-          <select className="select" {...register("popularity")} id="popularity">
-            <option value="">Select Popularity</option>
-            {popularityNumbers.map((popularity) => (
-              <option key={popularity} value={popularity}>
-                {popularity}
-              </option>
-            ))}
-          </select>
-          {errors.popularity && <span className="error_input">select popularity</span>}
+          {errors.trackId && <span className="error_input">At least one track is required</span>}
         </div>
         <div className="input_box description">
           <label className="label_file" htmlFor="image">
@@ -147,18 +143,23 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
             id="image"
             type="file"
             accept="image/*"
-            {...register("artistImage", {
+            {...register("playlistImage", {
               required: "Please choose a file",
             })}
           />
         </div>
-        <button className="form_button-Submit" type="submit">ADD artist</button>
+        <ButtonAdd>
+			<span className="shadow"></span>
+			<span className="front">
+				<strong className='font-size'>ADD Playlist</strong>
+			</span>
+		</ButtonAdd>
       </form>
-    </ArtistsFormContainer>
-  );
-};
+    </TracksFormContainer>
+  )
+}
 
-const ArtistsFormContainer = styled.section`
+const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
   background: linear-gradient(to right ,hsl(300, 100%, 10%), #000);
@@ -188,7 +189,7 @@ const ArtistsFormContainer = styled.section`
   padding-top: 0.3rem;
 }
 
-.form :where(.input_box input) {
+.form :where(.input_box input, .select_box) {
   position: relative;
   height: 35px;
   width: 100%;
@@ -211,8 +212,11 @@ const ArtistsFormContainer = styled.section`
   column-gap: 15px;
 }
 
-.form__gender_box {
+.form .gender_box {
   color: #f5f4e8;
+  width: 100%;
+  padding-top: 1rem;
+  gap: 0.8rem;
 }
 
 .form :where(.gender_option, .gender) {
@@ -249,23 +253,19 @@ const ArtistsFormContainer = styled.section`
   cursor: pointer;
 }
 
-  .select {
+
+.select_box select {
+  height: 100%;
   width: 100%;
-  height:100%;
-  padding: 1.2rem 0;
-  border-radius: 5px;
-  border:1px solid #ccc;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: hsl(0, 100%, 0.9803921568627451%);
-  background-color:  rgb(134, 129, 134);
-  cursor: pointer;
-  & option {
-    cursor: pointer;
-  }
-  }
+  outline: none;
+  border: none;
+  color: #808080;
+  font-size: 1rem;
+  background: #FCEDDA;
+}
 
 .form_button-Submit {
+  /* height: 40px; */
   padding: 1.2rem 0;
   width: 100%;
   color: #000;
@@ -291,10 +291,6 @@ const ArtistsFormContainer = styled.section`
   cursor: pointer;
 }
 
-.form__gender_box {
-
-}
-
 .inpdut[type="file"] {
   padding: 10px;
   margin-bottom: 1rem;
@@ -305,7 +301,7 @@ const ArtistsFormContainer = styled.section`
   cursor: pointer;
 }
 
-  .rmsc {
+.rmsc {
   --rmsc-main: #4285f4;
   --rmsc-hover: #dbe1e7;
   --rmsc-selected: #275f01c8;
@@ -353,7 +349,9 @@ const ArtistsFormContainer = styled.section`
     border: 1px solid var(--rmsc-border);
     border-radius: var(--rmsc-radius);
 }
-`;
+
+ `
+
 const ButtonAdd = styled.button`
 background: var( --background-button-shade-color);
 width: 100%;

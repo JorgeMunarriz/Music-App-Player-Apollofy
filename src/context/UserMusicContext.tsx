@@ -1,8 +1,8 @@
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from "react";
-import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet, 
+import { userPlaylistsCreatedGet, userPlaylistsLikedGet, userAlbumsGet,
   userTracksGet, createTrack, createArtist, createAlbum,artistGet } from "../api/user.fetch";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAllPlaylist } from "../api/playlist.fetch";
+import { getAllPlaylist,createPlaylist } from "../api/playlist.fetch";
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
@@ -14,6 +14,7 @@ interface UserMusicContextType {
   artistCreated: CreateArtistType[];
   artists: ArtistInterface[];
   tracksCreated: CreateTrackType[];
+  newPlaylistCreated: PlaylistCreateInteface[];
   handleUserPlaylistsCreated: (userEmail: string) => Promise<void>;
   handleUserPlaylistsLiked: (userEmail: string) => Promise<void>;
   handlePlaylistsAll: () => Promise<void>;
@@ -22,6 +23,7 @@ interface UserMusicContextType {
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
   createNewArtist: (formData: FormData) => Promise<Response>;
   createNewAlbum: (formData: FormData) => Promise<Response>;
+  createNewPlaylist: (userEmail: string,formData: FormData) => Promise<Response>;
   getArtists: () => Promise<Response>;
 }
 interface PlaylistInterface {
@@ -36,6 +38,14 @@ interface PlaylistInterface {
   playlistCreatedById: string[];
   genreId: string[];
   genre: [{ genreName: string; id: string }];
+}
+
+interface PlaylistCreateInteface {
+  playlistName: string,
+  playlistImage: string;
+  playlistCreatedById: string;
+  genreId: string[],
+  trackId: string[],
 }
 interface AlbumInterface {
   id: string;
@@ -119,6 +129,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const [tracksCreated, setTracksCreated] = useState<CreateTrackType[]>([]);
   const [artistCreated, setArtistCreated] = useState<CreateArtistType[]>([]);
   const [albumCreated, setAlbumCreated] = useState<albumCreateInteface[]>([]);
+  const [newPlaylistCreated, setPlaylistCreated] = useState<PlaylistCreateInteface[]>([]);
   const userEmail = user?.email || "";
 
   useEffect(() => {
@@ -224,12 +235,23 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
+  const createNewPlaylist = async (userEmail: string,formData: FormData): Promise<Response> => {
+    try {
+      const response = await createPlaylist(userEmail,formData, getAccessTokenSilently);
+      setPlaylistCreated(response);
+      return response;
+    } catch (error) {
+      console.error("Error getting albums:", error);
+      throw error;
+    }
+  };
  
 
   return (
     <UserMusicContext.Provider
       value={{
         playlistsCreated,
+        newPlaylistCreated,
         playlistsLiked,
         playlistsAll,
         albums,
@@ -247,6 +269,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
         createNewArtist,
         getArtists,
         createNewAlbum,
+        createNewPlaylist
       }}>
       {children}
     </UserMusicContext.Provider>
