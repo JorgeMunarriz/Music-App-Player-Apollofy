@@ -103,7 +103,6 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
                     const filterTrackId = newUserData.tracksId.filter(trackId => trackId !== id)
                     newUserData.tracksId = filterTrackId
                 } else if (index === -1 && newUserData) {
-                    console.log('entra al push')
                     newUserData.tracksId.push(id)
                 }
                 setUserData(newUserData)

@@ -7,7 +7,7 @@ export const getAllTracks = async (url: string): Promise<any> => {
     const data = await tracks.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -24,7 +24,7 @@ export const trackPatch = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body:trackData,
+      body: trackData,
     });
     if (response.ok) {
       const data = await response.json();

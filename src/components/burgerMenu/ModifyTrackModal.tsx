@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import {useState, FC} from 'react';
-import {useForm, Controller} from 'react-hook-form';
-import {useGenresContext, useUserContext} from '../../context';
-import {useUserMusicContext} from '../../context/UserMusicContext';
-import {MultiSelect} from 'react-multi-select-component';
-import {AlertMessageSuccess, LoaderForm} from '..';
+import { useState, FC } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useGenresContext, useUserContext } from '../../context';
+import { useUserMusicContext } from '../../context/UserMusicContext';
+import { MultiSelect } from 'react-multi-select-component';
+import { AlertMessageSuccess, LoaderForm } from '..';
 
 interface trackFormModal {
 	closeModal2: () => void;
@@ -123,7 +123,7 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, id, trackName
 					<Controller
 						name="genreId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
 								options={allGenres.map((genre) => ({label: genre.genreName, value: genre.id}))}
 								
@@ -139,9 +139,9 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, id, trackName
 					<Controller
 						name="artistId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
-								options={artists.map((artist) => ({label: artist.artistName, value: artist.id}))}
+								options={artists.map((artist) => ({ label: artist.artistName, value: artist.id }))}
 								labelledBy="Select Artist"
 								{...field}
 								overrideStrings={{
@@ -153,9 +153,9 @@ export const ModifyTrackModal: FC<trackFormModal> = ({closeModal2, id, trackName
 					<Controller
 						name="albumId"
 						control={control}
-						render={({field}) => (
+						render={({ field }) => (
 							<MultiSelect
-								options={albums.map((album) => ({label: album.albumName, value: album.id}))}
+								options={albums.map((album) => ({ label: album.albumName, value: album.id }))}
 								labelledBy="Select Album"
 								{...field}
 								overrideStrings={{

@@ -39,149 +39,550 @@ const CardForAlbum = ({ id,
           <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
         </div>
       </Link>
-
-      <button className="addToLike cardForPlaylistPlayer__follow-btn follow_btn" onClick={() => handleLiked(id)} >
+      <div className="addToLike" onClick={() => handleLiked(id)} >
         {isLiked ? <BsHeartFill className="addToLike__fill-heart" /> : <BsHeart className='addToLike__out-heart' />}
-      </button>
-
+      </div>
     </CardForAlbumStyles>
   );
 };
 
 const CardForAlbumStyles = styled.div`
+display: flex;
+position: relative;
+
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
   display: flex;
-  box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
-  background-color: rgba(50, 50, 50, 0.4);
-  border-radius: 0rem 1rem 1rem 0rem;
-  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  /* position: relative; */
   gap: 1rem;
-  transition: all 0.3s;
-  border: 1px solid rgba(66, 66, 66, 0.4);
-  margin: 10px;
-  &:hover {
-    background-color: rgba(100, 100, 100, 0.4);
-    cursor: pointer;
-  }
+  overflow-y: auto;
+  min-height: 120px;
 
-  .cardForAlbum {
-    display: flex;
+  &__header{
     position: relative;
-    gap: 1rem;
-    overflow-y: auto;
-    min-height: 120px;
-
-    &__header{
-      position: relative;
-      width: 10vw;
-      height: 120px;
-
-      overflow: hidden;
-      &_img {
-      position: absolute;
-      width: 120px;
-      height: 169px;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    }
-    
-    &__body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      overflow: hidden;
-      padding: 1vh;
-      &_title {
-        color: #fff;
-        &-h3 {
-          font-size: 1.5vw;
-          color: var(--color-text-pink);
-        }
-        &-h4 {
-          font-size: 1vw;
-          color: var(--color-text-gray);
-        }
-        &-h5 {
-          font-size: 0.75vw;
-          color: rgba(255, 255, 255, 0.7)
-        }
+    width: 10vw;
+    height: 120px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 1.5vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 0.75vw;
+        color: rgba(255, 255, 255, 0.7);
       }
     }
   }
-  .addToLike {
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    top: 0.5rem;
-    right: 0.5rem;
-    z-index: 10;
+}
+.addToLike {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
     cursor: grabbing;
-    &__fill-heart {
-      font-size: 3rem;
-      color: var(--color-text-gray);
-      border: none;
-      opacity: 0.9;
-    }
-    &__out-heart {
-      font-size: 3rem;
-      color: var(--color-text-gray);
-      border: none;
-      opacity: 0.9;
-    }
   }
-  @media (${breakpoints.min}px <= width <= ${breakpoints.tabletMax}px) {
-   
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 97%;
-    height: 79%;
-    .cardForAlbum {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 300px;
-      width: 100%;
-      margin: 20px;
-      /* padding: 20px; */
-    }
-    .cardForAlbum__header{
-      width: 100%;
-      height: 90%;
-    }
-    .cardForAlbum__header_img{
-      width: 100%;
-    height: 180px;
-    align-items: center;
+  &__out-heart {
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+
+
+@media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
+display: flex;
+position: relative;
+
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
+  gap: 1rem;
+
+  &__header{
+    position: relative;
+    width: 70px;
+    height: 110px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 100%;
+    height: auto;
     object-fit: cover;
-    }
-        
-   .cardForAlbum__body {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          overflow: hidden;
-          margin-top: 10px;
-          &_title {
-            color: #fff;
-            &-h3 {
-              font-size: 15px;
-              color: var(--color-text-pink);
-            }
-            &-h4 {
-              font-size: 20px;
-              color: var(--color-text-gray);
-            }
-            &-h5 {
-              font-size:10px;
-              color: rgba(255, 255, 255, 0.7)
-            }
-          }
-    }
-
-   
+    opacity: 0.8;
   }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 2.5vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1.5vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 1vw;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+.addToLike {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 1.5rem;
+    align-items: end;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+  &__out-heart {
+    font-size: 1.5rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+}
+  
+@media (${breakpoints.mobileMax}px < width <= ${breakpoints.tabletMax}px) {
+display: flex;
+position: relative;
 
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
+  gap: 1rem;
+
+  &__header{
+    position: relative;
+    width: 100px;
+    height: 120px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 2vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1.5vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 1vw;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+.addToLike {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 2rem;
+    align-items: end;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+  &__out-heart {
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+}
+
+@media (${breakpoints.tabletMax}px < width <= ${breakpoints.laptopsMax}px) {
+display: flex;
+position: relative;
+
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  /* position: relative; */
+  gap: 1rem;
+  overflow-y: auto;
+  min-height: 120px;
+
+  &__header{
+    position: relative;
+    width: 10vw;
+    height: 120px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 1.5vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 0.75vw;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+.addToLike {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+  &__out-heart {
+    font-size: 2rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+}
+
+@media (${breakpoints.laptopsMax}px < width <= ${breakpoints.desktopMax}px) {
+display: flex;
+position: relative;
+
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  /* position: relative; */
+  gap: 1rem;
+  overflow-y: auto;
+  min-height: 120px;
+
+  &__header{
+    position: relative;
+    width: 10vw;
+    height: 120px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 1.5vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 0.75vw;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+.addToLike {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 2.5rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+  &__out-heart {
+    font-size: 2.5rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+}
+
+@media (width > ${breakpoints.desktopMax}px) {
+display: flex;
+position: relative;
+
+padding: 0.25rem;
+gap: 1rem;
+/* margin: 10px; */
+
+box-shadow: 12px 13px 15px 6px rgba(0, 0, 0, 0.8), 29px 36px 15px -3px rgba(0, 0, 0, 0.1);
+background-color: rgba(50, 50, 50, 0.4);
+border: 1px solid rgba(66, 66, 66, 0.4);
+transition: all 0.3s;
+&:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+  cursor: pointer;
+}
+
+.cardForAlbum {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-start;
+  /* position: relative; */
+  gap: 1rem;
+  overflow-y: auto;
+  min-height: 120px;
+
+  &__header{
+    position: relative;
+    width: 10vw;
+    height: 120px;
+    border-radius: 0rem 0rem 0rem 0rem;
+    overflow: hidden;
+    &_img {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  }
+  
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    padding: 1vh;
+    &_title {
+      color: #fff;
+      &-h3 {
+        font-size: 1.5vw;
+        color: var(--color-text-pink);
+      }
+      &-h4 {
+        font-size: 1vw;
+        color: var(--color-text-gray);
+      }
+      &-h5 {
+        font-size: 0.75vw;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+.addToLike {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  &__fill-heart {
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+  &__out-heart {
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    border: none;
+    opacity: 0.9;
+    cursor: grabbing;
+  }
+}
+}
 `;
 
 

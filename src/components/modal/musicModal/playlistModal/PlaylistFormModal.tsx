@@ -25,8 +25,8 @@ interface Option {
 }
 
 export const PlaylistCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { createNewPlaylist, tracks} = useUserMusicContext();
-  const {userData} = useUserContext();
+  const { createNewPlaylist, tracks } = useUserMusicContext();
+  const { userData } = useUserContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -65,8 +65,7 @@ export const PlaylistCreateForm: FC<userFormModal> = ({ closeModal }) => {
           formData.append("genreId", genre.value);
         }
       }
-console.log(newPlaylistData)
-      await createNewPlaylist(userData?.userEmail ?? '',formData);
+      await createNewPlaylist(userData?.userEmail ?? '', formData);
 
       setIsSuccess(true);
       setTimeout(() => {
@@ -149,11 +148,11 @@ console.log(newPlaylistData)
           />
         </div>
         <ButtonAdd>
-			<span className="shadow"></span>
-			<span className="front">
-				<strong className='font-size'>ADD Playlist</strong>
-			</span>
-		</ButtonAdd>
+          <span className="shadow"></span>
+          <span className="front">
+            <strong className='font-size'>ADD Playlist</strong>
+          </span>
+        </ButtonAdd>
       </form>
     </TracksFormContainer>
   )
