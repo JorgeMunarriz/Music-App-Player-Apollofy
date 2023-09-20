@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react'
 import { PLAYER } from "../../../config/routes/paths";
 import styled from "styled-components";
 import { breakpoints } from "../../../styles/breakpoints";
 import { useQueuePlayerContext } from "../../../context/QueuePlayerContext";
-import { BurgerMenu } from "../../burgerMenu/BurgerMenu";
-import { DropdownMenu } from "../../burgerMenu/DropdownMenu";
+import { DropdownMenu } from "../../modal/modalUpdateTracks/DropdownMenu";
 
 interface TrackProps {
   id: string;
@@ -35,11 +33,6 @@ interface ArtistProps {
 
 const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt, artistId, artist, trackUpdatedAt, genre, genreId, albumId }: TrackProps) => {
   const { handleCurrentTrackById } = useQueuePlayerContext();
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
-
 
   return (
     <TracksForLibraryStyles key={id}>
@@ -53,12 +46,23 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
             {artist ? <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName).join(", ") : ""}</h4> : ""}
             <h4 className="cardForTrack__body_title-createdAt">{trackCreatedAt}</h4>
           </div>
-          {/* <h5 className="cardForTrack__body_title-h5">Reproductions: {reproductions}</h5> */}
         </div>
       </Link>
-      <div>
-        <BurgerMenu onClick={handleToggleMenu} />
-        <DropdownMenu isOpen={isOpen} id={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId} />
+      <div className="cardForTrack__burguerBtn">
+        <DropdownMenu
+          id={id}
+          trackName={trackName}
+          trackImage={trackImage}
+          trackCreatedAt={trackCreatedAt}
+          trackUpdatedAt={trackUpdatedAt}
+          trackLikedById={[]}
+          trackCreatedById={[]}
+          genre={genre}
+          genreId={genreId}
+          artistId={artistId}
+          trackUrl={trackUrl}
+          albumId={albumId}
+        />
       </div>
     </TracksForLibraryStyles>
   );
@@ -66,6 +70,7 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
 
 const TracksForLibraryStyles = styled.div`
   display: flex;
+  justify-content: space-between;
   padding: 0.25rem;
   gap: 1rem;
   background-color: rgba(50, 50, 50, 0.4);
@@ -84,33 +89,45 @@ const TracksForLibraryStyles = styled.div`
     min-height: 70px;
     gap: 1rem;
     &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      overflow: hidden;
+      padding: 1vh;
+      
+      &_title {
+        color: #fff;
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        overflow: hidden;
-        padding: 1vh;
+        align-items: flex-end;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        
         &-trackName {
-          font-size: 1.5vw;
+          font-size: 3rem;
           color: var(--color-text-pink);
         }
-
-        &_title {
-          color: #fff;
-          display: flex;
-          align-items: flex-end;
-          justify-content: flex-start;
-          gap: 0.5rem;
-
-          &-artistName {
-            font-size: 1vw;
-            color: var(--color-text-gray);
-          }
-          &-createdAt {
-            font-size: 1vw;
-            color: rgba(255, 255, 255, 0.7);
-          }
+        &-artistName {
+          font-size: 0.75rem;
+          color: var(--color-text-gray);
+        }
+        &-createdAt {
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.7);
         }
       }
+    }
+    &__burguerBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-right: 3rem;
+      & button {
+        & svg {
+          color: #fff;
+        }
+      }
+    }
   }
 
   @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
@@ -135,17 +152,17 @@ const TracksForLibraryStyles = styled.div`
         justify-content: space-around;
         overflow: hidden;
         padding: 1vh;
-        &-trackName {
-          font-size: 1.5vw;
-          color: var(--color-text-pink);
-        }
-
+        
         &_title {
           color: #fff;
           display: flex;
           align-items: flex-end;
           justify-content: flex-start;
           gap: 0.5rem;
+          &-trackName {
+            font-size: 1.5vw;
+            color: var(--color-text-pink);
+          }
 
           &-artistName {
             font-size: 1vw;

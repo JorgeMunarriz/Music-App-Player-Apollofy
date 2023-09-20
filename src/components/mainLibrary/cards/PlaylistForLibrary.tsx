@@ -1,4 +1,4 @@
-import { Link, json } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PLAYER } from '../../../config/routes/paths';
 import styled from 'styled-components';
 import { breakpoints } from '../../../styles/breakpoints';
@@ -7,14 +7,14 @@ interface PlaylistProps {
   id: string,
   playlistName: string,
   playlistImage: string,
-  // playlistCreatedAt: string,
-  // playlistUpdatedAt: string,
   trackId: string[],
-  // playlistLikedById: string[],
   playlistCreatedById: string[],
-  // genreId: string[],
-  // genre: [{ genreName: string, id: string }],
+  genre: GenresProps[],
   artist: ArtistProps[]
+}
+interface GenresProps {
+  id: string,
+  genreName: string,
 }
 interface ArtistProps {
   id: string;
@@ -27,10 +27,7 @@ interface ArtistProps {
 }
 
 
-const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist }: PlaylistProps) => {
-
-  // const genres = genre.map(object => object.genreName);
-  // const genresNames = genres.join(', ');
+const PlaylistsForLibrary = ({ id, playlistName, playlistImage, trackId, artist, genre }: PlaylistProps) => {
 
   return (
     <PlaylistsForLibraryStyles key={id}>
@@ -42,7 +39,7 @@ const PlaylistsForLibrary = ({ id, playlistName, playlistImage, playlistCreatedB
           <h3 className="cardForTrack__body_title-playlistName">{playlistName}</h3>
           <div className="cardForTrack__body_title">
             <h4 className="cardForTrack__body_title-artistName">{artist ? artist.map((art) => art.artistName).join(", ") : null}</h4>
-            {/* <h4 className="cardForTrack__body_title-createdAt">{genresNames}</h4> */}
+            <h4 className="cardForTrack__body_title-genreName">{genre ? genre.map((genre) => genre.genreName).join(", ") : null}</h4>
           </div>
         </div>
       </Link>
@@ -109,8 +106,8 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 3vw;
           color: var(--color-text-gray);
         }
-        &-h5 {
-          font-size: 0.75vw;
+        &-genreName {
+          font-size: 1rem;
           color: rgba(255, 255, 255, 0.7)
         }
       }
@@ -153,8 +150,8 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 2.5vw;
           color: var(--color-text-gray);
         }
-        &-h5 {
-          font-size: 0.75vw;
+        &-genreName {
+          font-size: 1.5rem;
           color: rgba(255, 255, 255, 0.7)
         }
       }
@@ -198,8 +195,8 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 2.5vw;
           color: var(--color-text-gray);
         }
-        &-h5 {
-          font-size: 0.75vw;
+        &-genreName {
+          font-size: 2rem;
           color: rgba(255, 255, 255, 0.7)
         }
       }
@@ -242,8 +239,8 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 2vw;
           color: var(--color-text-gray);
         }
-        &-h5 {
-          font-size: 0.75vw;
+        &-genreName {
+          font-size: 2rem;
           color: rgba(255, 255, 255, 0.7)
         }
       }
@@ -287,8 +284,8 @@ const PlaylistsForLibraryStyles = styled.div`
           font-size: 2vw;
           color: var(--color-text-gray);
         }
-        &-h5 {
-          font-size: 0.75vw;
+        &-genreName {
+          font-size: 2rem;
           color: rgba(255, 255, 255, 0.7)
         }
       }
