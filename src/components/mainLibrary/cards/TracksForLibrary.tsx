@@ -10,15 +10,18 @@ import { DropdownMenu } from "../../burgerMenu/DropdownMenu";
 interface TrackProps {
   id: string;
   trackName: string;
-  trackUrl: string;
   trackImage: string;
   trackCreatedAt: string;
+  trackUpdatedAt: string;
+  trackId: string[];
+  trackLikedById: string[];
+  trackCreatedById: string[];
+  genre: [{ genreName: string }];
+  genreId: string[];
   artist: ArtistProps[];
-  // playlistId: string[];
-  // trackLikedBy: string[];
-  // albumId: string[];
-  // artistId: string[];
-  // genreId: string[]
+  artistId: string[];
+  trackUrl: string;
+  albumId: string[];
 }
 interface ArtistProps {
   id: string;
@@ -30,7 +33,7 @@ interface ArtistProps {
   trackId: string[];
 }
 
-const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }: TrackProps) => {
+const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,artistId, artist, trackUpdatedAt, genre, genreId, albumId,  }: TrackProps) => {
   const { handleCurrentTrackById } = useQueuePlayerContext();
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleMenu = () => {
@@ -55,7 +58,7 @@ const TracksForLibrary = ({ id, trackName, trackUrl, trackImage, trackCreatedAt,
       </Link>
       <div>
       <BurgerMenu onClick={handleToggleMenu}/>
-      <DropdownMenu isOpen={isOpen} trackId={id}/>
+      <DropdownMenu isOpen={isOpen} trackId={id} trackName={trackName} trackImage={trackImage} trackCreatedAt={trackCreatedAt} trackUpdatedAt={trackUpdatedAt} trackLikedById={[]} trackCreatedById={[]} genre={genre} genreId={genreId} artistId={artistId} trackUrl={trackUrl} albumId={albumId}/>
       </div>
     </TracksForLibraryStyles>    
   );

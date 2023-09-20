@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styled from "styled-components";
 import { trackDelete } from '../../api/track.service';
 import { AlertMessageSuccess, LoaderForm } from '..';
+import { useUserContext } from '../../context';
 
 interface ModalConfirmationProps {
     onClose: () => void;
@@ -37,22 +38,21 @@ interface ModalConfirmationProps {
   
   }
 
-export const DeleteModal:FC<ModalConfirmationProps> = ({ onClose, trackId }) => {
-const { tracks } = useUserMusicContext()
+export const DeleteTrackModal:FC<ModalConfirmationProps> = ({ onClose, trackId }) => {
+  const {userData} =   useUserContext()   
+const { tracks, handleUserTracks } = useUserMusicContext()
 const { getAccessTokenSilently, logout } = useAuth0();
 const [isLoading, setIsLoading] = useState(false);
 const [isSuccess, setIsSuccess] = useState(false);
-const [newTracks, setNewTracks] = useState<TrackInterface[]>([])
 
 const handleDelete = async()=> {
     try{
         setIsLoading(true);
        await trackDelete(trackId, getAccessTokenSilently)
-      
+       await handleUserTracks(userData?.userEmail ?? "")
           setIsSuccess(true);
               setTimeout(() => {
                   setIsSuccess(false);
-                  setNewTracks(tracks)
                   onClose()
               }, 2000)
       
