@@ -50,7 +50,7 @@ export const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    const { artistCreated,tracks } = useUserMusicContext();
+    const { albums,artistCreated,tracks } = useUserMusicContext();
     const [userData, setUserData] = useState<userData | null>(null);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
             }
             userGetLauncher();
         }
-    }, [isAuthenticated,artistCreated,tracks ])
+    }, [isAuthenticated,albums,artistCreated,tracks ])
 
     const createUser = async (user: User | undefined) => {
         try {
