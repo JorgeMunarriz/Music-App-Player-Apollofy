@@ -10,15 +10,15 @@ function App() {
 
 	return (
 		<>
-			<UserProvider>
 				<UserMusicProvider>
+			<UserProvider>
 					<GenresProvider>
 							<QueuePlayerProvider>
 								<Router />
-							</QueuePlayerProvider>						
+							</QueuePlayerProvider>
 					</GenresProvider>
-				</UserMusicProvider>
 			</UserProvider>
+				</UserMusicProvider>
 
 		</>
 	);

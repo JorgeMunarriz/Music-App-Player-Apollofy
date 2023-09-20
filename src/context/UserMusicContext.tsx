@@ -6,7 +6,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { createPlaylist, getAllPlaylist } from "../api/playlist.fetch";
 import { trackDelete, trackPatch } from "../api/track.service";
-import { useUserContext } from ".";
+
 
 interface UserMusicContextType {
   playlistsCreated: PlaylistInterface[];
@@ -29,7 +29,7 @@ interface UserMusicContextType {
   createUserTracks: (userId: string, trackData: FormData) => Promise<Response>;
   modifyTrack: (trackId: string, trackData: FormData) => Promise<Response>;
   createNewArtist: (formData: FormData) => Promise<Response>;
-  createNewAlbum: (formData: FormData) => Promise<Response>;
+  createNewAlbum: (formData: FormData,userId:string) => Promise<Response>;
   createNewPlaylist: (userEmail: string, formData: FormData) => Promise<Response>;
   getArtists: () => Promise<Response>;
 }
@@ -144,7 +144,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   const [albumCreated, setAlbumCreated] = useState<albumCreateInteface[]>([]);
   const [newPlaylistCreated, setPlaylistCreated] = useState<PlaylistCreateInteface[]>([]);
   const userEmail = user?.email || "";
-  const { userData } = useUserContext();
+
 
   useEffect(() => {
     if (isAuthenticated && userEmail) {
@@ -193,6 +193,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     try {
       const response = await userAlbumsGet(getAccessTokenSilently);
       setAlbums(response);
+      return response
     } catch (error) {
       console.error("Error getting albums:", error);
       throw error;
@@ -224,6 +225,7 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
     try {
       const response = await createTrack(userId, trackData, getAccessTokenSilently);
       setTracksCreated(response);
+      handleUserTracks()
       return response;
     } catch (error) {
       console.error("Error getting tracks:", error);
@@ -260,9 +262,11 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
       throw error;
     }
   };
-  const createNewAlbum = async (formData: FormData): Promise<Response> => {
+
+  
+  const createNewAlbum = async (formData: FormData,userId:string): Promise<Response> => {
     try {
-      const response = await createAlbum(formData, getAccessTokenSilently);
+      const response = await createAlbum(formData, userId, getAccessTokenSilently);
       setAlbumCreated(response);
       return response;
     } catch (error) {
@@ -272,8 +276,9 @@ export const UserMusicProvider: FC<{ children: ReactNode }> = ({ children }) => 
   };
   const createNewPlaylist = async (userEmail: string, formData: FormData): Promise<Response> => {
     try {
-      const response = await createPlaylist(userEmail, formData, getAccessTokenSilently);
+      const response = await createPlaylist(userEmail, formData, getAccessTokenSilently)
       setPlaylistCreated(response);
+      handleUserPlaylistsCreated(userEmail)
       return response;
     } catch (error) {
       console.error("Error getting albums:", error);
