@@ -1,5 +1,7 @@
-import { FC, ReactNode, createContext, useContext, useState } from "react";
+import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { useUserMusicContext } from "./UserMusicContext";
+import { useAuth0 } from "@auth0/auth0-react";
+import { loadNextTracksFromLS, saveNextTracksToLS } from "../utils/nextTracksToLS";
 
 
 interface QueuePlayerContextType {
@@ -43,10 +45,19 @@ const QueuePlayerContext = createContext<QueuePlayerContextType | undefined>(und
 
 export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
+    const { user, isAuthenticated } = useAuth0();
     const { tracks } = useUserMusicContext();
     const [prevTracks, setPrevTracks] = useState<TrackInterface[]>([]);
     const [currentTrack, setCurrentTrack] = useState<TrackInterface | undefined>();
     const [nextTracks, setNextTracks] = useState<TrackInterface[]>([]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            setNextTracks(loadNextTracksFromLS(user?.email))
+        }
+
+    }, [isAuthenticated])
+
 
     const handleCurrentTrackById = (id: string) => {
         const incomingTrack = tracks.find(track => track.id === id);
@@ -55,14 +66,17 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         }
     }
     const handleNewTrackInList = (id: string) => {
-        const incomingTrack = tracks.find(track => track.id === id)
+        const incomingTrack = tracks.find(track => track.id === id);
         if (incomingTrack) {
-            setNextTracks(prevNextTracks => [...prevNextTracks, incomingTrack])
+            setNextTracks(prevNextTracks => [...prevNextTracks, incomingTrack]);
+            const newNextTracks = [...nextTracks, incomingTrack]
+            saveNextTracksToLS(newNextTracks, user?.email);
         }
     }
     const handleDeleteTrackInList = (index: number) => {
         const newNextTracks = nextTracks.filter((track, i) => i !== index);
         setNextTracks(newNextTracks);
+        saveNextTracksToLS(newNextTracks, user?.email);
     }
     const handleNextTrackInList = () => {
         if (nextTracks && nextTracks?.length > 0) {
@@ -73,7 +87,8 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
             const incomingTrack = tracks.find(track => track.id === id);
             if (incomingTrack) {
                 setCurrentTrack(incomingTrack);
-                setNextTracks(nextTracks.slice(1))
+                setNextTracks(nextTracks.slice(1));
+                saveNextTracksToLS(nextTracks.slice(1), user?.email);
             }
         }
     }
@@ -83,7 +98,8 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
 
             if (currentTrack) {
                 const newNextTracks = [currentTrack, ...nextTracks];
-                setNextTracks(newNextTracks)
+                setNextTracks(newNextTracks);
+                saveNextTracksToLS(newNextTracks, user?.email);
             }
             setCurrentTrack(selectedPrevTrack);
 
@@ -91,8 +107,8 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
                 setPrevTracks([])
             } else {
                 const index = prevTracks.length - 1
-                const newPrevTracks = prevTracks.slice(0, index)
-                setPrevTracks(newPrevTracks!)
+                const newPrevTracks = prevTracks.slice(0, index);
+                setPrevTracks(newPrevTracks!);
             }
         }
     }
@@ -103,11 +119,12 @@ export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) =
         ids.forEach((id) => {
             const selectedTrack = tracks.find(track => track.id === id);
             if (selectedTrack) {
-                newNextTracks.push(selectedTrack)
+                newNextTracks.push(selectedTrack);
             }
         })
         setCurrentTrack(newNextTracks[0]);
-        setNextTracks(newNextTracks.slice(1))
+        setNextTracks(newNextTracks.slice(1));
+        saveNextTracksToLS(newNextTracks, user?.email);
     }
 
 
