@@ -1,6 +1,3 @@
-export { default as CardForAlbum } from './Cards/CardForAlbum';
-export { default as CardForPlaylistPlayerHome } from './Cards/CardForPlaylistPlayerHome';
-export { default as CardForTrack } from './Cards/CardForTrack';
 export * from './audioPlayer/AudioPlayer';
 export * from './burgerMenu/BurgerMenu';
 export * from './burgerMenu/DeleteTrackModal';
@@ -8,6 +5,9 @@ export * from './burgerMenu/DropdownMenu';
 export * from './burgerMenu/ModifyTrackModal';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/button.styles';
+export { default as CardForAlbum } from './cards/CardForAlbum';
+export { default as CardForPlaylistPlayerHome } from './cards/CardForPlaylistPlayerHome';
+export { default as CardForTrack } from './cards/CardForTrack';
 export * from './confirmationMessage/AlertMessageSuccess';
 export * from './confirmationMessage/messageSuccessContainer.styled';
 export * from './footer/Footer';
