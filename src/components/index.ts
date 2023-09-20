@@ -50,6 +50,4 @@ export * from './router/PublicRoute';
 export * from './searchBar/SearchBar';
 export * from './searchBar/searchBar.Styles';
 export * from './sideBar/SideBar';
-export * from './sideBar/favoritesSection/FavoritesSectionContainer';
 export * from './sideBar/homeSection/HomeSectionContainer';
-export * from './sideBar/playlistSection/PlaylistSectionContainer';

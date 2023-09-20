@@ -4,7 +4,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { BsMusicNoteList } from 'react-icons/bs'
 import { VscLibrary } from "react-icons/vsc";
 import { ImProfile } from "react-icons/im";
-import { HOME, LIBRARY, PLAYER, PLAYLISTS, PROFILE } from "../../../config/routes/paths";
+import { HOME, LIBRARY, PLAYER, PROFILE } from "../../../config/routes/paths";
 import { breakpoints } from "../../../styles/breakpoints";
 
 
@@ -14,9 +14,6 @@ export const HomeSectionContainer = () => {
       <Link to={HOME} ><AiOutlineHome /><span className="text">Home</span></Link>
       <Link to={PLAYER} ><BsMusicNoteList /><span className="text">Player</span></Link>
       <Link to={PROFILE} > <ImProfile /><span className="text">Profile</span></Link>
-
-      {/* TOFIX - Name changed but still needed to rework the links... */}
-
       <Link to={LIBRARY} > <VscLibrary /><span className="text">Library</span></Link>
     </HomeSectionContainerStyles>
   );
