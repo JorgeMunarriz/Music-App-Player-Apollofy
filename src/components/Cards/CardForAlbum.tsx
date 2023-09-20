@@ -3,7 +3,7 @@ import { ALBUM } from '../../config/routes/paths';
 import styled from 'styled-components';
 import { BsHeartFill, BsHeart } from 'react-icons/bs'
 import { breakpoints } from '../../styles/breakpoints';
-import { useUserContext } from '../../context';
+import { useUserContext, useUserMusicContext } from '../../context';
 import { useState } from 'react';
 
 interface AlbumProps {
@@ -19,8 +19,13 @@ const CardForAlbum = ({ id,
   albumUrl,
   albumImage, }: AlbumProps) => {
 
+  const { albums, artists } = useUserMusicContext();
   const { userData, handleUserData } = useUserContext();
   const [isLiked, setIsLiked] = useState(userData?.albumId.includes(id));
+
+  const albumDetail = albums.find(album => album.id === id);
+  const albumArtistId = albumDetail?.artistId;
+  const albumArtists = artists.filter(artist => albumArtistId?.includes(artist.id)).map(artist => artist.artistName);
 
   const handleLiked = (id: string) => {
     handleUserData(id, "album");
@@ -35,8 +40,7 @@ const CardForAlbum = ({ id,
         </div>
         <div className="cardForAlbum__body">
           <h3 className="cardForAlbum__body_title-h3">{albumName}</h3>
-
-          <h5 className="cardForAlbum__body_title-h5">Reproductions: {0}</h5>
+          <h5 className="cardForAlbum__body_title-h5">{albumArtists.join(', ')}</h5>
         </div>
       </Link>
       <div className="addToLike" onClick={() => handleLiked(id)} >

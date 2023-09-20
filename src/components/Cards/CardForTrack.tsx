@@ -7,7 +7,7 @@ import { FaHeart } from 'react-icons/fa'
 import { BiSolidPlaylist } from 'react-icons/bi'
 import { useState } from 'react';
 import { breakpoints } from '../../styles/breakpoints';
-import { useUserContext } from '../../context';
+import { useUserContext, useUserMusicContext } from '../../context';
 
 
 
@@ -29,10 +29,17 @@ interface ArtistProps {
 
 const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
 
+  const { tracks, artists } = useUserMusicContext();
 
   const { handleCurrentTrackById, handleNewTrackInList } = useQueuePlayerContext();
   const { userData, handleUserData } = useUserContext();
   const [isLiked, setIsLiked] = useState(userData?.tracksId.includes(id));
+
+  const trackDetail = tracks.find(track => track.id === id);
+  const trackArtistId = trackDetail?.artistId;
+  const trackArtists = artists.filter(artist => trackArtistId?.includes(artist.id)).map(artist => artist.artistName);
+  console.log(trackArtists)
+
 
   const handleLiked = (id: string) => {
     handleUserData(id, "track");
@@ -46,8 +53,8 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
           <img alt={trackName} className="cardForTrack__header_img" src={trackImage} />
         </div>
         <div className="cardForTrack__body">
-          <h3 className="cardForTrack__body_title-h3">{ }{trackName}</h3>
-          <h4 className="cardForTrack__body_title-h5">Reproductions: {0}</h4>
+          <h3 className="cardForTrack__body_title-h3">{trackName}</h3>
+          <h4 className="cardForTrack__body_title-h5">{trackArtists.join(', ')}</h4>
         </div>
       </Link>
       <div className='addToQueue'><BiSolidPlaylist onClick={() => handleNewTrackInList(id)} /></div>

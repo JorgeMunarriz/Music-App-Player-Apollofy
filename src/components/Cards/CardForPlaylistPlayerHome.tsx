@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsHeartFill, BsHeart } from 'react-icons/bs'
-import { useUserContext } from "../../context";
+import { useUserContext, useUserMusicContext } from "../../context";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { PLAYLISTS } from "../../config/routes/paths";
