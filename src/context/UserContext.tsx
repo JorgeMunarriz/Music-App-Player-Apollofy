@@ -54,14 +54,14 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     useEffect(() => {
         if (isAuthenticated) {
             async function userGetLauncher() {
-                await getUserData(user?.email);
+                await getUserData(user?.email ?? '');
             }
             userGetLauncher();
         }
     }, [isAuthenticated])
 
 
-    const getUserData = async (userEmail) => {
+    const getUserData = async (userEmail: string) => {
         if (user) {
             const userResponse = await userGet(userEmail, getAccessTokenSilently);
             setUserData(userResponse)

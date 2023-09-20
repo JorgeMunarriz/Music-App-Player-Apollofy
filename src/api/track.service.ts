@@ -12,7 +12,7 @@ export const getAllTracks = async (url: string): Promise<any> => {
 };
 
 export const trackPatch = async (
-  userUpdate: {},
+  trackData: FormData,
   id: string,
   getToken: GetTokenFunction
 ) => {
@@ -24,7 +24,7 @@ export const trackPatch = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(userUpdate),
+      body:trackData,
     });
     if (response.ok) {
       const data = await response.json();

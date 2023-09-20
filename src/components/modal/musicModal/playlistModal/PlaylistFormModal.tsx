@@ -4,18 +4,18 @@ import { AlertMessageSuccess, LoaderForm } from "../../..";
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 import { MultiSelect } from "react-multi-select-component";
-import { useGenresContext } from "../../../../context";
+import { useGenresContext, useUserContext } from "../../../../context";
+
 
 interface userFormModal {
   closeModal: () => void;
 }
 
-interface CreateAlbumType {
-  albumName: string,
-  albumImage: string,
-  albumCreatedAt: string,
+interface CreatePlaylistType {
+  playlistName: string,
+  playlistImage: string;
+  playlistCreatedById: string;
   genreId: string[],
-  artistId: string[],
   trackId: string[],
 }
 
@@ -24,20 +24,20 @@ interface Option {
   value: string;
 }
 
-export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
-  const { createNewAlbum, tracks, artists } = useUserMusicContext();
+export const PlaylistCreateForm: FC<userFormModal> = ({ closeModal }) => {
+  const { createNewPlaylist, tracks} = useUserMusicContext();
+  const {userData} = useUserContext();
   const { allGenres } = useGenresContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm({
     defaultValues: {
-      albumName: '',
-      albumImage: '',
+      playlistName: '',
+      playlistImage: '',
+      playlistCreatedById: userData?.userEmail ?? '',
       genreId: [],
-      artistId: [],
       trackId: [],
-      albumCreatedAt: new Date().toISOString(),
     },
   });
 
@@ -45,33 +45,28 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { errors } = formState;
 
 
-  const onSubmit: SubmitHandler<CreateAlbumType> = async (newAlbumData: CreateAlbumType) => {
+  const onSubmit: SubmitHandler<CreatePlaylistType> = async (newPlaylistData: CreatePlaylistType) => {
     try {
 
       setIsLoading(true);
       const formData = new FormData();
-      formData.append('albumName', newAlbumData.albumName);
-      formData.append('albumImage', newAlbumData.albumImage[0]);
-      formData.append('albumCreatedAt', newAlbumData.albumCreatedAt);
-      if (Array.isArray(newAlbumData.artistId)) {
-        for (const artist of newAlbumData.artistId as unknown as Option[]) {
-          formData.append("artistId", artist.value);
-        }
-      }
+      formData.append('playlistName', newPlaylistData.playlistName);
+      formData.append('playlistCreatedById', newPlaylistData.playlistCreatedById);
+      formData.append('playlistImage', newPlaylistData.playlistImage[0]);
 
-      if (Array.isArray(newAlbumData.trackId)) {
-        for (const track of newAlbumData.trackId as unknown as Option[]) {
+      if (Array.isArray(newPlaylistData.trackId)) {
+        for (const track of newPlaylistData.trackId as unknown as Option[]) {
           formData.append("trackId", track.value)
         }
       }
 
-      if (Array.isArray(newAlbumData.genreId)) {
-        for (const genre of newAlbumData.genreId as unknown as Option[]) {
+      if (Array.isArray(newPlaylistData.genreId)) {
+        for (const genre of newPlaylistData.genreId as unknown as Option[]) {
           formData.append("genreId", genre.value);
         }
       }
-
-      await createNewAlbum(formData);
+console.log(newPlaylistData)
+      await createNewPlaylist(userData?.userEmail ?? '',formData);
 
       setIsSuccess(true);
       setTimeout(() => {
@@ -80,7 +75,7 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
       }, 4000)
 
     } catch (error) {
-      console.error('Error saving track:', error);
+      console.error('Error saving playlist:', error);
     } finally {
       setIsLoading(false);
     }
@@ -90,21 +85,21 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <TracksFormContainer >
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>
-        Album create successfully
+        playlist create successfully
       </AlertMessageSuccess>}
-      <header>Create Album</header>
+      <header>Create Playlist</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
-          <label htmlFor='albumName'>Name</label>
+          <label htmlFor='playlistName'>Name</label>
           <input
-            {...register('albumName', {
+            {...register('playlistName', {
               required: 'Name is required',
             })}
             placeholder='Enter full Name'
             type='text'
-            id='albumName'
+            id='playlistName'
           />
-          {errors.albumName && <span className="error_input">{errors.albumName.message}</span>}
+          {errors.playlistName && <span className="error_input">{errors.playlistName.message}</span>}
         </div>
         <div className="gender_box">
           <Controller
@@ -120,21 +115,6 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
                 }}
               />
 
-            )}
-          />
-          <Controller
-            name="artistId"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <MultiSelect
-                options={artists.map((artist) => ({ label: artist.artistName, value: artist.id }))}
-                labelledBy="Select Artist"
-                {...field}
-                overrideStrings={{
-                  selectSomeItems: 'Select Artist',
-                }}
-              />
             )}
           />
 
@@ -154,26 +134,26 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
           />
           {errors.trackId && <span className="error_input">At least one track is required</span>}
         </div>
-        <div className="input_box description"  >
-          <label className="label_file" htmlFor='image'>Choose a file:</label>
-          <input className="inpdddut"
-            id='image'
-            type='file'
-            accept='image/*'
-
-            {...register('albumImage', {
-              required: 'Please choose a file',
+        <div className="input_box description">
+          <label className="label_file" htmlFor="image">
+            Choose a file:
+          </label>
+          <input
+            className="inpdut"
+            id="image"
+            type="file"
+            accept="image/*"
+            {...register("playlistImage", {
+              required: "Please choose a file",
             })}
-
           />
-          {errors.albumImage && <span className="error_input">{errors.albumImage.message}</span>}
         </div>
         <ButtonAdd>
-          <span className="shadow"></span>
-          <span className="front">
-            <strong className='font-size'>ADD Album</strong>
-          </span>
-        </ButtonAdd>
+			<span className="shadow"></span>
+			<span className="front">
+				<strong className='font-size'>ADD Playlist</strong>
+			</span>
+		</ButtonAdd>
       </form>
     </TracksFormContainer>
   )
@@ -311,7 +291,7 @@ const TracksFormContainer = styled.section`
   cursor: pointer;
 }
 
-.inpdddut[type="file"] {
+.inpdut[type="file"] {
   padding: 10px;
   margin-bottom: 1rem;
   border: none;
@@ -371,6 +351,7 @@ const TracksFormContainer = styled.section`
 }
 
  `
+
 const ButtonAdd = styled.button`
 background: var( --background-button-shade-color);
 width: 100%;

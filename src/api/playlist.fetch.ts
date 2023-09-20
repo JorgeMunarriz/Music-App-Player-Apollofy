@@ -45,3 +45,31 @@ export const getPlaylistById = async (
     throw new Error("Error while getting all playlist reference from mongoDB");
   }
 };
+
+export const createPlaylist = async (
+  userEmail: string,
+  formData: FormData,
+  getToken: GetTokenFunction
+) => {
+  try {
+    const token = await getToken();
+    const response = await fetch(`${urlPlaylist}/${userEmail}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Error connecting to DB: ${errorData}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("error in the playlist post request:", error);
+    throw error;
+  }
+};

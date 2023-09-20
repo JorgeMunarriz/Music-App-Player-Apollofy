@@ -1,12 +1,15 @@
 import { LazyExoticComponent, ComponentType, lazy, useState } from "react";
 import styled from "styled-components";
-import { SearchBar } from "..";
+import { AlbumCreateForm, Modal, PlaylistCreateForm, SearchBar, TracksCreateForm } from "..";
 import { useSearchParams } from "react-router-dom";
 import { breakpoints } from "../../styles/breakpoints";
 import { useUserMusicContext } from "../../context/UserMusicContext";
 import TracksForLibrary from "./cards/TracksForLibrary";
 import PlaylistForLibrary from "./cards/PlaylistForLibrary";
 import AlbumForLibrary from "./cards/AlbumForLibrary";
+import { HiPlus } from "react-icons/hi";
+import { Boop } from "../../animations/boopAnimation";
+import { useModal } from "../../hooks/useModal";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -36,7 +39,9 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const LibraryMainContainer = () => {
   const { playlistsCreated, playlistsLiked, albums, tracks } = useUserMusicContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
-
+  const [isOpenModal1, openModal1, closeModal1] = useModal(false);
+  const [isOpenModal2, openModal2, closeModal2] = useModal(false);
+  const [isOpenModal3, openModal3, closeModal3] = useModal(false);
   const [zoneSelected, setZoneSelected] = useState("playlists");
   const handleChangeZoneSelected = (selection: string) => {
     setZoneSelected(selection);
@@ -51,21 +56,44 @@ export const LibraryMainContainer = () => {
 
   return (
     <>
-      <LibraryMainContainerStyles>
+
+      <Modal isOpen={isOpenModal1} closeModal={closeModal1}>
+        <PlaylistCreateForm closeModal={closeModal1} />
+      </Modal>
+      <Modal isOpen={isOpenModal2} closeModal={closeModal2}>
+        <AlbumCreateForm closeModal={closeModal2} />
+      </Modal>
+      <Modal isOpen={isOpenModal3} closeModal={closeModal3}>
+        <TracksCreateForm closeModal={closeModal3} />
+      </Modal>
+      <PlaylistMainContainerStyles>
         <SearchBar setSearchParams={undefined} searchParams={undefined} handleChangeParams={undefined} query={undefined} />
 
         <section className="zone-selector">
           <span className={`selections ${zoneSelected === "playlists" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("playlists")}>
             Playlists
+            <button onClick={openModal1} className="button-icon tooltip" type="button">
+              <span className="tooltiptext">Add</span>
+              <HiPlus />
+            </button>
           </span>
+
           <span className={`selections ${zoneSelected === "myPlaylists" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("myPlaylists")}>
             My Playlists
           </span>
           <span className={`selections ${zoneSelected === "albums" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("albums")}>
             Albums
+            <button onClick={openModal2} className="button-icon tooltip" type="button">
+              <span className="tooltiptext">Add</span>
+              <HiPlus />
+            </button>
           </span>
           <span className={`selections ${zoneSelected === "tracks" ? "selection-active" : ""}`} onClick={() => handleChangeZoneSelected("tracks")}>
             Tracks
+            <button onClick={openModal3} className="button-icon tooltip" type="button">
+              <span className="tooltiptext">Add</span>
+              <HiPlus />
+            </button>
           </span>
         </section>
         <section className="zone-cards">
@@ -83,8 +111,13 @@ export const LibraryMainContainer = () => {
 
           {zoneSelected === "albums" &&
             albums &&
+<<<<<<< HEAD
+            albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId }) => (
+              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} />
+=======
             albums.map(({ id, albumName, albumImage, albumCreatedAt,artist, trackId, artistId }) => (
               <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
+>>>>>>> 72d0d2e06db647533b88140866419cf7ec92b6b2
             ))}
 
           {zoneSelected === "tracks" &&
@@ -138,6 +171,53 @@ export const LibraryMainContainer = () => {
     padding: 2rem;
     gap: 1rem;
   }
+  .button-icon {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s linear;
+    cursor: pointer;
+  }
+  & svg {
+    font-size: clamp(0.8rem, 2.3rem, 3rem);
+    color: var(--color-text-pink);
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+  .tooltip {
+ position: relative;
+ display: inline-block;
+}
+
+.tooltip .tooltiptext {
+ visibility: hidden;
+ width: 3em;
+ background-color: rgba(0, 0, 0, 0.253);
+ color: #fff;
+ text-align: center;
+ border-radius: 6px;
+ font-size: 1.5rem;
+ padding: 5px 0;
+ position: absolute;
+ z-index: 1;
+ top: 25%;
+ left: 110%;
+}
+
+.tooltip .tooltiptext::after {
+ content: "";
+ position: absolute;
+ top: 50%;
+ right: 100%;
+ margin-top: -5px;
+ border-width: 5px;
+ border-style: solid;
+ border-color: transparent rgba(0, 0, 0, 0.253) transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+ visibility: visible;
+}
 
   @media (${breakpoints.min}px <= width <= ${breakpoints.mobileMax}px) {
     grid-area: 1 / 1 / 5 / 7;

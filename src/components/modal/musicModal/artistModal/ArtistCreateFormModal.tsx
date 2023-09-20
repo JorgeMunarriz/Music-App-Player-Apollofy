@@ -79,7 +79,7 @@ export const ArtistCreateForm: FC<userFormModal> = ({ closeModal }) => {
     <ArtistsFormContainer>
       {isLoading && <LoaderForm />}
       {isSuccess && <AlertMessageSuccess>artist create successfully</AlertMessageSuccess>}
-      <header>ADD artist</header>
+      <header>Create Artist</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
           <label htmlFor="artistName">Name</label>
@@ -213,12 +213,9 @@ const ArtistsFormContainer = styled.section`
     column-gap: 15px;
   }
 
-  .form .gender_box {
-    color: #f5f4e8;
-    width: 100%;
-    padding-top: 1rem;
-    gap: 0.8rem;
-  }
+.form__gender_box {
+  color: #f5f4e8;
+}
 
   .form :where(.gender_option, .gender) {
     display: flex;
@@ -250,7 +247,22 @@ const ArtistsFormContainer = styled.section`
     accent-color: #ee4e34;
   }
 
-  .form :where(.gender input, .gender label) {
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
+}
+
+  .select {
+  width: 100%;
+  height:100%;
+  padding: 1.2rem 0;
+  border-radius: 5px;
+  border:1px solid #ccc;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: hsl(0, 100%, 0.9803921568627451%);
+  background-color:  rgb(134, 129, 134);
+  cursor: pointer;
+  & option {
     cursor: pointer;
   }
 
@@ -295,15 +307,19 @@ const ArtistsFormContainer = styled.section`
     cursor: pointer;
   }
 
-  .inpdut[type="file"] {
-    padding: 10px;
-    margin-bottom: 1rem;
-    border: none;
-    background-color: rgb(134, 129, 134);
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-  }
+.form__gender_box {
+
+}
+
+.inpdut[type="file"] {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  background-color:  rgb(134, 129, 134);
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
 
   .rmsc {
     --rmsc-main: #4285f4;
@@ -354,3 +370,59 @@ const ArtistsFormContainer = styled.section`
     border-radius: var(--rmsc-radius);
   }
 `;
+const ButtonAdd = styled.button`
+background: var( --background-button-shade-color);
+width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-size:4rem;
+  padding-top: 0.5rem;
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+   background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+.front {
+  display: block;
+  position: relative;
+  padding: 8px 25px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  color: #fafafa;
+  background:var(--background-button-color);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+&:hover {
+  filter: brightness(110%);
+
+}
+&:hover .front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+&:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+`
