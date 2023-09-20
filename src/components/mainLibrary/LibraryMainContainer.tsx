@@ -9,6 +9,7 @@ import PlaylistForLibrary from "./cards/PlaylistForLibrary";
 import AlbumForLibrary from "./cards/AlbumForLibrary";
 import { HiPlus } from "react-icons/hi";
 import { useModal } from "../../hooks/useModal";
+import { useUserContext } from "../../context";
 
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
@@ -36,7 +37,8 @@ const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 //sería mejor traerse del back el userName para mostrar quien ha creado la playlist, etc.
 
 export const LibraryMainContainer = () => {
-  const { playlistsCreated, playlistsLiked, albums, tracks } = useUserMusicContext();
+  const { playlistsAll, albums, tracks } = useUserMusicContext();
+  const { userData } = useUserContext();
   const { handleUserPlaylistsCreated, handleUserPlaylistsLiked, handleUserAlbums, handleUserTracks } = useUserMusicContext();
   const [isOpenModal1, openModal1, closeModal1] = useModal(false);
   const [isOpenModal2, openModal2, closeModal2] = useModal(false);
@@ -97,28 +99,36 @@ export const LibraryMainContainer = () => {
         </section>
         <section className="zone-cards">
           {zoneSelected === "playlists" &&
-            playlistsLiked &&
-            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist} />
-            ))}
+            playlistsAll &&
+            playlistsAll
+              .filter((playlist) => userData?.playlistLikedId.includes(playlist.id))
+              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist }) => (
+                <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} />
+              ))}
 
           {zoneSelected === "myPlaylists" &&
-            playlistsCreated &&
-            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist} />
-            ))}
+            playlistsAll &&
+            playlistsAll
+              .filter((playlist) => userData?.playlistCreatedId.includes(playlist.id))
+              .map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, artist }) => (
+                <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} artist={artist} />
+              ))}
 
           {zoneSelected === "albums" &&
             albums &&
-            albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId, artistId }) => (
-              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
-            ))}
+            albums
+              .filter((album) => userData?.albumId.includes(album.id))
+              .map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId, artistId }) => (
+                <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
+              ))}
 
           {zoneSelected === "tracks" &&
             tracks &&
-            tracks.map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
-              <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackId={[]} trackLikedById={[]} trackCreatedById={[]} genre={[{ genreName: "chipiti" }]} genreId={[]} artistId={[]} albumId={[]} />
-            ))}
+            tracks
+              .filter((track) => userData?.tracksId.includes(track.id))
+              .map(({ id, trackName, trackUrl, trackImage, trackCreatedAt, artist }) => (
+                <TracksForLibrary key={id} id={id} trackName={trackName} trackUrl={trackUrl} trackImage={trackImage} trackCreatedAt={trackCreatedAt} artist={artist} trackUpdatedAt={""} trackId={[]} trackLikedById={[]} trackCreatedById={[]} genre={[{ genreName: "chipiti" }]} genreId={[]} artistId={[]} albumId={[]} />
+              ))}
         </section>
 
         {/* 
