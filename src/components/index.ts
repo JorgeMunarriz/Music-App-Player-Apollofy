@@ -5,8 +5,18 @@ export { default as CardForPlaylistPlayerHome } from './Cards/CardForPlaylistPla
 export * from './Cards/CardForPlaylist_old';
 export { default as CardForTrack } from './Cards/CardForTrack';
 export * from './audioPlayer/AudioPlayer';
+export * from './burgerMenu/BurgerMenu';
+export * from './burgerMenu/DeleteTrackModal';
+export * from './burgerMenu/DropdownMenu';
+export * from './burgerMenu/ModifyTrackModal';
 export * from './buttonsLogin/Button';
 export * from './buttonsLogin/button.styles';
+<<<<<<< HEAD
+=======
+export { default as CardForAlbum } from './cards/CardForAlbum';
+export { default as CardForPlaylistPlayerHome } from './cards/CardForPlaylistPlayerHome';
+export { default as CardForTrack } from './cards/CardForTrack';
+>>>>>>> 72d0d2e06db647533b88140866419cf7ec92b6b2
 export * from './confirmationMessage/AlertMessageSuccess';
 export * from './confirmationMessage/messageSuccessContainer.styled';
 export * from './footer/Footer';

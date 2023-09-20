@@ -7,18 +7,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const HomePage = () => {
-  const { userFetch, userData } = useUserContext()
-  const { user, getAccessTokenSilently} = useAuth0();
-
-  useEffect(() => {
-   if(!userData){
-     userFetch(user, getAccessTokenSilently);
-   }
-  }, [user]);
+  // const { userData } = useUserContext()
+  // const { user, getAccessTokenSilently} = useAuth0();
 
   return (
 
     <HomeMainContainer />
+
   )
 }
 

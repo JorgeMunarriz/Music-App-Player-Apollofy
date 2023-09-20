@@ -14,7 +14,7 @@ import { useModal } from "../../hooks/useModal";
 const LazyCards: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      return resolve(import("../cards/CardForPlaylistPlayer"));
+      return resolve(import("../cards/CardForPlaylistPlayerHome"));
     }, 1500);
   });
 });
@@ -99,20 +99,25 @@ export const LibraryMainContainer = () => {
         <section className="zone-cards">
           {zoneSelected === "playlists" &&
             playlistsLiked &&
-            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} />
+            playlistsLiked.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist} />
             ))}
 
           {zoneSelected === "myPlaylists" &&
             playlistsCreated &&
-            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre }) => (
-              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} />
+            playlistsCreated.map(({ id, playlistName, playlistImage, playlistCreatedById, trackId, genre, artist }) => (
+              <PlaylistForLibrary key={id} id={id} playlistName={playlistName} playlistImage={playlistImage} playlistCreatedById={playlistCreatedById} trackId={trackId} genre={genre} artist={artist}/>
             ))}
 
           {zoneSelected === "albums" &&
             albums &&
+<<<<<<< HEAD
             albums.map(({ id, albumName, albumImage, albumCreatedAt, artist, trackId }) => (
               <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} />
+=======
+            albums.map(({ id, albumName, albumImage, albumCreatedAt,artist, trackId, artistId }) => (
+              <AlbumForLibrary key={id} id={id} albumName={albumName} albumImage={albumImage} albumCreatedAt={albumCreatedAt} artist={artist} trackId={trackId} artistId={artistId} />
+>>>>>>> 72d0d2e06db647533b88140866419cf7ec92b6b2
             ))}
 
           {zoneSelected === "tracks" &&
@@ -129,12 +134,12 @@ export const LibraryMainContainer = () => {
               <LazyCards key={id} id={id} isFollowed={isFollowed} name={name} description={description} thumbnail={thumbnail} />
             </Suspense>
           ))} */}
-      </PlaylistMainContainerStyles>
+      </LibraryMainContainerStyles>
     </>
   );
 };
 
-export const PlaylistMainContainerStyles = styled.main`
+ const LibraryMainContainerStyles = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;

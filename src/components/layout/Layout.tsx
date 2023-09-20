@@ -8,14 +8,6 @@ import { GlobalPrivatePageStyles} from "../../global";
 const Layout = () => {
 ;
 
-  
-  // const fetchData = async () => {
-  //   const data = await getDataApi(urlTrack);
-  //   console.log(data);
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <>
