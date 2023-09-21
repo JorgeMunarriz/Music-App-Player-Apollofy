@@ -1,5 +1,5 @@
 
-export const saveNextTracksToLS = (nextTracks, userEmail) => {
+export const saveNextTracksToLS = (nextTracks, userEmail: string) => {
 
     try {
         const nextTracksLS = JSON.stringify(nextTracks);
@@ -10,7 +10,7 @@ export const saveNextTracksToLS = (nextTracks, userEmail) => {
 }
 
 
-export const loadNextTracksFromLS = (userEmail) => {
+export const loadNextTracksFromLS = (userEmail: string) => {
     try {
         const nextTracksLS = localStorage.getItem(`apollofy${userEmail}`);
         if (nextTracksLS) {
