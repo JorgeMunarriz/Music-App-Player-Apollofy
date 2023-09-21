@@ -1,6 +1,7 @@
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from 'react';
 import { userPost, UserPatch, userDelete, userGet, UserPatchLiked } from '../api/user.fetch'
 import { User, useAuth0 } from '@auth0/auth0-react'
+import { useUserMusicContext } from '.';
 
 // interface UserDates {
 // 	id: String;
@@ -49,6 +50,7 @@ export const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const { albums,artistCreated,tracks } = useUserMusicContext();
     const [userData, setUserData] = useState<userData | null>(null);
 
     useEffect(() => {
@@ -59,7 +61,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
             }
             userGetLauncher();
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated,albums,artistCreated,tracks ])
 
     const createUser = async (user: User | undefined) => {
         try {
