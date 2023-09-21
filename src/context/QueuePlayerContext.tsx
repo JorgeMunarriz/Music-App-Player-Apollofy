@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { FC, PropsWithChildren, ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { useUserMusicContext } from "./UserMusicContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import { loadNextTracksFromLS, saveNextTracksToLS } from "../utils/nextTracksToLS";
@@ -43,7 +43,7 @@ interface ArtistInterface {
 
 const QueuePlayerContext = createContext<QueuePlayerContextType | undefined>(undefined);
 
-export const QueuePlayerProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const QueuePlayerProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const { user, isAuthenticated } = useAuth0();
     const { tracks } = useUserMusicContext();

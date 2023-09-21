@@ -31,7 +31,6 @@ export interface Track {
   reproductions: number
 }
 
-// export type CardTypes = Track | Playlist
 
 export interface User {
   id: number

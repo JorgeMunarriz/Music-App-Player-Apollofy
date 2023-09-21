@@ -23,7 +23,6 @@ export const Router = () => {
 
   return (
     <BrowserRouter>
-      {/* <AnimatedRoutes /> */}
       <Routes>
         <Route path={LANDING} element={<PublicRoute />}>
           <Route index element={<LandingPage />} />
@@ -31,7 +30,6 @@ export const Router = () => {
           <Route path={LOGIN} element={<LoginPage />} />
           <Route path={REGISTER} element={<RegisterPage />} />
         </Route>
-
         <Route
           path={HOME}
           element={
@@ -129,20 +127,3 @@ export const Router = () => {
 // profile
 
 //  footer
-
-// const AnimatedRoutes = () => {
-//   const location = useLocation();
-
-//   return (
-//     <TransitionGroup>
-//       <CSSTransition key={location.key} timeout={500} classNames="page">
-//         <Routes location={location}>
-//           <Route path="/" element={<LandingPage />} />
-//           <Route path="/starting" element={<StartingPage />} />
-//           <Route path="/login" element={<LoginPage />} />
-//           <Route path="/register" element={<RegisterPage />} />
-//         </Routes>
-//       </CSSTransition>
-//     </TransitionGroup>
-//   );
-// };

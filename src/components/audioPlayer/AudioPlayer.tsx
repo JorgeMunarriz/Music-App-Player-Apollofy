@@ -66,12 +66,7 @@ export const AudioPlayerStyles = styled.div`
         align-items: center;
         justify-content: center;
       }
-      // &_additional-controls {
-      //   display:none;
-      // }
-      // &_volume-container {
-      //   display:none;
-      // }
+      
       }
     }
 

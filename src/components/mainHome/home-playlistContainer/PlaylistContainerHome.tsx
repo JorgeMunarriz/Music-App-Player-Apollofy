@@ -28,8 +28,6 @@ type ProprQuery = {
 };
 
 export const PlaylistContainerHome = ({ query }: ProprQuery) => {
-  // const data = useContext(DataMusicContext);
-  // const tracks = data?.data?.tracks?.sort((elemA: { reproductions: number; }, elemB: { reproductions: number; }) => elemB.reproductions - elemA.reproductions);
   const { playlistsAll } = useUserMusicContext();
 
   return (
@@ -64,7 +62,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 35px;
@@ -80,13 +77,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -97,9 +92,6 @@ const TracksContainerStyles = styled.div`
       transition: all 0.3s;
       background-color: #ffffff;
       left: 0;
-      /* bottom: 300px; */
-      /* width: 100%; */
-      /* top: 300px; */
     }
     .swiper-pagination-bullet-active {
       background: #f8f7f9;
@@ -125,7 +117,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 20px;
@@ -141,13 +132,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -186,7 +175,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 20px;
@@ -202,13 +190,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -247,7 +233,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 20px;
@@ -263,13 +248,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -309,7 +292,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 25px;
@@ -325,13 +307,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -370,7 +350,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .playlistTitle {
     font-size: 25px;
@@ -386,13 +365,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -403,9 +380,6 @@ const TracksContainerStyles = styled.div`
       transition: all 0.3s;
       background-color: #ffffff;
       left: 0;
-      /* bottom: 300px; */
-      /* width: 100%; */
-      /* top: 300px; */
     }
     .swiper-pagination-bullet-active {
       background: #f8f7f9;

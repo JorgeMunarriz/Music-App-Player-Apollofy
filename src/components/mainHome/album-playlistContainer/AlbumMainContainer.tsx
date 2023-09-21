@@ -24,12 +24,7 @@ const LazyCardAlbumHome: LazyExoticComponent<ComponentType<any>> = lazy(() => {
   });
 });
 
-// interface CardProps {
-// 	id: string;
-// 	trackName: string;
-// 	trackUrl: string;
-// 	trackImage: string
-// }
+
 
 type ProprQuery = {
   query: string;
@@ -92,7 +87,6 @@ const TracksContainerStyles = styled.div`
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -103,9 +97,6 @@ const TracksContainerStyles = styled.div`
       transition: all 0.3s;
       background-color: #ffffff;
       left: 0;
-      /* bottom: 300px; */
-      /* width: 100%; */
-      /* top: 300px; */
     }
     .swiper-pagination-bullet-active {
       background: #f8f7f9;
@@ -131,7 +122,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .albumsTitle {
     font-size: 20px;
@@ -147,13 +137,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -192,7 +180,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .albumsTitle {
     font-size: 20px;
@@ -208,13 +195,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -253,7 +238,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .albumsTitle {
     font-size: 20px;
@@ -269,13 +253,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -315,7 +297,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .albumsTitle {
     font-size: 25px;
@@ -331,13 +312,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -376,7 +355,6 @@ const TracksContainerStyles = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 100vh;
-  /* gap: 1rem; */
 
   .albumsTitle {
     font-size: 25px;
@@ -392,13 +370,11 @@ const TracksContainerStyles = styled.div`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      /* margin: 10px; */
       padding: 1.5rem;
       gap: 1rem;
       .swiper-slide {
         margin: 0;
         padding: 0;
-        /* margin-top: 5 !important; */
         margin-right: 0 !important;
       }
     }
@@ -409,9 +385,6 @@ const TracksContainerStyles = styled.div`
       transition: all 0.3s;
       background-color: #ffffff;
       left: 0;
-      /* bottom: 300px; */
-      /* width: 100%; */
-      /* top: 300px; */
     }
     .swiper-pagination-bullet-active {
       background: #f8f7f9;

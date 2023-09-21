@@ -269,11 +269,7 @@ export const createAlbum = async (formData: FormData, getToken: GetTokenFunction
         Authorization: `Bearer ${token}`,
       },
       body: formData,
-    });
-    // if (!response.ok) {
-    //   const errorData = await response.json();
-    //   throw new Error(`Error connecting to DB: ${errorData}`);
-    // }
+    });    
 
     const data = await response.json();
 

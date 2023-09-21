@@ -26,7 +26,6 @@ const LazyInput: LazyExoticComponent<ComponentType<any>> = lazy(() => {
 export const RegisterSection = () => {
   const [form, setForm] = useState(InitialValue);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const [users ,setUsers] = useState<User[]>([])
 
   useEffect(() => {
     if (inputRef.current) {
@@ -37,7 +36,6 @@ export const RegisterSection = () => {
 
   const handleSubmit = (user: RegisterFormState) => {
     setForm({ ...form, id: Date.now() });
-    // setUsers([...users, {...user, id:Date.now()}])
     localStorage.setItem("form", JSON.stringify(form));
   };
 
