@@ -1,26 +1,8 @@
 import { createContext, FC, useState, ReactNode, useContext, useEffect } from 'react';
-import { userPost, UserPatch, userDelete, userGet, UserPatchLiked } from '../api/user.fetch'
+import { userPost, UserPatch, userDelete, UserPatchLiked } from '../api/user.fetch'
 import { User, useAuth0 } from '@auth0/auth0-react'
 import { useUserMusicContext } from '.';
 
-// interface UserDates {
-// 	id: String;
-// 	userEmail: String;
-// 	userName: String;
-// 	userImage: String;
-// 	userCreatedAt: String;
-// 	userUpdatedAt: String;
-// 	playlistLikedId: String[];
-// 	playlistLiked: Playlist[];
-// 	tracksId: String[];
-// 	tracks: Track[];
-// 	postId: String[];
-// 	post: Post[];
-// 	albumId: String[];
-// 	album: Album[];
-// 	playlistCreatedId: String[];
-// 	playlistCreated: Playlist[];
-// }
 
 interface userData {
   id?: string | null;
@@ -32,12 +14,7 @@ interface userData {
   albumId: string[];
   tracksId: string[];
 }
-interface userUpdateData {
-  id?: string | null;
-  userEmail: string;
-  userName: string;
-  userImage: string;
-}
+
 interface UserContextType {
   userData: userData | null;
   updatedUserData: (userUpdateData: FormData, userId: string) => Promise<void>;
