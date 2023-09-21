@@ -38,7 +38,6 @@ const CardForTrack = ({ id, trackName, trackUrl, trackImage }: Track) => {
   const trackArtistId = trackDetail?.artistId;
   const trackArtists = artists.filter(artist => trackArtistId?.includes(artist.id)).map(artist => artist.artistName);
 
-
   const handleLiked = (id: string) => {
     handleUserData(id, "track");
     setIsLiked(!isLiked);
@@ -131,22 +130,11 @@ const CardForTrackStyles = styled.div`
       }
     }
   }
-  .addToQueue {
-    display: flex;
-    position: absolute;
-    justify-content: space-between;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    z-index: 10;
-    font-size: 3rem;
-    color: var(--color-text-gray);
-    cursor: grabbing;
-  }
   .tooltip {
     position: relative;
     display: inline-block;
   }
-
+  
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 6em;
@@ -161,7 +149,7 @@ const CardForTrackStyles = styled.div`
     bottom: 25%;
     right: 110%;
   }
-
+  
   .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
@@ -172,9 +160,19 @@ const CardForTrackStyles = styled.div`
     border-style: solid;
     border-color: transparent rgba(0, 0, 0, 0.253) transparent transparent;
   }
-
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+  .addToQueue {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    font-size: 3rem;
+    color: var(--color-text-gray);
+    cursor: grabbing;
   }
   .addToLike {
     display: flex;
@@ -183,18 +181,19 @@ const CardForTrackStyles = styled.div`
     top: 0.5rem;
     right: 0.5rem;
     z-index: 10;
-    cursor: grabbing;
     &__fill-heart {
       font-size: 3rem;
       color: var(--color-text-gray);
       border: none;
       opacity: 0.9;
+      cursor: grabbing;
     }
     &__out-heart {
       font-size: 3rem;
       color: var(--color-text-gray);
       border: none;
       opacity: 0.9;
+      cursor: grabbing;
     }
   }
 
@@ -288,18 +287,14 @@ const CardForTrackStyles = styled.div`
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
-        &:hover {
-          cursor: grabbing;
-        }
+        cursor: grabbing;
       }
       &__out-heart {
         font-size: 1.5rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
-        &:hover {
-          cursor: grabbing;
-        }
+        cursor: grabbing;
       }
     }
   }
@@ -394,18 +389,14 @@ const CardForTrackStyles = styled.div`
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
-        &:hover {
-          cursor: grabbing;
-        }
+        cursor: grabbing;
       }
       &__out-heart {
         font-size: 2rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
-        &:hover {
-          cursor: grabbing;
-        }
+        cursor: grabbing;
       }
     }
   }
@@ -493,18 +484,19 @@ const CardForTrackStyles = styled.div`
       top: 0.5rem;
       right: 0.5rem;
       z-index: 10;
-      cursor: grabbing;
       &__fill-heart {
         font-size: 2rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
       &__out-heart {
         font-size: 2rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
     }
   }
@@ -592,18 +584,19 @@ const CardForTrackStyles = styled.div`
       top: 0.5rem;
       right: 0.5rem;
       z-index: 10;
-      cursor: grabbing;
       &__fill-heart {
         font-size: 2.5rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
       &__out-heart {
         font-size: 2.5rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
     }
   }
@@ -691,18 +684,19 @@ const CardForTrackStyles = styled.div`
       top: 0.5rem;
       right: 0.5rem;
       z-index: 10;
-      cursor: grabbing;
       &__fill-heart {
         font-size: 3rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
       &__out-heart {
         font-size: 3rem;
         color: var(--color-text-gray);
         border: none;
         opacity: 0.9;
+        cursor: grabbing;
       }
     }
   }

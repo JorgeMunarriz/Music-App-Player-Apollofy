@@ -1,6 +1,26 @@
-import { createContext, FC, useState, ReactNode, useContext, useEffect } from "react";
-import { userPost, UserPatch, userDelete, UserPatchLiked } from "../api/user.fetch";
-import { User, useAuth0 } from "@auth0/auth0-react";
+import { createContext, FC, useState, ReactNode, useContext, useEffect } from 'react';
+import { userPost, UserPatch, userDelete, userGet, UserPatchLiked } from '../api/user.fetch'
+import { User, useAuth0 } from '@auth0/auth0-react'
+import { useUserMusicContext } from '.';
+
+// interface UserDates {
+// 	id: String;
+// 	userEmail: String;
+// 	userName: String;
+// 	userImage: String;
+// 	userCreatedAt: String;
+// 	userUpdatedAt: String;
+// 	playlistLikedId: String[];
+// 	playlistLiked: Playlist[];
+// 	tracksId: String[];
+// 	tracks: Track[];
+// 	postId: String[];
+// 	post: Post[];
+// 	albumId: String[];
+// 	album: Album[];
+// 	playlistCreatedId: String[];
+// 	playlistCreated: Playlist[];
+// }
 
 interface userData {
   id?: string | null;
@@ -28,17 +48,19 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [userData, setUserData] = useState<userData | null>(null);
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const { albums,artistCreated,tracks } = useUserMusicContext();
+    const [userData, setUserData] = useState<userData | null>(null);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      async function userGetLauncher() {
-        await createUser(user);
-      }
-      userGetLauncher();
-    }
-  }, [isAuthenticated]);
+    useEffect(() => {
+        if (isAuthenticated) {
+            async function userGetLauncher() {
+                await createUser(user);
+                // await getUserData(user?.email ?? '');
+            }
+            userGetLauncher();
+        }
+    }, [isAuthenticated,albums,artistCreated,tracks ])
 
   const createUser = async (user: User | undefined) => {
     try {

@@ -260,10 +260,10 @@ export const createTrack = async (userId: string, formData: FormData, getToken: 
   }
 };
 
-export const createAlbum = async (formData: FormData, getToken: GetTokenFunction) => {
+export const createAlbum = async (formData: FormData,userId:string, getToken: GetTokenFunction) => {
   try {
     const token = await getToken();
-    const response = await fetch(urlAlbum, {
+    const response = await fetch(`${urlAlbum}/${userId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

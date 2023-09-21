@@ -10,7 +10,7 @@ export const PlayerContainer = () => {
   return (
     <PlayerContainerStyles >
       <div className="playerContainer">
-        <img className="playerContainer__img-big" src={currentTrack?.trackImage} />
+        <img alt='player Image' className="playerContainer__img-big" src={currentTrack?.trackImage} />
         <h3 className="playerContainer__h3">{currentTrack?.trackName}</h3>
         <h4 className="playerContainer__span">{currentTrack?.artist.map(artist => artist.artistName).join(', ')}</h4>
         <span className="playerContainer__span">{currentTrack?.genre.map(genre => genre.genreName).join(', ')}</span>

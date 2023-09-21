@@ -4,7 +4,7 @@ import { AlertMessageSuccess, LoaderForm } from "../../..";
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { useUserMusicContext } from "../../../../context/UserMusicContext";
 import { MultiSelect } from "react-multi-select-component";
-import { useGenresContext } from "../../../../context";
+import { useGenresContext, useUserContext } from "../../../../context";
 
 interface userFormModal {
   closeModal: () => void;
@@ -27,6 +27,7 @@ interface Option {
 export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
   const { createNewAlbum, tracks, artists } = useUserMusicContext();
   const { allGenres } = useGenresContext();
+  const { userData } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -37,7 +38,7 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
       genreId: [],
       artistId: [],
       trackId: [],
-      albumCreatedAt: new Date().toISOString(),
+      albumCreatedAt: '',
     },
   });
 
@@ -71,13 +72,13 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
         }
       }
 
-      await createNewAlbum(formData);
+      await createNewAlbum(formData,userData?.id ?? '');
 
       setIsSuccess(true);
       setTimeout(() => {
         setIsSuccess(false);
         closeModal()
-      }, 4000)
+      }, 2000)
 
     } catch (error) {
       console.error('Error saving track:', error);
@@ -95,7 +96,7 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
       <header>Create Album</header>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="input_box">
-          <label htmlFor='albumName'>Name</label>
+          <label className="" htmlFor='albumName'>Name</label>
           <input
             {...register('albumName', {
               required: 'Name is required',
@@ -105,6 +106,16 @@ export const AlbumCreateForm: FC<userFormModal> = ({ closeModal }) => {
             id='albumName'
           />
           {errors.albumName && <span className="error_input">{errors.albumName.message}</span>}
+          <label className="albumCreatedAtLabel" htmlFor='albumCreatedAt'>Creation date</label>
+          <input
+            {...register('albumCreatedAt', {
+              required: 'Date is required',
+            })}
+            placeholder='Enter full Name'
+            type='text'
+            id='albumCreatedAt'
+          />
+          {errors.albumCreatedAt && <span className="error_input">{errors.albumCreatedAt.message}</span>}
         </div>
         <div className="gender_box">
           <Controller
@@ -200,6 +211,8 @@ const TracksFormContainer = styled.section`
 .form .input_box {
   width: 100%;
   padding-top: 0.1rem;
+  display: grid;
+  gap: 0.1rem;
 }
 
 .input_box label {
@@ -208,7 +221,12 @@ const TracksFormContainer = styled.section`
   font-weight: 700;
   padding-top: 0.3rem;
 }
-
+.albumCreatedAtLabel {
+  color: #f5f4e8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-top: 0.3rem;
+}
 .form :where(.input_box input, .select_box) {
   position: relative;
   height: 35px;

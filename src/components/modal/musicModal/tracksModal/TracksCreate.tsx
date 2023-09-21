@@ -39,7 +39,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       genreId: [],
       artistId: [],
       albumId: [],
-      trackCreatedAt: new Date().toISOString(),
+      trackCreatedAt: '',
     },
   });
 
@@ -78,7 +78,7 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
       setTimeout(() => {
         setIsSuccess(false);
         closeModal()
-      }, 4000)
+      }, 2000)
 
     } catch (error) {
       console.error("Error saving track:", error);
@@ -106,6 +106,16 @@ export const TracksCreateForm: FC<userFormModal> = ({ closeModal }) => {
             id="trackName"
           />
           {errors.trackName && <span className="error_input">{errors.trackName.message}</span>}
+          <label className="form__input_box-label" htmlFor='trackCreatedAt'>Creation date</label>
+          <input
+            {...register('trackCreatedAt', {
+              required: 'Date is required',
+            })}
+            placeholder='Enter full Name'
+            type='text'
+            id='trackCreatedAt'
+          />
+          {errors.trackCreatedAt && <span className="error_input">{errors.trackCreatedAt.message}</span>}
         </div>
         <div className="form__gender_box">
           <Controller
@@ -197,7 +207,7 @@ const TracksFormContainer = styled.section`
   max-width: 500px;
   width: 100%;
   background: linear-gradient(to right ,hsl(300, 100%, 10%), #000);
-  padding: 25px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
@@ -209,17 +219,16 @@ const TracksFormContainer = styled.section`
   }
 
   .form {
-    margin-top: 15px;
+    margin-top: 2px;
     &__input_box {
       width: 100%;
-      padding-top: 0.1rem;
+      display: grid;
+     gap: 0.2rem;
       &-label {
         color: #f5f4e8;
         font-size: 1.2rem;
         font-weight: 700;
-        padding-top: 0.3rem;
         &-file {
-          padding-top: 0.5rem;
           color: #f5f4e8;
           font-size: 1.2rem;
           font-weight: 700;
@@ -232,7 +241,7 @@ const TracksFormContainer = styled.section`
       }
       &-input[type="file"] {
         padding: 10px;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         border: none;
         background-color: rgb(134, 129, 134);
         border-radius: 5px;
@@ -247,7 +256,7 @@ const TracksFormContainer = styled.section`
         outline: none;
         font-size: 1rem;
         color: #2b1c1c;
-        margin-top: 5px;
+        /* margin-top: 5px; */
         border: 1px solid #ee4e34;
         border-radius: 6px;
         padding: 0 15px;
